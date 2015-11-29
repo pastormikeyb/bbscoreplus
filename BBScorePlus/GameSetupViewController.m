@@ -34,4 +34,24 @@
 }
 */
 
+- (IBAction)directionsOnClick:(id)sender {
+    NSString *street = _gameStreetAddressTextField.text;
+    NSString *city = _gameCityAddressTextField.text;
+    NSString *state = _gameStateAddressTextField.text;
+    NSString *zip = _gameZipAddressTextField.text;
+    NSString *search = [[NSString stringWithFormat:@"http://maps.apple.com/?q=%@ %@ %@ %@",street,city,state,zip]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//    NSString *addressURL = [NSString stringWithFormat:@"http://maps.apple.com/?q=%@",search];
+    
+    
+    if (street.length < 1 || city.length <1) {
+        NSLog(@"required has something missing");
+
+    }else{
+        NSURL *url = [NSURL URLWithString:search];
+        [[UIApplication sharedApplication] openURL:url];
+
+    }
+    
+
+}
 @end

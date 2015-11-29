@@ -10,16 +10,18 @@
 
 @interface RulesSetupViewController : UIViewController
 {
-    bool isTrackingPitchCount;
-    bool isContinousLineup;
-    bool isHomeTeam;
+    BOOL isTrackingPitchCount;
+    BOOL isContinousLineup;
+    BOOL isHomeTeam;
+    BOOL batting;
+    BOOL isTopOfInning;
 }
 @property (weak, nonatomic) IBOutlet UISwitch *trackPitchCountSwitch;
 @property (weak, nonatomic) IBOutlet UITextField *maxNumberOfPitchesTextField;
 @property (weak, nonatomic) IBOutlet UITextField *numberOfHoursRestTextField;
 @property (weak, nonatomic) IBOutlet UISwitch *continousLineupSwitch;
 @property (weak, nonatomic) IBOutlet UITextField *gameTimeLimitTextField;
-@property (weak, nonatomic) IBOutlet UISwitch *isHomeTeam;
+@property (weak, nonatomic) IBOutlet UISwitch *isHomeTeamSwitch;
 
 - (IBAction)onClick:(id)sender;
 - (IBAction)onSwitch:(id)sender;

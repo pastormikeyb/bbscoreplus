@@ -11,6 +11,7 @@
 @interface GameStatsViewController ()
 {
     int value;
+    NSArray *myPitcherArray;
 }
 
 @end
@@ -22,7 +23,6 @@
     myTeamDictionaryArray = [[NSMutableArray alloc]init];
     myOpponentTeamDictionaryArray = [[NSMutableArray alloc]init];
     // Do any additional setup after loading the view.
-    batterListArray = [NSMutableArray arrayWithObjects:@"Calhoun: 1-4,  RBI,  SB", @"Smith: 2-3, HR, 2 RBI", @"Usry: 4-4, SB", @"George:", @"Solo", @"McB", @"White", @"Patterson", @"Webb", @"Young", @"Mitchell", @"Arp", @"McDonald", @"Greene", @"Jones", @"McFly", nil];
     
     sectionHeaders = [NSArray arrayWithObjects:@"Home", @"Hitting", @"Pitching", @"Visitor", @"Hitting", @"Pitching", nil];
 
@@ -51,14 +51,12 @@
     // Dispose of any resources that can be recreated.
 } 
 
--(void)shareButton:(id)sender{
+- (void)shareButton:(id)sender{
     
     [self shareContent];
 }
 
--(void)shareContent{
-//    NSString * message = @"Check this out";
-//            NSString *stats = [NSString stringWithFormat:@"Avg:%.03f HR:%i RBI:%i", avg,hr,rb];
+- (void)shareContent{
     if ([myTeamScore intValue] > [opponentTeamScore intValue]) {
         shareSubMessage = @"We're winning.";
     }else if ([myTeamScore intValue] < [opponentTeamScore intValue]){
@@ -90,10 +88,10 @@
     }
     if (section == 2) {
         NSLog(@"section 2-pitcher");//pitcher
-        NSLog(@"count: %lu",(unsigned long)myTeamFilteredPitcherLastName.count);
+        NSLog(@"count: %lu",(unsigned long)loadedPitch.count);
 
 
-        return myTeamFilteredPitcherLastName.count;
+        return loadedPitch.count;
     }
     
     if (section == 3) {
@@ -115,10 +113,10 @@
     if (section == 5) {
         NSLog(@"section 5-pitcher");//pitcher
 
-        NSLog(@"count: %lu",(unsigned long)opponentTeamFilteredPitcherLastName.count);
+        NSLog(@"count: %lu",(unsigned long)loadedOpponentPitch.count);
     
         
-        return opponentTeamFilteredPitcherLastName.count;
+        return loadedOpponentPitch.count;
 
     }
 
@@ -131,6 +129,7 @@
     static NSString *lineupTableID = @"GameStatsCell";
     
     GameStatsTableViewCell *cell = [tableView2 dequeueReusableCellWithIdentifier:lineupTableID];
+
     
     if (cell == nil) {
         cell = [[GameStatsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:lineupTableID];
@@ -153,20 +152,38 @@
         float avg = hits/atBats;
         if (isnan(avg)) {
             avg = 0;
-        }
+            NSString *stats = [NSString stringWithFormat:@"Avg:%.03f HR:%i RBI:%i", avg,hr,rb];
+            
+            cell.gameStatsPlayerStats.text = stats;
+            
 
-        NSString *stats = [NSString stringWithFormat:@"Avg:%.03f HR:%i RBI:%i", avg,hr,rb];
-        
-        cell.gameStatsPlayerStats.text = stats;
-        return cell;
+        }
     }
     
     if ([indexPath section] == 2) {
-            //home pitcher
-        cell.gameStatsPlayerLastName.text = [myTeamFilteredPitcherLastName objectAtIndex:indexPath.row];;
-        cell.gameStatsPlayerNumber.text = [myTeamFilteredPitcherNumber objectAtIndex:indexPath.row];
-//        cell.gameStatsPlayerStats.text =;
-        return cell;
+        
+
+        cell.gameStatsPlayerLastName.text = [[loadedPitch valueForKey:@"lastname"] objectAtIndex:indexPath.row];
+        cell.gameStatsPlayerNumber.text = [[loadedPitch valueForKey:@"playernumber"] objectAtIndex:indexPath.row];
+        int balls = [(NSNumber *)[loadedBallsThrown objectAtIndex:indexPath.row]intValue];
+        int strikes = [(NSNumber *)[loadedStrikesThrown objectAtIndex:indexPath.row]intValue];
+        
+        int pitches =(balls + strikes);
+        if (isnan(pitches)) {
+            pitches = 0;
+            balls = 0;
+            strikes = 0;
+            NSString *stats = [NSString stringWithFormat:@"Balls:%i Strikes:%i Total Pitches:%i", balls,strikes,pitches];
+            
+            cell.gameStatsPlayerStats.text = stats;
+            
+            
+        }else{
+            NSString *stats = [NSString stringWithFormat:@"Balls:%i Strikes:%i Total Pitches:%i", balls,strikes,pitches];
+            
+            cell.gameStatsPlayerStats.text = stats;
+
+        }
     }
 
     if ([indexPath section] == 4) {
@@ -187,19 +204,37 @@
         if (isnan(avg)) {
             avg = 0;
         }
-        
-        NSString *stats = [NSString stringWithFormat:@"Avg:%.03f HR:%i RBI:%i", avg,hr,rb];
-        
-        cell.gameStatsPlayerStats.text = stats;
-        return cell;
+            NSString *stats = [NSString stringWithFormat:@"Avg:%.03f HR:%i RBI:%i", avg,hr,rb];
+            
+            cell.gameStatsPlayerStats.text = stats;
+            
     }
-
+    
     if ([indexPath section] == 5) {
-            //visitor pitcher
-        cell.gameStatsPlayerLastName.text = [opponentTeamFilteredPitcherLastName objectAtIndex:indexPath.row];
-        cell.gameStatsPlayerNumber.text = [opponentTeamFilteredPitcherNumber objectAtIndex:indexPath.row];
-//        cell.gameStatsPlayerStats.text = [opponentTeamFilteredPit];
-        return cell;
+            //visitor pitchers
+
+        
+        cell.gameStatsPlayerLastName.text = [[loadedOpponentPitch valueForKey:@"lastname"] objectAtIndex:indexPath.row];
+        cell.gameStatsPlayerNumber.text = [[loadedOpponentPitch valueForKey:@"playernumber"] objectAtIndex:indexPath.row];
+        int balls = [(NSNumber *)[loadedOpponentBallsThrown objectAtIndex:indexPath.row]intValue];
+        int strikes = [(NSNumber *)[loadedOpponentStrikesThrown objectAtIndex:indexPath.row]intValue];
+        
+        int pitches =(balls + strikes);
+        if (isnan(pitches)) {
+            pitches = 0;
+            balls = 0;
+            strikes = 0;
+            NSString *stats = [NSString stringWithFormat:@"Balls:%i Strikes:%i Total Pitches:%i", balls,strikes,pitches];
+            
+            cell.gameStatsPlayerStats.text = stats;
+            
+            
+        }else{            NSString *stats = [NSString stringWithFormat:@"Balls:%i Strikes:%i Total Pitches:%i", balls,strikes,pitches];
+            
+            cell.gameStatsPlayerStats.text = stats;
+
+            
+        }
     }
 
     return cell;
@@ -216,7 +251,7 @@
         return [sectionHeaders objectAtIndex:section];
 }
 
--(void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section{
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section{
     float rd = 143.00/255.00;
     float gr = 117.00/255.00;
     float bl = 75.00/255.00;
@@ -226,6 +261,37 @@
         headerview.contentView.backgroundColor = [UIColor colorWithRed:rd green:gr blue:bl alpha:1.0];
         headerview.textLabel.textColor = [UIColor whiteColor];
     }
+    
+    if (section == 3) {
+        UITableViewHeaderFooterView * headerview = (UITableViewHeaderFooterView *)view;
+        headerview.contentView.backgroundColor = [UIColor colorWithRed:rd green:gr blue:bl alpha:1.0];
+        headerview.textLabel.textColor = [UIColor whiteColor];
+    }
+        //testing
+    if (section == 1) {
+        UITableViewHeaderFooterView * headerview = (UITableViewHeaderFooterView *)view;
+        headerview.contentView.backgroundColor = [UIColor lightGrayColor];
+        headerview.textLabel.textColor = [UIColor blackColor];
+    }
+    if (section == 2) {
+        UITableViewHeaderFooterView * headerview = (UITableViewHeaderFooterView *)view;
+        headerview.contentView.backgroundColor = [UIColor lightGrayColor];
+        headerview.textLabel.textColor = [UIColor blackColor];
+    }
+    
+    if (section == 4) {
+        UITableViewHeaderFooterView * headerview = (UITableViewHeaderFooterView *)view;
+        headerview.contentView.backgroundColor = [UIColor lightGrayColor];
+        headerview.textLabel.textColor = [UIColor blackColor];
+    }
+
+    if (section == 5) {
+        UITableViewHeaderFooterView * headerview = (UITableViewHeaderFooterView *)view;
+        headerview.contentView.backgroundColor = [UIColor lightGrayColor];
+        headerview.textLabel.textColor = [UIColor blackColor];
+    }
+
+
 }
 
 - (void)LoadMyTeam{
@@ -252,6 +318,9 @@
     loadedRbi = [myTeamDictionaryArray valueForKey:@"RBI"];
     loadedWalk = [myTeamDictionaryArray valueForKey:@"walk"];
     loadedPutOut = [myTeamDictionaryArray valueForKey:@"out"];
+    loadedBallsThrown = [myTeamDictionaryArray valueForKey:@"ballspitched"];
+    loadedStrikesThrown = [myTeamDictionaryArray valueForKey:@"strikesthrown"];
+
 
     
     NSLog(@"myTeamDictionaryArray:\n%@",myTeamDictionaryArray);
@@ -297,6 +366,11 @@
     loadedOpponentRbi = [myOpponentTeamDictionaryArray valueForKey:@"RBI"];
     loadedOpponentWalk = [myOpponentTeamDictionaryArray valueForKey:@"walk"];
     loadedOpponentPutOut = [myOpponentTeamDictionaryArray valueForKey:@"out"];
+    loadedOpponentBallsThrown = [myOpponentTeamDictionaryArray valueForKey:@"ballspitched"];
+    loadedOpponentStrikesThrown = [myOpponentTeamDictionaryArray valueForKey:@"strikesthrown"];
+
+    
+    
     NSLog(@"value %@",[loadedOpponentSingleHit objectAtIndex:0]);
     
     NSLog(@"myOpponentTeamDictionaryArray:\n%@",myOpponentTeamDictionaryArray);
@@ -332,6 +406,6 @@
     NSLog(@"home Score: %@",myTeamScore);
     
 }
-
-
+        
+        
 @end

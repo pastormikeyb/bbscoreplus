@@ -7,7 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LineUpTableViewCell.h"
 
-@interface LineupViewController : UIViewController
+@interface LineupViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+{
+    IBOutlet UITableView *tableView;
+    NSMutableArray *batterListArray;
+    BOOL editLineup;
+    BOOL doesFileExist;
+}
+-(IBAction)onClick:(id)sender;
+
 
 @end

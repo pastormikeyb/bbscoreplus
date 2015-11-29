@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface OpponentLineupTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *OpponentLineUpCustomLastName;
+@property (weak, nonatomic) IBOutlet UILabel *OpponentLineUpCustomFirstName;
+@property (weak, nonatomic) IBOutlet UILabel *OpponentLineUpCustomPlayerNumber;
+
 
 @end

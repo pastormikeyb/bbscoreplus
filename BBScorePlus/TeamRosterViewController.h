@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TeamRosterTableViewCell.h"
 
-@interface TeamRosterViewController : UIViewController
+@interface TeamRosterViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+{
+    BOOL doesFileExist;
+}
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 
 @end

@@ -7,7 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OpponentLineupTableViewCell.h"
 
-@interface OpponentLineupViewController : UIViewController
+@interface OpponentLineupViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+{
+    IBOutlet UITableView *tableView;
+    NSMutableArray *batterListArray;
+    BOOL editLineup;
+    BOOL doesFileExist;
+}
+-(IBAction)onClick:(id)sender;
+
+
 
 @end

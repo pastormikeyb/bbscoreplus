@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface LineUpTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *LineUpCustomLastName;
+@property (weak, nonatomic) IBOutlet UILabel *LineUpCustomFirstName;
+@property (weak, nonatomic) IBOutlet UILabel *LineUpCustomPlayerNumber;
 
 @end

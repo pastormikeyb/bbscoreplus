@@ -9,5 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface OpponentRosterTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *OpponentPlayerLastNameLabel
+;
+@property (weak, nonatomic) IBOutlet UILabel *OpponentPlayerFirstNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *OpponentPlayerNumberLabel;
+
 
 @end
