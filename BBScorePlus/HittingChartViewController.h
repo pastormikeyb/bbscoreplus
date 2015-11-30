@@ -27,6 +27,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *homeHitsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *homeErrorLabel;
 @property (weak, nonatomic) IBOutlet UILabel *currentInningLabel;
+@property (weak, nonatomic) IBOutlet UILabel *topOfInningLabel;
 
 
 @property (nonatomic, strong)NSString *currentHitter;
@@ -35,6 +36,7 @@
 @property (nonatomic, strong)NSMutableArray *arrayOfDictionariesMutableArray;
 @property (nonatomic, assign)int receivedBatterPositionNumber;
 @property (nonatomic, assign)BOOL isMyTeamBatting;
+@property (nonatomic, assign)BOOL didHit;
 
 @property (weak, nonatomic) IBOutlet UIButton *onClick;
 

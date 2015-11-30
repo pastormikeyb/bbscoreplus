@@ -53,7 +53,7 @@
     opponentTeamDictionaryArray = [[NSMutableArray alloc]init];
     tempdict = [[NSDictionary alloc]init];
     [super viewDidLoad];
-    
+    didHit = NO;
     [self LoadMyTeam];
     [self LoadOpponentTeam];
     [self LoadGameVariables];
@@ -233,7 +233,7 @@
                 
                 [self saveBoxScore];
                 [self addOpponentStrikeThrown];
-                
+                didHit = YES;
                 [self performSegueWithIdentifier:@"hcSegue" sender:nil];
                 
             }else{
@@ -286,6 +286,7 @@
             NSLog(@"return add to boxscore-batterpositionnumber %i",batterPositionNumber);
             
             [self saveBoxScore];
+            didHit = YES;
 
             [self performSegueWithIdentifier:@"hcSegue" sender:nil];
             
@@ -325,7 +326,8 @@
                 [self saveBoxScore];
                 [self addOpponentStrikeThrown];
                 
-                
+                didHit = YES;
+  
                 [self performSegueWithIdentifier:@"hcSegue" sender:nil];
                 
             }else{
@@ -363,6 +365,9 @@
             
             [self saveBoxScore];
             [self addMyStrikeThrown];
+
+            didHit = YES;
+
             [self performSegueWithIdentifier:@"hcSegue" sender:nil];
             
             break;
@@ -399,6 +404,9 @@
                 [self saveBoxScore];
                 
                 [self addOpponentStrikeThrown];
+
+                didHit = YES;
+
                 [self performSegueWithIdentifier:@"hcSegue" sender:nil];
                 
             }else{
@@ -437,6 +445,9 @@
             
             [self saveBoxScore];
             [self addMyStrikeThrown];
+            
+            didHit = YES;
+
             [self performSegueWithIdentifier:@"hcSegue" sender:nil];
             
             break;
@@ -474,6 +485,9 @@
                 
                 [self saveBoxScore];
                 [self addOpponentStrikeThrown];
+                
+                didHit = YES;
+
                 [self performSegueWithIdentifier:@"hcSegue" sender:nil];
             }else{
                     //OPPONENT
@@ -511,6 +525,9 @@
             
             [self saveBoxScore];
             [self addMyStrikeThrown];
+            
+            didHit = YES;
+
             [self performSegueWithIdentifier:@"hcSegue" sender:nil];
             
             break;
@@ -543,6 +560,9 @@
                 
                 [self saveBoxScore];
                 [self addOpponentStrikeThrown];
+                
+                didHit = YES;
+
                 [self performSegueWithIdentifier:@"hcSegue" sender:nil];
                 
             }else{
@@ -581,6 +601,9 @@
             [self saveBoxScore];
             
             [self addMyStrikeThrown];
+            
+            didHit = YES;
+
             [self performSegueWithIdentifier:@"hcSegue" sender:nil];
             
             break;
@@ -616,6 +639,9 @@
                 
                 [self saveBoxScore];
                 [self addOpponentStrikeThrown];
+                
+                didHit = YES;
+
                 [self performSegueWithIdentifier:@"hcSegue" sender:nil];
             }else{
                     //OPPONENT
@@ -652,6 +678,9 @@
             
             [self saveBoxScore];
             [self addMyStrikeThrown];
+            
+            didHit = YES;
+
             [self performSegueWithIdentifier:@"hcSegue" sender:nil];
             
             break;
@@ -702,6 +731,8 @@
             
             [self saveBoxScore];
             
+            didHit = YES;
+
             [self performSegueWithIdentifier:@"hcSegue" sender:nil];
             
             
@@ -802,6 +833,9 @@
                 
                 [self saveBoxScore];
                 [self addOpponentStrikeThrown];
+                
+                didHit = YES;
+
                 [self performSegueWithIdentifier:@"hcSegue" sender:nil];
                 
                 
@@ -827,6 +861,9 @@
             
             [self saveBoxScore];
             [self addMyStrikeThrown];
+            
+            didHit = YES;
+
             [self performSegueWithIdentifier:@"hcSegue" sender:nil];
             
             break;
@@ -906,6 +943,8 @@
             [self showPitchStrike];
             
             
+            didHit = YES;
+
             [self performSegueWithIdentifier:@"hcSegue" sender:nil];
             
             break;
@@ -1163,7 +1202,7 @@
         NSLog(@"PitchChart Segue loadedtemp: %i",loadedTemp);
     
     { HittingChartViewController *vc = [segue destinationViewController];
-        vc.receivedBatterPositionNumber = batterPositionNumber;
+        vc.didHit = didHit;
     }
 }
 

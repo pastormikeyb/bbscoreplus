@@ -16,6 +16,7 @@
         //    int receivedBatterPositionNumber;
     NSString *fn, *ln, *pn, *pb, *pt, *pi, *fb, *sb, *tb, *hr, *fc,*fe,*hp,*sf,*rb,*ou,*bt,*st,*wa,*str,*wap,*strp,*strValue;
     NSArray *hitLocation,*pitchlocation;
+    NSMutableArray *loadedMyHitLocationMutableArray,*loadedOpponentHitLocationMutableArray;
     int loadedMyTeamCurrentBatter, loadedOpponentCurrentBatter, currentBatterPosition;
     
 }
@@ -23,14 +24,13 @@
 @end
 
 @implementation HittingChartViewController
-@synthesize currentHitter, currentHitterLabel, pitcherPitchCountDictionary, arrayOfDictionariesMutableArray, homeRunsLabel, homeHitsLabel, homeErrorLabel, visitorRunsLabel,visitorHitsLabel,visitorErrorLabel, receivedBatterPositionNumber, isMyTeamBatting, currentInningLabel;
+@synthesize currentHitter, currentHitterLabel, pitcherPitchCountDictionary, arrayOfDictionariesMutableArray, homeRunsLabel, homeHitsLabel, homeErrorLabel, visitorRunsLabel,visitorHitsLabel,visitorErrorLabel, receivedBatterPositionNumber, isMyTeamBatting, currentInningLabel,didHit;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSLog(@"START of viewDidLoad");
     [self LoadMyTeam];
     [self LoadOpponentTeam];
-    
     [self LoadGameVariables];
     
     if ([self DoesBoxScoreExist]) {
@@ -58,28 +58,31 @@
             NSLog(@"Home batting pos number: %i",currentBatterPosition);
             int count = (int)[opponentTeamDictionaryArray count];
             NSLog(@"Home batting count: %i",count);
-
+            
             if (currentBatterPosition >=  count-1){
-                currentBatterPosition = 0;            };
+                currentBatterPosition = 0;
+            };
             if (currentBatterPosition < 0){
-                currentBatterPosition = 0;            };
+                currentBatterPosition = 0;
+            };
+            
             
         }else{
                 //OPPONENT
             NSLog(@"opp batting pos number: %i",currentBatterPosition);
             int count = (int)[opponentTeamDictionaryArray count];
             NSLog(@"Opp batting count: %i",count);
-
+            
             
             if (currentBatterPosition >=  count){
-                currentBatterPosition = 0;            };
+                currentBatterPosition = 0;
+            };
             if (currentBatterPosition < 0){
-                currentBatterPosition = 0;            };
+                currentBatterPosition = 0;
+            };
             
+
         }
-        
-        
-        didHit = NO;
         
             //load team
         NSLog(@"Dictionaries has info");
@@ -92,6 +95,13 @@
             currentHitterLabel.text = [[opponentTeamDictionaryArray valueForKey:@"lastname"]objectAtIndex:currentBatterPosition];
             NSLog(@"current batter: %@",[[opponentTeamDictionaryArray valueForKey:@"lastname"]objectAtIndex:currentBatterPosition]);
             
+        }
+        if (isTopOfInning) {
+            _topOfInningLabel.text = @"TOP";
+
+        }else {
+            _topOfInningLabel.text = @"BOTTOM";
+
         }
         
     }else{
@@ -107,11 +117,11 @@
         
             //alert
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"File missing."
-message:@"Please (re)save game setup and check rosters."
-delegate:self
-cancelButtonTitle:@"OK"
-otherButtonTitles:nil];
-[alert show];
+                                                        message:@"Please (re)save game setup and check rosters."
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
         
     }
 }
@@ -124,34 +134,35 @@ otherButtonTitles:nil];
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    
-    UITouch *myTouch = [[touches allObjects] objectAtIndex: 0];
-    CGPoint currentPos = [myTouch locationInView: nil];
-    NSLog(@"Point in myView: (%f,%f)", currentPos.x, currentPos.y);
-    if (currentPos.x >= 155 && currentPos.x <= 405) {
-        if (currentPos.y >= 10 && currentPos.y <= 290) {
-            if (!didHit) {
+    if (didHit) {
+        
+        UITouch *myTouch = [[touches allObjects] objectAtIndex: 0];
+        CGPoint currentPos = [myTouch locationInView: nil];
+        NSLog(@"Point in myView: (%f,%f)", currentPos.x, currentPos.y);
+        if (currentPos.x >= 155 && currentPos.x <= 405) {
+            if (currentPos.y >= 10 && currentPos.y <= 290) {
                 
-                UIImageView *bbView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"baseballGloveSmall"]] ;
-                
-                [bbView setCenter:CGPointMake(currentPos.x, currentPos.y)]; // x, y
-                [self.view addSubview:bbView];
-                didHit = YES;
+                    UIImageView *bbView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"baseballGloveSmall"]] ;
+                    
+                    [bbView setCenter:CGPointMake(currentPos.x, currentPos.y)]; // x, y
+                    [self.view addSubview:bbView];
+
                 float xPos = currentPos.x;
-                float yPos = currentPos.y;
-                
-                hitLocation = [NSArray arrayWithObjects:
-                               [NSNumber numberWithFloat:xPos],
-                               [NSNumber numberWithFloat:yPos],
-                               nil];
-                NSLog(@"hitLocation %@",hitLocation);
-                    // SAVE THE HIT COORDS & CURRENT BATTER
-                
-                
+                    float yPos = currentPos.y;
+                    
+                    hitLocation = [NSArray arrayWithObjects:
+                                   [NSNumber numberWithFloat:xPos],
+                                   [NSNumber numberWithFloat:yPos],
+                                   nil];
+                    NSLog(@"hitLocation %@",hitLocation);
+                        // SAVE THE HIT COORDS & CURRENT BATTER
+                    
+                    
             }
         }
+    }else{
+        NSLog(@"didHit = NO");
     }
-    
 }
 
 - (void)addToDictionary {
@@ -169,18 +180,18 @@ otherButtonTitles:nil];
 
 #pragma mark - Navigation
 
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//    
-//    if ([[segue identifier] isEqualToString:@"pitchSegue"]){
-//            //        receivedBatterPositionNumber++;
-//        NSLog(@"hitting chart segue: receivedBatterPositionNumber %i",receivedBatterPositionNumber);
-//        { PitchChartViewController *vc = [segue destinationViewController];
-//                //            vc.receivedBatterPositionNumber = receivedBatterPositionNumber;
-//        }
-//    }
-//    
-//    
-//}
+    //- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    //
+    //    if ([[segue identifier] isEqualToString:@"pitchSegue"]){
+    //            //        receivedBatterPositionNumber++;
+    //        NSLog(@"hitting chart segue: receivedBatterPositionNumber %i",receivedBatterPositionNumber);
+    //        { PitchChartViewController *vc = [segue destinationViewController];
+    //                //            vc.receivedBatterPositionNumber = receivedBatterPositionNumber;
+    //        }
+    //    }
+    //
+    //
+    //}
 
 
 - (void)LoadBoxScore{
@@ -231,13 +242,16 @@ otherButtonTitles:nil];
     if (batting) {
         currentBatterPosition = [[boxScoreDictionary valueForKey:@"myteambattingpositionnumber"]intValue]-1;
         NSLog(@"I am batting.  currentBatterPosition %i",currentBatterPosition);
+        
+        loadedMyHitLocationMutableArray = [[myTeamDictionaryArray valueForKey:@"hittingchart"]objectAtIndex:currentBatterPosition];
+        NSLog(@"loadedMyHitLocationArray %@",loadedMyHitLocationMutableArray);
     }else{
         currentBatterPosition = [[boxScoreDictionary valueForKey:@"opponentbattingpositionnumber"]intValue]-1;
         NSLog(@"I am NOT batting.  currentBatterPosition %i",currentBatterPosition);
-
+        
     }
     NSLog(@"LoadBoxScore finished");
-
+    
 }
 
 - (BOOL)doesFileExist {
@@ -462,6 +476,44 @@ otherButtonTitles:nil];
     
 }
 
-
+- (IBAction)onClick:(id)sender {
+    UIButton *button = (UIButton*)sender;
+    
+    switch (button.tag) {
+        case 0:
+            NSLog(@"Pitch button pressed");
+            if (batting) {
+                NSLog(@"I'm batting");
+                if (hitLocation !=nil) {
+                    loadedMyHitLocationMutableArray = [[myTeamDictionaryArray valueForKey:@"hittingchart"]objectAtIndex:currentBatterPosition];
+                    NSLog(@"loadedMyHitLocationMutableArray %@",loadedMyHitLocationMutableArray);
+                    
+                    [loadedMyHitLocationMutableArray addObject:hitLocation ];
+                    NSLog(@"loadedMyHitLocationMutableArray %@",loadedMyHitLocationMutableArray);
+                    
+                }
+                
+            }else{
+                NSLog(@"I'm NOT batting");
+                if (hitLocation !=nil) {
+                    loadedOpponentHitLocationMutableArray = [[opponentTeamDictionaryArray valueForKey:@"hittingchart"]objectAtIndex:currentBatterPosition];
+                    NSLog(@"loadedOpponentHitLocationArray %@",loadedOpponentHitLocationMutableArray);
+                    
+                    [loadedOpponentHitLocationMutableArray addObject:hitLocation ];
+                    NSLog(@"loadedOpponentHitLocationMutableArray %@",loadedOpponentHitLocationMutableArray);
+                    
+                }
+                
+            }
+                //grab hitting position
+            
+                //add to array
+            
+            [self performSegueWithIdentifier:@"pitchSegue" sender:nil];
+            
+            break;
+            
+    }
+}
 
 @end

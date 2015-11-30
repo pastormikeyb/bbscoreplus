@@ -23,7 +23,7 @@
     int gameTimeLimit,maxNumberOfPitches;
     NSMutableArray *currentPitchingChart;
     NSMutableArray *loadedGameDefaultsArray;
-    BOOL isTopOfInning;
+    BOOL isTopOfInning, didHit;
     BOOL batting;
     BOOL isMyTeamBatting;
     BOOL isDefaultsLoaded;
