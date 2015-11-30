@@ -36,6 +36,7 @@
 @property (nonatomic, assign)int receivedBatterPositionNumber;
 @property (nonatomic, assign)BOOL isMyTeamBatting;
 
+@property (weak, nonatomic) IBOutlet UIButton *onClick;
 
 
 

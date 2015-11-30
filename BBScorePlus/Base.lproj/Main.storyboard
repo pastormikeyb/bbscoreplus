@@ -1238,6 +1238,7 @@
                         <outlet property="homeErrorLabel" destination="II2-lm-jpr" id="Dqa-dg-k7h"/>
                         <outlet property="homeHitsLabel" destination="gVq-QV-KRW" id="wBz-sm-Y1E"/>
                         <outlet property="homeRunsLabel" destination="Wzn-6M-qj6" id="IpL-ig-EKQ"/>
+                        <outlet property="onClick" destination="YoQ-P7-cse" id="FKm-nI-5W2"/>
                         <outlet property="visitorErrorLabel" destination="3X1-25-vcp" id="HwV-8K-XZG"/>
                         <outlet property="visitorHitsLabel" destination="wqL-y3-vg5" id="JzR-bs-XEf"/>
                         <outlet property="visitorRunsLabel" destination="5Wl-Bh-fik" id="vHx-Hk-SwN"/>
