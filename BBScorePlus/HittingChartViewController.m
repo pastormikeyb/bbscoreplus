@@ -17,7 +17,7 @@
     NSString *fn, *ln, *pn, *pb, *pt, *pi, *fb, *sb, *tb, *hr, *fc,*fe,*hp,*sf,*rb,*ou,*bt,*st,*wa,*str,*wap,*strp,*strValue;
     NSArray *hitLocation,*pitchlocation;
     NSMutableArray *loadedMyHitLocationMutableArray,*loadedOpponentHitLocationMutableArray;
-    int loadedMyTeamCurrentBatter, loadedOpponentCurrentBatter, currentBatterPosition;
+    int loadedMyTeamCurrentBatter, loadedOpponentCurrentBatter, currentBatterPosition, *hc, *pc;
     
 }
 
@@ -254,23 +254,6 @@
     
 }
 
-- (BOOL)doesFileExist {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"currentbatter.out"];
-    
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    
-    if ([fileManager fileExistsAtPath: path])
-    {
-        NSLog(@"File Exist");
-        return YES;
-    }
-    NSLog(@"File Does not Exist");
-    return NO;
-    
-}
-
 - (void)removeFile
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -286,6 +269,25 @@
     {
         NSLog(@"Could not remove file");
     }
+}
+
+#pragma mark - File check
+
+- (BOOL)doesFileExist {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"currentbatter.out"];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    if ([fileManager fileExistsAtPath: path])
+    {
+        NSLog(@"File Exist");
+        return YES;
+    }
+    NSLog(@"File Does not Exist");
+    return NO;
+    
 }
 
 - (BOOL)DoesMyTeamFileExist {
@@ -340,6 +342,7 @@
     return NO;
     
 }
+
 #pragma mark - Load files
 
 - (void)LoadMyTeam{
@@ -499,15 +502,22 @@
                     loadedOpponentHitLocationMutableArray = [[opponentTeamDictionaryArray valueForKey:@"hittingchart"]objectAtIndex:currentBatterPosition];
                     NSLog(@"loadedOpponentHitLocationArray %@",loadedOpponentHitLocationMutableArray);
                     
-                    [loadedOpponentHitLocationMutableArray addObject:hitLocation ];
+                    [loadedOpponentHitLocationMutableArray addObjectsFromArray:hitLocation ];
                     NSLog(@"loadedOpponentHitLocationMutableArray %@",loadedOpponentHitLocationMutableArray);
+                    
+                    [self loadOpponentTeamDictionaryArray];
+                    NSLog(@"loadOpponentTeamDictionaryArray %@",opponentTeamDictionaryArray);
+                    
+                    [self setTempDict];
+                    
+                    [opponentTeamDictionaryArray replaceObjectAtIndex:currentBatterPosition withObject:tempdict];
+                    
+                    [self saveUpdatedOpponentTeamInfo];
+
                     
                 }
                 
             }
-                //grab hitting position
-            
-                //add to array
             
             [self performSegueWithIdentifier:@"pitchSegue" sender:nil];
             
@@ -515,5 +525,58 @@
             
     }
 }
+
+- (void)setTempDict{
+    
+    tempdict = [NSDictionary dictionaryWithObjectsAndKeys:
+                fn,@"firstname",
+                ln,@"lastname",
+                pn,@"playernumber",
+                pb,@"playerbat",
+                pt,@"playerthrow",
+                pi,@"pitcher",
+                fb,@"1B",
+                sb,@"2B",
+                tb,@"3B",
+                hr,@"HR",
+                fc,@"fielderschoice",
+                fe,@"fieldingerror",
+                hp,@"hitbypitch",
+                sf,@"sacfly",
+                rb,@"RBI",
+                ou,@"out",
+                bt,@"ballspitched",
+                st,@"strikesthrown",
+                loadedOpponentHitLocationMutableArray,@"hittingchart",
+                pc,@"pitchingchart",
+                wa,@"walks",
+                str,@"strikeouts",
+                wap,@"walkspitched",
+                strp,@"strikeoutspitched",
+                
+                nil];
+    
+    NSLog(@"tempDict: %@",tempdict);
+
+}
+
+-(void)saveUpdatedOpponentTeamInfo{
+    
+        // Get path to documents directory
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        // Path to save dictionary
+    NSString *dictPath = [[paths objectAtIndex:0]
+                stringByAppendingPathComponent:@"opponentteamdictionary.out"];
+    
+    if ([paths count] > 0)
+    {
+        
+            // Write dictionary
+        [opponentTeamDictionaryArray writeToFile:dictPath atomically:YES];
+        
+    }
+    
+}
+
 
 @end
