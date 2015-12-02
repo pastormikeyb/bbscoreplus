@@ -95,6 +95,8 @@
             currentHitterLabel.text = [[opponentTeamDictionaryArray valueForKey:@"lastname"]objectAtIndex:currentBatterPosition];
             NSLog(@"current batter: %@",[[opponentTeamDictionaryArray valueForKey:@"lastname"]objectAtIndex:currentBatterPosition]);
             
+            [self getHittingChart];
+            
         }
         if (isTopOfInning) {
             _topOfInningLabel.text = @"TOP";
@@ -149,10 +151,13 @@
 
                 float xPos = currentPos.x;
                     float yPos = currentPos.y;
+                NSString *xPos1,*yPos1;
                     
                     hitLocation = [NSArray arrayWithObjects:
-                                   [NSNumber numberWithFloat:xPos],
-                                   [NSNumber numberWithFloat:yPos],
+
+                                xPos1 = [[NSNumber numberWithFloat:xPos] stringValue],
+                                yPos1 = [[NSNumber numberWithFloat:yPos] stringValue],
+
                                    nil];
                     NSLog(@"hitLocation %@",hitLocation);
                         // SAVE THE HIT COORDS & CURRENT BATTER
@@ -398,7 +403,7 @@
                 wa,@"batterwalks",
                 str,@"batterstrikeouts",
                 wap,@"walkspitched",
-                strValue,@"strikeoutspitched",
+                strp,@"strikeoutspitched",
                 hitLocation,@"hittingchart",
                 pitchlocation,@"pitchingchart",
                 nil];
@@ -502,7 +507,7 @@
                     loadedOpponentHitLocationMutableArray = [[opponentTeamDictionaryArray valueForKey:@"hittingchart"]objectAtIndex:currentBatterPosition];
                     NSLog(@"loadedOpponentHitLocationArray %@",loadedOpponentHitLocationMutableArray);
                     
-                    [loadedOpponentHitLocationMutableArray addObjectsFromArray:hitLocation ];
+                    [loadedOpponentHitLocationMutableArray addObject:hitLocation ];
                     NSLog(@"loadedOpponentHitLocationMutableArray %@",loadedOpponentHitLocationMutableArray);
                     
                     [self loadOpponentTeamDictionaryArray];
@@ -576,6 +581,31 @@
         
     }
     
+}
+
+- (void)getHittingChart{
+    NSLog(@"getHittingChart");
+    NSArray *myArray2;
+    myArray2 = [[opponentTeamDictionaryArray valueForKey:@"hittingchart"]objectAtIndex:currentBatterPosition];
+    
+    for (int i = 0; i <myArray2.count; i++) {
+        int x = [[myArray2[i]objectAtIndex:0]intValue];
+        int y = [[myArray2[i]objectAtIndex:1]intValue];
+
+        NSLog(@"myArray: %@",myArray2[i]);
+        NSLog(@"x: %i",x);
+        NSLog(@"y: %i",y);
+            //after getting x,y place on screen;
+        UIImage *glove = [UIImage imageNamed:@"baseballGloveSmall"];
+        UIImageView *gloveView = [[UIImageView alloc]initWithImage:glove];
+        CGRect frame = gloveView.bounds;
+        frame.origin.x = x;
+        frame.origin.y = y;
+        gloveView.frame = frame;
+        [self.view addSubview:gloveView];
+
+    }
+
 }
 
 
