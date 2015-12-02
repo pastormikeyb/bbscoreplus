@@ -80,10 +80,13 @@
     if (batting) {
         batterPositionNumber = [[boxScoreDictionary valueForKey:@"myteambattingpositionnumber"]intValue]-1;
         NSLog(@"I AM BATTING: %i",batterPositionNumber);
+        NSLog(@"CURRENT BATTER: %@",[[myTeamDictionaryArray valueForKey:@"lastname"]objectAtIndex:batterPositionNumber]);
+
     }else{
         batterPositionNumber = [[boxScoreDictionary valueForKey:@"opponentbattingpositionnumber"]intValue]-1;
         NSLog(@"I AM NOT BATTING: %i",batterPositionNumber);
-        
+        NSLog(@"CURRENT BATTER: %@",[[opponentTeamDictionaryArray valueForKey:@"lastname"]objectAtIndex:batterPositionNumber]);
+
     }
     
     myTeamCount = (int)[myTeamDictionaryArray count];
@@ -1649,34 +1652,34 @@
         
         NSLog(@"addToBoxScoreDict: %i",batterPositionNumber);
         
-        homeTeam = @(isHomeTeam);//
-        NSNumber *currentouts = [NSNumber numberWithInt:currentOuts];//
-        NSNumber *ami = @(batting);//
-        NSNumber *top = @(isTopOfInning);//
-        NSNumber *pitc = [NSNumber numberWithInt:currentPitchCount];//
-        NSNumber *homerun = [NSNumber numberWithInt:homeRuns];//
-        NSNumber *homehits = [NSNumber numberWithInt:homeHits];//
-        NSNumber *homeerrors = [NSNumber numberWithInt:homeErrors];//
-        NSNumber *visitorrun = [NSNumber numberWithInt:visitorRuns];//
-        NSNumber *visitorhits = [NSNumber numberWithInt:visitorHits];//
-        NSNumber *visitorerrors = [NSNumber numberWithInt:visitorErrors];//
-        NSString *position = [NSString stringWithFormat:@"%d",loadedMyTeamCurrentBatter];//
+        homeTeam = @(isHomeTeam);
+        NSNumber *currentouts = [NSNumber numberWithInt:currentOuts];
+        NSNumber *ami = @(batting);
+        NSNumber *top = @(isTopOfInning);
+        NSNumber *pitc = [NSNumber numberWithInt:currentPitchCount];
+        NSNumber *homerun = [NSNumber numberWithInt:homeRuns];
+        NSNumber *homehits = [NSNumber numberWithInt:homeHits];
+        NSNumber *homeerrors = [NSNumber numberWithInt:homeErrors];
+        NSNumber *visitorrun = [NSNumber numberWithInt:visitorRuns];
+        NSNumber *visitorhits = [NSNumber numberWithInt:visitorHits];
+        NSNumber *visitorerrors = [NSNumber numberWithInt:visitorErrors];
+        NSString *position = [NSString stringWithFormat:@"%d",loadedMyTeamCurrentBatter];
         NSNumber *oppPos = [NSNumber numberWithInt:loadedOpponentCurrentBatter];
         NSNumber *inn = [NSNumber numberWithInt:currentInning];
         
         boxScoreDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                              homerun,@"homeruns",//-
-                              homehits,@"homehits",//-
-                              homeerrors,@"homeerrors",//-
-                              visitorrun,@"visitorruns",//-
-                              visitorhits,@"visitorhits",//-
-                              visitorerrors,@"visitorerrors",//-
-                              pitc,@"pitchcount",//-
-                              currentouts,@"currentouts",//-
-                              homeTeam,@"ishometeam",//-
-                              ami,@"amibatting",//-
-                              top,@"istopofinning",//-
-                              position,@"myteambattingpositionnumber",//-
+                              homerun,@"homeruns",
+                              homehits,@"homehits",
+                              homeerrors,@"homeerrors",
+                              visitorrun,@"visitorruns",
+                              visitorhits,@"visitorhits",
+                              visitorerrors,@"visitorerrors",
+                              pitc,@"pitchcount",
+                              currentouts,@"currentouts",
+                              homeTeam,@"ishometeam",
+                              ami,@"amibatting",
+                              top,@"istopofinning",
+                              position,@"myteambattingpositionnumber",
                               oppPos,@"opponentbattingpositionnumber",
                               inn,@"currentinning",
                               
@@ -1699,17 +1702,17 @@
             loadedTemp++;
         }
         NSLog(@"addToBoxScoreDict: %i",batterPositionNumber);
-        homeTeam = @(isHomeTeam);//
-        NSNumber *currentouts = [NSNumber numberWithInt:currentOuts];//
-        NSNumber *ami = @(batting);//
-        NSNumber *top = @(isTopOfInning);//
-        NSNumber *pitc = [NSNumber numberWithInt:currentPitchCount];//
-        NSNumber *homerun = [NSNumber numberWithInt:homeRuns];//
-        NSNumber *homehits = [NSNumber numberWithInt:homeHits];//
-        NSNumber *homeerrors = [NSNumber numberWithInt:homeErrors];//
-        NSNumber *visitorrun = [NSNumber numberWithInt:visitorRuns];//
-        NSNumber *visitorhits = [NSNumber numberWithInt:visitorHits];//
-        NSNumber *visitorerrors = [NSNumber numberWithInt:visitorErrors];//
+        homeTeam = @(isHomeTeam);
+        NSNumber *currentouts = [NSNumber numberWithInt:currentOuts];
+        NSNumber *ami = @(batting);
+        NSNumber *top = @(isTopOfInning);
+        NSNumber *pitc = [NSNumber numberWithInt:currentPitchCount];
+        NSNumber *homerun = [NSNumber numberWithInt:homeRuns];
+        NSNumber *homehits = [NSNumber numberWithInt:homeHits];
+        NSNumber *homeerrors = [NSNumber numberWithInt:homeErrors];
+        NSNumber *visitorrun = [NSNumber numberWithInt:visitorRuns];
+        NSNumber *visitorhits = [NSNumber numberWithInt:visitorHits];
+        NSNumber *visitorerrors = [NSNumber numberWithInt:visitorErrors];
         
         NSString *position = [NSString stringWithFormat:@"%d",loadedOpponentCurrentBatter];
         NSNumber *myPos = [NSNumber numberWithInt:loadedMyTeamCurrentBatter];
@@ -1717,18 +1720,18 @@
         NSNumber *inn = [NSNumber numberWithInt:currentInning];
         
         boxScoreDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                              homerun,@"homeruns",//-
-                              homehits,@"homehits",//-
-                              homeerrors,@"homeerrors",//-
-                              visitorrun,@"visitorruns",//-
-                              visitorhits,@"visitorhits",//-
-                              visitorerrors,@"visitorerrors",//-
-                              pitc,@"pitchcount",//-
-                              currentouts,@"currentouts",//-
-                              homeTeam,@"ishometeam",//-
-                              ami,@"amibatting",//-
-                              top,@"istopofinning",//-
-                              myPos,@"myteambattingpositionnumber",//-
+                              homerun,@"homeruns",
+                              homehits,@"homehits",
+                              homeerrors,@"homeerrors",
+                              visitorrun,@"visitorruns",
+                              visitorhits,@"visitorhits",
+                              visitorerrors,@"visitorerrors",
+                              pitc,@"pitchcount",
+                              currentouts,@"currentouts",
+                              homeTeam,@"ishometeam",
+                              ami,@"amibatting",
+                              top,@"istopofinning",
+                              myPos,@"myteambattingpositionnumber",
                               position,@"opponentbattingpositionnumber",
                               inn,@"currentinning",
                               
@@ -2716,8 +2719,6 @@
                 str,@"strikeouts",
                 wap,@"walkspitched",
                 strp,@"strikeoutspitched",
-                pc,@"pitchingchart",
-                hc,@"hittingchart",
                 nil];
     
     [opponentTeamDictionaryArray replaceObjectAtIndex:batterPositionNumber withObject:tempdict];
@@ -3229,5 +3230,34 @@
     
 }
 
+- (void)getPitchingChart{
+    NSLog(@"getPitchingChart");
+    NSArray *myArray2;
+    if (batting) {
+        myArray2 = [[myTeamDictionaryArray valueForKey:@"pitchingchart"]objectAtIndex:currentBatterPosition];
+        
+    }else{
+        myArray2 = [[opponentTeamDictionaryArray valueForKey:@"pitchingchart"]objectAtIndex:currentBatterPosition];
+    }
+    
+    for (int i = 0; i <myArray.count; i++) {
+        int x = [[myArray2[i]objectAtIndex:0]intValue];
+        int y = [[myArray2[i]objectAtIndex:1]intValue];
+        
+        NSLog(@"myArray2: %@",myArray2[i]);
+        NSLog(@"x: %i",x);
+        NSLog(@"y: %i",y);
+            //after getting x,y place on screen;
+        UIImage *baseBall = [UIImage imageNamed:@"baseballSmall"];
+        UIImageView *baseBallView = [[UIImageView alloc]initWithImage:baseBall];
+        CGRect frame = baseBallView.bounds;
+        frame.origin.x = x;
+        frame.origin.y = y;
+        baseBallView.frame = frame;
+        [self.view addSubview:baseBallView];
+        
+    }
+    
+}
 
 @end

@@ -169,7 +169,8 @@
         //dictionary #1
     NSNumber *pitch = @(isPitcher);
     NSString *junk = @"0";
-    NSMutableArray *ma = [NSMutableArray arrayWithObjects:@"0", @"0", nil];
+    NSNull *myNull = [NSNull null];
+    NSMutableArray *ma = [NSMutableArray arrayWithObjects: myNull,myNull,nil];
     
     dict = [NSDictionary dictionaryWithObjectsAndKeys:
             _firstName.text,@"firstname",
@@ -192,7 +193,12 @@
             junk,@"strikesthrown",
             ma,@"hittingchart",
             ma,@"pitchingchart",
-            junk,@"currentbatterposition",
+            junk,@"walks",
+            junk,@"strikeouts",
+            junk,@"walkspitched",
+            junk,@"strikeoutspitched",
+
+            
             nil];
     
     [arrayOfDictionariesMutableArray addObject:dict];

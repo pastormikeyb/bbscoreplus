@@ -29,6 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
         // Do any additional setup after loading the view.
+    [_isPitcherSwitch setOn:NO animated:NO];
     _myScrollView.bounces = NO;
     _myScrollView.alwaysBounceVertical = YES;
     playerBat = @"R";
@@ -36,6 +37,7 @@
     doesFileExist = NO;
     teamDictionary = [NSDictionary dictionary];
     arrayOfDictionariesMutableArray = [NSMutableArray array];
+    [self LoadFromFile];
     
 }
 
@@ -166,7 +168,8 @@
     
     NSNumber *pitch = @(isPitcher);
     NSString *junk = @"0";
-    NSMutableArray *ma = [NSMutableArray arrayWithObjects:@"0", @"0", nil];
+    NSNull *myNull = [NSNull null];
+    NSMutableArray *ma = [NSMutableArray arrayWithObjects: myNull,myNull,nil];
     
     dict = [NSDictionary dictionaryWithObjectsAndKeys:
             _firstName.text,@"firstname",
@@ -189,11 +192,13 @@
             junk,@"strikesthrown",
             ma,@"hittingchart",
             ma,@"pitchingchart",
-            junk,@"myteambattingpositionnumber",
-            junk,@"opponentbattingpositionnumber",
+            junk,@"walks",
+            junk,@"strikeouts",
+            junk,@"walkspitched",
+            junk,@"strikeoutspitched",
             nil];
     
-    [arrayOfDictionariesMutableArray addObject:dict];
+        [arrayOfDictionariesMutableArray addObject:dict];
     
     NSLog(@"arrayOfDictionariesMutableArray: %@",arrayOfDictionariesMutableArray);
     NSLog(@"array count: %lu",(unsigned long)[arrayOfDictionariesMutableArray count]);
@@ -201,7 +206,7 @@
 
 }
 
--(void)saveInfo{
+- (void)saveInfo{
         //PUT PLAYER INFO INTO OBJECT
     if ([self doesFileExist]) {
         NSLog(@"fileExist");
@@ -227,15 +232,14 @@
     
 }
 
--(void)LoadFromFile{
+- (void)LoadFromFile{
     NSLog(@"LoadFromFile");
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"teamdictionary.out"];
 
     arrayOfDictionariesMutableArray = [NSMutableArray arrayWithContentsOfFile:filePath];
-    NSArray *firstname = [arrayOfDictionariesMutableArray valueForKey:@"firstname"];
-    NSLog(@"firstname: %@",firstname);
+    NSLog(@"teamdictionary: %@",arrayOfDictionariesMutableArray);
 }
 
 - (BOOL)doesFileExist {
@@ -271,6 +275,5 @@
         NSLog(@"Could not remove file");
     }
 }
-
 
 @end

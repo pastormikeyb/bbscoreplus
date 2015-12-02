@@ -13,7 +13,6 @@
 {
     NSDictionary *hittingChartDictionary, *tempdict;
     NSMutableArray *myTeamDictionaryArray, *opponentTeamDictionaryArray;
-        //    int receivedBatterPositionNumber;
     NSString *fn, *ln, *pn, *pb, *pt, *pi, *fb, *sb, *tb, *hr, *fc,*fe,*hp,*sf,*rb,*ou,*bt,*st,*wa,*str,*wap,*strp,*strValue;
     NSArray *hitLocation,*pitchlocation;
     NSMutableArray *loadedMyHitLocationMutableArray,*loadedOpponentHitLocationMutableArray;
@@ -585,14 +584,19 @@
 
 - (void)getHittingChart{
     NSLog(@"getHittingChart");
-    NSArray *myArray2;
-    myArray2 = [[opponentTeamDictionaryArray valueForKey:@"hittingchart"]objectAtIndex:currentBatterPosition];
-    
-    for (int i = 0; i <myArray2.count; i++) {
-        int x = [[myArray2[i]objectAtIndex:0]intValue];
-        int y = [[myArray2[i]objectAtIndex:1]intValue];
+    NSArray *myArray;
+    if (batting) {
+        myArray = [[myTeamDictionaryArray valueForKey:@"hittingchart"]objectAtIndex:currentBatterPosition];
 
-        NSLog(@"myArray: %@",myArray2[i]);
+    }else{
+    myArray = [[opponentTeamDictionaryArray valueForKey:@"hittingchart"]objectAtIndex:currentBatterPosition];
+    }
+    
+    for (int i = 0; i <myArray.count; i++) {
+        int x = [[myArray[i]objectAtIndex:0]intValue];
+        int y = [[myArray[i]objectAtIndex:1]intValue];
+
+        NSLog(@"myArray: %@",myArray[i]);
         NSLog(@"x: %i",x);
         NSLog(@"y: %i",y);
             //after getting x,y place on screen;
