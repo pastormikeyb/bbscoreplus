@@ -65,6 +65,7 @@
     
     if ([self DoesBoxScoreExist]) {
         [self LoadBoxScore];
+        [self checkPitchCount];
     }
         //set app main variables
     
@@ -93,7 +94,12 @@
     opponentTeamCount = (int)[opponentTeamDictionaryArray count];
     
     if (batting) {
-        
+        if (!isContinousLineup) {
+            NSLog(@"Game does NOT have a continous lineup");
+            if (myTeamCount > 9) {
+                myTeamCount = 9;
+            }
+        }
         if (batterPositionNumber >=  myTeamCount){
             batterPositionNumber = 0;
         };
@@ -105,6 +111,13 @@
         
         
     }else{
+        if (!isContinousLineup) {
+            NSLog(@"Game does NOT have a continous lineup");
+            if (opponentTeamCount > 9) {
+                opponentTeamCount = 9;
+            }
+        }
+
         
         if (batterPositionNumber >=  opponentTeamCount){
             batterPositionNumber = 0;            };
@@ -143,7 +156,8 @@
     }
     
     currentOutLabel.text = [NSString stringWithFormat:@"%i",currentOuts];
-    
+        //testing
+    [self setGamePitchersIndex];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -402,7 +416,6 @@
                 
                 loadedMyTeamCurrentBatter ++;
                 [self addToBoxScoreDictionary];
-                NSLog(@"return add to boxscore-batterpositionnumber %i",batterPositionNumber);
                 
                 [self saveBoxScore];
                 
@@ -441,10 +454,8 @@
             NSLog(@"boxScoreDict %@",boxScoreDictionary);
             
             loadedOpponentCurrentBatter ++;
-            NSLog(@"post-batterpositionnumber %i",batterPositionNumber);
             
             [self addToBoxScoreDictionary];
-            NSLog(@"return add to boxscore-batterpositionnumber %i",batterPositionNumber);
             
             [self saveBoxScore];
             [self addMyStrikeThrown];
@@ -484,7 +495,6 @@
                 
                 loadedMyTeamCurrentBatter ++;
                 [self addToBoxScoreDictionary];
-                NSLog(@"return add to boxscore-batterpositionnumber %i",batterPositionNumber);
                 
                 [self saveBoxScore];
                 [self addOpponentStrikeThrown];
@@ -517,14 +527,10 @@
             [self showPitchStrike];
             
                 //LAST
-            NSLog(@"pre-batterpositionnumber %i",batterPositionNumber);
-            NSLog(@"boxScoreDict %@",boxScoreDictionary);
             
             loadedOpponentCurrentBatter ++;
-            NSLog(@"post-batterpositionnumber %i",batterPositionNumber);
             
             [self addToBoxScoreDictionary];
-            NSLog(@"return add to boxscore-batterpositionnumber %i",batterPositionNumber);
             
             [self saveBoxScore];
             [self addMyStrikeThrown];
@@ -962,20 +968,20 @@
     
     if (batting) {
             //opponent team
-        NSPredicate *cp = [NSPredicate predicateWithFormat:@"pitcher = true"];
-        NSArray *filtered = [opponentTeamDictionaryArray filteredArrayUsingPredicate:cp];
-        id item = [filtered objectAtIndex:0];
-        NSUInteger itemIndex = [opponentTeamDictionaryArray indexOfObject:item];
-        
-        NSLog(@"filter %@",filtered);
-        NSArray *f;
-        
-        f = [filtered valueForKey:@"lastname"];
-        
-        currentPitcher = [f objectAtIndex:0];
-        
-        NSLog(@"currentPitcher: %@",currentPitcher);
-        
+//        NSPredicate *cp = [NSPredicate predicateWithFormat:@"pitcher = true"];
+//        NSArray *filtered = [opponentTeamDictionaryArray filteredArrayUsingPredicate:cp];
+//        id item = [filtered objectAtIndex:0];
+//        NSUInteger itemIndex = [opponentTeamDictionaryArray indexOfObject:item];
+//        
+//        NSLog(@"filter %@",filtered);
+//        NSArray *f;
+//        
+//        f = [filtered valueForKey:@"lastname"];
+//        
+//        currentPitcher = [f objectAtIndex:0];
+//        
+//        NSLog(@"currentPitcher: %@",currentPitcher);
+        [self setGamePitchersIndex];
         [self loadMyTeamDictionaryArray];
             //add to loaded
         int t1 = [st intValue];
@@ -1008,10 +1014,11 @@
                     nil];
         
             //write back file
-        [opponentTeamDictionaryArray replaceObjectAtIndex:itemIndex withObject:tempdict];
+        [opponentTeamDictionaryArray replaceObjectAtIndex:opponentPitcherIndex withObject:tempdict];
         NSLog(@"opponentTeamDictArr: %@",opponentTeamDictionaryArray);
         
         [self saveUpdatedOpponentTeamInfo];
+        
     }else{
             //my team
         NSPredicate *cp = [NSPredicate predicateWithFormat:@"pitcher = true"];
@@ -1277,6 +1284,7 @@
     loadedMyTeamPos =[[boxScoreDictionary valueForKey:@"myteambattingpositionnumber"]intValue];
     
     loadedOppPos = [[boxScoreDictionary valueForKey:@"opponentbattingpositionnumber"]intValue];
+    
     currentInning = [[boxScoreDictionary valueForKey:@"currentinning"]intValue];
     
 }
@@ -1442,25 +1450,43 @@
     
 }
 
-- (void)GamePitchers{
+- (void)setGamePitchersIndex{
     NSPredicate *cp = [NSPredicate predicateWithFormat:@"pitcher = true"];
     myPitcherArray = [myTeamDictionaryArray filteredArrayUsingPredicate:cp];
-    NSLog(@"filter %@",myPitcherArray);
-    
+    id item = [myPitcherArray objectAtIndex:0];
+    myPitcherIndex = [myTeamDictionaryArray indexOfObject:item];
+    NSLog(@"opponent filter %@",[myTeamDictionaryArray objectAtIndex:myPitcherIndex]);
+
     NSPredicate *cp1 = [NSPredicate predicateWithFormat:@"pitcher = true"];
     opponentPitcherArray = [opponentTeamDictionaryArray filteredArrayUsingPredicate:cp1];
-    NSLog(@"filter %@",opponentPitcherArray);
+    id item2 = [opponentPitcherArray objectAtIndex:0];
+    opponentPitcherIndex = [opponentPitcherArray indexOfObject:item2];
+    NSLog(@"opponent filter %@",[opponentTeamDictionaryArray objectAtIndex:opponentPitcherIndex]);
     
-    NSArray *f;
+//    NSArray *f;
+//    
+//    f = [cp valueForKey:@"lastname"];
+//    
+//    currentPitcher = [f objectAtIndex:0];
+//    NSLog(@"myPitcher: %@",currentPitcher);
+//    
+//    NSLog(@"opponentPitcher: %@",opponentPitcher);
     
-    f = [cp valueForKey:@"lastname"];
     
-    currentPitcher = [f objectAtIndex:0];
-    NSLog(@"myPitcher: %@",currentPitcher);
-    
-    NSLog(@"opponentPitcher: %@",opponentPitcher);
-    
-    
+}
+
+- (void)checkPitchCount{
+    if (currentPitchCount >= maxNumberOfPitches) {
+        NSLog(@"Max pitches HAVE BEEN REACHED");
+        if (batting) {
+            NSString *pitcher = [[opponentTeamDictionaryArray valueForKey:@"lastname"]objectAtIndex:opponentPitcherIndex];
+            NSLog(@"opponent pitcher reached max pitches: %@",pitcher);
+        }else{
+            NSString *pitcher = [[myTeamDictionaryArray valueForKey:@"lastname"]objectAtIndex:myPitcherIndex];
+            NSLog(@"opponent pitcher reached max pitches: %@",pitcher);
+
+        }
+    }
 }
 
 #pragma mark - Does File Exist
@@ -1642,16 +1668,17 @@
 #pragma mark - Add Files
 
 - (void)addToBoxScoreDictionary {
-    NSLog(@"batterPositionNumber %i",loadedMyTeamCurrentBatter);
+    NSLog(@"addToBoxScoreDictionary");
+    NSLog(@"batterPositionNumber %i",batterPositionNumber);
     if (batting) {
             //Myteam
         
         if (loadedMyTeamCurrentBatter > myTeamCount) {
-            batterPositionNumber = 1;
+            loadedMyTeamCurrentBatter = 1;
         }
         
-        NSLog(@"addToBoxScoreDict: %i",batterPositionNumber);
-        
+        NSLog(@"loadedMyTeamCurrentBatter: %i",loadedMyTeamCurrentBatter);
+
         homeTeam = @(isHomeTeam);
         NSNumber *currentouts = [NSNumber numberWithInt:currentOuts];
         NSNumber *ami = @(batting);
@@ -1689,19 +1716,14 @@
         
         
     }else{
-            //not batting
             //Opponent
         
         if (loadedOpponentCurrentBatter > opponentTeamCount) {
             batterPositionNumber = 1;
         }
         
-        if (loadedTemp == opponentTeamCount) {
-            loadedTemp = 1;
-        }else{
-            loadedTemp++;
-        }
-        NSLog(@"addToBoxScoreDict: %i",batterPositionNumber);
+        NSLog(@"loadedOpponentCurrentBatter: %i",loadedOpponentCurrentBatter);
+        
         homeTeam = @(isHomeTeam);
         NSNumber *currentouts = [NSNumber numberWithInt:currentOuts];
         NSNumber *ami = @(batting);
@@ -1744,8 +1766,7 @@
     if ([self DoesBoxScoreExist]) {
         NSLog(@"DoesBoxScoreExist = YES");
     }
-    [self removeBoxScore];
-    
+//    [self removeBoxScore];
     
 }
 

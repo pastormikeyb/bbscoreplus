@@ -15,7 +15,6 @@
     NSString  *dictPath;
     NSDictionary *playerInfoDict, *teamDict, *gameDict;
     NSMutableArray *arrayOfDictionariesMutableArray;
-    NSDictionary *teamDictionary;
     NSDictionary *dict;
     
 }
@@ -24,7 +23,7 @@
 @end
 
 @implementation AddNewPlayerViewController
-@synthesize batsSegmentControl, throwsSegmentControl;
+@synthesize batsSegmentControl, throwsSegmentControl,firstName,lastName,playerNumber;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -35,9 +34,11 @@
     playerBat = @"R";
     playerThrow = @"R";
     doesFileExist = NO;
-    teamDictionary = [NSDictionary dictionary];
-    arrayOfDictionariesMutableArray = [NSMutableArray array];
-    [self LoadFromFile];
+    dict = [[NSDictionary alloc]init];
+    arrayOfDictionariesMutableArray = [[NSMutableArray alloc]init];
+    if (doesFileExist) {
+        [self LoadFromFile];
+    }
     
 }
 
@@ -78,15 +79,15 @@
                 //            [self performSegueWithIdentifier:@"HittingChart1B" sender:nil];
             [self addToTeamDictionary];
         
-            _firstName.text = @"";
-            _lastName.text = @"";
-            _playerNumber.text = @"";
+            firstName.text = @"";
+            lastName.text = @"";
+            playerNumber.text = @"";
             playerBat = @"";
             playerThrow = @"";
             [_isPitcherSwitch setOn:NO animated:YES];
             [batsSegmentControl setSelectedSegmentIndex:0];
             [throwsSegmentControl setSelectedSegmentIndex:0];
-            [_firstName becomeFirstResponder];
+            [firstName becomeFirstResponder];
 
             NSLog(@"clear complete");
             
@@ -168,13 +169,14 @@
     
     NSNumber *pitch = @(isPitcher);
     NSString *junk = @"0";
-    NSNull *myNull = [NSNull null];
-    NSMutableArray *ma = [NSMutableArray arrayWithObjects: myNull,myNull,nil];
-    
+    NSLog(@"firstname: %@",firstName.text);
+    NSString *fn = firstName.text;
+    NSString *ln = lastName.text;
+    NSString *pn = playerNumber.text;
     dict = [NSDictionary dictionaryWithObjectsAndKeys:
-            _firstName.text,@"firstname",
-            _lastName.text,@"lastname",
-            _playerNumber.text,@"playernumber",
+            fn,@"firstname",
+            ln,@"lastname",
+            pn,@"playernumber",
             playerBat,@"playerbat",
             playerThrow,@"playerthrow",
             pitch,@"pitcher",
@@ -190,8 +192,6 @@
             junk,@"out",
             junk,@"ballspitched",
             junk,@"strikesthrown",
-            ma,@"hittingchart",
-            ma,@"pitchingchart",
             junk,@"walks",
             junk,@"strikeouts",
             junk,@"walkspitched",
@@ -208,13 +208,13 @@
 
 - (void)saveInfo{
         //PUT PLAYER INFO INTO OBJECT
-    if ([self doesFileExist]) {
-        NSLog(@"fileExist");
-        
-            //load file
-        [self removeFile];
-        
-    }
+//    if ([self doesMyTeamFileExist]) {
+//        NSLog(@"fileExist");
+//        
+//            load file
+//        [self removeFile];
+//        
+//    }
     
             // Get path to documents directory
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
@@ -242,7 +242,7 @@
     NSLog(@"teamdictionary: %@",arrayOfDictionariesMutableArray);
 }
 
-- (BOOL)doesFileExist {
+- (BOOL)doesMyTeamFileExist {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *path = [documentsDirectory stringByAppendingPathComponent:@"teamdictionary.out"];
@@ -258,6 +258,8 @@
     return NO;
 
 }
+
+
 
 - (void)removeFile
 {

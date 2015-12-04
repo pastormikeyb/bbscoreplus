@@ -15,7 +15,6 @@
     NSString  *dictPath;
     NSDictionary *playerInfoDict, *teamDict, *gameDict;
     NSMutableArray *arrayOfDictionariesMutableArray;
-    NSDictionary *teamDictionary;
     NSDictionary *dict;
     
 }
@@ -35,7 +34,7 @@
     playerThrow = @"R";
     doesFileExist = NO;
     
-    teamDictionary = [NSDictionary dictionary];
+    dict = [NSDictionary dictionary];
     arrayOfDictionariesMutableArray = [NSMutableArray array];
     
 }
@@ -169,8 +168,6 @@
         //dictionary #1
     NSNumber *pitch = @(isPitcher);
     NSString *junk = @"0";
-    NSNull *myNull = [NSNull null];
-    NSMutableArray *ma = [NSMutableArray arrayWithObjects: myNull,myNull,nil];
     
     dict = [NSDictionary dictionaryWithObjectsAndKeys:
             _firstName.text,@"firstname",
@@ -191,8 +188,6 @@
             junk,@"out",
             junk,@"ballspitched",
             junk,@"strikesthrown",
-            ma,@"hittingchart",
-            ma,@"pitchingchart",
             junk,@"walks",
             junk,@"strikeouts",
             junk,@"walkspitched",
@@ -213,9 +208,6 @@
         //PUT PLAYER INFO INTO OBJECT
     if ([self doesFileExist]) {
         NSLog(@"fileExist");
-        
-            //load file
-        [self removeFile];
         
         
     }
@@ -241,7 +233,6 @@
     
     for (NSString *key in dictFromFile)
         NSLog(@"%@ : %@", key, [arrayOfDictionariesMutableArray valueForKey:key]);
-    
     
 }
 
