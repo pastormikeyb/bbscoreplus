@@ -16,20 +16,21 @@
     NSDictionary *playerInfoDict, *teamDict, *gameDict;
     NSMutableArray *arrayOfDictionariesMutableArray;
     NSDictionary *dict;
-    
+    BOOL isPitcherSet;
 }
 
 
 @end
 
 @implementation AddNewOpponentViewController
-@synthesize batsSegmentControl, throwsSegmentControl;
+@synthesize batsSegmentControl, throwsSegmentControl,firstName,lastName,playerNumber;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
         // Do any additional setup after loading the view.
     _myScrollView.bounces = NO;
     _myScrollView.alwaysBounceVertical = YES;
+    [_isPitcherSwitch setOn:NO animated:NO];
     playerBat = @"R";
     playerThrow = @"R";
     doesFileExist = NO;
@@ -44,9 +45,9 @@
         // Dispose of any resources that can be recreated.
 }
 
-- (void)showAlert {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Team Roster"
-                                                    message:@"Saved"
+- (void)showAlert:(NSString *)title msg:(NSString *)msg {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
+                                                    message:msg
                                                    delegate:self
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
@@ -75,30 +76,27 @@
             
             [self addToTeamDictionary];
             
-            _firstName.text = @"";
-            _lastName.text = @"";
-            _playerNumber.text = @"";
+            firstName.text = @"";
+            lastName.text = @"";
+            playerNumber.text = @"";
             playerBat = @"";
             playerThrow = @"";
-            [_isPitcherSwitch setOn:NO animated:YES];
+            [_isPitcherSwitch setOn:NO animated:NO];
             [batsSegmentControl setSelectedSegmentIndex:0];
             [throwsSegmentControl setSelectedSegmentIndex:0];
-            [_firstName becomeFirstResponder];
+            [firstName becomeFirstResponder];
 
-
-            NSLog(@"clear complete");
-            
-                //            [self LoadFromFile];
-                //            NSLog(@"load complete");
+            NSLog(@"add Complete");
             
             break;
             
         case 1:
             
-            NSLog(@"Save and Done");
+            NSLog(@"Save");
             [self addToTeamDictionary];
             [self saveInfo];
-            
+            [self showAlert:@"Roster" msg:@"has been saved."];
+
             break;
             
         default:
@@ -111,14 +109,23 @@
 
 - (IBAction)onSwitch:(id)sender {
     if (_isPitcherSwitch.on) {
-        isPitcher = YES;
-        NSLog(@"pitch yes");
+        if (isPitcherSet) {
+            
+            [self showAlert:@"The pitcher" msg:@"has already been set."];
+            isPitcher = NO;
+            [_isPitcherSwitch setOn:NO animated:NO];
+            
+            
+        }else{
+            isPitcher = YES;
+            isPitcherSet = YES;
+            NSLog(@"pitch yes");
+        }
     }else{
         isPitcher= NO;
         NSLog(@"pitch no");
     }
 }
-
 
 - (IBAction)segmentedControlAction:(id)sender{
     if(batsSegmentControl.selectedSegmentIndex == 0)
@@ -169,10 +176,14 @@
     NSNumber *pitch = @(isPitcher);
     NSString *junk = @"0";
     
+    NSString *fn = firstName.text;
+    NSString *ln = lastName.text;
+    NSString *pn = playerNumber.text;
+
     dict = [NSDictionary dictionaryWithObjectsAndKeys:
-            _firstName.text,@"firstname",
-            _lastName.text,@"lastname",
-            _playerNumber.text,@"playernumber",
+            fn,@"firstname",
+            ln,@"lastname",
+            pn,@"playernumber",
             playerBat,@"playerbat",
             playerThrow,@"playerthrow",
             pitch,@"pitcher",
@@ -192,15 +203,18 @@
             junk,@"strikeouts",
             junk,@"walkspitched",
             junk,@"strikeoutspitched",
-
-            
             nil];
     
-    [arrayOfDictionariesMutableArray addObject:dict];
+    if (fn && ln && pn && playerBat && playerThrow != nil) {
+        NSLog(@"nothing empty.  adding to array");
+        [arrayOfDictionariesMutableArray addObject:dict];
+        
+    }
     
     NSLog(@"arrayOfDictionariesMutableArray: %@",arrayOfDictionariesMutableArray);
     NSLog(@"array count: %lu",(unsigned long)[arrayOfDictionariesMutableArray count]);
     
+    isPitcher = NO;
     
 }
 

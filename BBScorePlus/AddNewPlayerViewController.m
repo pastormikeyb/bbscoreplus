@@ -16,6 +16,7 @@
     NSDictionary *playerInfoDict, *teamDict, *gameDict;
     NSMutableArray *arrayOfDictionariesMutableArray;
     NSDictionary *dict;
+    BOOL isPitcherSet;
     
 }
 
@@ -36,7 +37,7 @@
     doesFileExist = NO;
     dict = [[NSDictionary alloc]init];
     arrayOfDictionariesMutableArray = [[NSMutableArray alloc]init];
-    if (doesFileExist) {
+    if ([self doesMyTeamFileExist]) {
         [self LoadFromFile];
     }
     
@@ -46,10 +47,13 @@
     [super didReceiveMemoryWarning];
         // Dispose of any resources that can be recreated.
 }
+//-(void)mymethods:(NSString *)aCont withsecond:(NSString *)a-second { }
+//[mymethod:self.contoCorrente withsecond:self.asecond];
 
-- (void)showAlert {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Team Roster"
-                                                    message:@"Saved"
+
+- (void)showAlert:(NSString *)title msg:(NSString *)msg {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
+                                                    message:msg
                                                    delegate:self
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
@@ -76,7 +80,6 @@
             
             NSLog(@"Add another");
             
-                //            [self performSegueWithIdentifier:@"HittingChart1B" sender:nil];
             [self addToTeamDictionary];
         
             firstName.text = @"";
@@ -84,20 +87,22 @@
             playerNumber.text = @"";
             playerBat = @"";
             playerThrow = @"";
-            [_isPitcherSwitch setOn:NO animated:YES];
+            [_isPitcherSwitch setOn:NO animated:NO];
             [batsSegmentControl setSelectedSegmentIndex:0];
             [throwsSegmentControl setSelectedSegmentIndex:0];
             [firstName becomeFirstResponder];
 
-            NSLog(@"clear complete");
+            NSLog(@"add Complete");
             
             break;
             
         case 1:
             
-            NSLog(@"Save and Done");
+            NSLog(@"Save");
             [self addToTeamDictionary];
             [self saveInfo];
+            
+            [self showAlert:@"Roster" msg:@"has been saved."];
             
             break;
             
@@ -132,7 +137,7 @@
             playerBat = @"L";
             
         }
-    
+//dad:)mom
         else
             
             if(batsSegmentControl.selectedSegmentIndex == 2)
@@ -157,8 +162,17 @@
 
 - (IBAction)onSwitch:(id)sender {
     if (_isPitcherSwitch.on) {
+        if (isPitcherSet) {
+            [self showAlert:@"The pitcher" msg:@"has already been set."];
+            isPitcher = NO;
+            [_isPitcherSwitch setOn:NO animated:NO];
+
+
+        }else{
         isPitcher = YES;
+        isPitcherSet = YES;
         NSLog(@"pitch yes");
+        }
     }else{
          isPitcher= NO;
         NSLog(@"pitch no");
@@ -197,24 +211,21 @@
             junk,@"walkspitched",
             junk,@"strikeoutspitched",
             nil];
-    
+    if (fn && ln && pn && playerBat && playerThrow != nil) {
+        NSLog(@"nothing empty.  adding to array");
         [arrayOfDictionariesMutableArray addObject:dict];
+
+    }
+
     
     NSLog(@"arrayOfDictionariesMutableArray: %@",arrayOfDictionariesMutableArray);
     NSLog(@"array count: %lu",(unsigned long)[arrayOfDictionariesMutableArray count]);
-
+    isPitcher = NO;
 
 }
 
 - (void)saveInfo{
         //PUT PLAYER INFO INTO OBJECT
-//    if ([self doesMyTeamFileExist]) {
-//        NSLog(@"fileExist");
-//        
-//            load file
-//        [self removeFile];
-//        
-//    }
     
             // Get path to documents directory
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,

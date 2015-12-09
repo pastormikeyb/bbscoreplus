@@ -141,8 +141,6 @@
         currentPlayerNumberLabel.text = [[myTeamDictionaryArray valueForKey:@"playernumber"] objectAtIndex:batterPositionNumber];
         NSLog(@"battername: %@",[[myTeamDictionaryArray valueForKey:@"lastname"]objectAtIndex:batterPositionNumber]);
         
-
-        
     }else{
         NSLog(@"NOT batting");
         
