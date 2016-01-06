@@ -94,7 +94,7 @@
             currentHitterLabel.text = [[opponentTeamDictionaryArray valueForKey:@"lastname"]objectAtIndex:currentBatterPosition];
             NSLog(@"current batter: %@",[[opponentTeamDictionaryArray valueForKey:@"lastname"]objectAtIndex:currentBatterPosition]);
             
-            [self getHittingChart];
+//            [self getHittingChart];
             
         }
         if (isTopOfInning) {
@@ -586,27 +586,36 @@
     NSLog(@"getHittingChart");
     NSArray *myArray;
     if (batting) {
-        myArray = [[myTeamDictionaryArray valueForKey:@"hittingchart"]objectAtIndex:currentBatterPosition];
+        if ([[myTeamDictionaryArray valueForKey:@"hittingchart"]objectAtIndex:currentBatterPosition] == nil) {
+            myArray = [[myTeamDictionaryArray valueForKey:@"hittingchart"]objectAtIndex:currentBatterPosition];
+
+        }
 
     }else{
-    myArray = [[opponentTeamDictionaryArray valueForKey:@"hittingchart"]objectAtIndex:currentBatterPosition];
+        if ([[opponentTeamDictionaryArray valueForKey:@"hittingchart"]objectAtIndex:currentBatterPosition] == nil) {
+            myArray = [[opponentTeamDictionaryArray valueForKey:@"hittingchart"]objectAtIndex:currentBatterPosition];
+
+        }
     }
     
-    for (int i = 0; i <myArray.count; i++) {
-        int x = [[myArray[i]objectAtIndex:0]intValue];
-        int y = [[myArray[i]objectAtIndex:1]intValue];
-
-        NSLog(@"myArray: %@",myArray[i]);
-        NSLog(@"x: %i",x);
-        NSLog(@"y: %i",y);
-            //after getting x,y place on screen;
-        UIImage *glove = [UIImage imageNamed:@"baseballGloveSmall"];
-        UIImageView *gloveView = [[UIImageView alloc]initWithImage:glove];
-        CGRect frame = gloveView.bounds;
-        frame.origin.x = x;
-        frame.origin.y = y;
-        gloveView.frame = frame;
-        [self.view addSubview:gloveView];
+    if (myArray != nil) {
+        for (int i = 0; i <myArray.count; i++) {
+            int x = [[myArray[i]objectAtIndex:0]intValue];
+            int y = [[myArray[i]objectAtIndex:1]intValue];
+            
+            NSLog(@"myArray: %@",myArray[i]);
+            NSLog(@"x: %i",x);
+            NSLog(@"y: %i",y);
+                //after getting x,y place on screen;
+            UIImage *glove = [UIImage imageNamed:@"baseballGloveSmall"];
+            UIImageView *gloveView = [[UIImageView alloc]initWithImage:glove];
+            CGRect frame = gloveView.bounds;
+            frame.origin.x = x;
+            frame.origin.y = y;
+            gloveView.frame = frame;
+            [self.view addSubview:gloveView];
+            
+        }
 
     }
 

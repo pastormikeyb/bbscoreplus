@@ -24,7 +24,7 @@
     NSMutableArray *currentPitchingChart;
     NSMutableArray *loadedGameDefaultsArray;
     BOOL isTopOfInning, didHit;
-    BOOL batting;
+    BOOL amIBatting;
     BOOL isMyTeamBatting;
     BOOL isDefaultsLoaded;
     BOOL isGameStarted;

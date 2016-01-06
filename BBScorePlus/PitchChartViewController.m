@@ -68,7 +68,7 @@
     }
         //set app main variables
     
-    batting = [[boxScoreDictionary valueForKey:@"amibatting"]intValue];
+    amIBatting= [[boxScoreDictionary valueForKey:@"amibatting"]intValue];
     isHomeTeam = [boxScoreDictionary valueForKey:@"ishometeam"];
     isTopOfInning = [boxScoreDictionary valueForKey:@"istopofinning"];
     loadedMyTeamCurrentBatter = [[boxScoreDictionary valueForKey:@"myteambattingpositionnumber"]intValue];
@@ -76,23 +76,25 @@
     currentOuts = [[boxScoreDictionary valueForKey:@"currentouts"]intValue];
     currentInning = [[boxScoreDictionary valueForKey:@"currentinning"]intValue];
     
+//    [self getCurrentTime];
     
-    if (batting) {
+    
+    if (amIBatting){
         batterPositionNumber = [[boxScoreDictionary valueForKey:@"myteambattingpositionnumber"]intValue]-1;
         NSLog(@"I AM BATTING: %i",batterPositionNumber);
         NSLog(@"CURRENT BATTER: %@",[[myTeamDictionaryArray valueForKey:@"lastname"]objectAtIndex:batterPositionNumber]);
-
+        
     }else{
         batterPositionNumber = [[boxScoreDictionary valueForKey:@"opponentbattingpositionnumber"]intValue]-1;
         NSLog(@"I AM NOT BATTING: %i",batterPositionNumber);
         NSLog(@"CURRENT BATTER: %@",[[opponentTeamDictionaryArray valueForKey:@"lastname"]objectAtIndex:batterPositionNumber]);
-
+        
     }
     
     myTeamCount = (int)[myTeamDictionaryArray count];
     opponentTeamCount = (int)[opponentTeamDictionaryArray count];
     
-    if (batting) {
+    if (amIBatting){
         if (!isContinousLineup) {
             NSLog(@"Game does NOT have a continous lineup");
             if (myTeamCount > 9) {
@@ -116,12 +118,14 @@
                 opponentTeamCount = 9;
             }
         }
-
         
         if (batterPositionNumber >=  opponentTeamCount){
-            batterPositionNumber = 0;            };
+            batterPositionNumber = 0;
+        };
+        
         if (batterPositionNumber < 0){
-            batterPositionNumber = 0;            };
+            batterPositionNumber = 0;
+        };
         
         NSLog(@"if batting:no:batterPositionNumber: %i",batterPositionNumber);
         
@@ -130,7 +134,7 @@
     
     
     
-    if (batting) {
+    if (amIBatting){
         
         currentBatLabel.text = [[myTeamDictionaryArray valueForKey:@"playerbat"]objectAtIndex:batterPositionNumber];
         NSLog(@"batting");
@@ -167,7 +171,7 @@
     
     step.maximumValue = 99;
     step.minimumValue = 0;
-    if (batting) {
+    if (amIBatting){
         
         if (isHomeTeam) {
             if (step){
@@ -185,7 +189,7 @@
         
     }
     
-    if (!batting) {
+    if (!amIBatting) {
         
         
         if (isHomeTeam) {
@@ -218,7 +222,7 @@
             totalBallsThrown++;
             
             
-            if (batting) {
+            if (amIBatting){
                     //HOME
                     //Hitting
                 
@@ -269,7 +273,7 @@
             
                 //PITCHER UPDATE OPPONENT
             
-            if (batting) {
+            if (amIBatting){
                 if (loadedMyTeamCurrentBatter > myTeamCount) {
                     loadedMyTeamCurrentBatter = 1;
                 }
@@ -283,7 +287,7 @@
             
             [self saveBoxScore];
             didHit = YES;
-
+            
             [self performSegueWithIdentifier:@"hcSegue" sender:nil];
             
             break;
@@ -294,7 +298,7 @@
             currentPitchCount ++;
             doubleHit ++;
             
-            if (batting) {
+            if (amIBatting){
                     //HOME
                 NSLog(@"isHomeTeam:yes");
                 [self addMyDouble];
@@ -323,7 +327,7 @@
                 [self addOpponentStrikeThrown];
                 
                 didHit = YES;
-  
+                
                 [self performSegueWithIdentifier:@"hcSegue" sender:nil];
                 
             }else{
@@ -361,9 +365,9 @@
             
             [self saveBoxScore];
             [self addMyStrikeThrown];
-
+            
             didHit = YES;
-
+            
             [self performSegueWithIdentifier:@"hcSegue" sender:nil];
             
             break;
@@ -374,7 +378,7 @@
             currentPitchCount ++;
             tripleHit ++;
             
-            if (batting) {
+            if (amIBatting){
                     //HOME
                 
                 [self addMyTriple];
@@ -399,9 +403,9 @@
                 [self saveBoxScore];
                 
                 [self addOpponentStrikeThrown];
-
+                
                 didHit = YES;
-
+                
                 [self performSegueWithIdentifier:@"hcSegue" sender:nil];
                 
             }else{
@@ -440,7 +444,7 @@
             [self addMyStrikeThrown];
             
             didHit = YES;
-
+            
             [self performSegueWithIdentifier:@"hcSegue" sender:nil];
             
             break;
@@ -451,7 +455,7 @@
             currentPitchCount++;
             homeRun ++;
             
-            if (batting) {
+            if (amIBatting){
                     //HOME
                 NSLog(@"isHomeTeam:yes");
                 [self addMyHR];
@@ -477,7 +481,7 @@
                 [self addOpponentStrikeThrown];
                 
                 didHit = YES;
-
+                
                 [self performSegueWithIdentifier:@"hcSegue" sender:nil];
             }else{
                     //OPPONENT
@@ -513,7 +517,7 @@
             [self addMyStrikeThrown];
             
             didHit = YES;
-
+            
             [self performSegueWithIdentifier:@"hcSegue" sender:nil];
             
             break;
@@ -524,7 +528,7 @@
             currentPitchCount++;
             fieldersChoice ++;
             
-            if (batting) {
+            if (amIBatting){
                     //HOME
                 NSLog(@"isHomeTeam:yes");
                 [self addMyFC];
@@ -572,7 +576,7 @@
             [self addMyStrikeThrown];
             
             didHit = YES;
-
+            
             [self performSegueWithIdentifier:@"hcSegue" sender:nil];
             
             break;
@@ -583,7 +587,7 @@
             currentPitchCount++;
             fieldingError ++;
             
-            if (batting) {
+            if (amIBatting){
                     //HOME
                 NSLog(@"isHomeTeam:yes");
                 [self addMyError];
@@ -629,7 +633,7 @@
             [self addMyStrikeThrown];
             
             didHit = YES;
-
+            
             [self performSegueWithIdentifier:@"hcSegue" sender:nil];
             
             break;
@@ -639,7 +643,7 @@
             NSLog(@"OUT");
             currentOuts ++;
             
-            if (batting) {
+            if (amIBatting){
                     //HOME
                 NSLog(@"isHomeTeam:yes");
                 myOut++;
@@ -663,10 +667,10 @@
                     currentInning++;
                 }
                 currentOuts = 0;
-                if (batting) {
-                    batting = NO;
+                if (amIBatting){
+                    amIBatting= NO;
                 }else{
-                    batting = YES;
+                    amIBatting= YES;
                 }
             }
             
@@ -681,7 +685,7 @@
             [self saveBoxScore];
             
             didHit = YES;
-
+            
             [self performSegueWithIdentifier:@"hcSegue" sender:nil];
             
             
@@ -693,21 +697,21 @@
             currentPitchCount ++;
             hitByPitch ++;
             
-            if (batting) {
+            if (amIBatting){
                     //HOME
                 NSLog(@"isHomeTeam:yes");
                 [self addMyHP];
                 
-                    [self showPitchCount];
-                    [self showPitchStrike];
-                    
-                    loadedMyTeamCurrentBatter ++;
-                    [self addToBoxScoreDictionary];
-                    NSLog(@"return add to boxscore-batterpositionnumber %i",batterPositionNumber);
-                    
-                    [self saveBoxScore];
-                    [self addOpponentBallThrown];
-           
+                [self showPitchCount];
+                [self showPitchStrike];
+                
+                loadedMyTeamCurrentBatter ++;
+                [self addToBoxScoreDictionary];
+                NSLog(@"return add to boxscore-batterpositionnumber %i",batterPositionNumber);
+                
+                [self saveBoxScore];
+                [self addOpponentBallThrown];
+                
             }else{
                     //OPPONENT
                 NSLog(@"no");
@@ -754,7 +758,7 @@
             currentPitchCount ++;
             sacFly ++;
             myOut ++;
-            if (batting) {
+            if (amIBatting){
                     //HOME
                 NSLog(@"isHomeTeam:yes");
                 [self addMySac];
@@ -801,7 +805,7 @@
             [self addMyStrikeThrown];
             
             didHit = YES;
-
+            
             [self performSegueWithIdentifier:@"hcSegue" sender:nil];
             
             break;
@@ -821,7 +825,7 @@
                 batterPositionNumber ++;
                 currentBatterBall = 0;
                 
-                if (batting) {
+                if (amIBatting){
                     
                     [self addOpponentBallThrown];
                 }else{
@@ -868,7 +872,7 @@
                     }
                 }
                 
-                if (batting) {
+                if (amIBatting){
                     [self addOpponentStrikeThrown];
                 }else{
                     [self addMyStrikeThrown];
@@ -884,6 +888,12 @@
             
             break;
             
+        case 11:
+                //start the game timer;
+            [self gameTimeStart];
+            
+            break;
+            
         default:
             break;
     }
@@ -892,7 +902,7 @@
 - (void)addStrike{
         //add strike to pitcher
     
-    if (batting) {
+    if (amIBatting){
             //opponent team
         [self setGamePitchersIndex];
         [self loadMyTeamDictionaryArray];
@@ -987,7 +997,7 @@
 - (void)addBall{
         //add BALL to pitcher
     
-    if (batting) {
+    if (amIBatting){
             //opponent team
         [self LoadOpponentTeam];
         
@@ -1004,7 +1014,7 @@
         opponentPitcher = [f objectAtIndex:0];
         
         NSLog(@"opponentPitcher: %@",opponentPitcher);
-
+        
             //add to loaded
         int t1 = [bt intValue];
         t1++;
@@ -1122,7 +1132,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     if ([[segue identifier] isEqualToString:@"hcSegue"])
-    
+        
     { HittingChartViewController *vc = [segue destinationViewController];
         vc.didHit = didHit;
     }
@@ -1171,7 +1181,7 @@
         //load variables
     
     NSNumber *b = [boxScoreDictionary valueForKey:@"amibatting"];
-    batting = [b boolValue];
+    amIBatting= [b boolValue];
     
     isTopOfInning = [(NSNumber*)[boxScoreDictionary valueForKey:@"istopofinning"]boolValue];
     
@@ -1334,12 +1344,30 @@
 }
 
 - (void)getCurrentTime{
-    gameTimeStart = [NSDate date];
+    
+    NSLog(@"gameTimeLimit: %d",gameTimeLimit);
+    if (gameTimeLimit > 0) {
+        NSDate *endingTime = [gameTimeStart dateByAddingTimeInterval:gameTimeLimit];
+        NSLog(@"endingTime = %@",endingTime);
+
+    }
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateFormat = @"hh:mm:ss";
     [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
     NSLog(@"The Current Time is %@",[dateFormatter stringFromDate:gameTimeStart]);
+    
+    
+}
+
+- (void)gameTimeStart{
+    if (!isGameStarted) {
+        gameTimeStart = [NSDate date];
+        [self getCurrentTime];
+        isGameStarted = TRUE;
+        
+    }
+    
 }
 
 - (void)showMyRosterAlert {
@@ -1368,21 +1396,21 @@
     id item = [myPitcherArray objectAtIndex:0];
     myPitcherIndex = [myTeamDictionaryArray indexOfObject:item];
     NSLog(@"opponent filter %@",[myTeamDictionaryArray objectAtIndex:myPitcherIndex]);
-
+    
     NSPredicate *cp1 = [NSPredicate predicateWithFormat:@"pitcher = true"];
     opponentPitcherArray = [opponentTeamDictionaryArray filteredArrayUsingPredicate:cp1];
     id item2 = [opponentPitcherArray objectAtIndex:0];
     opponentPitcherIndex = [opponentPitcherArray indexOfObject:item2];
     NSLog(@"opponent filter %@",[opponentTeamDictionaryArray objectAtIndex:opponentPitcherIndex]);
     
-//    NSArray *f;
-//    
-//    f = [cp valueForKey:@"lastname"];
-//    
-//    currentPitcher = [f objectAtIndex:0];
-//    NSLog(@"myPitcher: %@",currentPitcher);
-//    
-//    NSLog(@"opponentPitcher: %@",opponentPitcher);
+        //    NSArray *f;
+        //
+        //    f = [cp valueForKey:@"lastname"];
+        //
+        //    currentPitcher = [f objectAtIndex:0];
+        //    NSLog(@"myPitcher: %@",currentPitcher);
+        //
+        //    NSLog(@"opponentPitcher: %@",opponentPitcher);
     
     
 }
@@ -1390,13 +1418,13 @@
 - (void)checkPitchCount{
     if (currentPitchCount >= maxNumberOfPitches) {
         NSLog(@"Max pitches HAVE BEEN REACHED");
-        if (batting) {
+        if (amIBatting){
             NSString *pitcher = [[opponentTeamDictionaryArray valueForKey:@"lastname"]objectAtIndex:opponentPitcherIndex];
             NSLog(@"opponent pitcher reached max pitches: %@",pitcher);
         }else{
             NSString *pitcher = [[myTeamDictionaryArray valueForKey:@"lastname"]objectAtIndex:myPitcherIndex];
             NSLog(@"opponent pitcher reached max pitches: %@",pitcher);
-
+            
         }
     }
 }
@@ -1582,7 +1610,7 @@
 - (void)addToBoxScoreDictionary {
     NSLog(@"addToBoxScoreDictionary");
     NSLog(@"batterPositionNumber %i",batterPositionNumber);
-    if (batting) {
+    if (amIBatting){
             //Myteam
         
         if (loadedMyTeamCurrentBatter > myTeamCount) {
@@ -1590,10 +1618,10 @@
         }
         
         NSLog(@"loadedMyTeamCurrentBatter: %i",loadedMyTeamCurrentBatter);
-
+        
         homeTeam = @(isHomeTeam);
         NSNumber *currentouts = [NSNumber numberWithInt:currentOuts];
-        NSNumber *ami = @(batting);
+        NSNumber *ami = @(amIBatting);
         NSNumber *top = @(isTopOfInning);
         NSNumber *pitc = [NSNumber numberWithInt:currentPitchCount];
         NSNumber *homerun = [NSNumber numberWithInt:homeRuns];
@@ -1638,7 +1666,7 @@
         
         homeTeam = @(isHomeTeam);
         NSNumber *currentouts = [NSNumber numberWithInt:currentOuts];
-        NSNumber *ami = @(batting);
+        NSNumber *ami = @(amIBatting);
         NSNumber *top = @(isTopOfInning);
         NSNumber *pitc = [NSNumber numberWithInt:currentPitchCount];
         NSNumber *homerun = [NSNumber numberWithInt:homeRuns];
@@ -1678,7 +1706,7 @@
     if ([self DoesBoxScoreExist]) {
         NSLog(@"DoesBoxScoreExist = YES");
     }
-//    [self removeBoxScore];
+        //    [self removeBoxScore];
     
 }
 
@@ -1878,7 +1906,7 @@
 - (void)addMySingle{
     NSLog(@"addSingle");
     
-            [self loadMyTeamDictionaryArray];
+    [self loadMyTeamDictionaryArray];
     
     
     int t1 = [fb intValue];
@@ -2291,7 +2319,7 @@
 - (void)addMyBallThrown{
     NSLog(@"addMyBallThrown");
     
-            [self loadMyTeamDictionaryArray];
+    [self loadMyTeamDictionaryArray];
     
     int t1 = [bt intValue];
     t1++;
@@ -2341,7 +2369,7 @@
         //my team
     
     
-            [self loadMyTeamDictionaryArray];
+    [self loadMyTeamDictionaryArray];
     
     int t1 = [st intValue];
     t1++;
@@ -2936,7 +2964,7 @@
     [opponentTeamDictionaryArray replaceObjectAtIndex:batterPositionNumber withObject:tempdict];
     
     
-    //saveback
+        //saveback
     [self saveUpdatedOpponentTeamInfo];
     
     
@@ -3088,7 +3116,7 @@
 - (void)getPitchingChart{
     NSLog(@"getPitchingChart");
     NSArray *myArray2;
-    if (batting) {
+    if (amIBatting){
         myArray2 = [[myTeamDictionaryArray valueForKey:@"pitchingchart"]objectAtIndex:currentBatterPosition];
         
     }else{
