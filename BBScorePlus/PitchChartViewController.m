@@ -35,7 +35,7 @@
     BOOL loadMyPitcher,loadOpponentPitcher;
     NSString *fn, *ln, *pn, *pb, *pt, *pi, *fb, *sb, *tb, *hr, *fc,*fe,*hp,*sf,*rb,*ou,*bt,*st,*wa,*str,*wap,*strp,*strValue,*cb, *pc,*hc, *th, *oh;
     NSUInteger myPitcherIndex, opponentPitcherIndex;
-    
+    NSDate *endingTime;
 }
 
 
@@ -76,8 +76,9 @@
     currentOuts = [[boxScoreDictionary valueForKey:@"currentouts"]intValue];
     currentInning = [[boxScoreDictionary valueForKey:@"currentinning"]intValue];
     
-//    [self getCurrentTime];
-    
+    if (isGameStarted) {
+        [self gameTimeStart];
+    }
     
     if (amIBatting){
         batterPositionNumber = [[boxScoreDictionary valueForKey:@"myteambattingpositionnumber"]intValue]-1;
@@ -1003,111 +1004,118 @@
         
         NSPredicate *cp = [NSPredicate predicateWithFormat:@"pitcher = true"];
         NSArray *filtered = [opponentTeamDictionaryArray filteredArrayUsingPredicate:cp];
-        id item = [filtered objectAtIndex:0];
-        opponentPitcherIndex = [opponentTeamDictionaryArray indexOfObject:item];
-        
-        NSLog(@"filter %@",filtered);
-        NSArray *f;
-        
-        f = [filtered valueForKey:@"lastname"];
-        
-        opponentPitcher = [f objectAtIndex:0];
-        
-        NSLog(@"opponentPitcher: %@",opponentPitcher);
-        
-            //add to loaded
-        int t1 = [bt intValue];
-        t1++;
-        strValue = [@(t1) stringValue];
-        
-        tempdict = [NSDictionary dictionaryWithObjectsAndKeys:
-                    fn,@"firstname",
-                    ln,@"lastname",
-                    pn,@"playernumber",
-                    pb,@"playerbat",
-                    pt,@"playerthrow",
-                    pi,@"pitcher",
-                    fb,@"1B",
-                    sb,@"2B",
-                    tb,@"3B",
-                    hr,@"HR",
-                    fc,@"fielderschoice",
-                    fe,@"fieldingerror",
-                    hp,@"hitbypitch",
-                    sf,@"sacfly",
-                    rb,@"RBI",
-                    ou,@"out",
-                    strValue,@"ballspitched",
-                    st,@"strikesthrown",
-                    wa,@"walks",
-                    str,@"strikeouts",
-                    wap,@"walkspitched",
-                    strp,@"strikesoutpitched",
-                    pc,@"pitchingchart",
-                    hc,@"hittingchart",
-                    nil];
-        
-            //write back file
-        [opponentTeamDictionaryArray replaceObjectAtIndex:opponentPitcherIndex withObject:tempdict];
-        NSLog(@"opponentTeamDictArr: %@",opponentTeamDictionaryArray);
-        
-        [self saveUpdatedOpponentTeamInfo];
+        if (filtered.count > 0) {
+            
+            id item = [filtered objectAtIndex:0];
+            opponentPitcherIndex = [opponentTeamDictionaryArray indexOfObject:item];
+            
+            NSLog(@"filter %@",filtered);
+            NSArray *f;
+            
+            f = [filtered valueForKey:@"lastname"];
+            
+            opponentPitcher = [f objectAtIndex:0];
+            
+            NSLog(@"opponentPitcher: %@",opponentPitcher);
+            
+                //add to loaded
+            int t1 = [bt intValue];
+            t1++;
+            strValue = [@(t1) stringValue];
+            
+            tempdict = [NSDictionary dictionaryWithObjectsAndKeys:
+                        fn,@"firstname",
+                        ln,@"lastname",
+                        pn,@"playernumber",
+                        pb,@"playerbat",
+                        pt,@"playerthrow",
+                        pi,@"pitcher",
+                        fb,@"1B",
+                        sb,@"2B",
+                        tb,@"3B",
+                        hr,@"HR",
+                        fc,@"fielderschoice",
+                        fe,@"fieldingerror",
+                        hp,@"hitbypitch",
+                        sf,@"sacfly",
+                        rb,@"RBI",
+                        ou,@"out",
+                        strValue,@"ballspitched",
+                        st,@"strikesthrown",
+                        wa,@"walks",
+                        str,@"strikeouts",
+                        wap,@"walkspitched",
+                        strp,@"strikesoutpitched",
+                        pc,@"pitchingchart",
+                        hc,@"hittingchart",
+                        nil];
+            
+                //write back file
+            [opponentTeamDictionaryArray replaceObjectAtIndex:opponentPitcherIndex withObject:tempdict];
+            NSLog(@"opponentTeamDictArr: %@",opponentTeamDictionaryArray);
+            
+            [self saveUpdatedOpponentTeamInfo];
+        }
         
     }else{
+            //opponent batting
         [self LoadMyTeam];
         
         NSPredicate *cp = [NSPredicate predicateWithFormat:@"pitcher = true"];
         NSArray *filtered = [myTeamDictionaryArray filteredArrayUsingPredicate:cp];
-        id item = [filtered objectAtIndex:0];
-        myPitcherIndex = [myTeamDictionaryArray indexOfObject:item];
-        
-        NSLog(@"filter %@",filtered);
-        NSArray *f;
-        
-        f = [filtered valueForKey:@"lastname"];
-        
-        myPitcher = [f objectAtIndex:0];
-        
-        NSLog(@"myPitcher: %@",myPitcher);
-        
-        int t1 = [bt intValue];
-        t1++;
-        strValue = [@(t1) stringValue];
-        
-        tempdict = [NSDictionary dictionaryWithObjectsAndKeys:
-                    fn,@"firstname",
-                    ln,@"lastname",
-                    pn,@"playernumber",
-                    pb,@"playerbat",
-                    pt,@"playerthrow",
-                    pi,@"pitcher",
-                    fb,@"1B",
-                    sb,@"2B",
-                    tb,@"3B",
-                    hr,@"HR",
-                    fc,@"fielderschoice",
-                    fe,@"fieldingerror",
-                    hp,@"hitbypitch",
-                    sf,@"sacfly",
-                    rb,@"RBI",
-                    ou,@"out",
-                    strValue,@"ballspitched",
-                    st,@"strikesthrown",
-                    hc,@"hittingchart",
-                    pc,@"pitchingchart",
-                    wa,@"walks",
-                    str,@"strikeouts",
-                    wap,@"walkspitched",
-                    strp,@"strikeoutspitched",
-                    pc,@"pitchingchart",
-                    hc,@"hittingchart",
-                    
-                    
-                    nil];
-        
-        [myTeamDictionaryArray replaceObjectAtIndex:myPitcherIndex withObject:tempdict];
-        
-        [self saveUpdatedMyTeamInfo];
+        if (filtered.count > 0) {
+            
+            id item = [filtered objectAtIndex:0];
+            myPitcherIndex = [myTeamDictionaryArray indexOfObject:item];
+            
+            NSLog(@"filter %@",filtered);
+            NSArray *f;
+            
+            f = [filtered valueForKey:@"lastname"];
+            
+            myPitcher = [f objectAtIndex:0];
+            
+            NSLog(@"myPitcher: %@",myPitcher);
+            
+            int t1 = [bt intValue];
+            t1++;
+            strValue = [@(t1) stringValue];
+            
+            tempdict = [NSDictionary dictionaryWithObjectsAndKeys:
+                        fn,@"firstname",
+                        ln,@"lastname",
+                        pn,@"playernumber",
+                        pb,@"playerbat",
+                        pt,@"playerthrow",
+                        pi,@"pitcher",
+                        fb,@"1B",
+                        sb,@"2B",
+                        tb,@"3B",
+                        hr,@"HR",
+                        fc,@"fielderschoice",
+                        fe,@"fieldingerror",
+                        hp,@"hitbypitch",
+                        sf,@"sacfly",
+                        rb,@"RBI",
+                        ou,@"out",
+                        strValue,@"ballspitched",
+                        st,@"strikesthrown",
+                        hc,@"hittingchart",
+                        pc,@"pitchingchart",
+                        wa,@"walks",
+                        str,@"strikeouts",
+                        wap,@"walkspitched",
+                        strp,@"strikeoutspitched",
+                        pc,@"pitchingchart",
+                        hc,@"hittingchart",
+                        
+                        
+                        nil];
+            
+            [myTeamDictionaryArray replaceObjectAtIndex:myPitcherIndex withObject:tempdict];
+            
+            [self saveUpdatedMyTeamInfo];
+        }
     }
 }
 
@@ -1330,10 +1338,7 @@
                 //addto main chart
             [currentPitchingChart addObject:pitchLocationArray];
             
-            
-            
             NSLog(@"hitLocation %@",currentPitchingChart);
-            
             
             [bbView setCenter:CGPointMake(currentPos.x, currentPos.y)]; // x, y
             [self.view addSubview:bbView];
@@ -1347,15 +1352,15 @@
     
     NSLog(@"gameTimeLimit: %d",gameTimeLimit);
     if (gameTimeLimit > 0) {
-        NSDate *endingTime = [gameTimeStart dateByAddingTimeInterval:gameTimeLimit];
+        endingTime = [gameTimeStart dateByAddingTimeInterval:gameTimeLimit*60];
         NSLog(@"endingTime = %@",endingTime);
-
+        
     }
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateFormat = @"hh:mm:ss";
     [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
-    NSLog(@"The Current Time is %@",[dateFormatter stringFromDate:gameTimeStart]);
+    NSLog(@"The Current Time is %@",[dateFormatter stringFromDate:endingTime]);
     
     
 }
@@ -1365,6 +1370,21 @@
         gameTimeStart = [NSDate date];
         [self getCurrentTime];
         isGameStarted = TRUE;
+        
+    }else{
+            //current time = > endingTime
+        
+        NSDate *ct = [NSDate date];
+        
+        if (ct >= endingTime) {
+            NSLog(@"game time is over.");
+            self.view.backgroundColor = [UIColor redColor];
+
+        }else{
+            NSLog(@"game time is NOT over.");
+            
+        }
+        
         
     }
     
@@ -1393,25 +1413,20 @@
 - (void)setGamePitchersIndex{
     NSPredicate *cp = [NSPredicate predicateWithFormat:@"pitcher = true"];
     myPitcherArray = [myTeamDictionaryArray filteredArrayUsingPredicate:cp];
-    id item = [myPitcherArray objectAtIndex:0];
-    myPitcherIndex = [myTeamDictionaryArray indexOfObject:item];
-    NSLog(@"opponent filter %@",[myTeamDictionaryArray objectAtIndex:myPitcherIndex]);
+    
+    if (myPitcherArray.count > 0) {
+        id item = [myPitcherArray objectAtIndex:0];
+        myPitcherIndex = [myTeamDictionaryArray indexOfObject:item];
+        NSLog(@"opponent filter %@",[myTeamDictionaryArray objectAtIndex:myPitcherIndex]);
+    }
     
     NSPredicate *cp1 = [NSPredicate predicateWithFormat:@"pitcher = true"];
     opponentPitcherArray = [opponentTeamDictionaryArray filteredArrayUsingPredicate:cp1];
-    id item2 = [opponentPitcherArray objectAtIndex:0];
-    opponentPitcherIndex = [opponentPitcherArray indexOfObject:item2];
-    NSLog(@"opponent filter %@",[opponentTeamDictionaryArray objectAtIndex:opponentPitcherIndex]);
-    
-        //    NSArray *f;
-        //
-        //    f = [cp valueForKey:@"lastname"];
-        //
-        //    currentPitcher = [f objectAtIndex:0];
-        //    NSLog(@"myPitcher: %@",currentPitcher);
-        //
-        //    NSLog(@"opponentPitcher: %@",opponentPitcher);
-    
+    if (opponentPitcherArray.count > 0) {
+        id item2 = [opponentPitcherArray objectAtIndex:0];
+        opponentPitcherIndex = [opponentPitcherArray indexOfObject:item2];
+        NSLog(@"opponent filter %@",[opponentTeamDictionaryArray objectAtIndex:opponentPitcherIndex]);
+    }
     
 }
 
