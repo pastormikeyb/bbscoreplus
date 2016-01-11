@@ -175,6 +175,7 @@
         //dictionary #1
     NSNumber *pitch = @(isPitcher);
     NSString *junk = @"0";
+    NSArray *j1 = [NSArray array];
     
     NSString *fn = firstName.text;
     NSString *ln = lastName.text;
@@ -203,6 +204,8 @@
             junk,@"strikeouts",
             junk,@"walkspitched",
             junk,@"strikeoutspitched",
+            j1,@"hittinghchart",
+            j1,@"pitchingchart",
             nil];
     
     if (fn && ln && pn && playerBat && playerThrow != nil) {

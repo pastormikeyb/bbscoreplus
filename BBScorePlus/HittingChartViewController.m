@@ -582,6 +582,24 @@
     
 }
 
+-(void)saveUpdatedMyTeamInfo{
+    
+        // Get path to documents directory
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        // Path to save dictionary
+    NSString *dictPath = [[paths objectAtIndex:0]
+                          stringByAppendingPathComponent:@"teamdictionary.out"];
+    
+    if ([paths count] > 0)
+    {
+        
+            // Write dictionary
+        [opponentTeamDictionaryArray writeToFile:dictPath atomically:YES];
+        
+    }
+    
+}
+
 - (void)getHittingChart{
     NSLog(@"getHittingChart");
     NSArray *myArray;
