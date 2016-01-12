@@ -686,6 +686,7 @@
             currentPitchCount ++;
             
             [self addStrike];
+            
             if (currentBatterStrike > 2) {
                 
                 currentOuts ++;
@@ -775,6 +776,8 @@
             //my team
         NSLog(@"MyTeam DictionaryArray %@",myTeamDictionaryArray);
         
+        [self setMyTeamPitcherArray];
+        
         int t1 = [st intValue];
         t1++;
         strValue = [@(t1) stringValue];
@@ -804,7 +807,8 @@
                     strp,@"strikesoutpitched",
                     nil];
         
-        [myTeamDictionaryArray replaceObjectAtIndex:opponentPitcherIndex withObject:tempdict];
+        [myTeamDictionaryArray replaceObjectAtIndex:myPitcherIndex withObject:tempdict];
+        
         [self saveUpdatedMyTeamInfo];
         
     }
@@ -897,6 +901,7 @@
         
         [myTeamDictionaryArray replaceObjectAtIndex:myPitcherIndex withObject:tempdict];
         NSLog(@"myteamdictionaryarray updated:\n %@",myTeamDictionaryArray);
+        
         [self saveUpdatedMyTeamInfo];
     }
 }

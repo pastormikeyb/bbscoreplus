@@ -14,7 +14,7 @@
     NSDictionary *hittingChartDictionary, *tempdict;
     NSMutableArray *myTeamDictionaryArray, *opponentTeamDictionaryArray;
     NSString *fn, *ln, *pn, *pb, *pt, *pi, *fb, *sb, *tb, *hr, *fc,*fe,*hp,*sf,*rb,*ou,*bt,*st,*wa,*str,*wap,*strp,*strValue;
-    NSArray *hitLocation,*pitchlocation;
+    NSArray *hitLocation,*pitchLocation;
     NSMutableArray *loadedMyHitLocationMutableArray,*loadedOpponentHitLocationMutableArray;
     int loadedMyTeamCurrentBatter, loadedOpponentCurrentBatter, currentBatterPosition, *hc, *pc;
     
@@ -140,8 +140,8 @@
         UITouch *myTouch = [[touches allObjects] objectAtIndex: 0];
         CGPoint currentPos = [myTouch locationInView: nil];
         NSLog(@"Point in myView: (%f,%f)", currentPos.x, currentPos.y);
-        if (currentPos.x >= 155 && currentPos.x <= 405) {
-            if (currentPos.y >= 10 && currentPos.y <= 290) {
+        if (currentPos.x >= 220 && currentPos.x <= 505) {
+            if (currentPos.y >= 65 && currentPos.y <= 340) {
                 
                     UIImageView *bbView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"baseballGloveSmall"]] ;
                     
@@ -404,7 +404,7 @@
                 wap,@"walkspitched",
                 strp,@"strikeoutspitched",
                 hitLocation,@"hittingchart",
-                pitchlocation,@"pitchingchart",
+                pitchLocation,@"pitchingchart",
                 nil];
     
     [myTeamDictionaryArray replaceObjectAtIndex:currentBatterPosition withObject:tempdict];
@@ -450,9 +450,11 @@
     pn = [[opponentTeamDictionaryArray valueForKey:@"playernumber"]objectAtIndex:currentBatterPosition];
     pb = [[opponentTeamDictionaryArray valueForKey:@"playerbat"]objectAtIndex:currentBatterPosition];
     pt = [[opponentTeamDictionaryArray valueForKey:@"playerthrow"]objectAtIndex:currentBatterPosition];
-    pi = [[opponentTeamDictionaryArray valueForKey:@"pitcher"]objectAtIndex:currentBatterPosition];
     wap = [[opponentTeamDictionaryArray valueForKey:@"walkspitched"]objectAtIndex:currentBatterPosition];
     strp = [[opponentTeamDictionaryArray valueForKey:@"strikeoutspitched"]objectAtIndex:currentBatterPosition];
+    hitLocation = [[opponentTeamDictionaryArray valueForKey:@"hittingchart"]objectAtIndex:currentBatterPosition];
+    pitchLocation = [[opponentTeamDictionaryArray valueForKey:@"strikeoutspitched"]objectAtIndex:currentBatterPosition];
+
     
 }
 
@@ -475,11 +477,13 @@
     pn = [[myTeamDictionaryArray valueForKey:@"playernumber"]objectAtIndex:currentBatterPosition];
     pb = [[myTeamDictionaryArray valueForKey:@"playerbat"]objectAtIndex:currentBatterPosition];
     pt = [[myTeamDictionaryArray valueForKey:@"playerthrow"]objectAtIndex:currentBatterPosition];
-    pi = [[myTeamDictionaryArray valueForKey:@"pitcher"]objectAtIndex:currentBatterPosition];
     wa = [[myTeamDictionaryArray valueForKey:@"walks"]objectAtIndex:currentBatterPosition];
     str = [[myTeamDictionaryArray valueForKey:@"strikeouts"]objectAtIndex:currentBatterPosition];
     wap = [[myTeamDictionaryArray valueForKey:@"walkspitched"]objectAtIndex:currentBatterPosition];
     strp = [[myTeamDictionaryArray valueForKey:@"strikeoutspitched"]objectAtIndex:currentBatterPosition];
+    hitLocation = [[myTeamDictionaryArray valueForKey:@"hittingchart"]objectAtIndex:currentBatterPosition];
+    pitchLocation = [[myTeamDictionaryArray valueForKey:@"strikeoutspitched"]objectAtIndex:currentBatterPosition];
+
     
 }
 
