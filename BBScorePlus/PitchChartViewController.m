@@ -90,6 +90,8 @@
         
     }
     
+    [self checkPitchCount];
+    
     myTeamCount = (int)[myTeamDictionaryArray count];
     opponentTeamCount = (int)[opponentTeamDictionaryArray count];
     
@@ -2177,7 +2179,7 @@
 - (void)addOpponentWalksPitched{
     NSLog(@"addOpponentWalksPitched");
     
-    [self loadOpponentTeamDictionaryArray];
+    [self setOpponentTeamPitcherArray];
     
     
     int t1 = [wap intValue];
