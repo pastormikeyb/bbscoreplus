@@ -12,7 +12,7 @@
 @interface GameStatsViewController : UIViewController <UIActionSheetDelegate, UITableViewDataSource, UITableViewDelegate>
 {
 //    IBOutlet UITableView *tableView;
-    NSMutableArray *batterListArray,*myTeamDictionaryArray,*myOpponentTeamDictionaryArray;
+    NSMutableArray *batterListArray,*myTeamDictionaryArray,*opponentTeamDictionaryArray;
     NSArray *sectionHeaders;
     NSString *firstName, *lastName, *playerNumber, *singleHits, *doubleHits, *tripleHits,*homeRuns,*batterWalks,*fieldingErros;
     NSMutableArray *loadedLastName, *loadedFirstName, *loadedPlayerNumber, *loadedPlayerThrow, *loadedSingleHit;
@@ -26,12 +26,14 @@
     
     NSString *currentOpponentPitcher;
 
-    NSArray *loadedPitch, *loadedOpponentPitch,*myTeamFilteredPitcherLastName,*myTeamFilteredPitcherNumber, *myTeamFilteredPitcherPitchingStats,*opponentTeamFilteredPitcherLastName, *opponentTeamFilteredPitcherNumber, *opponentTeamFilteredPitcherPitchingStats;
+    NSArray *loadedPitch, *loadedOpponentPitcher,*myTeamFilteredPitcherLastName,*myTeamFilteredPitcherNumber, *myTeamFilteredPitcherPitchingStats,*opponentTeamFilteredPitcherLastName, *opponentTeamFilteredPitcherNumber, *opponentTeamFilteredPitcherPitchingStats;
     
     NSDictionary *boxScoreDictionary;
     NSNumber *myTeamScore, *opponentTeamScore;
     
     NSString *shareSubMessage;
+    
+    NSUInteger myPitcherIndex, opponentPitcherIndex;
 
 }
 

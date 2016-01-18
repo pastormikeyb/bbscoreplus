@@ -13,10 +13,10 @@
 {
     NSDictionary *hittingChartDictionary, *tempdict;
     NSMutableArray *myTeamDictionaryArray, *opponentTeamDictionaryArray;
-    NSString *fn, *ln, *pn, *pb, *pt, *pi, *fb, *sb, *tb, *hr, *fc,*fe,*hp,*sf,*rb,*ou,*bt,*st,*wa,*str,*wap,*strp,*strValue;
+    NSString *fn, *ln, *pn, *pb, *pt, *pi, *fb, *sb, *tb, *hr, *fc,*fe,*hp,*sf,*rb,*ou,*bt,*st,*wa,*str,*wap,*strp,*strValue, *pc, *hc;
     NSArray *hitLocation,*pitchLocation;
     NSMutableArray *loadedMyHitLocationMutableArray,*loadedOpponentHitLocationMutableArray;
-    int loadedMyTeamCurrentBatter, loadedOpponentCurrentBatter, currentBatterPosition, *hc, *pc;
+    int loadedMyTeamCurrentBatter, loadedOpponentCurrentBatter, currentBatterPosition;
     
 }
 
@@ -80,7 +80,7 @@
                 currentBatterPosition = 0;
             };
             
-
+            
         }
         
             //load team
@@ -94,15 +94,15 @@
             currentHitterLabel.text = [[opponentTeamDictionaryArray valueForKey:@"lastname"]objectAtIndex:currentBatterPosition];
             NSLog(@"current batter: %@",[[opponentTeamDictionaryArray valueForKey:@"lastname"]objectAtIndex:currentBatterPosition]);
             
-//            [self getHittingChart];
+            [self getHittingChart];
             
         }
         if (isTopOfInning) {
             _topOfInningLabel.text = @"TOP";
-
+            
         }else {
             _topOfInningLabel.text = @"BOTTOM";
-
+            
         }
         
     }else{
@@ -143,25 +143,22 @@
         if (currentPos.x >= 220 && currentPos.x <= 505) {
             if (currentPos.y >= 65 && currentPos.y <= 340) {
                 
-                    UIImageView *bbView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"baseballGloveSmall"]] ;
-                    
-                    [bbView setCenter:CGPointMake(currentPos.x, currentPos.y)]; // x, y
-                    [self.view addSubview:bbView];
-
+                UIImageView *bbView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"baseballGloveSmall"]] ;
+                
+                [bbView setCenter:CGPointMake(currentPos.x, currentPos.y)];                     [self.view addSubview:bbView];
+                
                 float xPos = currentPos.x;
-                    float yPos = currentPos.y;
+                float yPos = currentPos.y;
                 NSString *xPos1,*yPos1;
-                    
-                    hitLocation = [NSArray arrayWithObjects:
-
-                                xPos1 = [[NSNumber numberWithFloat:xPos] stringValue],
-                                yPos1 = [[NSNumber numberWithFloat:yPos] stringValue],
-
-                                   nil];
-                    NSLog(@"hitLocation %@",hitLocation);
-                        // SAVE THE HIT COORDS & CURRENT BATTER
-                    
-                    
+                
+                hitLocation = [NSArray arrayWithObjects:
+                               
+                               xPos1 = [[NSNumber numberWithFloat:xPos] stringValue],
+                               yPos1 = [[NSNumber numberWithFloat:yPos] stringValue],
+                               
+                               nil];
+                NSLog(@"hitLocation %@",hitLocation);
+                
             }
         }
     }else{
@@ -244,13 +241,13 @@
     currentInningLabel.text = [NSString stringWithFormat:@"%i",inningNumber];
     
     if (batting) {
-        currentBatterPosition = [[boxScoreDictionary valueForKey:@"myteambattingpositionnumber"]intValue]-1;
+        currentBatterPosition = [[boxScoreDictionary valueForKey:@"myteambattingpositionnumber"]intValue];
         NSLog(@"I am batting.  currentBatterPosition %i",currentBatterPosition);
         
         loadedMyHitLocationMutableArray = [[myTeamDictionaryArray valueForKey:@"hittingchart"]objectAtIndex:currentBatterPosition];
         NSLog(@"loadedMyHitLocationArray %@",loadedMyHitLocationMutableArray);
     }else{
-        currentBatterPosition = [[boxScoreDictionary valueForKey:@"opponentbattingpositionnumber"]intValue]-1;
+        currentBatterPosition = [[boxScoreDictionary valueForKey:@"opponentbattingpositionnumber"]intValue];
         NSLog(@"I am NOT batting.  currentBatterPosition %i",currentBatterPosition);
         
     }
@@ -399,8 +396,8 @@
                 ou,@"out",
                 bt,@"ballspitched",
                 st,@"strikesthrown",
-                wa,@"batterwalks",
-                str,@"batterstrikeouts",
+                wa,@"walks",
+                str,@"strikeouts",
                 wap,@"walkspitched",
                 strp,@"strikeoutspitched",
                 hitLocation,@"hittingchart",
@@ -450,15 +447,18 @@
     pn = [[opponentTeamDictionaryArray valueForKey:@"playernumber"]objectAtIndex:currentBatterPosition];
     pb = [[opponentTeamDictionaryArray valueForKey:@"playerbat"]objectAtIndex:currentBatterPosition];
     pt = [[opponentTeamDictionaryArray valueForKey:@"playerthrow"]objectAtIndex:currentBatterPosition];
-    wap = [[opponentTeamDictionaryArray valueForKey:@"walkspitched"]objectAtIndex:currentBatterPosition];
-    strp = [[opponentTeamDictionaryArray valueForKey:@"strikeoutspitched"]objectAtIndex:currentBatterPosition];
-    hitLocation = [[opponentTeamDictionaryArray valueForKey:@"hittingchart"]objectAtIndex:currentBatterPosition];
-    pitchLocation = [[opponentTeamDictionaryArray valueForKey:@"strikeoutspitched"]objectAtIndex:currentBatterPosition];
-
+    pi = [[opponentTeamDictionaryArray valueForKey:@"pitcher"]objectAtIndex:currentBatterPosition];
+    wap = [[opponentTeamDictionaryArray valueForKey:@"ballspitched"]objectAtIndex:currentBatterPosition];
+    strp = [[opponentTeamDictionaryArray valueForKey:@"strikesthrown"]objectAtIndex:currentBatterPosition];
+    pc = [[opponentTeamDictionaryArray valueForKey:@"pitchingchart"]objectAtIndex:currentBatterPosition];
+    hc = [[opponentTeamDictionaryArray valueForKey:@"hittingchart"]objectAtIndex:currentBatterPosition];
+    
+    NSLog(@"end of loadOpponentTeamDictionaryArray: %@",opponentTeamDictionaryArray);
     
 }
 
 - (void)loadMyTeamDictionaryArray{
+    
         //load
     fb = [[myTeamDictionaryArray valueForKey:@"1B"]objectAtIndex:currentBatterPosition];
     sb = [[myTeamDictionaryArray valueForKey:@"2B"]objectAtIndex:currentBatterPosition];
@@ -477,13 +477,13 @@
     pn = [[myTeamDictionaryArray valueForKey:@"playernumber"]objectAtIndex:currentBatterPosition];
     pb = [[myTeamDictionaryArray valueForKey:@"playerbat"]objectAtIndex:currentBatterPosition];
     pt = [[myTeamDictionaryArray valueForKey:@"playerthrow"]objectAtIndex:currentBatterPosition];
-    wa = [[myTeamDictionaryArray valueForKey:@"walks"]objectAtIndex:currentBatterPosition];
-    str = [[myTeamDictionaryArray valueForKey:@"strikeouts"]objectAtIndex:currentBatterPosition];
-    wap = [[myTeamDictionaryArray valueForKey:@"walkspitched"]objectAtIndex:currentBatterPosition];
-    strp = [[myTeamDictionaryArray valueForKey:@"strikeoutspitched"]objectAtIndex:currentBatterPosition];
-    hitLocation = [[myTeamDictionaryArray valueForKey:@"hittingchart"]objectAtIndex:currentBatterPosition];
-    pitchLocation = [[myTeamDictionaryArray valueForKey:@"strikeoutspitched"]objectAtIndex:currentBatterPosition];
-
+    pi = [[myTeamDictionaryArray valueForKey:@"pitcher"]objectAtIndex:currentBatterPosition];
+    wap = [[myTeamDictionaryArray valueForKey:@"ballspitched"]objectAtIndex:currentBatterPosition];
+    strp = [[myTeamDictionaryArray valueForKey:@"strikesthrown"]objectAtIndex:currentBatterPosition];
+    pc = [[myTeamDictionaryArray valueForKey:@"pitchingchart"]objectAtIndex:currentBatterPosition];
+    hc = [[myTeamDictionaryArray valueForKey:@"hittingchart"]objectAtIndex:currentBatterPosition];
+    
+    NSLog(@"end of loadMyTeamDictionaryArray: %@",myTeamDictionaryArray);
     
 }
 
@@ -508,20 +508,17 @@
                 NSLog(@"I'm NOT batting");
                 if (hitLocation !=nil) {
                     loadedOpponentHitLocationMutableArray = [[opponentTeamDictionaryArray valueForKey:@"hittingchart"]objectAtIndex:currentBatterPosition];
-                    NSLog(@"loadedOpponentHitLocationArray %@",loadedOpponentHitLocationMutableArray);
                     
                     [loadedOpponentHitLocationMutableArray addObject:hitLocation ];
-                    NSLog(@"loadedOpponentHitLocationMutableArray %@",loadedOpponentHitLocationMutableArray);
                     
                     [self loadOpponentTeamDictionaryArray];
-                    NSLog(@"loadOpponentTeamDictionaryArray %@",opponentTeamDictionaryArray);
                     
                     [self setTempDict];
                     
                     [opponentTeamDictionaryArray replaceObjectAtIndex:currentBatterPosition withObject:tempdict];
                     
                     [self saveUpdatedOpponentTeamInfo];
-
+                    
                     
                 }
                 
@@ -565,7 +562,7 @@
                 nil];
     
     NSLog(@"tempDict: %@",tempdict);
-
+    
 }
 
 -(void)saveUpdatedOpponentTeamInfo{
@@ -574,7 +571,7 @@
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         // Path to save dictionary
     NSString *dictPath = [[paths objectAtIndex:0]
-                stringByAppendingPathComponent:@"opponentteamdictionary.out"];
+                          stringByAppendingPathComponent:@"opponentteamdictionary.out"];
     
     if ([paths count] > 0)
     {
@@ -610,13 +607,13 @@
     if (batting) {
         if ([[myTeamDictionaryArray valueForKey:@"hittingchart"]objectAtIndex:currentBatterPosition] == nil) {
             myArray = [[myTeamDictionaryArray valueForKey:@"hittingchart"]objectAtIndex:currentBatterPosition];
-
+            
         }
-
+        
     }else{
         if ([[opponentTeamDictionaryArray valueForKey:@"hittingchart"]objectAtIndex:currentBatterPosition] == nil) {
             myArray = [[opponentTeamDictionaryArray valueForKey:@"hittingchart"]objectAtIndex:currentBatterPosition];
-
+            
         }
     }
     
@@ -638,10 +635,8 @@
             [self.view addSubview:gloveView];
             
         }
-
+        
     }
-
+    
 }
-
-
 @end
