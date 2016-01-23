@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface LineUpTableViewCell : UITableViewCell
+{
+    UISwitch *currentPitcherSwitch;
+}
 @property (weak, nonatomic) IBOutlet UILabel *LineUpCustomLastName;
 @property (weak, nonatomic) IBOutlet UILabel *LineUpCustomFirstName;
 @property (weak, nonatomic) IBOutlet UILabel *LineUpCustomPlayerNumber;

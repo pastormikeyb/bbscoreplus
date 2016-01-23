@@ -15,8 +15,13 @@
     NSMutableArray *batterListArray;
     BOOL editLineup;
     BOOL doesFileExist;
+    BOOL isCurrentPitcher;
 }
+
 -(IBAction)onClick:(id)sender;
+
+
+
 
 
 @end

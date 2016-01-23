@@ -30,9 +30,6 @@
 		4C9A817C1BD08BB500F85F0B /* HittingChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9A817B1BD08BB500F85F0B /* HittingChartViewController.m */; };
 		4C9A817F1BD09C6A00F85F0B /* OpponentTeamRosterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9A817E1BD09C6A00F85F0B /* OpponentTeamRosterViewController.m */; };
 		4C9A81851BD09DC600F85F0B /* OpponentLineupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9A81841BD09DC600F85F0B /* OpponentLineupViewController.m */; };
-		4C9E56941C505D900004B9B8 /* SingleButtonIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E56911C505D900004B9B8 /* SingleButtonIcon.png */; };
-		4C9E56951C505D900004B9B8 /* TripleButtonIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E56921C505D900004B9B8 /* TripleButtonIcon.png */; };
-		4C9E56961C505D900004B9B8 /* DoubleButtonIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E56931C505D900004B9B8 /* DoubleButtonIcon.png */; };
 		4CA77D431BE876080089A2E2 /* TeamRosterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA77D421BE876080089A2E2 /* TeamRosterTableViewCell.m */; };
 		4CC6F0031BD9CF6C004F9DE7 /* AddNewPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6F0021BD9CF6C004F9DE7 /* AddNewPlayerViewController.m */; };
 		4CE641391BE5CB760056EB9E /* AddNewOpponentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE641381BE5CB760056EB9E /* AddNewOpponentViewController.m */; };
@@ -101,9 +98,6 @@
 		4C9A817E1BD09C6A00F85F0B /* OpponentTeamRosterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpponentTeamRosterViewController.m; sourceTree = "<group>"; };
 		4C9A81831BD09DC600F85F0B /* OpponentLineupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OpponentLineupViewController.h; path = ../OpponentLineupViewController.h; sourceTree = "<group>"; };
 		4C9A81841BD09DC600F85F0B /* OpponentLineupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OpponentLineupViewController.m; path = ../OpponentLineupViewController.m; sourceTree = "<group>"; };
-		4C9E56911C505D900004B9B8 /* SingleButtonIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SingleButtonIcon.png; sourceTree = "<group>"; };
-		4C9E56921C505D900004B9B8 /* TripleButtonIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TripleButtonIcon.png; sourceTree = "<group>"; };
-		4C9E56931C505D900004B9B8 /* DoubleButtonIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DoubleButtonIcon.png; sourceTree = "<group>"; };
 		4CA77D411BE876080089A2E2 /* TeamRosterTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamRosterTableViewCell.h; sourceTree = "<group>"; };
 		4CA77D421BE876080089A2E2 /* TeamRosterTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamRosterTableViewCell.m; sourceTree = "<group>"; };
 		4CC6F0011BD9CF6C004F9DE7 /* AddNewPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddNewPlayerViewController.h; sourceTree = "<group>"; };
@@ -180,9 +174,6 @@
 				4C7083311BD45AA70080BDB0 /* Team */,
 				4C9A81651BD087B200F85F0B /* GameSetupViewController.h */,
 				4C9A81661BD087B200F85F0B /* GameSetupViewController.m */,
-				4C9E56911C505D900004B9B8 /* SingleButtonIcon.png */,
-				4C9E56921C505D900004B9B8 /* TripleButtonIcon.png */,
-				4C9E56931C505D900004B9B8 /* DoubleButtonIcon.png */,
 				4C6E3B201BCB41640017DF76 /* Assets.xcassets */,
 				4C6E3B221BCB41640017DF76 /* LaunchScreen.storyboard */,
 				4C6E3B251BCB41640017DF76 /* Info.plist */,
@@ -371,10 +362,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C6E3B241BCB41640017DF76 /* LaunchScreen.storyboard in Resources */,
-				4C9E56961C505D900004B9B8 /* DoubleButtonIcon.png in Resources */,
 				4C6E3B211BCB41640017DF76 /* Assets.xcassets in Resources */,
-				4C9E56941C505D900004B9B8 /* SingleButtonIcon.png in Resources */,
-				4C9E56951C505D900004B9B8 /* TripleButtonIcon.png in Resources */,
 				4C6E3B1F1BCB41640017DF76 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

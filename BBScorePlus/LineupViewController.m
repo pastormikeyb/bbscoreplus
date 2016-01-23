@@ -14,12 +14,19 @@
     NSString *playerThrow;
     NSString  *dictPath;
     NSDictionary *playerInfoDict, *teamDict, *gameDict;
-    NSMutableArray *arrayOfDictionariesMutableArray;
+    NSMutableArray *myTeamDictionaryArray;
     NSDictionary *teamDictionary;
-    NSDictionary *dict;
-    NSArray *firstname, *lastname, *playerNumber;
+    NSDictionary *dict, *tempdict;
+    NSMutableArray *firstNameArray, *lastNameArray, *playerNumberArray, *pArray;
+    NSMutableArray *currentPitcherArray;
+    int pitcherArrayNumber;
+    NSString *fn, *ln, *pn, *pb, *pt, *pi, *fb, *sb, *tb, *hr, *fc,*fe,*hp,*sf,*rb,*ou,*bt,*st,*wa,*str,*wap,*strp,*strValue,*cb, *pc,*hc, *th, *oh;
+    BOOL isPitcher;
+    UISwitch *pSwitch;
+
     
 }
+
 
 @end
 
@@ -27,13 +34,24 @@
 
 
 - (void)viewDidLoad {
-    [tableView reloadData];
     [super viewDidLoad];
+    tableView.delegate = self;
+    tableView.dataSource = self;
+    [tableView reloadData];
+
     // Do any additional setup after loading the view.
     editLineup = NO;
-    arrayOfDictionariesMutableArray = [NSMutableArray array];
+    myTeamDictionaryArray = [NSMutableArray array];
+    currentPitcherArray = [NSMutableArray array];
+    firstNameArray = [NSMutableArray array];
+    lastNameArray = [NSMutableArray array];
+    playerNumberArray = [NSMutableArray array];
+    pArray = [NSMutableArray array];
+    [tableView setAllowsSelection:YES];
+
     doesFileExist = NO;
     teamDictionary = [NSDictionary dictionary];
+    
     if ([self doesFileExist]) {
         [self LoadFromFile];
     }
@@ -52,11 +70,17 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [arrayOfDictionariesMutableArray count];
+    return [myTeamDictionaryArray count];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    pitcherArrayNumber = (int)indexPath.row;
+
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView2 cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     static NSString *lineupTableID = @"PlayerCell";
     
     LineUpTableViewCell *customCell = [tableView2 dequeueReusableCellWithIdentifier:lineupTableID];
@@ -65,10 +89,49 @@
         customCell = [[LineUpTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:lineupTableID];
     }
     
-    customCell.LineUpCustomLastName.text = [lastname objectAtIndex:indexPath.row];
-    customCell.LineUpCustomFirstName.text = [firstname objectAtIndex:indexPath.row];
-    customCell.LineUpCustomPlayerNumber.text = [playerNumber objectAtIndex:indexPath.row];
+    customCell.LineUpCustomLastName.text = [lastNameArray objectAtIndex:indexPath.row];
+    customCell.LineUpCustomFirstName.text = [firstNameArray objectAtIndex:indexPath.row];
+    customCell.LineUpCustomPlayerNumber.text = [playerNumberArray objectAtIndex:indexPath.row];
+    
+    pSwitch = [[UISwitch alloc]initWithFrame:CGRectZero];
+    pSwitch.onTintColor = [UIColor redColor];
+    customCell.accessoryView = pSwitch;
+    
+    [pSwitch addTarget:self action:@selector(switchChange: ) forControlEvents:UIControlEventValueChanged];
+
+    if ([[currentPitcherArray objectAtIndex:indexPath.row]intValue] == 1) {
+        
+        [pSwitch setOn:YES];
+    
+    }
+    
     return customCell;
+}
+
+- (void) switchChange:(id)sender {
+    
+    CGPoint switchPositionPoint = [sender convertPoint:CGPointZero toView:tableView];
+    NSIndexPath *indexPath = [tableView indexPathForRowAtPoint:switchPositionPoint];
+    
+    pitcherArrayNumber = (int)indexPath.row;
+    NSLog(@"pitcherArrNum: %i",pitcherArrayNumber);
+
+    if ([[currentPitcherArray objectAtIndex:pitcherArrayNumber]intValue] == 1) {
+        NSLog(@"currentPitcher = YES");
+        
+        isPitcher = NO;
+        
+    }else{
+        NSLog(@"currentPitcher = NO");
+            //replace currentPitcher to true
+        isPitcher = YES;
+
+    }
+    
+    
+    [self addMyPitcher];
+    
+    [self viewDidLoad];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -84,9 +147,9 @@
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
 {
-    NSString *stringToMove = arrayOfDictionariesMutableArray[sourceIndexPath.row];
-    [arrayOfDictionariesMutableArray removeObjectAtIndex:sourceIndexPath.row];
-    [arrayOfDictionariesMutableArray insertObject:stringToMove atIndex:destinationIndexPath.row];
+    NSString *stringToMove = myTeamDictionaryArray[sourceIndexPath.row];
+    [myTeamDictionaryArray removeObjectAtIndex:sourceIndexPath.row];
+    [myTeamDictionaryArray insertObject:stringToMove atIndex:destinationIndexPath.row];
 }
 
 - (void)tableView:(UITableView *)tableView2 commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -94,7 +157,7 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
             //deletes the row from the stringArray
-        [arrayOfDictionariesMutableArray removeObjectAtIndex:indexPath.row];
+        [myTeamDictionaryArray removeObjectAtIndex:indexPath.row];
         
             //delete the row from the tableView
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:TRUE];
@@ -123,7 +186,7 @@
         case 1:
                 // Save
             NSLog(@"Save button");
-            NSLog(@"arrayOfDictionariesMutableArray: %@",arrayOfDictionariesMutableArray);
+            NSLog(@"myTeamDictionaryArray: %@",myTeamDictionaryArray);
             [self saveInfo];
             [self showAlert];
             [tableView setEditing:NO];
@@ -134,6 +197,7 @@
             break;
     }
 }
+
 
 - (void)showAlert {
 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Team Roster"
@@ -161,12 +225,13 @@ UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Team Roster"
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"teamdictionary.out"];
     
-    arrayOfDictionariesMutableArray = [NSMutableArray arrayWithContentsOfFile:filePath];
-    firstname = [arrayOfDictionariesMutableArray valueForKey:@"firstname"];
-    lastname = [arrayOfDictionariesMutableArray valueForKey:@"lastname"];
-    playerNumber = [arrayOfDictionariesMutableArray valueForKey:@"playernumber"];
+    myTeamDictionaryArray = [NSMutableArray arrayWithContentsOfFile:filePath];
+    NSLog(@"arrayofDict: %@",myTeamDictionaryArray);
+    firstNameArray = [myTeamDictionaryArray valueForKey:@"firstname"];
+    lastNameArray = [myTeamDictionaryArray valueForKey:@"lastname"];
+    playerNumberArray = [myTeamDictionaryArray valueForKey:@"playernumber"];
+    currentPitcherArray = [myTeamDictionaryArray valueForKey:@"pitcher"];
     
-    NSLog(@"firstname: %@",firstname);
 }
 
 - (BOOL)doesFileExist {
@@ -192,7 +257,7 @@ UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Team Roster"
         NSLog(@"fileExist");
         
             //load file
-        [self removeFile];
+//        [self removeFile];
         
     }
     
@@ -207,7 +272,7 @@ UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Team Roster"
     {
         
             // Write dictionary
-        [arrayOfDictionariesMutableArray writeToFile:dictPath atomically:YES];
+        [myTeamDictionaryArray writeToFile:dictPath atomically:YES];
     }
     
 }
@@ -227,6 +292,83 @@ UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Team Roster"
     {
         NSLog(@"Could not remove file");
     }
+}
+
+- (void)setMyTeamPitcherDictionaryArray{
+    NSLog(@"loadMyTeamDictArray\nbatterPositionNumber %li",(long)pitcherArrayNumber);
+        //load
+    fb = [[myTeamDictionaryArray valueForKey:@"1B"]objectAtIndex:pitcherArrayNumber];
+    sb = [[myTeamDictionaryArray valueForKey:@"2B"]objectAtIndex:pitcherArrayNumber];
+    tb = [[myTeamDictionaryArray valueForKey:@"3B"]objectAtIndex:pitcherArrayNumber];
+    hr = [[myTeamDictionaryArray valueForKey:@"HR"]objectAtIndex:pitcherArrayNumber];
+    fc = [[myTeamDictionaryArray valueForKey:@"fielderschoice"]objectAtIndex:pitcherArrayNumber];
+    fe = [[myTeamDictionaryArray valueForKey:@"fieldingerror"]objectAtIndex:pitcherArrayNumber];
+    hp = [[myTeamDictionaryArray valueForKey:@"hitbypitch"]objectAtIndex:pitcherArrayNumber];
+    sf = [[myTeamDictionaryArray valueForKey:@"sacfly"]objectAtIndex:pitcherArrayNumber];
+    rb = [[myTeamDictionaryArray valueForKey:@"RBI"]objectAtIndex:pitcherArrayNumber];
+    ou = [[myTeamDictionaryArray valueForKey:@"out"]objectAtIndex:pitcherArrayNumber];
+    bt = [[myTeamDictionaryArray valueForKey:@"ballspitched"]objectAtIndex:pitcherArrayNumber];
+    st = [[myTeamDictionaryArray valueForKey:@"strikesthrown"]objectAtIndex:pitcherArrayNumber];
+    fn = [[myTeamDictionaryArray valueForKey:@"firstname"]objectAtIndex:pitcherArrayNumber];
+    ln = [[myTeamDictionaryArray valueForKey:@"lastname"]objectAtIndex:pitcherArrayNumber];
+    pn = [[myTeamDictionaryArray valueForKey:@"playernumber"]objectAtIndex:pitcherArrayNumber];
+    pb = [[myTeamDictionaryArray valueForKey:@"playerbat"]objectAtIndex:pitcherArrayNumber];
+    pt = [[myTeamDictionaryArray valueForKey:@"playerthrow"]objectAtIndex:pitcherArrayNumber];
+    pi = [[myTeamDictionaryArray valueForKey:@"pitcher"]objectAtIndex:pitcherArrayNumber];
+    wap = [[myTeamDictionaryArray valueForKey:@"walkspitched"]objectAtIndex:pitcherArrayNumber];
+    strp = [[myTeamDictionaryArray valueForKey:@"strikeoutspitched"]objectAtIndex:pitcherArrayNumber];
+    pc = [[myTeamDictionaryArray valueForKey:@"pitchingchart"]objectAtIndex:pitcherArrayNumber];
+    hc = [[myTeamDictionaryArray valueForKey:@"hittingchart"]objectAtIndex:pitcherArrayNumber];
+    wa = [[myTeamDictionaryArray valueForKey:@"walks"]objectAtIndex:pitcherArrayNumber];
+    str = [[myTeamDictionaryArray valueForKey:@"strikeouts"]objectAtIndex:pitcherArrayNumber];
+    
+    NSLog(@"end of loadMyTeamDictionaryArray: %@",myTeamDictionaryArray);
+    
+}
+
+- (void)addMyPitcher{
+    NSLog(@"addOpponentSac");
+    
+    [self setMyTeamPitcherDictionaryArray];
+    
+    NSNumber *pitch = @(isPitcher);
+    
+    tempdict = [NSDictionary dictionaryWithObjectsAndKeys:
+                fn,@"firstname",
+                ln,@"lastname",
+                pn,@"playernumber",
+                pb,@"playerbat",
+                pt,@"playerthrow",
+                pitch,@"pitcher",
+                fb,@"1B",
+                sb,@"2B",
+                tb,@"3B",
+                hr,@"HR",
+                fc,@"fielderschoice",
+                fe,@"fieldingerror",
+                hp,@"hitbypitch",
+                sf,@"sacfly",
+                rb,@"RBI",
+                ou,@"out",
+                bt,@"ballspitched",
+                st,@"strikesthrown",
+                hc,@"hittingchart",
+                pc,@"pitchingchart",
+                wa,@"walks",
+                str,@"strikeouts",
+                wap,@"walkspitched",
+                strp,@"strikeoutspitched",
+                nil];
+    
+    NSLog(@"tempdict:\n%@",tempdict);
+    
+    [myTeamDictionaryArray replaceObjectAtIndex:pitcherArrayNumber withObject:tempdict];
+    
+    NSLog(@"myTeamDictionaryArray:\n%@",myTeamDictionaryArray);
+ 
+        //saveback
+    [self saveInfo];
+    
 }
 
 
