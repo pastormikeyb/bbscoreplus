@@ -37,7 +37,7 @@
     doesFileExist = NO;
     dict = [[NSDictionary alloc]init];
     arrayOfDictionariesMutableArray = [[NSMutableArray alloc]init];
-    if ([self doesMyTeamFileExist]) {
+    if ([self doesFileExist]) {
         [self LoadFromFile];
     }
     
@@ -100,14 +100,12 @@
             
             NSLog(@"Save");
             [self addToTeamDictionary];
+        
             [self saveInfo];
-            
+        
             [self showAlert:@"Roster" msg:@"has been saved."];
             
             break;
-            
-        case 2:
-            [self LoadFromFile];
             
         default:
             NSLog(@"default");
@@ -137,7 +135,7 @@
             playerBat = @"L";
             
         }
-//dad:)mom
+
         else
             
             if(batsSegmentControl.selectedSegmentIndex == 2)
@@ -256,7 +254,7 @@
     NSLog(@"teamdictionary: %@",arrayOfDictionariesMutableArray);
 }
 
-- (BOOL)doesMyTeamFileExist {
+- (BOOL)doesFileExist {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *path = [documentsDirectory stringByAppendingPathComponent:@"teamdictionary.out"];

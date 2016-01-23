@@ -254,9 +254,6 @@
     if ([self doesFileExist]) {
         NSLog(@"fileExist");
         
-            //load file
-        [self removeFile];
-        
     }
     
         // Get path to documents directory

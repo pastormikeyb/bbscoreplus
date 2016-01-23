@@ -38,6 +38,10 @@
     dict = [NSDictionary dictionary];
     arrayOfDictionariesMutableArray = [NSMutableArray array];
     
+    if ([self doesFileExist]) {
+        [self LoadFromFile];
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -246,10 +250,11 @@
 
 -(void)LoadFromFile{
     NSLog(@"LoadFromFile");
-    NSDictionary *dictFromFile = [NSDictionary dictionaryWithContentsOfFile:dictPath];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"opponentteamdictionary.out"];
     
-    for (NSString *key in dictFromFile)
-        NSLog(@"%@ : %@", key, [arrayOfDictionariesMutableArray valueForKey:key]);
+    arrayOfDictionariesMutableArray = [NSMutableArray arrayWithContentsOfFile:filePath];
     
 }
 
