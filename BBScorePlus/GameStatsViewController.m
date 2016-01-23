@@ -24,7 +24,7 @@
     opponentTeamDictionaryArray = [[NSMutableArray alloc]init];
     // Do any additional setup after loading the view.
     
-    sectionHeaders = [NSArray arrayWithObjects:@"Home", @"Hitting", @"Pitching", @"Visitor", @"Hitting", @"Pitching", nil];
+    sectionHeaders = [NSArray arrayWithObjects:@"Home", @"Hitting", @"Current Pitcher", @"Visitor", @"Hitting", @"Current Pitcher", nil];
 
         // 1 - LOAD MYTEAM
     [self LoadMyTeam];
@@ -87,7 +87,7 @@
         return myTeamDictionaryArray.count;
     }
     if (section == 2) {
-        NSLog(@"section 2-pitcher");//pitcher
+        NSLog(@"section 2-pitcher");//my pitcher
         NSLog(@"count: %lu",(unsigned long)loadedPitch.count);
 
 
@@ -111,17 +111,14 @@
     }
     
     if (section == 5) {
-        NSLog(@"section 5-pitcher");//pitcher
+        NSLog(@"section 5-pitcher");//opponent pitcher
 
         NSLog(@"count: %lu",(unsigned long)loadedOpponentPitcher.count);
-    
         
         return loadedOpponentPitcher.count;
 
     }
 
-//    NSLog(@"section total ");
-//
     return 0;
 }
 
@@ -146,13 +143,16 @@
         int fe = [(NSNumber *)[loadedFieldingError objectAtIndex:indexPath.row]intValue];
         int po = [(NSNumber *)[loadedPutOut objectAtIndex:indexPath.row]intValue];
         int rb = [(NSNumber *)[loadedRbi objectAtIndex:indexPath.row]intValue];
-        
+        int balls = [(NSNumber*)[loadedBallsThrown objectAtIndex:indexPath.row]intValue];
+        int strikes = [(NSNumber*)[loadedStrikesThrown objectAtIndex:indexPath.row]intValue];
+
+                
         float hits =(fb + sb + tb + hr);
         float atBats = (fb + sb + tb + hr +fe + po);
         float avg = hits/atBats;
         if (isnan(avg)) {
             avg = 0;
-            NSString *stats = [NSString stringWithFormat:@"Avg:%.03f HR:%i RBI:%i", avg,hr,rb];
+            NSString *stats = [NSString stringWithFormat:@"BATTING: Avg:%.03f  HR:%i  RBI:%i\nPITCHING: Balls Thrown:%i  Strikes Thrown:%i", avg,hr,rb,balls,strikes];
             
             cell.gameStatsPlayerStats.text = stats;
             
@@ -205,6 +205,9 @@
         int fe = [(NSNumber *)[loadedOpponentFieldingError objectAtIndex:indexPath.row]intValue];
         int po = [(NSNumber *)[loadedOpponentPutOut objectAtIndex:indexPath.row]intValue];
         int rb = [(NSNumber *)[loadedOpponentRbi objectAtIndex:indexPath.row]intValue];
+        int balls = [(NSNumber*)[loadedOpponentBallsThrown objectAtIndex:indexPath.row]intValue];
+        int strikes = [(NSNumber*)[loadedOpponentStrikesThrown objectAtIndex:indexPath.row]intValue];
+
         
         float hits =(fb + sb + tb + hr);
         float atBats = (fb + sb + tb + hr +fe + po);
@@ -212,8 +215,8 @@
         if (isnan(avg)) {
             avg = 0;
         }
-            NSString *stats = [NSString stringWithFormat:@"Avg:%.03f HR:%i RBI:%i", avg,hr,rb];
-            
+        NSString *stats = [NSString stringWithFormat:@"BATTING: Avg:%.03f  HR:%i  RBI:%i\nPITCHING: Balls Thrown:%i  Strikes Thrown:%i", avg,hr,rb,balls,strikes];
+        
             cell.gameStatsPlayerStats.text = stats;
             
     }
@@ -283,7 +286,6 @@
         headerview.contentView.backgroundColor = [UIColor colorWithRed:rd green:gr blue:bl alpha:1.0];
         headerview.textLabel.textColor = [UIColor whiteColor];
     }
-        //testing
     if (section == 1) {
         UITableViewHeaderFooterView * headerview = (UITableViewHeaderFooterView *)view;
         headerview.contentView.backgroundColor = [UIColor lightGrayColor];
@@ -337,10 +339,9 @@
     loadedBallsThrown = [myTeamDictionaryArray valueForKey:@"ballspitched"];
     loadedStrikesThrown = [myTeamDictionaryArray valueForKey:@"strikesthrown"];
     
-    NSLog(@"myTeamDictionaryArray:\n%@",myTeamDictionaryArray);
-    
     NSPredicate *cp = [NSPredicate predicateWithFormat:@"pitcher = true"];
     loadedPitch = [myTeamDictionaryArray filteredArrayUsingPredicate:cp];
+    
     NSLog(@"filter %@",loadedPitch);
     
     myTeamFilteredPitcherLastName = [loadedPitch valueForKey:@"lastname"];
@@ -392,7 +393,7 @@
         //ORIGINAL
     NSPredicate *cp = [NSPredicate predicateWithFormat:@"pitcher = true"];
     loadedOpponentPitcher = [opponentTeamDictionaryArray filteredArrayUsingPredicate:cp];
-    NSLog(@"filter %@",loadedOpponentPitcher);
+    NSLog(@"opponent pitcher filter %@",loadedOpponentPitcher);
     
     opponentTeamFilteredPitcherLastName = [loadedOpponentPitcher valueForKey:@"lastname"];
     opponentTeamFilteredPitcherNumber = [loadedOpponentPitcher valueForKey:@"playernumber"];

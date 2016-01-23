@@ -48,7 +48,7 @@
 
 - (void)viewDidLoad {
     NSLog(@"received from hitting chart batterPositionNumber: %i",batterPositionNumber);
-    
+    [self.alertLabel setHidden:YES];
     myTeamDictionaryArray = [[NSMutableArray alloc]init];
     opponentTeamDictionaryArray = [[NSMutableArray alloc]init];
     tempdict = [[NSDictionary alloc]init];
@@ -712,6 +712,12 @@
             }
             break;
             
+        case 12:
+                //change pitcher;
+            NSLog(@"CHANGE PITCHER");
+            break;
+
+            
         default:
             break;
     }
@@ -1212,7 +1218,9 @@
         
         if (ct >= endingTime) {
             NSLog(@"game time is over.");
-            self.view.backgroundColor = [UIColor redColor];
+            [self.alertLabel setHidden:YES];
+            _alertLabel.text = @"The game time limit has now been reached";
+            _alertLabel.backgroundColor = [UIColor redColor];
             
         }else{
             NSLog(@"game time is NOT over.");
@@ -1270,11 +1278,17 @@
         if (amIBatting){
             NSString *pitcher = [[opponentTeamDictionaryArray valueForKey:@"lastname"]objectAtIndex:opponentPitcherIndex];
             NSLog(@"opponent pitcher reached max pitches: %@",pitcher);
+                        
         }else{
             NSString *pitcher = [[myTeamDictionaryArray valueForKey:@"lastname"]objectAtIndex:myPitcherIndex];
             NSLog(@"opponent pitcher reached max pitches: %@",pitcher);
             
         }
+        
+        [self.alertLabel setHidden:NO];
+        _alertLabel.text = @"The pitcher has reached his/her max pitches\nTo change pitchers press the Change Pitcher button above";
+        _alertLabel.backgroundColor = [UIColor redColor];
+
     }
 }
 

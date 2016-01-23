@@ -16,7 +16,7 @@
     NSArray *sectionHeaders;
     NSString *firstName, *lastName, *playerNumber, *singleHits, *doubleHits, *tripleHits,*homeRuns,*batterWalks,*fieldingErros;
     NSMutableArray *loadedLastName, *loadedFirstName, *loadedPlayerNumber, *loadedPlayerThrow, *loadedSingleHit;
-    NSMutableArray *loadedDoubleHit, *loadedTripleHit,*loadedHomeRun, *loadedFieldersChoice, *loadedHitByPitch, *loadedSacFly, *loadedFieldingError, *loadedRbi, *loadedWalk, *loadedPutOut, *loadedBallsThrown, *loadedStrikesThrown;
+    NSMutableArray *loadedDoubleHit, *loadedTripleHit,*loadedHomeRun, *loadedFieldersChoice, *loadedHitByPitch, *loadedSacFly, *loadedFieldingError, *loadedRbi, *loadedWalk, *loadedPutOut, *loadedStrikesThrown, *loadedTotalBallsThrown;
 
     NSString *currentPitcher;
     
@@ -26,7 +26,7 @@
     
     NSString *currentOpponentPitcher;
 
-    NSArray *loadedPitch, *loadedOpponentPitcher,*myTeamFilteredPitcherLastName,*myTeamFilteredPitcherNumber, *myTeamFilteredPitcherPitchingStats,*opponentTeamFilteredPitcherLastName, *opponentTeamFilteredPitcherNumber, *opponentTeamFilteredPitcherPitchingStats;
+    NSArray *loadedPitch, *loadedOpponentPitcher,*myTeamFilteredPitcherLastName,*myTeamFilteredPitcherNumber, *myTeamFilteredPitcherPitchingStats,*opponentTeamFilteredPitcherLastName, *opponentTeamFilteredPitcherNumber, *opponentTeamFilteredPitcherPitchingStats, *loadedBalls, *loadedBallsThrown;
     
     NSDictionary *boxScoreDictionary;
     NSNumber *myTeamScore, *opponentTeamScore;

@@ -157,8 +157,7 @@
             
             NSLog(@"Save Game Settings");
             [self addToGameDefaultsDictionary];
-            [self saveGameDefaults];
-            
+            [self saveGameDefaults];            
             
             break;
     }
@@ -320,5 +319,16 @@
         NSLog(@"Could not remove file");
     }
 }
+
+- (void)showAlert {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Game Rules"
+                                                    message:@"Saved"
+                                                   delegate:self
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
+    
+}
+
 
 @end

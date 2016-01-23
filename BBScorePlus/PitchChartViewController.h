@@ -45,7 +45,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *currentBatterLabel;
 @property (weak, nonatomic) IBOutlet UILabel *currentPlayerNumberLabel;
 @property (nonatomic, assign)int batterPositionNumber;
-
+@property (weak, nonatomic) IBOutlet UILabel *alertLabel;
 
 - (IBAction)stepper:(id)sender;
 
