@@ -715,6 +715,26 @@
         case 12:
                 //change pitcher;
             NSLog(@"CHANGE PITCHER");
+            if (amIBatting) {
+                    //LOAD OPPONENTPITCHERVIEWCONTROLLER
+                
+                UIStoryboard *main = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                
+                UIViewController *vc = [main instantiateViewControllerWithIdentifier:@"OpponentPitcherSelectionID"];
+                
+                [self presentViewController:vc animated:true completion:nil];
+
+            }else{
+                    //LOAD PITCHERVIEWCONTROLLER
+                
+                UIStoryboard *main = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                
+                UIViewController *vc = [main instantiateViewControllerWithIdentifier:@"TeamPitcherSelectionID"];
+                
+                [self presentViewController:vc animated:true completion:nil];
+
+            }
+            
             break;
 
             

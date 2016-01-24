@@ -33,6 +33,10 @@
 		4CA77D431BE876080089A2E2 /* TeamRosterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA77D421BE876080089A2E2 /* TeamRosterTableViewCell.m */; };
 		4CC6F0031BD9CF6C004F9DE7 /* AddNewPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6F0021BD9CF6C004F9DE7 /* AddNewPlayerViewController.m */; };
 		4CE641391BE5CB760056EB9E /* AddNewOpponentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE641381BE5CB760056EB9E /* AddNewOpponentViewController.m */; };
+		4CF40FCA1C54670500F61F03 /* PitcherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF40FC91C54670500F61F03 /* PitcherViewController.m */; };
+		4CF40FCD1C54672200F61F03 /* PitcherTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF40FCC1C54672200F61F03 /* PitcherTableViewCell.m */; };
+		4CF40FD11C546BF400F61F03 /* OpponentPitcherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF40FD01C546BF400F61F03 /* OpponentPitcherViewController.m */; };
+		4CF40FD41C546C2400F61F03 /* OpponentPitcherTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF40FD31C546C2400F61F03 /* OpponentPitcherTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +108,14 @@
 		4CC6F0021BD9CF6C004F9DE7 /* AddNewPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddNewPlayerViewController.m; sourceTree = "<group>"; };
 		4CE641371BE5CB760056EB9E /* AddNewOpponentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddNewOpponentViewController.h; sourceTree = "<group>"; };
 		4CE641381BE5CB760056EB9E /* AddNewOpponentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddNewOpponentViewController.m; sourceTree = "<group>"; };
+		4CF40FC81C5466F300F61F03 /* PitcherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PitcherViewController.h; sourceTree = "<group>"; };
+		4CF40FC91C54670500F61F03 /* PitcherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PitcherViewController.m; sourceTree = "<group>"; };
+		4CF40FCB1C54671700F61F03 /* PitcherTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PitcherTableViewCell.h; sourceTree = SOURCE_ROOT; };
+		4CF40FCC1C54672200F61F03 /* PitcherTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PitcherTableViewCell.m; sourceTree = SOURCE_ROOT; };
+		4CF40FCF1C546BE000F61F03 /* OpponentPitcherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpponentPitcherViewController.h; sourceTree = SOURCE_ROOT; };
+		4CF40FD01C546BF400F61F03 /* OpponentPitcherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpponentPitcherViewController.m; sourceTree = SOURCE_ROOT; };
+		4CF40FD21C546C1700F61F03 /* OpponentPitcherTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpponentPitcherTableViewCell.h; sourceTree = SOURCE_ROOT; };
+		4CF40FD31C546C2400F61F03 /* OpponentPitcherTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpponentPitcherTableViewCell.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,21 +171,17 @@
 				4C6E3B1D1BCB41640017DF76 /* Main.storyboard */,
 				4C6E3B171BCB41640017DF76 /* AppDelegate.h */,
 				4C6E3B181BCB41640017DF76 /* AppDelegate.m */,
-				4C32545E1BF8EDFD00C3938D /* RulesSetupViewController.h */,
-				4C32545F1BF8EDFD00C3938D /* RulesSetupViewController.m */,
-				4C3254581BF8EDEF00C3938D /* GameStatsTableViewCell.h */,
-				4C3254591BF8EDEF00C3938D /* GameStatsTableViewCell.m */,
-				4C32545A1BF8EDEF00C3938D /* GameStatsViewController.h */,
-				4C32545B1BF8EDEF00C3938D /* GameStatsViewController.m */,
 				4C6E3B1A1BCB41640017DF76 /* ViewController.h */,
 				4C6E3B1B1BCB41640017DF76 /* ViewController.m */,
-				4C9A81771BD08A8600F85F0B /* InfoViewController.h */,
-				4C9A81781BD08A8600F85F0B /* InfoViewController.m */,
+				4CF40FC51C54667200F61F03 /* RulesSetup */,
+				4CF40FC41C54664A00F61F03 /* GameStats */,
+				4CF40FC31C54661800F61F03 /* MyPitcherChange */,
+				4CF40FCE1C546B6700F61F03 /* OpponentPitcherChange */,
+				4CF40FC61C54668B00F61F03 /* InfoView */,
 				4C70832F1BD45A7A0080BDB0 /* Opponent */,
 				4C7083301BD45A970080BDB0 /* Charts */,
 				4C7083311BD45AA70080BDB0 /* Team */,
-				4C9A81651BD087B200F85F0B /* GameSetupViewController.h */,
-				4C9A81661BD087B200F85F0B /* GameSetupViewController.m */,
+				4CF40FC71C5466A400F61F03 /* GameSetup */,
 				4C6E3B201BCB41640017DF76 /* Assets.xcassets */,
 				4C6E3B221BCB41640017DF76 /* LaunchScreen.storyboard */,
 				4C6E3B251BCB41640017DF76 /* Info.plist */,
@@ -251,6 +259,66 @@
 				4CC6F0021BD9CF6C004F9DE7 /* AddNewPlayerViewController.m */,
 			);
 			name = Team;
+			sourceTree = "<group>";
+		};
+		4CF40FC31C54661800F61F03 /* MyPitcherChange */ = {
+			isa = PBXGroup;
+			children = (
+				4CF40FC81C5466F300F61F03 /* PitcherViewController.h */,
+				4CF40FC91C54670500F61F03 /* PitcherViewController.m */,
+				4CF40FCB1C54671700F61F03 /* PitcherTableViewCell.h */,
+				4CF40FCC1C54672200F61F03 /* PitcherTableViewCell.m */,
+			);
+			name = MyPitcherChange;
+			sourceTree = "<group>";
+		};
+		4CF40FC41C54664A00F61F03 /* GameStats */ = {
+			isa = PBXGroup;
+			children = (
+				4C3254581BF8EDEF00C3938D /* GameStatsTableViewCell.h */,
+				4C3254591BF8EDEF00C3938D /* GameStatsTableViewCell.m */,
+				4C32545A1BF8EDEF00C3938D /* GameStatsViewController.h */,
+				4C32545B1BF8EDEF00C3938D /* GameStatsViewController.m */,
+			);
+			name = GameStats;
+			sourceTree = "<group>";
+		};
+		4CF40FC51C54667200F61F03 /* RulesSetup */ = {
+			isa = PBXGroup;
+			children = (
+				4C32545E1BF8EDFD00C3938D /* RulesSetupViewController.h */,
+				4C32545F1BF8EDFD00C3938D /* RulesSetupViewController.m */,
+			);
+			name = RulesSetup;
+			sourceTree = "<group>";
+		};
+		4CF40FC61C54668B00F61F03 /* InfoView */ = {
+			isa = PBXGroup;
+			children = (
+				4C9A81771BD08A8600F85F0B /* InfoViewController.h */,
+				4C9A81781BD08A8600F85F0B /* InfoViewController.m */,
+			);
+			name = InfoView;
+			sourceTree = "<group>";
+		};
+		4CF40FC71C5466A400F61F03 /* GameSetup */ = {
+			isa = PBXGroup;
+			children = (
+				4C9A81651BD087B200F85F0B /* GameSetupViewController.h */,
+				4C9A81661BD087B200F85F0B /* GameSetupViewController.m */,
+			);
+			name = GameSetup;
+			sourceTree = "<group>";
+		};
+		4CF40FCE1C546B6700F61F03 /* OpponentPitcherChange */ = {
+			isa = PBXGroup;
+			children = (
+				4CF40FCF1C546BE000F61F03 /* OpponentPitcherViewController.h */,
+				4CF40FD01C546BF400F61F03 /* OpponentPitcherViewController.m */,
+				4CF40FD21C546C1700F61F03 /* OpponentPitcherTableViewCell.h */,
+				4CF40FD31C546C2400F61F03 /* OpponentPitcherTableViewCell.m */,
+			);
+			name = OpponentPitcherChange;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -390,12 +458,14 @@
 			files = (
 				4C8AF0A41BEAD65500C77997 /* OpponentLineupTableViewCell.m in Sources */,
 				4C32545D1BF8EDEF00C3938D /* GameStatsViewController.m in Sources */,
+				4CF40FCA1C54670500F61F03 /* PitcherViewController.m in Sources */,
 				4C9A81701BD088DB00F85F0B /* LineupViewController.m in Sources */,
 				4C9A816D1BD088B200F85F0B /* TeamRosterViewController.m in Sources */,
 				4C3254601BF8EDFD00C3938D /* RulesSetupViewController.m in Sources */,
 				4C9A81791BD08A8600F85F0B /* InfoViewController.m in Sources */,
 				4C9A817F1BD09C6A00F85F0B /* OpponentTeamRosterViewController.m in Sources */,
 				4CC6F0031BD9CF6C004F9DE7 /* AddNewPlayerViewController.m in Sources */,
+				4CF40FCD1C54672200F61F03 /* PitcherTableViewCell.m in Sources */,
 				4C32545C1BF8EDEF00C3938D /* GameStatsTableViewCell.m in Sources */,
 				4C9A817C1BD08BB500F85F0B /* HittingChartViewController.m in Sources */,
 				4CE641391BE5CB760056EB9E /* AddNewOpponentViewController.m in Sources */,
@@ -408,6 +478,8 @@
 				4C6E3B161BCB41640017DF76 /* main.m in Sources */,
 				4C0D652F1BE98C9800A9397C /* LineUpTableViewCell.m in Sources */,
 				4C8AF0A11BEAD63300C77997 /* OpponentRosterTableViewCell.m in Sources */,
+				4CF40FD41C546C2400F61F03 /* OpponentPitcherTableViewCell.m in Sources */,
+				4CF40FD11C546BF400F61F03 /* OpponentPitcherViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
