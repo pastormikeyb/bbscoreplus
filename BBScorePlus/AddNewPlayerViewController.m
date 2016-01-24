@@ -180,7 +180,7 @@
 - (void)addToTeamDictionary {
     
     NSNumber *pitch = @(isPitcher);
-    NSString *junk = @"0";
+    NSNumber *junk = [NSNumber numberWithInt:0];
     NSArray *j1 = [NSArray array];
     NSLog(@"firstname: %@",firstName.text);
     NSString *fn = firstName.text;

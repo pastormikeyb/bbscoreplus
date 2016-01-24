@@ -283,7 +283,7 @@
                                     <navigationItem title="Add Player" id="zQn-eU-LYq">
                                         <barButtonItem key="leftBarButtonItem" systemItem="done" id="l5i-Zs-WG7">
                                             <connections>
-                                                <segue destination="VDk-HG-Dp6" kind="show" id="SOL-C0-tOZ"/>
+                                                <segue destination="G0O-to-dID" kind="show" id="Un8-MP-MeS"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -344,7 +344,7 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="55" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SK1-cy-q8L">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="55" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SK1-cy-q8L">
                                 <rect key="frame" x="20" y="64" width="560" height="479"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" red="0.71372549019999998" green="0.61176470589999998" blue="0.42745098040000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -657,7 +657,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="done"/>
                             </textField>
-                            <navigationBar contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hBe-Md-lNd">
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hBe-Md-lNd">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
                                     <navigationItem id="kVw-RK-YgJ">
@@ -1967,6 +1967,7 @@
                                         <barButtonItem key="leftBarButtonItem" systemItem="done" id="pWb-I0-81v">
                                             <connections>
                                                 <action selector="onClick:" destination="PZ3-J4-t6U" id="82R-bv-Oo4"/>
+                                                <segue destination="G0O-to-dID" kind="show" id="1xF-Vi-2Ip"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -2217,10 +2218,9 @@
         <image name="rules-book" width="26" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="hBs-If-5Fo"/>
+        <segue reference="Un8-MP-MeS"/>
         <segue reference="s4w-Nr-0tb"/>
-        <segue reference="SOL-C0-tOZ"/>
-        <segue reference="bGW-Us-jPJ"/>
+        <segue reference="hBs-If-5Fo"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
 </document>

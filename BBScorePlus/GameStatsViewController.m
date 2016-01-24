@@ -136,15 +136,15 @@
             //home players
         cell.gameStatsPlayerLastName.text = [loadedLastName objectAtIndex:indexPath.row];
         cell.gameStatsPlayerNumber.text = [loadedPlayerNumber objectAtIndex:indexPath.row];
-        int fb = [(NSNumber *)[loadedSingleHit objectAtIndex:indexPath.row]intValue];
-        int sb = [(NSNumber *)[loadedDoubleHit objectAtIndex:indexPath.row]intValue];
-        int tb = [(NSNumber *)[loadedTripleHit objectAtIndex:indexPath.row]intValue];
-        int hr = [(NSNumber *)[loadedHomeRun objectAtIndex:indexPath.row]intValue];
-        int fe = [(NSNumber *)[loadedFieldingError objectAtIndex:indexPath.row]intValue];
-        int po = [(NSNumber *)[loadedPutOut objectAtIndex:indexPath.row]intValue];
-        int rb = [(NSNumber *)[loadedRbi objectAtIndex:indexPath.row]intValue];
-        int balls = [(NSNumber*)[loadedBallsThrown objectAtIndex:indexPath.row]intValue];
-        int strikes = [(NSNumber*)[loadedStrikesThrown objectAtIndex:indexPath.row]intValue];
+        int fb = [[loadedSingleHit objectAtIndex:indexPath.row]intValue];
+        int sb = [[loadedDoubleHit objectAtIndex:indexPath.row]intValue];
+        int tb = [[loadedTripleHit objectAtIndex:indexPath.row]intValue];
+        int hr = [[loadedHomeRun objectAtIndex:indexPath.row]intValue];
+        int fe = [[loadedFieldingError objectAtIndex:indexPath.row]intValue];
+        int po = [[loadedPutOut objectAtIndex:indexPath.row]intValue];
+        int rb = [[loadedRbi objectAtIndex:indexPath.row]intValue];
+        int balls = [[loadedBallsThrown objectAtIndex:indexPath.row]intValue];
+        int strikes = [[loadedStrikesThrown objectAtIndex:indexPath.row]intValue];
 
                 
         float hits =(fb + sb + tb + hr);
@@ -167,14 +167,14 @@
         
         cell.gameStatsPlayerNumber.text = [[loadedPitch valueForKey:@"playernumber"] objectAtIndex:indexPath.row];
         
-        NSString *b = [[loadedPitch valueForKey:@"ballspitched"] objectAtIndex:indexPath.row];
-        NSString *s = [[loadedPitch valueForKey:@"strikesthrown"] objectAtIndex:indexPath.row];
+        int balls = [[[loadedPitch valueForKey:@"ballspitched"] objectAtIndex:indexPath.row]intValue];
+        int strikes = [[[loadedPitch valueForKey:@"strikesthrown"] objectAtIndex:indexPath.row]intValue];
         
-        NSInteger ba = [b integerValue];
-        NSInteger st = [s integerValue];
+//        NSInteger ba = [b integerValue];
+//        NSInteger st = [s integerValue];
         
-        int balls = (int) ba;
-        int strikes = (int) st;
+//        int balls = (int) ba;
+//        int strikes = (int) st;
 
         int pitches =(balls + strikes);
         if (isnan(pitches)) {
@@ -198,15 +198,15 @@
             //visitor players
         cell.gameStatsPlayerLastName.text = [loadedOpponentLastName objectAtIndex:indexPath.row];
         cell.gameStatsPlayerNumber.text = [loadedOpponentPlayerNumber objectAtIndex:indexPath.row];
-        int fb = [(NSNumber *)[loadedOpponentSingleHit objectAtIndex:indexPath.row]intValue];
-        int sb = [(NSNumber *)[loadedOpponentDoubleHit objectAtIndex:indexPath.row]intValue];
-        int tb = [(NSNumber *)[loadedOpponentTripleHit objectAtIndex:indexPath.row]intValue];
-        int hr = [(NSNumber *)[loadedOpponentTripleHit objectAtIndex:indexPath.row]intValue];
-        int fe = [(NSNumber *)[loadedOpponentFieldingError objectAtIndex:indexPath.row]intValue];
-        int po = [(NSNumber *)[loadedOpponentPutOut objectAtIndex:indexPath.row]intValue];
-        int rb = [(NSNumber *)[loadedOpponentRbi objectAtIndex:indexPath.row]intValue];
-        int balls = [(NSNumber*)[loadedOpponentBallsThrown objectAtIndex:indexPath.row]intValue];
-        int strikes = [(NSNumber*)[loadedOpponentStrikesThrown objectAtIndex:indexPath.row]intValue];
+        int fb = [[loadedOpponentSingleHit objectAtIndex:indexPath.row]intValue];
+        int sb = [[loadedOpponentDoubleHit objectAtIndex:indexPath.row]intValue];
+        int tb = [[loadedOpponentTripleHit objectAtIndex:indexPath.row]intValue];
+        int hr = [[loadedOpponentTripleHit objectAtIndex:indexPath.row]intValue];
+        int fe = [[loadedOpponentFieldingError objectAtIndex:indexPath.row]intValue];
+        int po = [[loadedOpponentPutOut objectAtIndex:indexPath.row]intValue];
+        int rb = [[loadedOpponentRbi objectAtIndex:indexPath.row]intValue];
+        int balls = [[loadedOpponentBallsThrown objectAtIndex:indexPath.row]intValue];
+        int strikes = [[loadedOpponentStrikesThrown objectAtIndex:indexPath.row]intValue];
 
         
         float hits =(fb + sb + tb + hr);
@@ -228,14 +228,14 @@
         cell.gameStatsPlayerLastName.text = [[loadedOpponentPitcher valueForKey:@"lastname"] objectAtIndex:indexPath.row];
         cell.gameStatsPlayerNumber.text = [[loadedOpponentPitcher valueForKey:@"playernumber"] objectAtIndex:indexPath.row];
         
-        NSString *b = [[loadedOpponentPitcher valueForKey:@"ballspitched"] objectAtIndex:indexPath.row];
-        NSString *s = [[loadedOpponentPitcher valueForKey:@"strikesthrown"] objectAtIndex:indexPath.row];
+        int balls = [[[loadedOpponentPitcher valueForKey:@"ballspitched"] objectAtIndex:indexPath.row]intValue];
+        int strikes = [[[loadedOpponentPitcher valueForKey:@"strikesthrown"] objectAtIndex:indexPath.row]intValue];
         
-        NSInteger ba = [b integerValue];
-        NSInteger st = [s integerValue];
+//        NSInteger ba = [b integerValue];
+//        NSInteger st = [s integerValue];
         
-        int balls = (int) ba;
-        int strikes = (int) st;
+//        int balls = (int) ba;
+//        int strikes = (int) st;
         
         int pitches =(balls + strikes);
         if (isnan(pitches)) {

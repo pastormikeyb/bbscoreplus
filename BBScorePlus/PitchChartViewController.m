@@ -120,7 +120,7 @@
             }
         }
         
-        if (batterPositionNumber >=  opponentTeamCount){
+        if (batterPositionNumber >  opponentTeamCount){
             batterPositionNumber = 0;
         };
         
@@ -628,11 +628,13 @@
                 }else{
                 [self addMyWalksPitched];
                 }
+                
                 batterPositionNumber ++;
                 
                 bbView.image = nil;
 
             }
+            NSLog(@"myteamdict: %@",[myTeamDictionaryArray objectAtIndex:myPitcherIndex]);
             
             [self addToBoxScoreDictionary];
             
@@ -1282,14 +1284,19 @@
         NSLog(@"my pitcher filter %@",[myTeamDictionaryArray objectAtIndex:myPitcherIndex]);
     }
     
-    NSPredicate *cp1 = [NSPredicate predicateWithFormat:@"pitcher = true"];
-    opponentPitcherArray = [opponentTeamDictionaryArray filteredArrayUsingPredicate:cp1];
+    [self setOpponentPitcherIndex];
+}
+
+- (void)setOpponentPitcherIndex{
+    NSPredicate *cp = [NSPredicate predicateWithFormat:@"pitcher = true"];
+    opponentPitcherArray = [opponentTeamDictionaryArray filteredArrayUsingPredicate:cp];
+    
     if (opponentPitcherArray.count > 0) {
-        id item2 = [opponentPitcherArray objectAtIndex:0];
-        opponentPitcherIndex = [opponentPitcherArray indexOfObject:item2];
+        id item = [opponentPitcherArray objectAtIndex:0];
+        opponentPitcherIndex = [opponentTeamDictionaryArray indexOfObject:item];
         NSLog(@"opponent filter %@",[opponentTeamDictionaryArray objectAtIndex:opponentPitcherIndex]);
     }
-    
+
 }
 
 - (void)checkPitchCount{
@@ -1723,9 +1730,9 @@
 }
 
 - (void)addMyWalksPitched{
-    NSLog(@"addWalksPitched");
+    NSLog(@"addMyWalksPitched");
     
-    [self loadMyTeamDictionaryArray];
+    [self setMyTeamPitcherArray];
     
     int t1 = [wap intValue];
     t1++;
@@ -1763,7 +1770,7 @@
     
     
         //update
-    NSLog(@"myTeamPlayerUpdated(Pitcher) %lu: %@",(unsigned long)myPitcherIndex,myTeamDictionaryArray);
+    NSLog(@"myTeamPlayerUpdated(Pitcher) %@",[myTeamDictionaryArray objectAtIndex:myPitcherIndex]);
     
     [self saveUpdatedMyTeamInfo];
 
@@ -1774,7 +1781,7 @@
     NSLog(@"addStrikeOutPitched");
     NSLog(@"myPitcherIndex: %lu",(unsigned long)myPitcherIndex);
     
-    [self loadMyTeamDictionaryArray];
+    [self setMyTeamPitcherArray];
     
     
     int t1 = [strp intValue];
