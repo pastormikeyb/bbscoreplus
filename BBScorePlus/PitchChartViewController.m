@@ -92,6 +92,8 @@
     
     myTeamCount = (int)[myTeamDictionaryArray count];
     opponentTeamCount = (int)[opponentTeamDictionaryArray count];
+
+    [self batterPositionErrorCheck];
     
     if (amIBatting){
         if (!isContinousLineup) {
@@ -3060,5 +3062,15 @@
     }
 }
 
-
+- (void) batterPositionErrorCheck{
+    if (amIBatting) {
+        if (batterPositionNumber >= myTeamCount) {
+            batterPositionNumber = 0;
+        }
+    }else{
+        if (batterPositionNumber >= opponentTeamCount) {
+            batterPositionNumber = 0;
+        }
+    }
+}
 @end
