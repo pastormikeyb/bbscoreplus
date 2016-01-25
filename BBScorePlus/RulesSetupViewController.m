@@ -40,6 +40,7 @@
         _gameTimeLimitTextField.text = [gameDefaultsDictionary valueForKey:@"gametimelimit"];
         isHomeTeam = [gameDefaultsDictionary valueForKey:@"hometeam"];
         batting = [[gameDefaultsDictionary valueForKey:@"amibatting"]boolValue];
+        _opponentNameTextField.text = [gameDefaultsDictionary valueForKey:@"opponentteamname"];
         
         if (! isTrackingPitchCount) {
             _maxNumberOfPitchesTextField.hidden = YES;
@@ -130,6 +131,9 @@
     pitch = @(isTrackingPitchCount);
     continous = @(isContinousLineup);
     home = @(isHomeTeam);
+    if (_opponentNameTextField.text.length < 1) {
+        _opponentNameTextField.text = @"NA";
+    }
     
     gameDefaultsDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
                               pitch,@"trackpitchcount",
@@ -138,6 +142,7 @@
                               continous,@"continouslineup",
                               _gameTimeLimitTextField.text,@"gametimelimit",
                               home,@"hometeam",
+                              _opponentNameTextField.text,@"opponentteamname",
                               nil];
     
     [arrayOfDictionariesMutableArray addObject:gameDefaultsDictionary];
@@ -258,7 +263,8 @@
                               visitorrun,@"visitorruns",
                               visitorhits,@"visitorhits",
                               visitorerrors,@"visitorerrors",
-                              pc,@"pitchcount",
+                              pc,@"mypitchcount",
+                              pc,@"opponentpitchcount",
                               currentouts,@"currentouts",
                               homeTeam,@"ishometeam",
                               amibatting,@"amibatting",

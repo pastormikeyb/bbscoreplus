@@ -21,6 +21,7 @@
 		4C6E3B2F1BCB41640017DF76 /* BBScorePlusTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6E3B2E1BCB41640017DF76 /* BBScorePlusTests.m */; };
 		4C6E3B3A1BCB41640017DF76 /* BBScorePlusUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6E3B391BCB41640017DF76 /* BBScorePlusUITests.m */; };
 		4C6E3B481BCB43200017DF76 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C6E3B471BCB43200017DF76 /* MapKit.framework */; };
+		4C71E24B1C559656004734BE /* InstructionsMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C71E24A1C559656004734BE /* InstructionsMainViewController.m */; };
 		4C8AF0A11BEAD63300C77997 /* OpponentRosterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8AF0A01BEAD63300C77997 /* OpponentRosterTableViewCell.m */; };
 		4C8AF0A41BEAD65500C77997 /* OpponentLineupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8AF0A31BEAD65500C77997 /* OpponentLineupTableViewCell.m */; };
 		4C9A81671BD087B200F85F0B /* GameSetupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9A81661BD087B200F85F0B /* GameSetupViewController.m */; };
@@ -84,6 +85,8 @@
 		4C6E3B391BCB41640017DF76 /* BBScorePlusUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BBScorePlusUITests.m; sourceTree = "<group>"; };
 		4C6E3B3B1BCB41640017DF76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C6E3B471BCB43200017DF76 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		4C71E2491C559656004734BE /* InstructionsMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstructionsMainViewController.h; sourceTree = "<group>"; };
+		4C71E24A1C559656004734BE /* InstructionsMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstructionsMainViewController.m; sourceTree = "<group>"; };
 		4C8AF09F1BEAD63300C77997 /* OpponentRosterTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpponentRosterTableViewCell.h; sourceTree = "<group>"; };
 		4C8AF0A01BEAD63300C77997 /* OpponentRosterTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpponentRosterTableViewCell.m; sourceTree = "<group>"; };
 		4C8AF0A21BEAD65500C77997 /* OpponentLineupTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OpponentLineupTableViewCell.h; path = ../OpponentLineupTableViewCell.h; sourceTree = "<group>"; };
@@ -147,6 +150,8 @@
 		4C6E3B081BCB41630017DF76 = {
 			isa = PBXGroup;
 			children = (
+				4C71E2491C559656004734BE /* InstructionsMainViewController.h */,
+				4C71E24A1C559656004734BE /* InstructionsMainViewController.m */,
 				4C6E3B471BCB43200017DF76 /* MapKit.framework */,
 				4C6E3B131BCB41630017DF76 /* BBScorePlus */,
 				4C6E3B2D1BCB41640017DF76 /* BBScorePlusTests */,
@@ -473,6 +478,7 @@
 				4C6E3B1C1BCB41640017DF76 /* ViewController.m in Sources */,
 				4C6E3B191BCB41640017DF76 /* AppDelegate.m in Sources */,
 				4C9A81851BD09DC600F85F0B /* OpponentLineupViewController.m in Sources */,
+				4C71E24B1C559656004734BE /* InstructionsMainViewController.m in Sources */,
 				4C3254631BF90DDA00C3938D /* PitchChartViewController.m in Sources */,
 				4C9A81671BD087B200F85F0B /* GameSetupViewController.m in Sources */,
 				4CA77D431BE876080089A2E2 /* TeamRosterTableViewCell.m in Sources */,

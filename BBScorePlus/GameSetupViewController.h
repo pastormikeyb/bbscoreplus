@@ -15,5 +15,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *gameStateAddressTextField;
 @property (weak, nonatomic) IBOutlet UITextField *gameZipAddressTextField;
 - (IBAction)directionsOnClick:(id)sender;
+- (IBAction)onSave:(id)sender;
 
 @end

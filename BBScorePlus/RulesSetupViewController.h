@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UISwitch *continousLineupSwitch;
 @property (weak, nonatomic) IBOutlet UITextField *gameTimeLimitTextField;
 @property (weak, nonatomic) IBOutlet UISwitch *isHomeTeamSwitch;
+@property (weak, nonatomic) IBOutlet UITextField *opponentNameTextField;
 
 - (IBAction)onClick:(id)sender;
 - (IBAction)onSwitch:(id)sender;
