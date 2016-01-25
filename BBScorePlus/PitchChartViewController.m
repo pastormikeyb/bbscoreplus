@@ -57,6 +57,7 @@
     didHit = NO;
     [self LoadMyTeam];
     [self LoadOpponentTeam];
+    [self setCurrentPitchCount];
     [self LoadGameVariables];
     [self LoadGameDefaults];
     [self setGamePitchersIndex];
@@ -80,12 +81,10 @@
     
     if (amIBatting){
         batterPositionNumber = [[boxScoreDictionary valueForKey:@"myteambattingpositionnumber"]intValue];
-//        NSLog(@"I AM BATTING: %i",batterPositionNumber);
-//        NSLog(@"CURRENT BATTER: %@",[[myTeamDictionaryArray valueForKey:@"lastname"]objectAtIndex:batterPositionNumber]);
+            //set currentpitchcount to opponent pitcher balls + strikes
         
     }else{
         batterPositionNumber = [[boxScoreDictionary valueForKey:@"opponentbattingpositionnumber"]intValue];
-//        NSLog(@"I AM NOT BATTING: %i",batterPositionNumber);
         
     }
     
@@ -175,6 +174,7 @@
             if (step){
                 homeRuns++;
                 NSLog(@"homeRuns: %i",homeRuns);
+                
             }
             else{
                 
@@ -992,7 +992,7 @@
 //    myPitchCount = [[boxScoreDictionary valueForKey:@"mypitchcount"]intValue];
 //    
 //    opponentPitchCount = [[boxScoreDictionary valueForKey:@"opponentpitchcount"]intValue];
-    currentPitchCount = [[boxScoreDictionary valueForKey:@"pitchcount"]intValue];
+//    currentPitchCount = [[boxScoreDictionary valueForKey:@"pitchcount"]intValue];
     
     currentOuts = [[boxScoreDictionary valueForKey:@"currentouts"]intValue];
     
@@ -1302,7 +1302,6 @@
 
 - (void)checkPitchCount{
     
-//    if (myPitchCount > maxNumberOfPitches || opponentPitchCount > maxNumberOfPitches) {
     if (currentPitchCount > maxNumberOfPitches) {
     NSLog(@"Max pitches HAVE BEEN REACHED");
         
@@ -1522,7 +1521,6 @@
 
 - (void)addToBoxScoreDictionary {
     NSLog(@"addToBoxScoreDictionary");
-    NSLog(@"batterPositionNumber %i",batterPositionNumber);
     
     if (amIBatting){
             //Myteam
@@ -1537,7 +1535,7 @@
         NSNumber *currentouts = [NSNumber numberWithInt:currentOuts];
         NSNumber *ami = @(amIBatting);
         NSNumber *top = @(isTopOfInning);
-        NSNumber *pitc = [NSNumber numberWithInt:currentPitchCount];
+//        NSNumber *pitc = [NSNumber numberWithInt:currentPitchCount];
         NSNumber *homerun = [NSNumber numberWithInt:homeRuns];
         NSNumber *homehits = [NSNumber numberWithInt:homeHits];
         NSNumber *homeerrors = [NSNumber numberWithInt:homeErrors];
@@ -1555,7 +1553,7 @@
                               visitorrun,@"visitorruns",
                               visitorhits,@"visitorhits",
                               visitorerrors,@"visitorerrors",
-                              pitc,@"pitchcount",
+//                              pitc,@"pitchcount",
                               currentouts,@"currentouts",
                               homeTeam,@"ishometeam",
                               ami,@"amibatting",
@@ -1582,7 +1580,7 @@
         NSNumber *currentouts = [NSNumber numberWithInt:currentOuts];
         NSNumber *ami = @(amIBatting);
         NSNumber *top = @(isTopOfInning);
-        NSNumber *pitc = [NSNumber numberWithInt:currentPitchCount];
+//        NSNumber *pitc = [NSNumber numberWithInt:currentPitchCount];
         NSNumber *homerun = [NSNumber numberWithInt:homeRuns];
         NSNumber *homehits = [NSNumber numberWithInt:homeHits];
         NSNumber *homeerrors = [NSNumber numberWithInt:homeErrors];
@@ -1602,7 +1600,7 @@
                               visitorrun,@"visitorruns",
                               visitorhits,@"visitorhits",
                               visitorerrors,@"visitorerrors",
-                              pitc,@"pitchcount",
+//                              pitc,@"pitchcount",
                               currentouts,@"currentouts",
                               homeTeam,@"ishometeam",
                               ami,@"amibatting",
@@ -1649,7 +1647,7 @@
     NSNumber *currentouts = [NSNumber numberWithInt:0];
     NSNumber *ami = @(amIBatting);
     NSNumber *top = @(isTopOfInning);
-    NSNumber *pitc = [NSNumber numberWithInt:currentPitchCount];
+//    NSNumber *pitc = [NSNumber numberWithInt:currentPitchCount];
     NSNumber *homerun = [NSNumber numberWithInt:homeRuns];
     NSNumber *homehits = [NSNumber numberWithInt:homeHits];
     NSNumber *homeerrors = [NSNumber numberWithInt:homeErrors];
@@ -1667,7 +1665,7 @@
                           visitorrun,@"visitorruns",
                           visitorhits,@"visitorhits",
                           visitorerrors,@"visitorerrors",
-                          pitc,@"pitchcount",
+//                          pitc,@"pitchcount",
                           currentouts,@"currentouts",
                           homeTeam,@"ishometeam",
                           ami,@"amibatting",
@@ -3040,6 +3038,27 @@
     
 }
 
+- (void)setCurrentPitchCount{
+    [self setGamePitchersIndex];
+    if (amIBatting) {
+            //get balls and strikes from opponent
+        
+        int balls = [[[myTeamDictionaryArray objectAtIndex:opponentPitcherIndex]valueForKey:@"ballspitched"]intValue];
+        int strikes = [[[myTeamDictionaryArray objectAtIndex:opponentPitcherIndex]valueForKey:@"strikesthrown"]intValue];
+        
+        currentPitchCount = balls + strikes;
+
+        
+    }else{
+            //get ball and strikes from myteam
+        NSLog(@"my pitcher ball %d:",[[[myTeamDictionaryArray objectAtIndex:myPitcherIndex]valueForKey:@"ballspitched"]intValue]);
+        int balls = [[[myTeamDictionaryArray objectAtIndex:myPitcherIndex]valueForKey:@"ballspitched"]intValue];
+        int strikes = [[[myTeamDictionaryArray objectAtIndex:myPitcherIndex]valueForKey:@"strikesthrown"]intValue];
+        
+        currentPitchCount = balls + strikes;
+        
+    }
+}
 
 
 @end
