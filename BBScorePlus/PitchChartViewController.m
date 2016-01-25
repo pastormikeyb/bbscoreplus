@@ -47,7 +47,7 @@
 
 
 - (void)viewDidLoad {
-    NSLog(@"received from hitting chart batterPositionNumber: %i",batterPositionNumber);
+//    NSLog(@"received from hitting chart batterPositionNumber: %i",batterPositionNumber);
     [self.alertLabel setHidden:YES];
     myTeamDictionaryArray = [[NSMutableArray alloc]init];
     opponentTeamDictionaryArray = [[NSMutableArray alloc]init];
@@ -80,13 +80,12 @@
     
     if (amIBatting){
         batterPositionNumber = [[boxScoreDictionary valueForKey:@"myteambattingpositionnumber"]intValue];
-        NSLog(@"I AM BATTING: %i",batterPositionNumber);
-        NSLog(@"CURRENT BATTER: %@",[[myTeamDictionaryArray valueForKey:@"lastname"]objectAtIndex:batterPositionNumber]);
+//        NSLog(@"I AM BATTING: %i",batterPositionNumber);
+//        NSLog(@"CURRENT BATTER: %@",[[myTeamDictionaryArray valueForKey:@"lastname"]objectAtIndex:batterPositionNumber]);
         
     }else{
         batterPositionNumber = [[boxScoreDictionary valueForKey:@"opponentbattingpositionnumber"]intValue];
-        NSLog(@"I AM NOT BATTING: %i",batterPositionNumber);
-        NSLog(@"CURRENT BATTER: %@",[[opponentTeamDictionaryArray valueForKey:@"lastname"]objectAtIndex:batterPositionNumber]);
+//        NSLog(@"I AM NOT BATTING: %i",batterPositionNumber);
         
     }
     
@@ -120,7 +119,7 @@
             }
         }
         
-        if (batterPositionNumber >  opponentTeamCount){
+        if (batterPositionNumber >=  opponentTeamCount){
             batterPositionNumber = 0;
         };
         
@@ -491,21 +490,6 @@
                 [self addStrike];
             }
             
-            if (currentOuts > 2) {
-                if (isTopOfInning) {
-                    isTopOfInning = NO;
-                    
-                }else{
-                    isTopOfInning = YES;
-                    currentInning++;
-                }
-                currentOuts = 0;
-                if (amIBatting){
-                    amIBatting= NO;
-                }else{
-                    amIBatting= YES;
-                }
-            }
             
             [self showPitchCount];
             [self showPitchStrike];
@@ -518,6 +502,19 @@
             [self saveBoxScore];
             
             didHit = YES;
+            
+            if (currentOuts >=3) {
+                NSLog(@"outs>3\nbatterPositionNumber %i",batterPositionNumber);
+                
+                
+                currentOuts = 0;
+                
+                [self changeBattingBoxScoreDictionary];
+                [self saveBoxScore];
+                bbView.image = nil;
+                
+            }
+
             
             [self performSegueWithIdentifier:@"hcSegue" sender:nil];
             
@@ -695,6 +692,8 @@
                 
                 [self changeBattingBoxScoreDictionary];
                 [self saveBoxScore];
+                bbView.image = nil;
+
             }
             
             [self viewDidLoad];
@@ -1636,6 +1635,7 @@
     }else{
         
         isTopOfInning = YES;
+        currentInning ++;
     }
 
     if (amIBatting) {
