@@ -15,7 +15,7 @@
     UIImage *baseballImage;
     int currentBatterBall;
     int currentBatterStrike;
-    int currentOuts;
+    int currentOuts,myPitchCount,opponentPitchCount;
     int currentPitchCount;
     int currentBatterPosition;
     int homeRuns,homeHits,homeErrors,totalBallsThrown,totalStrikesThrown;

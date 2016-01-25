@@ -990,6 +990,9 @@
     
     isTopOfInning = [(NSNumber*)[boxScoreDictionary valueForKey:@"istopofinning"]boolValue];
     
+//    myPitchCount = [[boxScoreDictionary valueForKey:@"mypitchcount"]intValue];
+//    
+//    opponentPitchCount = [[boxScoreDictionary valueForKey:@"opponentpitchcount"]intValue];
     currentPitchCount = [[boxScoreDictionary valueForKey:@"pitchcount"]intValue];
     
     currentOuts = [[boxScoreDictionary valueForKey:@"currentouts"]intValue];
@@ -1299,17 +1302,10 @@
 }
 
 - (void)checkPitchCount{
-    if (currentPitchCount >= maxNumberOfPitches) {
-        NSLog(@"Max pitches HAVE BEEN REACHED");
-        if (amIBatting){
-            NSString *pitcher = [[opponentTeamDictionaryArray valueForKey:@"lastname"]objectAtIndex:opponentPitcherIndex];
-            NSLog(@"opponent pitcher reached max pitches: %@",pitcher);
-            
-        }else{
-            NSString *pitcher = [[myTeamDictionaryArray valueForKey:@"lastname"]objectAtIndex:myPitcherIndex];
-            NSLog(@"opponent pitcher reached max pitches: %@",pitcher);
-            
-        }
+    
+//    if (myPitchCount > maxNumberOfPitches || opponentPitchCount > maxNumberOfPitches) {
+    if (currentPitchCount > maxNumberOfPitches) {
+    NSLog(@"Max pitches HAVE BEEN REACHED");
         
         [self.alertLabel setHidden:NO];
         _alertLabel.text = @"The pitcher has reached his/her max pitches\nTo change pitchers press the Change Pitcher button above";
