@@ -11,6 +11,7 @@
 @interface ViewController ()
 {
     NSDictionary *gameVariables;
+    BOOL showInstructions;
 }
 
 @end

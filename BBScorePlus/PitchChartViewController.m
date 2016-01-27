@@ -32,7 +32,7 @@
     NSString *bats1, *myPitcher,*opponentPitcher;
     NSString *whoIsBatting;
     NSMutableArray *topLevel, *myArray;
-    BOOL loadMyPitcher,loadOpponentPitcher, isTimerStarted;
+    BOOL loadMyPitcher,loadOpponentPitcher, isTimerStarted, showInstructions;
     NSString *fn, *ln, *pn, *pb, *pt, *pi, *fb, *sb, *tb, *hr, *fc,*fe,*hp,*sf,*rb,*ou,*bt,*st,*wa,*str,*wap,*strp,*strValue,*cb, *pc,*hc, *th, *oh;
     NSUInteger myPitcherIndex, opponentPitcherIndex;
     NSDate *endingTime;
@@ -94,6 +94,8 @@
     opponentTeamCount = (int)[opponentTeamDictionaryArray count];
 
     [self batterPositionErrorCheck];
+    [self saveGame];
+
     
     if (amIBatting){
         if (!isContinousLineup) {
@@ -157,7 +159,8 @@
     
     currentOutLabel.text = [NSString stringWithFormat:@"%i",currentOuts];
         //testing
-    [self setGamePitchersIndex];
+//    [self setGamePitchersIndex];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -991,11 +994,6 @@
     
     isTopOfInning = [(NSNumber*)[boxScoreDictionary valueForKey:@"istopofinning"]boolValue];
     
-//    myPitchCount = [[boxScoreDictionary valueForKey:@"mypitchcount"]intValue];
-//    
-//    opponentPitchCount = [[boxScoreDictionary valueForKey:@"opponentpitchcount"]intValue];
-//    currentPitchCount = [[boxScoreDictionary valueForKey:@"pitchcount"]intValue];
-    
     currentOuts = [[boxScoreDictionary valueForKey:@"currentouts"]intValue];
     
     homeRuns = [[boxScoreDictionary valueForKey:@"homeruns"]intValue];
@@ -1433,6 +1431,24 @@
         
     }
 }
+
+-(void)saveGameVariables{
+    
+        // Get path to documents directory
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        // Path to save dictionary
+    dictPath = [[paths objectAtIndex:0]
+                stringByAppendingPathComponent:@"gamevariables.out"];
+    
+    if ([paths count] > 0)
+    {
+        
+            // Write dictionary
+        [boxScoreDictionary writeToFile:dictPath atomically:YES];
+        
+    }
+}
+
 
 -(void)saveUpdatedMyTeamInfo{
         // Get path to documents directory
@@ -3064,13 +3080,65 @@
 
 - (void) batterPositionErrorCheck{
     if (amIBatting) {
-        if (batterPositionNumber >= myTeamCount) {
+        if (batterPositionNumber >= myTeamCount || batterPositionNumber < 0) {
             batterPositionNumber = 0;
         }
     }else{
-        if (batterPositionNumber >= opponentTeamCount) {
+        if (batterPositionNumber >= opponentTeamCount || batterPositionNumber < 0) {
             batterPositionNumber = 0;
         }
     }
+}
+
+- (void) saveGame{
+        //Game save
+    if (opponentTeamName.length <1) {
+        opponentTeamName = @"NA";
+    }
+    
+        //currentdate for filename:
+    NSDate *date = [NSDate date];
+
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    
+    NSString *today = [formatter stringFromDate:date];
+    
+    NSLog(@"date: %@",today);
+
+    
+    /*
+     get opponentteamname - gamedefaultsDictionary
+     myTeamDictionaryArray
+     opponentTeamDictionaryArray
+     --combine and save
+     
+     */
+        //temp dict
+    tempdict = [NSDictionary dictionaryWithObjectsAndKeys:
+                opponentTeamName,@"opponentteamname",
+                myTeamDictionaryArray,@"myteamdictionaryarray",
+                opponentTeamDictionaryArray,@"opponentdictionaryarray",
+                boxScoreDictionary,@"boxscoredictionary",
+                
+                nil];
+    NSLog(@"game save test: \n %@",tempdict);
+    
+        //SAVE
+    /*
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        // Path to save dictionary
+    dictPath = [[paths objectAtIndex:0]
+                stringByAppendingPathComponent:@"game.sav"];
+    
+    if ([paths count] > 0)
+    {
+        
+            // Write dictionary
+//        [boxScoreDictionary writeToFile:dictPath atomically:YES];
+        
+    }
+     */
+
 }
 @end

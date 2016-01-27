@@ -1,22 +1,34 @@
 //
-//  InstructionsMainViewController.m
+//  PageContentViewController.m
 //  BBScorePlus
 //
-//  Created by Michael on 1/24/16.
+//  Created by Michael on 1/26/16.
 //  Copyright © 2016 Michael Usry. All rights reserved.
 //
 
-#import "InstructionsMainViewController.h"
-
-@interface InstructionsMainViewController ()
+#import "PageContentViewController.h"
+@interface PageContentViewController ()
 
 @end
 
-@implementation InstructionsMainViewController
+@implementation PageContentViewController
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+            // Custom initialization
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.backgroundImageView.image = [UIImage imageNamed:self.imageFile];
+    self.titleLabel.text = self.titleText;
+
 }
 
 - (void)didReceiveMemoryWarning {
