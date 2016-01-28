@@ -47,8 +47,8 @@
     [super didReceiveMemoryWarning];
         // Dispose of any resources that can be recreated.
 }
-//-(void)mymethods:(NSString *)aCont withsecond:(NSString *)a-second { }
-//[mymethod:self.contoCorrente withsecond:self.asecond];
+    //-(void)mymethods:(NSString *)aCont withsecond:(NSString *)a-second { }
+    //[mymethod:self.contoCorrente withsecond:self.asecond];
 
 
 - (void)showAlert:(NSString *)title msg:(NSString *)msg {
@@ -81,7 +81,7 @@
             NSLog(@"Add another");
             
             [self addToTeamDictionary];
-        
+            
             firstName.text = @"";
             lastName.text = @"";
             playerNumber.text = @"";
@@ -91,7 +91,7 @@
             [batsSegmentControl setSelectedSegmentIndex:0];
             [throwsSegmentControl setSelectedSegmentIndex:0];
             [firstName becomeFirstResponder];
-
+            
             NSLog(@"add Complete");
             
             break;
@@ -100,12 +100,18 @@
             
             NSLog(@"Save");
             [self addToTeamDictionary];
-        
+            
             [self saveInfo];
-        
+            
             [self showAlert:@"Roster" msg:@"has been saved."];
             
             break;
+            
+        case 2:
+            
+            [self performSegueWithIdentifier:@"MainTabBarControllerID" sender:@1];
+            
+            
             
         default:
             NSLog(@"default");
@@ -135,7 +141,7 @@
             playerBat = @"L";
             
         }
-
+    
         else
             
             if(batsSegmentControl.selectedSegmentIndex == 2)
@@ -164,15 +170,15 @@
             [self showAlert:@"The pitcher" msg:@"has already been set."];
             isPitcher = NO;
             [_isPitcherSwitch setOn:NO animated:NO];
-
-
+            
+            
         }else{
-        isPitcher = YES;
-        isPitcherSet = YES;
-        NSLog(@"pitch yes");
+            isPitcher = YES;
+            isPitcherSet = YES;
+            NSLog(@"pitch yes");
         }
     }else{
-         isPitcher= NO;
+        isPitcher= NO;
         NSLog(@"pitch no");
     }
 }
@@ -215,32 +221,32 @@
     if (fn && ln && pn && playerBat && playerThrow != nil) {
         NSLog(@"nothing empty.  adding to array");
         [arrayOfDictionariesMutableArray addObject:dict];
-
+        
     }
-
+    
     
     NSLog(@"arrayOfDictionariesMutableArray: %@",arrayOfDictionariesMutableArray);
     NSLog(@"array count: %lu",(unsigned long)[arrayOfDictionariesMutableArray count]);
     isPitcher = NO;
-
+    
 }
 
 - (void)saveInfo{
         //PUT PLAYER INFO INTO OBJECT
     
-            // Get path to documents directory
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
-                                                             NSUserDomainMask, YES);
-            // Path to save dictionary
-        dictPath = [[paths objectAtIndex:0]
-                    stringByAppendingPathComponent:@"teamdictionary.out"];
+        // Get path to documents directory
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                         NSUserDomainMask, YES);
+        // Path to save dictionary
+    dictPath = [[paths objectAtIndex:0]
+                stringByAppendingPathComponent:@"teamdictionary.out"];
+    
+    if ([paths count] > 0)
+    {
         
-        if ([paths count] > 0)
-        {
-            
-                // Write dictionary
-            [arrayOfDictionariesMutableArray writeToFile:dictPath atomically:YES];
-        }
+            // Write dictionary
+        [arrayOfDictionariesMutableArray writeToFile:dictPath atomically:YES];
+    }
     
 }
 
@@ -249,7 +255,7 @@
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"teamdictionary.out"];
-
+    
     arrayOfDictionariesMutableArray = [NSMutableArray arrayWithContentsOfFile:filePath];
     NSLog(@"teamdictionary: %@",arrayOfDictionariesMutableArray);
 }
@@ -268,7 +274,7 @@
     }
     NSLog(@"File Does not Exist");
     return NO;
-
+    
 }
 
 

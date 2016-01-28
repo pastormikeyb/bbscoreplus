@@ -70,6 +70,22 @@
  }
  */
 
+- (IBAction)goBack:(id)sender{
+    UIBarItem *but = (UIBarItem*)sender;
+    
+    switch (but.tag) {
+        case 0:
+            NSLog(@"Done Button");
+            [self performSegueWithIdentifier:@"AddOpponentSegue" sender:@2];
+            
+            
+        default:
+            NSLog(@"default");
+            
+            break;
+    }
+}
+
 - (IBAction)onClick:(id)sender {
     UIButton *button = (UIButton*)sender;
     

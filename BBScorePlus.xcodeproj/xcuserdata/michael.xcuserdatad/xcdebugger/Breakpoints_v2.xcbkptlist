@@ -154,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/AddNewPlayerViewController.m"
-            timestampString = "471323492.323423"
+            timestampString = "475647753.724658"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "158"
-            endingLineNumber = "158"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
             landmarkName = "-segmentedControlAction:"
             landmarkType = "5">
          </BreakpointContent>
@@ -170,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/AddNewOpponentViewController.m"
-            timestampString = "475226668.894311"
+            timestampString = "475653674.547305"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "113"
-            endingLineNumber = "113"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
             landmarkName = "-onSwitch:"
             landmarkType = "5">
          </BreakpointContent>
@@ -186,11 +186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/AddNewPlayerViewController.m"
-            timestampString = "474077206.057554"
+            timestampString = "475647753.724658"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "225"
-            endingLineNumber = "225"
+            startingLineNumber = "231"
+            endingLineNumber = "231"
             landmarkName = "-addToTeamDictionary"
             landmarkType = "5">
          </BreakpointContent>
@@ -202,11 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/AddNewOpponentViewController.m"
-            timestampString = "475226668.894311"
+            timestampString = "475653674.547305"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "225"
-            endingLineNumber = "225"
+            startingLineNumber = "241"
+            endingLineNumber = "241"
             landmarkName = "-addToTeamDictionary"
             landmarkType = "5">
          </BreakpointContent>
@@ -218,11 +218,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/AddNewPlayerViewController.m"
-            timestampString = "474077206.057554"
+            timestampString = "475647753.724658"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "191"
-            endingLineNumber = "191"
+            startingLineNumber = "197"
+            endingLineNumber = "197"
             landmarkName = "-addToTeamDictionary"
             landmarkType = "5">
          </BreakpointContent>
@@ -234,11 +234,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1230"
-            endingLineNumber = "1230"
+            startingLineNumber = "1229"
+            endingLineNumber = "1229"
             landmarkName = "-getCurrentTime"
             landmarkType = "5">
          </BreakpointContent>
@@ -266,11 +266,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1246"
-            endingLineNumber = "1246"
+            startingLineNumber = "1245"
+            endingLineNumber = "1245"
             landmarkName = "-gameTimeStart"
             landmarkType = "5">
          </BreakpointContent>
@@ -282,11 +282,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "729"
-            endingLineNumber = "729"
+            startingLineNumber = "728"
+            endingLineNumber = "728"
             landmarkName = "-onClick:"
             landmarkType = "5">
          </BreakpointContent>
@@ -298,11 +298,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "903"
-            endingLineNumber = "903"
+            startingLineNumber = "902"
+            endingLineNumber = "902"
             landmarkName = "-addBall"
             landmarkType = "5">
          </BreakpointContent>
@@ -314,11 +314,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/AddNewOpponentViewController.m"
-            timestampString = "475226668.894311"
+            timestampString = "475653674.547305"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "182"
-            endingLineNumber = "182"
+            startingLineNumber = "198"
+            endingLineNumber = "198"
             landmarkName = "-addToTeamDictionary"
             landmarkType = "5">
          </BreakpointContent>
@@ -330,11 +330,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "810"
-            endingLineNumber = "810"
+            startingLineNumber = "809"
+            endingLineNumber = "809"
             landmarkName = "-addStrike"
             landmarkType = "5">
          </BreakpointContent>
@@ -346,11 +346,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2652"
-            endingLineNumber = "2652"
+            startingLineNumber = "2650"
+            endingLineNumber = "2650"
             landmarkName = "-addOpponentFC"
             landmarkType = "5">
          </BreakpointContent>
@@ -362,11 +362,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2696"
-            endingLineNumber = "2696"
+            startingLineNumber = "2694"
+            endingLineNumber = "2694"
             landmarkName = "-addOpponentError"
             landmarkType = "5">
          </BreakpointContent>
@@ -378,11 +378,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2739"
-            endingLineNumber = "2739"
+            startingLineNumber = "2737"
+            endingLineNumber = "2737"
             landmarkName = "-addOpponentOut"
             landmarkType = "5">
          </BreakpointContent>
@@ -394,11 +394,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2782"
-            endingLineNumber = "2782"
+            startingLineNumber = "2780"
+            endingLineNumber = "2780"
             landmarkName = "-addOpponentHP"
             landmarkType = "5">
          </BreakpointContent>
@@ -410,11 +410,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1706"
-            endingLineNumber = "1706"
+            startingLineNumber = "1704"
+            endingLineNumber = "1704"
             landmarkName = "-addMyWalks"
             landmarkType = "5">
          </BreakpointContent>
@@ -426,11 +426,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2387"
-            endingLineNumber = "2387"
+            startingLineNumber = "2385"
+            endingLineNumber = "2385"
             landmarkName = "-addOpponentWalks"
             landmarkType = "5">
          </BreakpointContent>
@@ -442,11 +442,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2427"
-            endingLineNumber = "2427"
+            startingLineNumber = "2425"
+            endingLineNumber = "2425"
             landmarkName = "-addOpponentWalks"
             landmarkType = "5">
          </BreakpointContent>
@@ -458,11 +458,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2827"
-            endingLineNumber = "2827"
+            startingLineNumber = "2825"
+            endingLineNumber = "2825"
             landmarkName = "-addOpponentSac"
             landmarkType = "5">
          </BreakpointContent>
@@ -474,11 +474,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1851"
-            endingLineNumber = "1851"
+            startingLineNumber = "1849"
+            endingLineNumber = "1849"
             landmarkName = "-addMyStrikeOutPitched"
             landmarkType = "5">
          </BreakpointContent>
@@ -490,11 +490,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1899"
-            endingLineNumber = "1899"
+            startingLineNumber = "1897"
+            endingLineNumber = "1897"
             landmarkName = "-addMySingle"
             landmarkType = "5">
          </BreakpointContent>
@@ -522,11 +522,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2955"
-            endingLineNumber = "2955"
+            startingLineNumber = "2999"
+            endingLineNumber = "2999"
             landmarkName = "-savePitchingChart"
             landmarkType = "5">
          </BreakpointContent>
@@ -538,11 +538,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3030"
-            endingLineNumber = "3030"
+            startingLineNumber = "3074"
+            endingLineNumber = "3074"
             landmarkName = "-setMyPitchingTempDict"
             landmarkType = "5">
          </BreakpointContent>
@@ -586,11 +586,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644207.587574"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "946"
-            endingLineNumber = "946"
+            startingLineNumber = "945"
+            endingLineNumber = "945"
             landmarkName = "-addBall"
             landmarkType = "5">
          </BreakpointContent>
@@ -602,11 +602,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1804"
-            endingLineNumber = "1804"
+            startingLineNumber = "1802"
+            endingLineNumber = "1802"
             landmarkName = "-addMyWalksPitched"
             landmarkType = "5">
          </BreakpointContent>
@@ -618,11 +618,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "629"
-            endingLineNumber = "629"
+            startingLineNumber = "627"
+            endingLineNumber = "627"
             landmarkName = "-onClick:"
             landmarkType = "5">
          </BreakpointContent>
@@ -634,11 +634,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2340"
-            endingLineNumber = "2340"
+            startingLineNumber = "2338"
+            endingLineNumber = "2338"
             landmarkName = "-addOpponentStrikeOutPitched"
             landmarkType = "5">
          </BreakpointContent>
@@ -762,11 +762,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "580"
-            endingLineNumber = "580"
+            startingLineNumber = "578"
+            endingLineNumber = "578"
             landmarkName = "-onClick:"
             landmarkType = "5">
          </BreakpointContent>
@@ -778,11 +778,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1127"
-            endingLineNumber = "1127"
+            startingLineNumber = "1126"
+            endingLineNumber = "1126"
             landmarkName = "-loadMyTeamDictionaryArray"
             landmarkType = "5">
          </BreakpointContent>
@@ -794,11 +794,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1193"
-            endingLineNumber = "1193"
+            startingLineNumber = "1192"
+            endingLineNumber = "1192"
             landmarkName = "-setOpponentTeamPitcherArray"
             landmarkType = "5">
          </BreakpointContent>
@@ -810,11 +810,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1336"
-            endingLineNumber = "1336"
+            startingLineNumber = "1335"
+            endingLineNumber = "1335"
             landmarkName = "-currentBatter"
             landmarkType = "5">
          </BreakpointContent>
@@ -826,11 +826,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1756"
-            endingLineNumber = "1756"
+            startingLineNumber = "1754"
+            endingLineNumber = "1754"
             landmarkName = "-addMyStrikeOut"
             landmarkType = "5">
          </BreakpointContent>
@@ -842,11 +842,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2074"
-            endingLineNumber = "2074"
+            startingLineNumber = "2072"
+            endingLineNumber = "2072"
             landmarkName = "-addMyFC"
             landmarkType = "5">
          </BreakpointContent>
@@ -858,11 +858,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2032"
-            endingLineNumber = "2032"
+            startingLineNumber = "2030"
+            endingLineNumber = "2030"
             landmarkName = "-addMyHR"
             landmarkType = "5">
          </BreakpointContent>
@@ -874,11 +874,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2118"
-            endingLineNumber = "2118"
+            startingLineNumber = "2116"
+            endingLineNumber = "2116"
             landmarkName = "-addMyError"
             landmarkType = "5">
          </BreakpointContent>
@@ -890,11 +890,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2162"
-            endingLineNumber = "2162"
+            startingLineNumber = "2160"
+            endingLineNumber = "2160"
             landmarkName = "-addMyOut"
             landmarkType = "5">
          </BreakpointContent>
@@ -906,11 +906,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2205"
-            endingLineNumber = "2205"
+            startingLineNumber = "2203"
+            endingLineNumber = "2203"
             landmarkName = "-addMyHP"
             landmarkType = "5">
          </BreakpointContent>
@@ -922,11 +922,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2249"
-            endingLineNumber = "2249"
+            startingLineNumber = "2247"
+            endingLineNumber = "2247"
             landmarkName = "-addMySac"
             landmarkType = "5">
          </BreakpointContent>
@@ -938,11 +938,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2293"
-            endingLineNumber = "2293"
+            startingLineNumber = "2291"
+            endingLineNumber = "2291"
             landmarkName = "-addOpponentWalksPitched"
             landmarkType = "5">
          </BreakpointContent>
@@ -954,11 +954,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2479"
-            endingLineNumber = "2479"
+            startingLineNumber = "2477"
+            endingLineNumber = "2477"
             landmarkName = "-addOpponentSingle"
             landmarkType = "5">
          </BreakpointContent>
@@ -970,11 +970,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2521"
-            endingLineNumber = "2521"
+            startingLineNumber = "2519"
+            endingLineNumber = "2519"
             landmarkName = "-addOpponentDouble"
             landmarkType = "5">
          </BreakpointContent>
@@ -986,11 +986,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2565"
-            endingLineNumber = "2565"
+            startingLineNumber = "2563"
+            endingLineNumber = "2563"
             landmarkName = "-addOpponentTriple"
             landmarkType = "5">
          </BreakpointContent>
@@ -1002,11 +1002,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2608"
-            endingLineNumber = "2608"
+            startingLineNumber = "2606"
+            endingLineNumber = "2606"
             landmarkName = "-addOpponentHR"
             landmarkType = "5">
          </BreakpointContent>
@@ -1018,11 +1018,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2871"
-            endingLineNumber = "2871"
+            startingLineNumber = "2869"
+            endingLineNumber = "2869"
             landmarkName = "-addOpponentPitchingChart"
             landmarkType = "5">
          </BreakpointContent>
@@ -1226,11 +1226,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1321"
-            endingLineNumber = "1321"
+            startingLineNumber = "1320"
+            endingLineNumber = "1320"
             landmarkName = "-checkPitchCount"
             landmarkType = "5">
          </BreakpointContent>
@@ -1242,11 +1242,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1844"
-            endingLineNumber = "1844"
+            startingLineNumber = "1842"
+            endingLineNumber = "1842"
             landmarkName = "-addMyWalksPitched"
             landmarkType = "5">
          </BreakpointContent>
@@ -1258,11 +1258,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "705"
-            endingLineNumber = "705"
+            startingLineNumber = "704"
+            endingLineNumber = "704"
             landmarkName = "-onClick:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1274,11 +1274,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1699"
-            endingLineNumber = "1699"
+            startingLineNumber = "1697"
+            endingLineNumber = "1697"
             landmarkName = "-changeBattingBoxScoreDictionary"
             landmarkType = "5">
          </BreakpointContent>
@@ -1290,11 +1290,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1893"
-            endingLineNumber = "1893"
+            startingLineNumber = "1891"
+            endingLineNumber = "1891"
             landmarkName = "-addMyStrikeOutPitched"
             landmarkType = "5">
          </BreakpointContent>
@@ -1306,11 +1306,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1583"
-            endingLineNumber = "1583"
+            startingLineNumber = "1581"
+            endingLineNumber = "1581"
             landmarkName = "-addToBoxScoreDictionary"
             landmarkType = "5">
          </BreakpointContent>
@@ -1354,11 +1354,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "675"
-            endingLineNumber = "675"
+            startingLineNumber = "674"
+            endingLineNumber = "674"
             landmarkName = "-onClick:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1370,11 +1370,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3024"
-            endingLineNumber = "3024"
+            startingLineNumber = "3068"
+            endingLineNumber = "3068"
             landmarkName = "-setOpponentPitchingTempDict"
             landmarkType = "5">
          </BreakpointContent>
@@ -1386,11 +1386,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1042"
-            endingLineNumber = "1042"
+            startingLineNumber = "1041"
+            endingLineNumber = "1041"
             landmarkName = "-LoadBoxScore"
             landmarkType = "5">
          </BreakpointContent>
@@ -1402,11 +1402,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1643"
-            endingLineNumber = "1643"
+            startingLineNumber = "1641"
+            endingLineNumber = "1641"
             landmarkName = "-addToBoxScoreDictionary"
             landmarkType = "5">
          </BreakpointContent>
@@ -1418,11 +1418,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "689"
-            endingLineNumber = "689"
+            startingLineNumber = "688"
+            endingLineNumber = "688"
             landmarkName = "-onClick:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1434,11 +1434,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "723"
-            endingLineNumber = "723"
+            startingLineNumber = "722"
+            endingLineNumber = "722"
             landmarkName = "-onClick:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1450,11 +1450,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "667"
-            endingLineNumber = "667"
+            startingLineNumber = "666"
+            endingLineNumber = "666"
             landmarkName = "-onClick:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1466,11 +1466,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "770"
-            endingLineNumber = "770"
+            startingLineNumber = "769"
+            endingLineNumber = "769"
             landmarkName = "-addStrike"
             landmarkType = "5">
          </BreakpointContent>
@@ -1482,11 +1482,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1648"
-            endingLineNumber = "1648"
+            startingLineNumber = "1646"
+            endingLineNumber = "1646"
             landmarkName = "-changeBattingBoxScoreDictionary"
             landmarkType = "5">
          </BreakpointContent>
@@ -1498,11 +1498,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1682"
-            endingLineNumber = "1682"
+            startingLineNumber = "1680"
+            endingLineNumber = "1680"
             landmarkName = "-changeBattingBoxScoreDictionary"
             landmarkType = "5">
          </BreakpointContent>
@@ -1514,11 +1514,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2379"
-            endingLineNumber = "2379"
+            startingLineNumber = "2377"
+            endingLineNumber = "2377"
             landmarkName = "-addOpponentStrikeOutPitched"
             landmarkType = "5">
          </BreakpointContent>
@@ -1530,11 +1530,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "854"
-            endingLineNumber = "854"
+            startingLineNumber = "853"
+            endingLineNumber = "853"
             landmarkName = "-addStrike"
             landmarkType = "5">
          </BreakpointContent>
@@ -1546,11 +1546,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1167"
-            endingLineNumber = "1167"
+            startingLineNumber = "1166"
+            endingLineNumber = "1166"
             landmarkName = "-setOpponentTeamPitcherArray"
             landmarkType = "5">
          </BreakpointContent>
@@ -1562,11 +1562,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1796"
-            endingLineNumber = "1796"
+            startingLineNumber = "1794"
+            endingLineNumber = "1794"
             landmarkName = "-addMyStrikeOut"
             landmarkType = "5">
          </BreakpointContent>
@@ -1578,11 +1578,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "862"
-            endingLineNumber = "862"
+            startingLineNumber = "861"
+            endingLineNumber = "861"
             landmarkName = "-addBall"
             landmarkType = "5">
          </BreakpointContent>
@@ -1594,11 +1594,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1101"
-            endingLineNumber = "1101"
+            startingLineNumber = "1100"
+            endingLineNumber = "1100"
             landmarkName = "-loadMyTeamDictionaryArray"
             landmarkType = "5">
          </BreakpointContent>
@@ -1610,11 +1610,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1558"
-            endingLineNumber = "1558"
+            startingLineNumber = "1556"
+            endingLineNumber = "1556"
             landmarkName = "-addToBoxScoreDictionary"
             landmarkType = "5">
          </BreakpointContent>
@@ -1626,11 +1626,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3071"
-            endingLineNumber = "3071"
+            startingLineNumber = "3115"
+            endingLineNumber = "3115"
             landmarkName = "-setCurrentPitchCount"
             landmarkType = "5">
          </BreakpointContent>
@@ -1642,11 +1642,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3080"
-            endingLineNumber = "3080"
+            startingLineNumber = "3124"
+            endingLineNumber = "3124"
             landmarkName = "-setCurrentPitchCount"
             landmarkType = "5">
          </BreakpointContent>
@@ -1658,11 +1658,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644065.519853"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1748"
-            endingLineNumber = "1748"
+            startingLineNumber = "1746"
+            endingLineNumber = "1746"
             landmarkName = "-addMyWalks"
             landmarkType = "5">
          </BreakpointContent>
@@ -1690,11 +1690,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475643970.12764"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1331"
-            endingLineNumber = "1331"
+            startingLineNumber = "1330"
+            endingLineNumber = "1330"
             landmarkName = "-currentBatter"
             landmarkType = "5">
          </BreakpointContent>
@@ -1706,12 +1706,92 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/PitchChartViewController.m"
-            timestampString = "475644134.544472"
+            timestampString = "475652628.764249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2816"
-            endingLineNumber = "2816"
+            startingLineNumber = "2814"
+            endingLineNumber = "2814"
             landmarkName = "-addOpponentHP"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BBScorePlus/PitchChartViewController.m"
+            timestampString = "475652628.764249"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "2956"
+            endingLineNumber = "2956"
+            landmarkName = "-clearPitchingChart"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BBScorePlus/PitchChartViewController.m"
+            timestampString = "475652628.764249"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "2966"
+            endingLineNumber = "2966"
+            landmarkName = "-clearPitchingChart"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BBScorePlus/PitchChartViewController.m"
+            timestampString = "475652628.764249"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "2972"
+            endingLineNumber = "2972"
+            landmarkName = "-clearPitchingChart"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BBScorePlus/AddNewOpponentViewController.m"
+            timestampString = "475653674.547305"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
+            landmarkName = "-onClick:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BBScorePlus/AddNewOpponentViewController.m"
+            timestampString = "475653761.130102"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
+            landmarkName = "-goBack:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

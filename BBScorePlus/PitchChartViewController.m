@@ -569,10 +569,8 @@
             
             [self savePitchingChart];
             
-            bbView.image = nil;
-            
-            [self viewWillAppear:YES];
-            
+            [self performSegueWithIdentifier:@"PitchChartSegue" sender:nil];
+
             break;
             
         case 8:
@@ -658,7 +656,8 @@
             
             [self showPitchBall];
             
-            [self viewDidLoad];
+            [self performSegueWithIdentifier:@"PitchChartSegue" sender:nil];
+
             
             break;
             
@@ -720,7 +719,7 @@
 
             }
             
-            [self viewDidLoad];
+            [self performSegueWithIdentifier:@"PitchChartSegue" sender:nil];
             
             break;
             
@@ -2912,6 +2911,11 @@
 - (void)getPitchingChart{
     NSLog(@"getHittingChart");
     NSArray *myPCArray;
+    batterPositionNumber --;
+    if (batterPositionNumber < 0) {
+        batterPositionNumber = 0;
+    }
+    
     if (amIBatting) {
         if ([[myTeamDictionaryArray valueForKey:@"pitchingchart"]objectAtIndex:batterPositionNumber] == nil) {
             myPCArray = [[myTeamDictionaryArray valueForKey:@"hittingchart"]objectAtIndex:batterPositionNumber];
@@ -2947,6 +2951,47 @@
     }
     
 }
+
+- (void)clearPitchingChart{
+    NSLog(@"clearHittingChart");
+    batterPositionNumber --;
+    NSArray *myPCArray;
+    if (amIBatting) {
+        if ([[myTeamDictionaryArray valueForKey:@"pitchingchart"]objectAtIndex:batterPositionNumber] != nil) {
+            myPCArray = [[myTeamDictionaryArray valueForKey:@"hittingchart"]objectAtIndex:batterPositionNumber];
+            
+        }
+        
+    }else{
+        if ([[opponentTeamDictionaryArray valueForKey:@"pitchingchart"]objectAtIndex:batterPositionNumber] != nil) {
+            myPCArray = [[opponentTeamDictionaryArray valueForKey:@"pitchingchart"]objectAtIndex:batterPositionNumber];
+            
+        }
+    }
+    
+    if (myPCArray != nil) {
+        for (int i = 0; i <myPCArray.count; i++) {
+            int x = [[myPCArray[i]objectAtIndex:0]intValue];
+            int y = [[myPCArray[i]objectAtIndex:1]intValue];
+            
+            NSLog(@"myPCArray: %@",myPCArray[i]);
+            NSLog(@"x: %i",x);
+            NSLog(@"y: %i",y);
+                //after getting x,y remove on screen;
+            bbView = [[UIImageView alloc]init];
+            CGRect frame = bbView.bounds;
+            frame.origin.x = x;
+            frame.origin.y = y;
+            bbView.frame = frame;
+            bbView.image = nil;
+            [[myPCArray objectAtIndex:i]removeFromSuperview];
+            
+        }
+        
+    }
+    
+}
+
 
 - (void)savePitchingChart {
     
