@@ -537,7 +537,6 @@
                 // HP
             NSLog(@"HP");
             currentPitchCount ++;
-            hitByPitch ++;
             totalBallsThrown ++;
             
             if (amIBatting){
@@ -572,7 +571,7 @@
             
             bbView.image = nil;
             
-            [self viewDidLoad];
+            [self viewWillAppear:YES];
             
             break;
             
@@ -1329,20 +1328,21 @@
 }
 
 - (void)currentBatter {
-    
+    NSLog(@"currentBatter");
+    NSLog(@"batterPositionNumber before:%i",batterPositionNumber);
     batterPositionNumber ++;
+    NSLog(@"batterPositionNumber after:%i",batterPositionNumber);
+
     if (amIBatting){
         
-            //        loadedMyTeamCurrentBatter ++;
         
-        if (batterPositionNumber > myTeamCount) {
+        if (batterPositionNumber >= myTeamCount) {
             batterPositionNumber = 0;
         }
     }else{
-        loadedOpponentCurrentBatter ++;
         
-        if (loadedOpponentCurrentBatter > opponentTeamCount) {
-            loadedOpponentCurrentBatter = 1;
+        if (batterPositionNumber >= opponentTeamCount) {
+            batterPositionNumber = 0;
         }
     }
     
@@ -1559,7 +1559,7 @@
     if (amIBatting){
             //Myteam
         
-        if (batterPositionNumber > myTeamCount) {
+        if (batterPositionNumber >= myTeamCount) {
             batterPositionNumber = 0;
         }
         
@@ -1599,7 +1599,7 @@
     }else{
             //Opponent
         
-        if (batterPositionNumber > opponentTeamCount) {
+        if (batterPositionNumber >= opponentTeamCount) {
             batterPositionNumber = 0;
         }
         
