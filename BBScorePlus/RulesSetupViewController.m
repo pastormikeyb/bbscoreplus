@@ -244,8 +244,8 @@
     NSNumber *visitorhits = [NSNumber numberWithInt:0];
     NSNumber *visitorerrors = [NSNumber numberWithInt:0];
     NSNumber *currentouts = [NSNumber numberWithInt:0];
-    NSNumber *myhit = [NSNumber numberWithInt:1];
-    NSNumber *opphit = [NSNumber numberWithInt:1];
+    NSNumber *myhit = [NSNumber numberWithInt:0];
+    NSNumber *opphit = [NSNumber numberWithInt:0];
     NSNumber *inning = [NSNumber numberWithInt:1];
     
     

@@ -30,7 +30,7 @@
     NSLog(@"START of viewDidLoad");
     [self LoadMyTeam];
     [self LoadOpponentTeam];
-    [self LoadGameVariables];
+//    [self LoadGameVariables];
     
     if ([self DoesBoxScoreExist]) {
         [self LoadBoxScore];
@@ -208,9 +208,13 @@
     NSNumber *b = [boxScoreDictionary valueForKey:@"amibatting"];
     batting = [b boolValue];
     
-    batting = [[boxScoreDictionary valueForKey:@"amibatting"]boolValue];
+//    batting = [boxScoreDictionary valueForKey:@"amibatting"];
+    
+    isTopOfInning = [[boxScoreDictionary valueForKey:@"istopofinning"]boolValue];
     
     currentPitchCount = [[boxScoreDictionary valueForKey:@"pitchcount"]intValue];
+    
+    inningNumber = [[boxScoreDictionary valueForKey:@"currentinning"]intValue];
     
     currentOuts = [[boxScoreDictionary valueForKey:@"currentouts"]intValue];
     
@@ -411,20 +415,6 @@
     NSLog(@"myTeamPlayerUpdated %i: %@",currentBatterPosition,[[myTeamDictionaryArray valueForKey:@"HR"] objectAtIndex:currentBatterPosition]);
     
         //saveback
-    
-}
-
-- (void)LoadGameVariables{
-    NSLog(@"LoadGameVariables");
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"gamevariables.out"];
-    NSDictionary *load = [NSDictionary dictionaryWithContentsOfFile:filePath];
-    
-    inningNumber = [[load valueForKey:@"currentinning"]intValue];
-    isTopOfInning = [[load valueForKey:@"topofinning"]boolValue];
-    NSLog(@"inningNumber: %d",inningNumber);
-    NSLog(@"isTopOfInning: %d",isTopOfInning);
     
 }
 
