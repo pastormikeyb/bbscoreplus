@@ -12,9 +12,7 @@
 {
     BOOL didHit,isHomeTeam,batting,isTopOfInning,isMyTeamBatting ;
     NSString *current,*firstname,*lastname;
-//    NSString *hr,*hh,*he;
-//    NSString *vr,*vh,*ve;
-    int homeRuns,homeHits,homeErrors,visitorRuns,visitorHits,visitorErrors, currentPitchCount, currentOuts, inningNumber;
+    int homeRuns,homeHits,homeErrors,visitorRuns,visitorHits,visitorErrors, currentPitchCount, currentOuts, inningNumber,currentBatterPosition;
     NSNumber *playernumber;
     NSDictionary *boxScoreDictionary;
 
@@ -37,6 +35,7 @@
 @property (nonatomic, assign)int receivedBatterPositionNumber;
 @property (nonatomic, assign)BOOL isMyTeamBatting;
 @property (nonatomic, assign)BOOL didHit;
+@property (nonatomic, assign)int currentBatterPosition;
 
 @property (weak, nonatomic) IBOutlet UIButton *onClick;
 

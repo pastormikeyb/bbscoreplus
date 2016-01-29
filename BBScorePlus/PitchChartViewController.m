@@ -972,6 +972,7 @@
         
     { HittingChartViewController *vc = [segue destinationViewController];
         vc.didHit = didHit;
+        NSLog(@"currentBatterPosition: %i",currentBatterPosition);
     }
 }
 

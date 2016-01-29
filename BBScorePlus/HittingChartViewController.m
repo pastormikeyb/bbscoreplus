@@ -16,24 +16,35 @@
     NSString *fn, *ln, *pn, *pb, *pt, *pi, *fb, *sb, *tb, *hr, *fc,*fe,*hp,*sf,*rb,*ou,*bt,*st,*wa,*str,*wap,*strp,*strValue, *pc, *hc;
     NSArray *hitLocation,*pitchLocation;
     NSMutableArray *loadedMyHitLocationMutableArray,*loadedOpponentHitLocationMutableArray;
-    int loadedMyTeamCurrentBatter, loadedOpponentCurrentBatter, currentBatterPosition;
+    int loadedMyTeamCurrentBatter, loadedOpponentCurrentBatter;
     
 }
 
 @end
 
 @implementation HittingChartViewController
-@synthesize currentHitter, currentHitterLabel, pitcherPitchCountDictionary, arrayOfDictionariesMutableArray, homeRunsLabel, homeHitsLabel, homeErrorLabel, visitorRunsLabel,visitorHitsLabel,visitorErrorLabel, receivedBatterPositionNumber, isMyTeamBatting, currentInningLabel,didHit;
+@synthesize currentHitter, currentHitterLabel, pitcherPitchCountDictionary, arrayOfDictionariesMutableArray, homeRunsLabel, homeHitsLabel, homeErrorLabel, visitorRunsLabel,visitorHitsLabel,visitorErrorLabel, receivedBatterPositionNumber, isMyTeamBatting, currentInningLabel,didHit,currentBatterPosition;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSLog(@"START of viewDidLoad");
+
     [self LoadMyTeam];
     [self LoadOpponentTeam];
 //    [self LoadGameVariables];
     
     if ([self DoesBoxScoreExist]) {
         [self LoadBoxScore];
+        if (currentBatterPosition < 0) {
+            currentBatterPosition = 0;
+        }
+        if (batting) {
+            if (currentBatterPosition >= myTeamDictionaryArray.count) {
+                currentBatterPosition = 0;
+            }
+        }else if (currentBatterPosition >= opponentTeamDictionaryArray.count){
+            currentBatterPosition = 0;
+        }
         
     }else{
             //alert
@@ -58,12 +69,6 @@
             int count = (int)[opponentTeamDictionaryArray count];
             NSLog(@"Home batting count: %i",count);
             
-            if (currentBatterPosition >=  count-1){
-                currentBatterPosition = 0;
-            };
-            if (currentBatterPosition < 0){
-                currentBatterPosition = 0;
-            };
             
             
         }else{
@@ -245,13 +250,19 @@
     currentInningLabel.text = [NSString stringWithFormat:@"%i",inningNumber];
     
     if (batting) {
-        currentBatterPosition = [[boxScoreDictionary valueForKey:@"myteambattingpositionnumber"]intValue];
+        currentBatterPosition = [[boxScoreDictionary valueForKey:@"myteambattingpositionnumber"]intValue]-1;
+        if (currentBatterPosition < 0) {
+            currentBatterPosition = 0;
+        }
         NSLog(@"I am batting.  currentBatterPosition %i",currentBatterPosition);
         
         loadedMyHitLocationMutableArray = [[myTeamDictionaryArray valueForKey:@"hittingchart"]objectAtIndex:currentBatterPosition];
+        if (currentBatterPosition < 0) {
+            currentBatterPosition = 0;
+        }
         NSLog(@"loadedMyHitLocationArray %@",loadedMyHitLocationMutableArray);
     }else{
-        currentBatterPosition = [[boxScoreDictionary valueForKey:@"opponentbattingpositionnumber"]intValue];
+        currentBatterPosition = [[boxScoreDictionary valueForKey:@"opponentbattingpositionnumber"]intValue]-1;
         NSLog(@"I am NOT batting.  currentBatterPosition %i",currentBatterPosition);
         
     }
