@@ -715,7 +715,7 @@
                 [self changeBattingBoxScoreDictionary];
                 [self saveBoxScore];
                 
-                [self performSegueWithIdentifier:@"PitchChartSegue" sender:nil];
+                [self performSegueWithIdentifier:@"hcSegue" sender:nil];
 
             }
             

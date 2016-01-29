@@ -170,12 +170,6 @@
         int balls = [[[loadedPitch valueForKey:@"ballspitched"] objectAtIndex:indexPath.row]intValue];
         int strikes = [[[loadedPitch valueForKey:@"strikesthrown"] objectAtIndex:indexPath.row]intValue];
         
-//        NSInteger ba = [b integerValue];
-//        NSInteger st = [s integerValue];
-        
-//        int balls = (int) ba;
-//        int strikes = (int) st;
-
         int pitches =(balls + strikes);
         if (isnan(pitches)) {
             pitches = 0;
@@ -201,7 +195,7 @@
         int fb = [[loadedOpponentSingleHit objectAtIndex:indexPath.row]intValue];
         int sb = [[loadedOpponentDoubleHit objectAtIndex:indexPath.row]intValue];
         int tb = [[loadedOpponentTripleHit objectAtIndex:indexPath.row]intValue];
-        int hr = [[loadedOpponentTripleHit objectAtIndex:indexPath.row]intValue];
+        int hr = [[loadedOpponentHomeRun objectAtIndex:indexPath.row]intValue];
         int fe = [[loadedOpponentFieldingError objectAtIndex:indexPath.row]intValue];
         int po = [[loadedOpponentPutOut objectAtIndex:indexPath.row]intValue];
         int rb = [[loadedOpponentRbi objectAtIndex:indexPath.row]intValue];
@@ -231,11 +225,6 @@
         int balls = [[[loadedOpponentPitcher valueForKey:@"ballspitched"] objectAtIndex:indexPath.row]intValue];
         int strikes = [[[loadedOpponentPitcher valueForKey:@"strikesthrown"] objectAtIndex:indexPath.row]intValue];
         
-//        NSInteger ba = [b integerValue];
-//        NSInteger st = [s integerValue];
-        
-//        int balls = (int) ba;
-//        int strikes = (int) st;
         
         int pitches =(balls + strikes);
         if (isnan(pitches)) {
