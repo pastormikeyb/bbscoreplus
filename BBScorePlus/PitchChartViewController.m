@@ -637,7 +637,12 @@
                 
                 batterPositionNumber ++;
                 
-                bbView.image = nil;
+                [self addToBoxScoreDictionary];
+                
+                [self saveBoxScore];
+                
+                [self performSegueWithIdentifier:@"PitchChartSegue" sender:nil];
+
                 
             }
             if (amIBatting) {
@@ -648,16 +653,12 @@
 
             }
             
-            [self addToBoxScoreDictionary];
-            
-            [self saveBoxScore];
             
             [self showPitchCount];
             
             [self showPitchBall];
             
-            [self performSegueWithIdentifier:@"PitchChartSegue" sender:nil];
-
+            [self viewDidLoad];
             
             break;
             
@@ -670,9 +671,9 @@
             
             [self addStrike];
             
-            if (currentBatterStrike > 2) {
+            if (currentBatterStrike > 2 && (currentOuts < 3)) {
                 NSLog(@"currentBatterStrikes > 2\nbatterPositionNumber %i",batterPositionNumber);
-                
+               
                 currentOuts ++;
                 currentBatterBall = 0;
                 currentBatterStrike = 0;
@@ -687,14 +688,18 @@
                 
                 batterPositionNumber ++;
                 
-                [bbView removeFromSuperview];
+                [self addToBoxScoreDictionary];
                 
+                [self saveBoxScore];
+                
+                if (currentOuts < 3) {
+                    [self performSegueWithIdentifier:@"PitchChartSegue" sender:nil];
+
+                }
+
                 
             }
             
-            [self addToBoxScoreDictionary];
-            
-            [self saveBoxScore];
             
             [self showPitchCount];
             
@@ -703,23 +708,18 @@
             if (currentOuts >=3) {
                 NSLog(@"outs>3\nbatterPositionNumber %i",batterPositionNumber);
                 
-                
                 currentOuts = 0;
                 currentBatterBall = 0;
                 currentBatterStrike = 0;
                 
-                bbView.image = nil;
-                for (int i; i < [pitchLocation count]; i++) {
-                    bbView.image=nil;
-                }
-                
                 [self changeBattingBoxScoreDictionary];
                 [self saveBoxScore];
                 
+                [self performSegueWithIdentifier:@"PitchChartSegue" sender:nil];
 
             }
             
-            [self performSegueWithIdentifier:@"PitchChartSegue" sender:nil];
+            [self viewDidLoad];
             
             break;
             
