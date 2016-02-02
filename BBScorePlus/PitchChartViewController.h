@@ -46,6 +46,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *currentPlayerNumberLabel;
 @property (nonatomic, assign)int batterPositionNumber;
 @property (weak, nonatomic) IBOutlet UILabel *alertLabel;
+@property (weak, nonatomic) IBOutlet UILabel *homeRunsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *visitorRunsLabel;
 
 - (IBAction)stepper:(id)sender;
 

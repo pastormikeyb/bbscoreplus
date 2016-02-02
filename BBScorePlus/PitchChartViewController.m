@@ -43,7 +43,7 @@
 @end
 
 @implementation PitchChartViewController
-@synthesize currentOutLabel, currentBallsLabel,currentStrikeLabel,currentPlayerNumberLabel, currentPitchCountLabel, currentBatLabel, currentBatterLabel,batterPositionNumber;
+@synthesize currentOutLabel, currentBallsLabel,currentStrikeLabel,currentPlayerNumberLabel, currentPitchCountLabel, currentBatLabel, currentBatterLabel,batterPositionNumber,homeRunsLabel,visitorRunsLabel;
 
 
 - (void)viewDidLoad {
@@ -157,6 +157,8 @@
     }
     
     currentOutLabel.text = [NSString stringWithFormat:@"%i",currentOuts];
+    homeRunsLabel.text = [NSString stringWithFormat:@"%i",homeRuns];
+    visitorRunsLabel.text = [NSString stringWithFormat:@"%i",visitorRuns];
     
     [self showPitchCount];
     
@@ -167,7 +169,9 @@
         // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)stepper:(id)sender {
+- (IBAction)stepper:(UIStepper*)sender {
+    double value = [sender value];
+    
     UIStepper *step = (UIStepper *) sender;
     
     step.maximumValue = 99;
@@ -178,7 +182,6 @@
             if (step){
                 homeRuns++;
                 NSLog(@"homeRuns: %i",homeRuns);
-                
             }
             else{
                 
@@ -196,21 +199,29 @@
         
         if (isHomeTeam) {
             if (step){
-                visitorRuns++;
                 NSLog(@"visitorRuns: %i",visitorRuns);
-                
+                NSLog(@"step.value %f",step.value);
+                if (value > 0) {
+                    visitorRuns++;
+
+                }else{
+                    visitorRuns--;
+
+                }
             }
             else{
                 visitorRuns--;
                 NSLog(@"visitorRuns: %i",visitorRuns);
                 
             }
-            
         }
-    }
+        }
     
     [self addToBoxScoreDictionary];
     [self saveBoxScore];
+    
+    [self viewDidLoad];
+    
 }
 
 - (IBAction)onClick:(id)sender {
@@ -759,6 +770,71 @@
             
             break;
             
+        case 13:
+                //Subtract Runs
+            
+            if (amIBatting){
+                
+                if (isHomeTeam) {
+                        homeRuns--;
+                        NSLog(@"homeRuns: %i",homeRuns);
+                    }
+                    else{
+                        
+                        visitorRuns--;
+                        NSLog(@"visitorRuns: %i",visitorRuns);
+                        
+                    }
+                    
+                }
+            
+    if (!amIBatting) {
+        
+        
+        if (isHomeTeam) {
+                NSLog(@"visitorRuns: %i",visitorRuns);
+            visitorRuns--;
+            NSLog(@"currentBatter %@:\n",[opponentTeamDictionaryArray objectAtIndex:batterPositionNumber]);
+            }
+            else{
+                homeRuns--;
+                NSLog(@"homeRuns: %i",homeRuns);
+                NSLog(@"currentBatter %@:\n",[myTeamDictionaryArray objectAtIndex:batterPositionNumber]);
+
+                
+            }
+        }
+    
+            [self addToBoxScoreDictionary];
+            [self saveBoxScore];
+            
+            [self viewDidLoad];
+            
+            
+            break;
+            
+        case 14:
+            
+                //Add Runs
+            if (amIBatting){
+                
+                if (isHomeTeam) {
+                    NSLog(@"isHomeTeam");
+                    homeRuns++;
+                    NSLog(@"homeRuns: %i",homeRuns);
+                }
+                else{
+                    NSLog(@"notHomeTeam");
+                    
+                    visitorRuns++;
+                    NSLog(@"visitorRuns: %i",visitorRuns);
+                    
+                }
+                
+            }
+            
+            break;
+            
             
         default:
             break;
@@ -972,7 +1048,8 @@
         
     { HittingChartViewController *vc = [segue destinationViewController];
         vc.didHit = didHit;
-        NSLog(@"currentBatterPosition: %i",currentBatterPosition);
+        NSLog(@"batterPositionNumber: %i",batterPositionNumber);
+        vc.batterPositionNumber = batterPositionNumber-1;
     }
 }
 

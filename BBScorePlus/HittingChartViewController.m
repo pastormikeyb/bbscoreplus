@@ -23,37 +23,40 @@
 @end
 
 @implementation HittingChartViewController
-@synthesize currentHitter, currentHitterLabel, pitcherPitchCountDictionary, arrayOfDictionariesMutableArray, homeRunsLabel, homeHitsLabel, homeErrorLabel, visitorRunsLabel,visitorHitsLabel,visitorErrorLabel, receivedBatterPositionNumber, isMyTeamBatting, currentInningLabel,didHit,currentBatterPosition;
+@synthesize currentHitter, currentHitterLabel, pitcherPitchCountDictionary, arrayOfDictionariesMutableArray, homeRunsLabel, homeHitsLabel, homeErrorLabel, visitorRunsLabel,visitorHitsLabel,visitorErrorLabel, isMyTeamBatting, currentInningLabel,didHit,batterPositionNumber;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSLog(@"START of viewDidLoad");
+    NSLog(@"batterposition:\n%d",batterPositionNumber);
+    
+    if (batterPositionNumber <0) {
+        batterPositionNumber = 0;
+    }
 
     [self LoadMyTeam];
     [self LoadOpponentTeam];
-//    [self LoadGameVariables];
     
-    if ([self DoesBoxScoreExist]) {
         [self LoadBoxScore];
-        if (currentBatterPosition < 0) {
-            currentBatterPosition = 0;
+    
+        if (batterPositionNumber < 0) {
+            batterPositionNumber = 0;
         }
         if (batting) {
-            if (currentBatterPosition >= myTeamDictionaryArray.count) {
-                currentBatterPosition = 0;
+            if (batterPositionNumber >= myTeamDictionaryArray.count) {
+                batterPositionNumber = 0;
             }
-        }else if (currentBatterPosition >= opponentTeamDictionaryArray.count){
-            currentBatterPosition = 0;
-        }
+        }else if (batterPositionNumber >= opponentTeamDictionaryArray.count){
+            batterPositionNumber = 0;
         
     }else{
             //alert
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"File missing."
-                                                        message:@"Please (re)save game setup."
-                                                       delegate:self
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [alert show];
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"File missing."
+//                                                        message:@"Please (re)save game setup."
+//                                                       delegate:self
+//                                              cancelButtonTitle:@"OK"
+//                                              otherButtonTitles:nil];
+//        [alert show];
         
     }
     
@@ -65,7 +68,7 @@
         
         if (batting) {
                 //HOME
-            NSLog(@"Home batting pos number: %i",currentBatterPosition);
+            NSLog(@"Home batting pos number: %i",batterPositionNumber);
             int count = (int)[opponentTeamDictionaryArray count];
             NSLog(@"Home batting count: %i",count);
             
@@ -73,16 +76,16 @@
             
         }else{
                 //OPPONENT
-            NSLog(@"opp batting pos number: %i",currentBatterPosition);
+            NSLog(@"opp batting pos number: %i",batterPositionNumber);
             int count = (int)[opponentTeamDictionaryArray count];
             NSLog(@"Opp batting count: %i",count);
             
             
-            if (currentBatterPosition >=  count){
-                currentBatterPosition = 0;
+            if (batterPositionNumber >=  count){
+                batterPositionNumber = 0;
             };
-            if (currentBatterPosition < 0){
-                currentBatterPosition = 0;
+            if (batterPositionNumber < 0){
+                batterPositionNumber = 0;
             };
             
             
@@ -92,12 +95,12 @@
         NSLog(@"Dictionaries has info");
             //which team
         if (batting) {
-            currentHitterLabel.text = [[myTeamDictionaryArray valueForKey:@"lastname"]objectAtIndex:currentBatterPosition];
-            NSLog(@"current batter: %@",[[myTeamDictionaryArray valueForKey:@"lastname"]objectAtIndex:currentBatterPosition]);
+            currentHitterLabel.text = [[myTeamDictionaryArray valueForKey:@"lastname"]objectAtIndex:batterPositionNumber];
+            NSLog(@"current batter: %@",[[myTeamDictionaryArray valueForKey:@"lastname"]objectAtIndex:batterPositionNumber]);
             
         }else{
-            currentHitterLabel.text = [[opponentTeamDictionaryArray valueForKey:@"lastname"]objectAtIndex:currentBatterPosition];
-            NSLog(@"current batter: %@",[[opponentTeamDictionaryArray valueForKey:@"lastname"]objectAtIndex:currentBatterPosition]);
+            currentHitterLabel.text = [[opponentTeamDictionaryArray valueForKey:@"lastname"]objectAtIndex:batterPositionNumber];
+            NSLog(@"current batter: %@",[[opponentTeamDictionaryArray valueForKey:@"lastname"]objectAtIndex:batterPositionNumber]);
             
             [self getHittingChart];
             
@@ -249,23 +252,23 @@
     
     currentInningLabel.text = [NSString stringWithFormat:@"%i",inningNumber];
     
-    if (batting) {
-        currentBatterPosition = [[boxScoreDictionary valueForKey:@"myteambattingpositionnumber"]intValue]-1;
-        if (currentBatterPosition < 0) {
-            currentBatterPosition = 0;
-        }
-        NSLog(@"I am batting.  currentBatterPosition %i",currentBatterPosition);
-        
-        loadedMyHitLocationMutableArray = [[myTeamDictionaryArray valueForKey:@"hittingchart"]objectAtIndex:currentBatterPosition];
-        if (currentBatterPosition < 0) {
-            currentBatterPosition = 0;
-        }
-        NSLog(@"loadedMyHitLocationArray %@",loadedMyHitLocationMutableArray);
-    }else{
-        currentBatterPosition = [[boxScoreDictionary valueForKey:@"opponentbattingpositionnumber"]intValue]-1;
-        NSLog(@"I am NOT batting.  currentBatterPosition %i",currentBatterPosition);
-        
-    }
+//    if (batting) {
+//        batterPositionNumber = [[boxScoreDictionary valueForKey:@"myteambattingpositionnumber"]intValue]-1;
+//        if (batterPositionNumber < 0) {
+//            batterPositionNumber = 0;
+//        }
+//        NSLog(@"I am batting.  batterPositionNumber %i",batterPositionNumber);
+//        
+//        loadedMyHitLocationMutableArray = [[myTeamDictionaryArray valueForKey:@"hittingchart"]objectAtIndex:batterPositionNumber];
+//        if (batterPositionNumber < 0) {
+//            batterPositionNumber = 0;
+//        }
+//        NSLog(@"loadedMyHitLocationArray %@",loadedMyHitLocationMutableArray);
+//    }else{
+//        batterPositionNumber = [[boxScoreDictionary valueForKey:@"opponentbattingpositionnumber"]intValue]-1;
+//        NSLog(@"I am NOT batting.  batterPositionNumber %i",batterPositionNumber);
+//        
+//    }
     NSLog(@"LoadBoxScore finished");
     
 }
@@ -369,7 +372,7 @@
     NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"teamdictionary.out"];
     
     myTeamDictionaryArray = [NSMutableArray arrayWithContentsOfFile:filePath];
-    lastname = [[myTeamDictionaryArray valueForKey:@"lastname"]objectAtIndex:receivedBatterPositionNumber];
+    lastname = [[myTeamDictionaryArray valueForKey:@"lastname"]objectAtIndex:batterPositionNumber];
     
 }
 
@@ -381,7 +384,7 @@
     
     opponentTeamDictionaryArray = [NSMutableArray arrayWithContentsOfFile:filePath];
     
-    lastname = [[opponentTeamDictionaryArray valueForKey:@"lastname"]objectAtIndex:receivedBatterPositionNumber];
+    lastname = [[opponentTeamDictionaryArray valueForKey:@"lastname"]objectAtIndex:batterPositionNumber];
     
     
     
@@ -419,11 +422,11 @@
                 pitchLocation,@"pitchingchart",
                 nil];
     
-    [myTeamDictionaryArray replaceObjectAtIndex:currentBatterPosition withObject:tempdict];
+    [myTeamDictionaryArray replaceObjectAtIndex:batterPositionNumber withObject:tempdict];
     
     
         //update
-    NSLog(@"myTeamPlayerUpdated %i: %@",currentBatterPosition,[[myTeamDictionaryArray valueForKey:@"HR"] objectAtIndex:currentBatterPosition]);
+    NSLog(@"myTeamPlayerUpdated %i: %@",batterPositionNumber,[[myTeamDictionaryArray valueForKey:@"HR"] objectAtIndex:batterPositionNumber]);
     
         //saveback
     
@@ -431,28 +434,28 @@
 
 - (void)loadOpponentTeamDictionaryArray{
         //load
-    fb = [[opponentTeamDictionaryArray valueForKey:@"1B"]objectAtIndex:currentBatterPosition];
-    sb = [[opponentTeamDictionaryArray valueForKey:@"2B"]objectAtIndex:currentBatterPosition];
-    tb = [[opponentTeamDictionaryArray valueForKey:@"3B"]objectAtIndex:currentBatterPosition];
-    hr = [[opponentTeamDictionaryArray valueForKey:@"HR"]objectAtIndex:currentBatterPosition];
-    fc = [[opponentTeamDictionaryArray valueForKey:@"fielderschoice"]objectAtIndex:currentBatterPosition];
-    fe = [[opponentTeamDictionaryArray valueForKey:@"fieldingerror"]objectAtIndex:currentBatterPosition];
-    hp = [[opponentTeamDictionaryArray valueForKey:@"hitbypitch"]objectAtIndex:currentBatterPosition];
-    sf = [[opponentTeamDictionaryArray valueForKey:@"sacfly"]objectAtIndex:currentBatterPosition];
-    rb = [[opponentTeamDictionaryArray valueForKey:@"RBI"]objectAtIndex:currentBatterPosition];
-    ou = [[opponentTeamDictionaryArray valueForKey:@"out"]objectAtIndex:currentBatterPosition];
-    bt = [[opponentTeamDictionaryArray valueForKey:@"ballspitched"]objectAtIndex:currentBatterPosition];
-    st = [[opponentTeamDictionaryArray valueForKey:@"strikesthrown"]objectAtIndex:currentBatterPosition];
-    fn = [[opponentTeamDictionaryArray valueForKey:@"firstname"]objectAtIndex:currentBatterPosition];
-    ln = [[opponentTeamDictionaryArray valueForKey:@"lastname"]objectAtIndex:currentBatterPosition];
-    pn = [[opponentTeamDictionaryArray valueForKey:@"playernumber"]objectAtIndex:currentBatterPosition];
-    pb = [[opponentTeamDictionaryArray valueForKey:@"playerbat"]objectAtIndex:currentBatterPosition];
-    pt = [[opponentTeamDictionaryArray valueForKey:@"playerthrow"]objectAtIndex:currentBatterPosition];
-    pi = [[opponentTeamDictionaryArray valueForKey:@"pitcher"]objectAtIndex:currentBatterPosition];
-    wap = [[opponentTeamDictionaryArray valueForKey:@"ballspitched"]objectAtIndex:currentBatterPosition];
-    strp = [[opponentTeamDictionaryArray valueForKey:@"strikesthrown"]objectAtIndex:currentBatterPosition];
-    pc = [[opponentTeamDictionaryArray valueForKey:@"pitchingchart"]objectAtIndex:currentBatterPosition];
-    hc = [[opponentTeamDictionaryArray valueForKey:@"hittingchart"]objectAtIndex:currentBatterPosition];
+    fb = [[opponentTeamDictionaryArray valueForKey:@"1B"]objectAtIndex:batterPositionNumber];
+    sb = [[opponentTeamDictionaryArray valueForKey:@"2B"]objectAtIndex:batterPositionNumber];
+    tb = [[opponentTeamDictionaryArray valueForKey:@"3B"]objectAtIndex:batterPositionNumber];
+    hr = [[opponentTeamDictionaryArray valueForKey:@"HR"]objectAtIndex:batterPositionNumber];
+    fc = [[opponentTeamDictionaryArray valueForKey:@"fielderschoice"]objectAtIndex:batterPositionNumber];
+    fe = [[opponentTeamDictionaryArray valueForKey:@"fieldingerror"]objectAtIndex:batterPositionNumber];
+    hp = [[opponentTeamDictionaryArray valueForKey:@"hitbypitch"]objectAtIndex:batterPositionNumber];
+    sf = [[opponentTeamDictionaryArray valueForKey:@"sacfly"]objectAtIndex:batterPositionNumber];
+    rb = [[opponentTeamDictionaryArray valueForKey:@"RBI"]objectAtIndex:batterPositionNumber];
+    ou = [[opponentTeamDictionaryArray valueForKey:@"out"]objectAtIndex:batterPositionNumber];
+    bt = [[opponentTeamDictionaryArray valueForKey:@"ballspitched"]objectAtIndex:batterPositionNumber];
+    st = [[opponentTeamDictionaryArray valueForKey:@"strikesthrown"]objectAtIndex:batterPositionNumber];
+    fn = [[opponentTeamDictionaryArray valueForKey:@"firstname"]objectAtIndex:batterPositionNumber];
+    ln = [[opponentTeamDictionaryArray valueForKey:@"lastname"]objectAtIndex:batterPositionNumber];
+    pn = [[opponentTeamDictionaryArray valueForKey:@"playernumber"]objectAtIndex:batterPositionNumber];
+    pb = [[opponentTeamDictionaryArray valueForKey:@"playerbat"]objectAtIndex:batterPositionNumber];
+    pt = [[opponentTeamDictionaryArray valueForKey:@"playerthrow"]objectAtIndex:batterPositionNumber];
+    pi = [[opponentTeamDictionaryArray valueForKey:@"pitcher"]objectAtIndex:batterPositionNumber];
+    wap = [[opponentTeamDictionaryArray valueForKey:@"ballspitched"]objectAtIndex:batterPositionNumber];
+    strp = [[opponentTeamDictionaryArray valueForKey:@"strikesthrown"]objectAtIndex:batterPositionNumber];
+    pc = [[opponentTeamDictionaryArray valueForKey:@"pitchingchart"]objectAtIndex:batterPositionNumber];
+    hc = [[opponentTeamDictionaryArray valueForKey:@"hittingchart"]objectAtIndex:batterPositionNumber];
     
     NSLog(@"end of loadOpponentTeamDictionaryArray: %@",opponentTeamDictionaryArray);
     
@@ -461,28 +464,28 @@
 - (void)loadMyTeamDictionaryArray{
     
         //load
-    fb = [[myTeamDictionaryArray valueForKey:@"1B"]objectAtIndex:currentBatterPosition];
-    sb = [[myTeamDictionaryArray valueForKey:@"2B"]objectAtIndex:currentBatterPosition];
-    tb = [[myTeamDictionaryArray valueForKey:@"3B"]objectAtIndex:currentBatterPosition];
-    hr = [[myTeamDictionaryArray valueForKey:@"HR"]objectAtIndex:currentBatterPosition];
-    fc = [[myTeamDictionaryArray valueForKey:@"fielderschoice"]objectAtIndex:currentBatterPosition];
-    fe = [[myTeamDictionaryArray valueForKey:@"fieldingerror"]objectAtIndex:currentBatterPosition];
-    hp = [[myTeamDictionaryArray valueForKey:@"hitbypitch"]objectAtIndex:currentBatterPosition];
-    sf = [[myTeamDictionaryArray valueForKey:@"sacfly"]objectAtIndex:currentBatterPosition];
-    rb = [[myTeamDictionaryArray valueForKey:@"RBI"]objectAtIndex:currentBatterPosition];
-    ou = [[myTeamDictionaryArray valueForKey:@"out"]objectAtIndex:currentBatterPosition];
-    bt = [[myTeamDictionaryArray valueForKey:@"ballspitched"]objectAtIndex:currentBatterPosition];
-    st = [[myTeamDictionaryArray valueForKey:@"strikesthrown"]objectAtIndex:currentBatterPosition];
-    fn = [[myTeamDictionaryArray valueForKey:@"firstname"]objectAtIndex:currentBatterPosition];
-    ln = [[myTeamDictionaryArray valueForKey:@"lastname"]objectAtIndex:currentBatterPosition];
-    pn = [[myTeamDictionaryArray valueForKey:@"playernumber"]objectAtIndex:currentBatterPosition];
-    pb = [[myTeamDictionaryArray valueForKey:@"playerbat"]objectAtIndex:currentBatterPosition];
-    pt = [[myTeamDictionaryArray valueForKey:@"playerthrow"]objectAtIndex:currentBatterPosition];
-    pi = [[myTeamDictionaryArray valueForKey:@"pitcher"]objectAtIndex:currentBatterPosition];
-    wap = [[myTeamDictionaryArray valueForKey:@"ballspitched"]objectAtIndex:currentBatterPosition];
-    strp = [[myTeamDictionaryArray valueForKey:@"strikesthrown"]objectAtIndex:currentBatterPosition];
-    pc = [[myTeamDictionaryArray valueForKey:@"pitchingchart"]objectAtIndex:currentBatterPosition];
-    hc = [[myTeamDictionaryArray valueForKey:@"hittingchart"]objectAtIndex:currentBatterPosition];
+    fb = [[myTeamDictionaryArray valueForKey:@"1B"]objectAtIndex:batterPositionNumber];
+    sb = [[myTeamDictionaryArray valueForKey:@"2B"]objectAtIndex:batterPositionNumber];
+    tb = [[myTeamDictionaryArray valueForKey:@"3B"]objectAtIndex:batterPositionNumber];
+    hr = [[myTeamDictionaryArray valueForKey:@"HR"]objectAtIndex:batterPositionNumber];
+    fc = [[myTeamDictionaryArray valueForKey:@"fielderschoice"]objectAtIndex:batterPositionNumber];
+    fe = [[myTeamDictionaryArray valueForKey:@"fieldingerror"]objectAtIndex:batterPositionNumber];
+    hp = [[myTeamDictionaryArray valueForKey:@"hitbypitch"]objectAtIndex:batterPositionNumber];
+    sf = [[myTeamDictionaryArray valueForKey:@"sacfly"]objectAtIndex:batterPositionNumber];
+    rb = [[myTeamDictionaryArray valueForKey:@"RBI"]objectAtIndex:batterPositionNumber];
+    ou = [[myTeamDictionaryArray valueForKey:@"out"]objectAtIndex:batterPositionNumber];
+    bt = [[myTeamDictionaryArray valueForKey:@"ballspitched"]objectAtIndex:batterPositionNumber];
+    st = [[myTeamDictionaryArray valueForKey:@"strikesthrown"]objectAtIndex:batterPositionNumber];
+    fn = [[myTeamDictionaryArray valueForKey:@"firstname"]objectAtIndex:batterPositionNumber];
+    ln = [[myTeamDictionaryArray valueForKey:@"lastname"]objectAtIndex:batterPositionNumber];
+    pn = [[myTeamDictionaryArray valueForKey:@"playernumber"]objectAtIndex:batterPositionNumber];
+    pb = [[myTeamDictionaryArray valueForKey:@"playerbat"]objectAtIndex:batterPositionNumber];
+    pt = [[myTeamDictionaryArray valueForKey:@"playerthrow"]objectAtIndex:batterPositionNumber];
+    pi = [[myTeamDictionaryArray valueForKey:@"pitcher"]objectAtIndex:batterPositionNumber];
+    wap = [[myTeamDictionaryArray valueForKey:@"ballspitched"]objectAtIndex:batterPositionNumber];
+    strp = [[myTeamDictionaryArray valueForKey:@"strikesthrown"]objectAtIndex:batterPositionNumber];
+    pc = [[myTeamDictionaryArray valueForKey:@"pitchingchart"]objectAtIndex:batterPositionNumber];
+    hc = [[myTeamDictionaryArray valueForKey:@"hittingchart"]objectAtIndex:batterPositionNumber];
     
     NSLog(@"end of loadMyTeamDictionaryArray: %@",myTeamDictionaryArray);
     
@@ -497,7 +500,7 @@
             if (batting) {
                 NSLog(@"I'm batting");
                 if (hitLocation !=nil) {
-                    loadedMyHitLocationMutableArray = [[myTeamDictionaryArray valueForKey:@"hittingchart"]objectAtIndex:currentBatterPosition];
+                    loadedMyHitLocationMutableArray = [[myTeamDictionaryArray valueForKey:@"hittingchart"]objectAtIndex:batterPositionNumber];
                     NSLog(@"loadedMyHitLocationMutableArray %@",loadedMyHitLocationMutableArray);
                     
                     [loadedMyHitLocationMutableArray addObject:hitLocation ];
@@ -508,7 +511,7 @@
             }else{
                 NSLog(@"I'm NOT batting");
                 if (hitLocation !=nil) {
-                    loadedOpponentHitLocationMutableArray = [[opponentTeamDictionaryArray valueForKey:@"hittingchart"]objectAtIndex:currentBatterPosition];
+                    loadedOpponentHitLocationMutableArray = [[opponentTeamDictionaryArray valueForKey:@"hittingchart"]objectAtIndex:batterPositionNumber];
                     
                     [loadedOpponentHitLocationMutableArray addObject:hitLocation ];
                     
@@ -516,7 +519,7 @@
                     
                     [self setTempDict];
                     
-                    [opponentTeamDictionaryArray replaceObjectAtIndex:currentBatterPosition withObject:tempdict];
+                    [opponentTeamDictionaryArray replaceObjectAtIndex:batterPositionNumber withObject:tempdict];
                     
                     [self saveUpdatedOpponentTeamInfo];
                     
@@ -606,14 +609,14 @@
     NSLog(@"getHittingChart");
     NSArray *myArray;
     if (batting) {
-        if ([[myTeamDictionaryArray valueForKey:@"hittingchart"]objectAtIndex:currentBatterPosition] == nil) {
-            myArray = [[myTeamDictionaryArray valueForKey:@"hittingchart"]objectAtIndex:currentBatterPosition];
+        if ([[myTeamDictionaryArray valueForKey:@"hittingchart"]objectAtIndex:batterPositionNumber] != nil) {
+            myArray = [[myTeamDictionaryArray valueForKey:@"hittingchart"]objectAtIndex:batterPositionNumber];
             
         }
         
     }else{
-        if ([[opponentTeamDictionaryArray valueForKey:@"hittingchart"]objectAtIndex:currentBatterPosition] == nil) {
-            myArray = [[opponentTeamDictionaryArray valueForKey:@"hittingchart"]objectAtIndex:currentBatterPosition];
+        if ([[opponentTeamDictionaryArray valueForKey:@"hittingchart"]objectAtIndex:batterPositionNumber] !=nil) {
+            myArray = [[opponentTeamDictionaryArray valueForKey:@"hittingchart"]objectAtIndex:batterPositionNumber];
             
         }
     }
