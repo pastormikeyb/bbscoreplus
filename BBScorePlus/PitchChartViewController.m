@@ -16,7 +16,7 @@
     NSString *loadedCurrentOuts,*loadedPitchCount, *opponentTeamName;
     int batterPositionNumber,receivedBatterPositionNumber, nextBatterPositionNumber, inningNumber;
     int loadedBalls,loadedStrikes,loadedOuts,loadedPC;
-    int singleHit,doubleHit,tripleHit,homeRun,fieldersChoice,fieldingError,hitByPitch,sacFly;
+    int singleHit,doubleHit,tripleHit,homeRun,fieldersChoice,fieldingError,hitByPitch,sacFly, myRBI, opponentRBI;
     int myOut, opponentOut, myBallThrown,myStrikeThrown,opponentBallThrown,opponentStrikeThrown;
     int loadedMyTeamPos,loadedOppPos,loadedTemp;
     int currentInning,myTeamCount,opponentTeamCount;
@@ -81,10 +81,13 @@
     
     if (amIBatting){
         batterPositionNumber = [[boxScoreDictionary valueForKey:@"myteambattingpositionnumber"]intValue];
-            //set currentpitchcount to opponent pitcher balls + strikes
+            //opponentpitcher
+        _currentPitcherLabel.text = [[opponentTeamDictionaryArray valueForKey:@"lastname"]objectAtIndex:opponentPitcherIndex];
         
     }else{
         batterPositionNumber = [[boxScoreDictionary valueForKey:@"opponentbattingpositionnumber"]intValue];
+        _currentPitcherLabel.text = [[myTeamDictionaryArray valueForKey:@"lastname"]objectAtIndex:myPitcherIndex];
+
         
     }
     
@@ -778,6 +781,7 @@
                 if (isHomeTeam) {
                         homeRuns--;
                         NSLog(@"homeRuns: %i",homeRuns);
+                    
                     }
                     else{
                         

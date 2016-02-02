@@ -1861,13 +1861,29 @@
                                     <action selector="onClick:" destination="LXJ-sa-BNu" eventType="touchUpInside" id="tMt-xs-exE"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Runs" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="100" translatesAutoresizingMaskIntoConstraints="NO" id="uOC-Ap-Z2R">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Pitcher:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="10j-k3-ocu">
+                                <rect key="frame" x="10" y="130" width="93" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="4Yy-Ir-nUf"/>
+                                    <constraint firstAttribute="width" constant="93" id="Tg1-S4-ePJ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="LastName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aDy-8v-mG5">
+                                <rect key="frame" x="106" y="133" width="59" height="21"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RBI" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="100" translatesAutoresizingMaskIntoConstraints="NO" id="uOC-Ap-Z2R">
                                 <rect key="frame" x="475" y="217" width="39" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="39" id="edL-Ip-CHu"/>
                                     <constraint firstAttribute="height" constant="21" id="njN-9R-VZL"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -1878,6 +1894,7 @@
                             <constraint firstItem="9dw-te-1Jq" firstAttribute="baseline" secondItem="yJm-pq-LvZ" secondAttribute="baseline" id="2Bp-Ow-0Oi"/>
                             <constraint firstItem="4jz-Ob-H7g" firstAttribute="top" secondItem="WyV-S4-2tc" secondAttribute="bottom" constant="8" symbolic="YES" id="3Dm-N5-yIe"/>
                             <constraint firstItem="dJ2-v5-Aee" firstAttribute="top" secondItem="kVT-Hu-jeZ" secondAttribute="top" constant="67" id="3Oi-5i-O5j"/>
+                            <constraint firstItem="aDy-8v-mG5" firstAttribute="leading" secondItem="10j-k3-ocu" secondAttribute="trailing" constant="3" id="3eO-eu-Jwj"/>
                             <constraint firstItem="FiB-BQ-bEU" firstAttribute="top" secondItem="ekq-vW-CIV" secondAttribute="top" id="3h7-Aj-sJ7"/>
                             <constraint firstItem="PFz-K3-hdy" firstAttribute="trailing" secondItem="dJ2-v5-Aee" secondAttribute="trailing" id="3pI-ck-6ay"/>
                             <constraint firstItem="4jz-Ob-H7g" firstAttribute="leading" secondItem="kVT-Hu-jeZ" secondAttribute="leadingMargin" constant="-2" id="40G-mu-zKR"/>
@@ -1886,8 +1903,8 @@
                             <constraint firstItem="ioR-HK-FWy" firstAttribute="top" secondItem="vod-KY-2bv" secondAttribute="top" id="7I9-aH-s2a"/>
                             <constraint firstItem="nGg-0q-AzS" firstAttribute="top" secondItem="7Ce-pL-Tfg" secondAttribute="bottom" constant="2" id="8mY-Fd-Uuh"/>
                             <constraint firstItem="4Vy-0T-fg3" firstAttribute="top" secondItem="uOC-Ap-Z2R" secondAttribute="bottom" constant="5" id="9EQ-xU-kUB"/>
-                            <constraint firstItem="uOC-Ap-Z2R" firstAttribute="leading" secondItem="Enh-3e-E9r" secondAttribute="trailing" constant="50" id="9jb-iW-wFu"/>
                             <constraint firstItem="4Vy-0T-fg3" firstAttribute="top" secondItem="hfv-Ff-EBu" secondAttribute="bottom" constant="30" id="9mZ-mW-NNt"/>
+                            <constraint firstItem="10j-k3-ocu" firstAttribute="top" secondItem="CR5-tO-NpU" secondAttribute="bottom" constant="8" id="9rl-Fg-9hh"/>
                             <constraint firstItem="BlE-5r-zEw" firstAttribute="top" secondItem="rY9-XH-1EF" secondAttribute="top" id="At2-kF-skN"/>
                             <constraint firstItem="Enh-3e-E9r" firstAttribute="leading" secondItem="fJs-JC-IaC" secondAttribute="trailing" constant="8" symbolic="YES" id="BZK-U4-bfv"/>
                             <constraint firstItem="Qns-s3-XEK" firstAttribute="leading" secondItem="dJ2-v5-Aee" secondAttribute="leading" id="Bhr-BD-AOF"/>
@@ -1908,7 +1925,8 @@
                             <constraint firstItem="tLz-29-tJQ" firstAttribute="leading" secondItem="pPA-YX-DFt" secondAttribute="trailing" constant="26" id="LFP-1y-hx5"/>
                             <constraint firstItem="Wn5-Ub-F58" firstAttribute="leading" secondItem="BlE-5r-zEw" secondAttribute="leading" id="LPP-GJ-TZb"/>
                             <constraint firstItem="7Ce-pL-Tfg" firstAttribute="trailing" secondItem="nGg-0q-AzS" secondAttribute="trailing" id="LhA-Ra-B0v"/>
-                            <constraint firstItem="uOC-Ap-Z2R" firstAttribute="leading" secondItem="Enh-3e-E9r" secondAttribute="trailing" constant="51" id="Lun-AL-6Vu"/>
+                            <constraint firstItem="aDy-8v-mG5" firstAttribute="top" secondItem="BlE-5r-zEw" secondAttribute="bottom" constant="60" id="Lqg-TQ-6ec"/>
+                            <constraint firstItem="uOC-Ap-Z2R" firstAttribute="leading" secondItem="Enh-3e-E9r" secondAttribute="trailing" constant="50" id="Lun-AL-6Vu"/>
                             <constraint firstItem="Lr3-0Z-RwP" firstAttribute="leading" secondItem="rY9-XH-1EF" secondAttribute="leading" id="Lyq-tk-UcA"/>
                             <constraint firstItem="Enh-3e-E9r" firstAttribute="top" secondItem="FiB-BQ-bEU" secondAttribute="top" id="M9o-38-Bva"/>
                             <constraint firstItem="UZ9-Sb-enC" firstAttribute="top" secondItem="Enh-3e-E9r" secondAttribute="bottom" constant="7" id="MBU-MW-4KA"/>
@@ -1925,10 +1943,12 @@
                             <constraint firstItem="nGg-0q-AzS" firstAttribute="leading" secondItem="kVT-Hu-jeZ" secondAttribute="leadingMargin" constant="-10" id="Sak-2i-dIA"/>
                             <constraint firstItem="hfv-Ff-EBu" firstAttribute="leading" secondItem="DGh-9I-t41" secondAttribute="trailing" constant="22" id="SuM-ld-S5I"/>
                             <constraint firstItem="KAl-K0-3CX" firstAttribute="leading" secondItem="Enh-3e-E9r" secondAttribute="trailing" constant="8" id="T1U-lA-NNL"/>
+                            <constraint firstItem="10j-k3-ocu" firstAttribute="leading" secondItem="kVT-Hu-jeZ" secondAttribute="leadingMargin" constant="-10" id="TQE-C6-KZH"/>
                             <constraint firstItem="4Vy-0T-fg3" firstAttribute="leading" secondItem="KAl-K0-3CX" secondAttribute="trailing" constant="22" id="TRz-02-FaU"/>
                             <constraint firstItem="pPA-YX-DFt" firstAttribute="leading" secondItem="kVT-Hu-jeZ" secondAttribute="leadingMargin" id="Tfy-FE-C8E"/>
                             <constraint firstItem="Enh-3e-E9r" firstAttribute="top" secondItem="WyV-S4-2tc" secondAttribute="bottom" constant="8" id="Uk7-QN-9rj"/>
                             <constraint firstItem="yJm-pq-LvZ" firstAttribute="leading" secondItem="9dw-te-1Jq" secondAttribute="trailing" constant="17" id="VHY-ro-rsX"/>
+                            <constraint firstItem="aDy-8v-mG5" firstAttribute="leading" secondItem="10j-k3-ocu" secondAttribute="trailing" constant="3" id="VaE-Jd-dqU"/>
                             <constraint firstItem="7Ce-pL-Tfg" firstAttribute="baseline" secondItem="Lr3-0Z-RwP" secondAttribute="baseline" id="Vof-Tn-vmH"/>
                             <constraint firstItem="EO4-Rz-dah" firstAttribute="leading" secondItem="pPA-YX-DFt" secondAttribute="leading" id="WS2-ri-NyK"/>
                             <constraint firstAttribute="trailingMargin" secondItem="iLQ-AA-TqX" secondAttribute="trailing" constant="56" id="Wo5-KV-vR6"/>
@@ -1993,6 +2013,7 @@
                         <outlet property="currentBatterLabel" destination="dJ2-v5-Aee" id="1Qr-AF-4C6"/>
                         <outlet property="currentOutLabel" destination="Lr3-0Z-RwP" id="cwu-rP-4Vk"/>
                         <outlet property="currentPitchCountLabel" destination="CR5-tO-NpU" id="ssx-I0-Qu1"/>
+                        <outlet property="currentPitcherLabel" destination="aDy-8v-mG5" id="Uv6-Kq-mrF"/>
                         <outlet property="currentPlayerNumberLabel" destination="yJm-pq-LvZ" id="c0J-yC-oaz"/>
                         <outlet property="currentStrikeLabel" destination="rY9-XH-1EF" id="tEt-Gf-YhS"/>
                         <outlet property="homeRunsLabel" destination="fJs-JC-IaC" id="m2X-Ma-A4U"/>

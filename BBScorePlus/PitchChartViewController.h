@@ -48,6 +48,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *alertLabel;
 @property (weak, nonatomic) IBOutlet UILabel *homeRunsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *visitorRunsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *currentPitcherLabel;
 
 - (IBAction)stepper:(id)sender;
 
