@@ -1047,9 +1047,13 @@
     if ([[segue identifier] isEqualToString:@"hcSegue"])
         
     { HittingChartViewController *vc = [segue destinationViewController];
+        isGameStarted = YES;
         vc.didHit = didHit;
         NSLog(@"batterPositionNumber: %i",batterPositionNumber);
         vc.batterPositionNumber = batterPositionNumber-1;
+        vc.batting = isMyTeamBatting;
+        vc.isTopOfInning = isTopOfInning;
+        vc.isGameStarted = isGameStarted;
     }
 }
 

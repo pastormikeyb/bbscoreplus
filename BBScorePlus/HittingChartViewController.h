@@ -34,6 +34,10 @@
 @property (nonatomic, strong)NSMutableArray *arrayOfDictionariesMutableArray;
 @property (nonatomic, assign)BOOL isMyTeamBatting;
 @property (nonatomic, assign)BOOL didHit;
+@property (nonatomic, assign)BOOL batting;
+@property (nonatomic, assign)BOOL isTopOfInning;
+@property (nonatomic, assign)BOOL isGameStarted;
+
 @property (nonatomic, assign)int batterPositionNumber;
 
 @property (weak, nonatomic) IBOutlet UIButton *onClick;

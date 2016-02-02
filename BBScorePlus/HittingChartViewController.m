@@ -23,40 +23,42 @@
 @end
 
 @implementation HittingChartViewController
-@synthesize currentHitter, currentHitterLabel, pitcherPitchCountDictionary, arrayOfDictionariesMutableArray, homeRunsLabel, homeHitsLabel, homeErrorLabel, visitorRunsLabel,visitorHitsLabel,visitorErrorLabel, isMyTeamBatting, currentInningLabel,didHit,batterPositionNumber;
+@synthesize currentHitter, currentHitterLabel, pitcherPitchCountDictionary, arrayOfDictionariesMutableArray, homeRunsLabel, homeHitsLabel, homeErrorLabel, visitorRunsLabel,visitorHitsLabel,visitorErrorLabel, isMyTeamBatting, currentInningLabel,didHit,batterPositionNumber,batting,isTopOfInning,isGameStarted;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSLog(@"START of viewDidLoad");
     NSLog(@"batterposition:\n%d",batterPositionNumber);
+    NSLog(@"batting?:\n%d",batting);
+    [self LoadBoxScore];
     
     if (batterPositionNumber <0) {
         batterPositionNumber = 0;
     }
-
+    
     [self LoadMyTeam];
     [self LoadOpponentTeam];
     
-        [self LoadBoxScore];
+    [self LoadBoxScore];
     
-        if (batterPositionNumber < 0) {
+    if (batterPositionNumber < 0) {
+        batterPositionNumber = 0;
+    }
+    if (batting) {
+        if (batterPositionNumber >= myTeamDictionaryArray.count) {
             batterPositionNumber = 0;
         }
-        if (batting) {
-            if (batterPositionNumber >= myTeamDictionaryArray.count) {
-                batterPositionNumber = 0;
-            }
-        }else if (batterPositionNumber >= opponentTeamDictionaryArray.count){
-            batterPositionNumber = 0;
+    }else if (batterPositionNumber >= opponentTeamDictionaryArray.count){
+        batterPositionNumber = 0;
         
     }else{
             //alert
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"File missing."
-//                                                        message:@"Please (re)save game setup."
-//                                                       delegate:self
-//                                              cancelButtonTitle:@"OK"
-//                                              otherButtonTitles:nil];
-//        [alert show];
+            //        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"File missing."
+            //                                                        message:@"Please (re)save game setup."
+            //                                                       delegate:self
+            //                                              cancelButtonTitle:@"OK"
+            //                                              otherButtonTitles:nil];
+            //        [alert show];
         
     }
     
@@ -102,9 +104,12 @@
             currentHitterLabel.text = [[opponentTeamDictionaryArray valueForKey:@"lastname"]objectAtIndex:batterPositionNumber];
             NSLog(@"current batter: %@",[[opponentTeamDictionaryArray valueForKey:@"lastname"]objectAtIndex:batterPositionNumber]);
             
-            [self getHittingChart];
-            
         }
+        
+        if (isGameStarted) {
+            [self  getHittingChart];
+        }
+        
         if (isTopOfInning) {
             _topOfInningLabel.text = @"TOP";
             
@@ -133,6 +138,21 @@
         [alert show];
         
     }
+    /*
+     if (!isGameStarted) {
+     homeRunsLabel.text = @"0";
+     homeHitsLabel.text = @"0";
+     homeErrorLabel.text = @"0";
+     visitorRunsLabel.text = @"0";
+     visitorHitsLabel.text = @"0";
+     visitorErrorLabel.text = @"0";
+     currentInningLabel.text = @"";
+     _topOfInningLabel.text = @"NA";
+     currentHitterLabel.text = @"Get Ready";
+     
+     
+     }
+     */
 }
 
 
@@ -212,13 +232,13 @@
     boxScoreDictionary = [NSDictionary dictionaryWithContentsOfFile:filePath];
     
         //load variables
-    
-    NSNumber *b = [boxScoreDictionary valueForKey:@"amibatting"];
-    batting = [b boolValue];
-    
-//    batting = [boxScoreDictionary valueForKey:@"amibatting"];
-    
-    isTopOfInning = [[boxScoreDictionary valueForKey:@"istopofinning"]boolValue];
+    if (!isGameStarted) {
+        
+        batting = [[boxScoreDictionary valueForKey:@"amibatting"]boolValue];
+        
+        isTopOfInning = [[boxScoreDictionary valueForKey:@"istopofinning"]boolValue];
+        
+    }
     
     currentPitchCount = [[boxScoreDictionary valueForKey:@"pitchcount"]intValue];
     
@@ -252,23 +272,26 @@
     
     currentInningLabel.text = [NSString stringWithFormat:@"%i",inningNumber];
     
-//    if (batting) {
-//        batterPositionNumber = [[boxScoreDictionary valueForKey:@"myteambattingpositionnumber"]intValue]-1;
-//        if (batterPositionNumber < 0) {
-//            batterPositionNumber = 0;
-//        }
-//        NSLog(@"I am batting.  batterPositionNumber %i",batterPositionNumber);
-//        
-//        loadedMyHitLocationMutableArray = [[myTeamDictionaryArray valueForKey:@"hittingchart"]objectAtIndex:batterPositionNumber];
-//        if (batterPositionNumber < 0) {
-//            batterPositionNumber = 0;
-//        }
-//        NSLog(@"loadedMyHitLocationArray %@",loadedMyHitLocationMutableArray);
-//    }else{
-//        batterPositionNumber = [[boxScoreDictionary valueForKey:@"opponentbattingpositionnumber"]intValue]-1;
-//        NSLog(@"I am NOT batting.  batterPositionNumber %i",batterPositionNumber);
-//        
-//    }
+    if (!isGameStarted) {
+        
+        
+        if (batting) {
+            batterPositionNumber = [[boxScoreDictionary valueForKey:@"myteambattingpositionnumber"]intValue];
+            if (batterPositionNumber < 0) {
+                batterPositionNumber = 0;
+            }
+            NSLog(@"I am batting.  batterPositionNumber %i",batterPositionNumber);
+            
+            if (batterPositionNumber < 0) {
+                batterPositionNumber = 0;
+            }
+            NSLog(@"loadedMyHitLocationArray %@",loadedMyHitLocationMutableArray);
+        }else{
+            batterPositionNumber = [[boxScoreDictionary valueForKey:@"opponentbattingpositionnumber"]intValue];
+            NSLog(@"I am NOT batting.  batterPositionNumber %i",batterPositionNumber);
+            
+        }
+    }
     NSLog(@"LoadBoxScore finished");
     
 }
