@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -792,7 +792,7 @@
                                     <segue destination="G0O-to-dID" kind="show" id="tjZ-dd-3tI"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoDark" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vAu-bP-tU0">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoDark" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vAu-bP-tU0">
                                 <rect key="frame" x="558" y="558" width="22" height="22"/>
                                 <color key="tintColor" red="0.71372549019999998" green="0.61176470589999998" blue="0.42745098040000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal">
@@ -816,6 +816,7 @@
                             <constraint firstItem="x5z-T7-pMA" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="235" id="mue-57-7Hk"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Main Menu" id="mGx-1e-rXV"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -1020,25 +1021,13 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dev-eo-p8Z">
-                                <rect key="frame" x="16" y="550" width="97" height="30"/>
-                                <color key="backgroundColor" red="0.71372549019999998" green="0.61176470589999998" blue="0.42745098040000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                                <state key="normal" title="Game Stats">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <segue destination="mSL-QM-t47" kind="show" identifier="gameStatsSegue" id="oNc-Q0-XHd"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YoQ-P7-cse">
-                                <rect key="frame" x="511" y="550" width="69" height="30"/>
-                                <color key="backgroundColor" red="0.71372549019999998" green="0.61176470589999998" blue="0.42745098040000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YoQ-P7-cse">
+                                <rect key="frame" x="461" y="547" width="119" height="33"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="69" id="xVd-Vr-EIg"/>
+                                    <constraint firstAttribute="width" constant="119" id="6KZ-8x-gvP"/>
+                                    <constraint firstAttribute="height" constant="33" id="dH4-sf-aed"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                                <state key="normal" title="Pitching">
+                                <state key="normal" image="ButtonPitching">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
@@ -1070,19 +1059,30 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M8a-N3-nPO">
-                                <rect key="frame" x="254" y="550" width="92" height="30"/>
-                                <color key="backgroundColor" red="0.71372549019999998" green="0.61176470589999998" blue="0.42745098040000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M8a-N3-nPO">
+                                <rect key="frame" x="241" y="547" width="119" height="33"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="UC4-zz-oLw"/>
-                                    <constraint firstAttribute="width" constant="92" id="jFW-o2-BG1"/>
+                                    <constraint firstAttribute="width" constant="119" id="d1p-b1-AiT"/>
+                                    <constraint firstAttribute="height" constant="33" id="kzc-Dc-bfD"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                                <state key="normal" title="Main Menu">
+                                <state key="normal" image="ButtonMainMenu">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <segue destination="BYZ-38-t0r" kind="show" id="s4w-Nr-0tb"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dev-eo-p8Z">
+                                <rect key="frame" x="20" y="547" width="119" height="33"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="33" id="Wqv-sx-Kta"/>
+                                    <constraint firstAttribute="width" constant="119" id="irL-Zp-TNm"/>
+                                </constraints>
+                                <state key="normal" image="ButtonGameStats">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="mSL-QM-t47" kind="show" identifier="gameStatsSegue" id="oNc-Q0-XHd"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1093,6 +1093,8 @@
                             <constraint firstItem="kN3-Kh-nCj" firstAttribute="trailing" secondItem="bcM-dA-tbx" secondAttribute="trailing" id="1X3-iE-0LE"/>
                             <constraint firstItem="xKh-HV-hyZ" firstAttribute="centerX" secondItem="g6M-60-0KT" secondAttribute="centerX" constant="-8.5" id="2I7-zz-SMm"/>
                             <constraint firstItem="II2-lm-jpr" firstAttribute="centerX" secondItem="X6Z-Ni-CIc" secondAttribute="centerX" constant="6.5" id="2yq-z7-xvV"/>
+                            <constraint firstItem="pSE-zT-Sv6" firstAttribute="top" secondItem="M8a-N3-nPO" secondAttribute="bottom" constant="20" id="6U2-fu-6mQ"/>
+                            <constraint firstItem="dev-eo-p8Z" firstAttribute="leading" secondItem="Lyr-6e-F12" secondAttribute="leadingMargin" id="6qT-dT-WCl"/>
                             <constraint firstItem="g6M-60-0KT" firstAttribute="leading" secondItem="Lyr-6e-F12" secondAttribute="leadingMargin" constant="61" id="7KN-GX-RyA"/>
                             <constraint firstItem="Wzn-6M-qj6" firstAttribute="top" secondItem="5Wl-Bh-fik" secondAttribute="bottom" constant="2" id="858-dC-R2r"/>
                             <constraint firstItem="Wzn-6M-qj6" firstAttribute="leading" secondItem="kN3-Kh-nCj" secondAttribute="trailing" constant="17" id="8Nl-hT-wEc"/>
@@ -1118,47 +1120,40 @@
                             <constraint firstItem="wqL-y3-vg5" firstAttribute="leading" secondItem="5Wl-Bh-fik" secondAttribute="trailing" constant="2" id="RnY-jZ-B1b"/>
                             <constraint firstItem="g6M-60-0KT" firstAttribute="centerX" secondItem="5Wl-Bh-fik" secondAttribute="centerX" constant="-6.5" id="SZ9-IQ-QMp"/>
                             <constraint firstItem="LEJ-aq-CMQ" firstAttribute="trailing" secondItem="nMZ-DL-Kbl" secondAttribute="trailing" id="VpJ-XX-8HL"/>
-                            <constraint firstAttribute="bottom" secondItem="dev-eo-p8Z" secondAttribute="bottom" constant="20" symbolic="YES" id="W0q-lj-qm6"/>
                             <constraint firstItem="HVD-Xg-6pS" firstAttribute="leading" secondItem="g6M-60-0KT" secondAttribute="trailing" constant="10" id="YfX-A4-9al"/>
+                            <constraint firstItem="pSE-zT-Sv6" firstAttribute="top" secondItem="dev-eo-p8Z" secondAttribute="bottom" constant="20" id="YwA-9l-KKE"/>
                             <constraint firstItem="gVq-QV-KRW" firstAttribute="leading" secondItem="Wzn-6M-qj6" secondAttribute="trailing" constant="2" id="Z53-r6-WiP"/>
-                            <constraint firstItem="M8a-N3-nPO" firstAttribute="baseline" secondItem="dev-eo-p8Z" secondAttribute="firstBaseline" id="ZKB-gU-zZd"/>
+                            <constraint firstItem="M8a-N3-nPO" firstAttribute="centerX" secondItem="Lyr-6e-F12" secondAttribute="centerX" id="ZP3-eu-mOn"/>
+                            <constraint firstItem="pSE-zT-Sv6" firstAttribute="top" secondItem="YoQ-P7-cse" secondAttribute="bottom" constant="20" id="aFB-gb-L03"/>
                             <constraint firstItem="RGG-R8-Ec1" firstAttribute="centerX" secondItem="ESo-iF-2JA" secondAttribute="centerX" id="aVf-c5-XJB"/>
                             <constraint firstItem="5Wl-Bh-fik" firstAttribute="firstBaseline" secondItem="wqL-y3-vg5" secondAttribute="firstBaseline" id="akI-IP-VQQ"/>
-                            <constraint firstItem="dev-eo-p8Z" firstAttribute="leading" secondItem="Lyr-6e-F12" secondAttribute="leadingMargin" constant="-4" id="b2P-FG-RGz"/>
                             <constraint firstItem="nMZ-DL-Kbl" firstAttribute="top" secondItem="LEJ-aq-CMQ" secondAttribute="bottom" constant="20" id="bZX-6a-Tci"/>
                             <constraint firstItem="bcM-dA-tbx" firstAttribute="top" secondItem="xcO-eW-c00" secondAttribute="bottom" constant="120" id="cbL-5o-SoO"/>
                             <constraint firstItem="nMZ-DL-Kbl" firstAttribute="trailing" secondItem="Lyr-6e-F12" secondAttribute="trailingMargin" id="cs1-s3-NmM"/>
                             <constraint firstItem="nMZ-DL-Kbl" firstAttribute="baseline" secondItem="gVq-QV-KRW" secondAttribute="firstBaseline" constant="-2" id="dJ2-Z3-FIE"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="YoQ-P7-cse" secondAttribute="trailing" id="e14-MA-g6e"/>
                             <constraint firstItem="YeI-KB-NSL" firstAttribute="centerX" secondItem="Lyr-6e-F12" secondAttribute="centerX" id="e4r-P1-gMj"/>
                             <constraint firstItem="3X1-25-vcp" firstAttribute="leading" secondItem="HVD-Xg-6pS" secondAttribute="trailing" constant="12" id="f3M-hB-4sL"/>
-                            <constraint firstItem="M8a-N3-nPO" firstAttribute="firstBaseline" secondItem="YoQ-P7-cse" secondAttribute="baseline" id="fS0-rt-b5b"/>
                             <constraint firstItem="bcM-dA-tbx" firstAttribute="leading" secondItem="kN3-Kh-nCj" secondAttribute="leading" id="fUR-Dk-WdK"/>
                             <constraint firstItem="HVD-Xg-6pS" firstAttribute="baseline" secondItem="g6M-60-0KT" secondAttribute="baseline" id="fk6-V7-tmR"/>
                             <constraint firstItem="Wzn-6M-qj6" firstAttribute="centerX" secondItem="g6M-60-0KT" secondAttribute="centerX" constant="6.5" id="hU6-bj-XPX"/>
                             <constraint firstItem="nMZ-DL-Kbl" firstAttribute="baseline" secondItem="Wzn-6M-qj6" secondAttribute="firstBaseline" constant="-2" id="hZp-Up-sXg"/>
+                            <constraint firstItem="YoQ-P7-cse" firstAttribute="trailing" secondItem="Lyr-6e-F12" secondAttribute="trailingMargin" id="jUX-na-etF"/>
                             <constraint firstItem="wqL-y3-vg5" firstAttribute="firstBaseline" secondItem="3X1-25-vcp" secondAttribute="firstBaseline" id="jl2-lh-TMi"/>
                             <constraint firstItem="YeI-KB-NSL" firstAttribute="centerY" secondItem="Lyr-6e-F12" secondAttribute="centerY" id="kv5-Oh-k2x"/>
                             <constraint firstItem="II2-lm-jpr" firstAttribute="leading" secondItem="gVq-QV-KRW" secondAttribute="trailing" constant="3" id="ljY-se-c3z"/>
-                            <constraint firstItem="dev-eo-p8Z" firstAttribute="trailing" secondItem="g6M-60-0KT" secondAttribute="trailing" constant="21" id="mjP-23-ijI"/>
-                            <constraint firstItem="M8a-N3-nPO" firstAttribute="baseline" secondItem="YoQ-P7-cse" secondAttribute="baseline" id="mkW-iM-xTx"/>
                             <constraint firstItem="wqL-y3-vg5" firstAttribute="baseline" secondItem="3X1-25-vcp" secondAttribute="baseline" id="nJx-c0-x9f"/>
                             <constraint firstItem="II2-lm-jpr" firstAttribute="baseline" secondItem="gVq-QV-KRW" secondAttribute="baseline" id="nVM-my-5tp"/>
                             <constraint firstItem="LEJ-aq-CMQ" firstAttribute="baseline" secondItem="X6Z-Ni-CIc" secondAttribute="firstBaseline" id="npz-34-uqj"/>
                             <constraint firstItem="Wzn-6M-qj6" firstAttribute="baseline" secondItem="kN3-Kh-nCj" secondAttribute="baseline" id="oMH-H6-xfg"/>
-                            <constraint firstItem="M8a-N3-nPO" firstAttribute="centerX" secondItem="YeI-KB-NSL" secondAttribute="centerX" id="pha-jG-wwh"/>
                             <constraint firstItem="X6Z-Ni-CIc" firstAttribute="leading" secondItem="HVD-Xg-6pS" secondAttribute="trailing" constant="9" id="qak-EJ-rXD"/>
-                            <constraint firstItem="M8a-N3-nPO" firstAttribute="baseline" secondItem="YoQ-P7-cse" secondAttribute="firstBaseline" id="s8U-sk-9oH"/>
-                            <constraint firstItem="M8a-N3-nPO" firstAttribute="baseline" secondItem="dev-eo-p8Z" secondAttribute="baseline" id="soa-S8-LSC"/>
                             <constraint firstItem="LEJ-aq-CMQ" firstAttribute="top" secondItem="xcO-eW-c00" secondAttribute="bottom" constant="97" id="tHG-oY-C9i"/>
-                            <constraint firstItem="M8a-N3-nPO" firstAttribute="top" secondItem="YoQ-P7-cse" secondAttribute="top" id="tOF-Ea-Thr"/>
                             <constraint firstItem="gVq-QV-KRW" firstAttribute="centerX" secondItem="HVD-Xg-6pS" secondAttribute="centerX" constant="5.5" id="w49-g3-5UP"/>
                             <constraint firstItem="LEJ-aq-CMQ" firstAttribute="baseline" secondItem="HVD-Xg-6pS" secondAttribute="firstBaseline" id="wOU-3d-6yD"/>
-                            <constraint firstItem="pSE-zT-Sv6" firstAttribute="top" secondItem="YoQ-P7-cse" secondAttribute="bottom" constant="20" id="wjZ-N0-b2g"/>
                             <constraint firstItem="ESo-iF-2JA" firstAttribute="top" secondItem="kN3-Kh-nCj" secondAttribute="bottom" constant="17" id="xlk-dT-zPq"/>
                             <constraint firstItem="ESo-iF-2JA" firstAttribute="leading" secondItem="Lyr-6e-F12" secondAttribute="leadingMargin" id="xvx-Cm-5eD"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Hitting Chart" id="LnE-HH-qtR"/>
                     <connections>
                         <outlet property="currentHitterLabel" destination="nMZ-DL-Kbl" id="eNl-6g-Vnk"/>
                         <outlet property="currentInningLabel" destination="RGG-R8-Ec1" id="hH6-Po-TgL"/>
@@ -1675,7 +1670,7 @@
                                     <action selector="onClick:" destination="LXJ-sa-BNu" eventType="touchUpInside" id="Ior-ZA-bsa"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pPA-YX-DFt">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pPA-YX-DFt">
                                 <rect key="frame" x="20" y="552" width="40" height="40"/>
                                 <state key="normal" image="SingleButtonIcon">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1685,7 +1680,7 @@
                                     <segue destination="Msx-cC-FDy" kind="show" identifier="hcSegue" id="hBs-If-5Fo"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tLz-29-tJQ">
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tLz-29-tJQ">
                                 <rect key="frame" x="86" y="552" width="40" height="40"/>
                                 <state key="normal" image="DoubleButtonIcon">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1694,7 +1689,7 @@
                                     <action selector="onClick:" destination="LXJ-sa-BNu" eventType="touchUpInside" id="YAI-wJ-rzA"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Bd-Pc-rVj">
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Bd-Pc-rVj">
                                 <rect key="frame" x="152" y="552" width="40" height="40"/>
                                 <state key="normal" image="TripleButtonIcon">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1703,7 +1698,7 @@
                                     <action selector="onClick:" destination="LXJ-sa-BNu" eventType="touchUpInside" id="hj2-hu-kHa"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ftR-Zx-oj6">
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ftR-Zx-oj6">
                                 <rect key="frame" x="215" y="550" width="42" height="42"/>
                                 <state key="normal" image="HRButtonIcon">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1712,7 +1707,7 @@
                                     <action selector="onClick:" destination="LXJ-sa-BNu" eventType="touchUpInside" id="hGc-Bk-QLT"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u6h-cx-N2F">
+                            <button opaque="NO" tag="4" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u6h-cx-N2F">
                                 <rect key="frame" x="279" y="550" width="42" height="42"/>
                                 <state key="normal" image="FCButtonIcon">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1721,7 +1716,7 @@
                                     <action selector="onClick:" destination="LXJ-sa-BNu" eventType="touchUpInside" id="Kea-ne-CXT"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lc5-bm-ve3">
+                            <button opaque="NO" tag="5" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lc5-bm-ve3">
                                 <rect key="frame" x="343" y="550" width="42" height="42"/>
                                 <state key="normal" image="ErrorButtonIcon">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1730,7 +1725,7 @@
                                     <action selector="onClick:" destination="LXJ-sa-BNu" eventType="touchUpInside" id="Qrn-WU-Qvs"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FxB-pI-2Xc">
+                            <button opaque="NO" tag="6" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FxB-pI-2Xc">
                                 <rect key="frame" x="405" y="550" width="42" height="42"/>
                                 <state key="normal" image="OutButtonIcon">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1739,7 +1734,7 @@
                                     <action selector="onClick:" destination="LXJ-sa-BNu" eventType="touchUpInside" id="7dH-Mu-W0l"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ioR-HK-FWy">
+                            <button opaque="NO" tag="7" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ioR-HK-FWy">
                                 <rect key="frame" x="473" y="550" width="42" height="42"/>
                                 <state key="normal" image="HitByPitchButtonIcon">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1749,7 +1744,7 @@
                                     <segue destination="LXJ-sa-BNu" kind="showDetail" identifier="PitchChartSegue" animates="NO" action="showViewController:sender:" id="lM5-24-tWD"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vod-KY-2bv">
+                            <button opaque="NO" tag="8" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vod-KY-2bv">
                                 <rect key="frame" x="538" y="550" width="42" height="42"/>
                                 <state key="normal" image="SacButtonIcon">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1758,22 +1753,18 @@
                                     <action selector="onClick:" destination="LXJ-sa-BNu" eventType="touchUpInside" id="SOZ-ac-P5I"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jrn-7u-W4W">
+                            <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jrn-7u-W4W">
                                 <rect key="frame" x="175" y="286" width="119" height="33"/>
-                                <color key="backgroundColor" red="0.71372549019999998" green="0.61176470589999998" blue="0.42745098040000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
-                                <state key="normal" title="Start Game Timer">
+                                <state key="normal" image="ButtonStartGameTimer">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="onClick:" destination="LXJ-sa-BNu" eventType="touchUpInside" id="bPD-pE-mgl"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UZ9-Sb-enC">
-                                <rect key="frame" x="322" y="285" width="103" height="33"/>
-                                <color key="backgroundColor" red="0.71372549019999998" green="0.61176470589999998" blue="0.42745098040000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
-                                <state key="normal" title="Change Pitcher"/>
+                            <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UZ9-Sb-enC">
+                                <rect key="frame" x="306" y="286" width="119" height="33"/>
+                                <state key="normal" image="ButtonChangePitcher"/>
                                 <connections>
                                     <action selector="onClick:" destination="LXJ-sa-BNu" eventType="touchUpInside" id="Jjb-7r-cKb"/>
                                 </connections>
@@ -1787,10 +1778,9 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EO4-Rz-dah">
-                                <rect key="frame" x="20" y="248" width="99" height="30"/>
-                                <color key="backgroundColor" red="0.71372549019999998" green="0.61176470589999998" blue="0.42745098040000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Hitting History">
+                            <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EO4-Rz-dah">
+                                <rect key="frame" x="20" y="245" width="119" height="33"/>
+                                <state key="normal" image="ButtonHittingHistory">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
@@ -1953,7 +1943,7 @@
                             <constraint firstItem="uOC-Ap-Z2R" firstAttribute="leading" secondItem="Enh-3e-E9r" secondAttribute="trailing" constant="62" id="Lun-AL-6Vu"/>
                             <constraint firstItem="Lr3-0Z-RwP" firstAttribute="leading" secondItem="rY9-XH-1EF" secondAttribute="leading" id="Lyq-tk-UcA"/>
                             <constraint firstItem="Enh-3e-E9r" firstAttribute="top" secondItem="FiB-BQ-bEU" secondAttribute="top" id="M9o-38-Bva"/>
-                            <constraint firstItem="UZ9-Sb-enC" firstAttribute="top" secondItem="Enh-3e-E9r" secondAttribute="bottom" constant="7" id="MBU-MW-4KA"/>
+                            <constraint firstItem="UZ9-Sb-enC" firstAttribute="top" secondItem="Enh-3e-E9r" secondAttribute="bottom" constant="8" id="MBU-MW-4KA"/>
                             <constraint firstItem="tLz-29-tJQ" firstAttribute="top" secondItem="4Bd-Pc-rVj" secondAttribute="top" id="MoJ-Vt-K42"/>
                             <constraint firstItem="FiB-BQ-bEU" firstAttribute="bottom" secondItem="ekq-vW-CIV" secondAttribute="bottom" id="NcZ-6A-NE5"/>
                             <constraint firstItem="uOC-Ap-Z2R" firstAttribute="top" secondItem="hfv-Ff-EBu" secondAttribute="bottom" constant="37" id="OTn-E3-7LV"/>
@@ -1987,7 +1977,7 @@
                             <constraint firstItem="u6h-cx-N2F" firstAttribute="centerX" secondItem="kVT-Hu-jeZ" secondAttribute="centerX" id="ZxM-AH-2q6"/>
                             <constraint firstItem="0GY-1d-jt5" firstAttribute="top" secondItem="4Bd-Pc-rVj" secondAttribute="bottom" constant="8" id="aIF-T6-yJT"/>
                             <constraint firstItem="0GY-1d-jt5" firstAttribute="top" secondItem="tLz-29-tJQ" secondAttribute="bottom" constant="8" id="bFL-Wd-6M0"/>
-                            <constraint firstItem="UZ9-Sb-enC" firstAttribute="baseline" secondItem="jrn-7u-W4W" secondAttribute="baseline" constant="-1" id="bcw-Ao-bQP"/>
+                            <constraint firstItem="UZ9-Sb-enC" firstAttribute="baseline" secondItem="jrn-7u-W4W" secondAttribute="baseline" id="bcw-Ao-bQP"/>
                             <constraint firstItem="lc5-bm-ve3" firstAttribute="top" secondItem="FxB-pI-2Xc" secondAttribute="top" id="bej-Ip-7iZ"/>
                             <constraint firstItem="yJm-pq-LvZ" firstAttribute="top" secondItem="9dw-te-1Jq" secondAttribute="top" id="dRY-p9-AaA"/>
                             <constraint firstItem="0GY-1d-jt5" firstAttribute="top" secondItem="ftR-Zx-oj6" secondAttribute="bottom" constant="8" symbolic="YES" id="drU-Rv-ezx"/>
@@ -2033,6 +2023,7 @@
                             <constraint firstItem="2vh-Jo-4ao" firstAttribute="leading" secondItem="LLp-d3-f0Y" secondAttribute="trailing" constant="5" id="zzU-3G-Byr"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Pitching Chart" id="yHr-p2-l8E"/>
                     <connections>
                         <outlet property="alertLabel" destination="CjK-YB-QOf" id="CgU-b2-3AY"/>
                         <outlet property="currentBallsLabel" destination="ekq-vW-CIV" id="ho3-Pc-458"/>
@@ -2308,8 +2299,14 @@
         <image name="BBDiamondMasterx250w" width="246" height="250"/>
         <image name="BatterSprayRight" width="600" height="600"/>
         <image name="ButtonBall" width="60" height="35"/>
+        <image name="ButtonChangePitcher" width="119" height="33"/>
+        <image name="ButtonGameStats" width="119" height="33"/>
+        <image name="ButtonHittingHistory" width="119" height="33"/>
+        <image name="ButtonMainMenu" width="119" height="33"/>
         <image name="ButtonMinus" width="60" height="35"/>
+        <image name="ButtonPitching" width="119" height="33"/>
         <image name="ButtonPlus" width="60" height="35"/>
+        <image name="ButtonStartGameTimer" width="119" height="33"/>
         <image name="ButtonStrike" width="60" height="35"/>
         <image name="DoubleButtonIcon" width="40" height="40"/>
         <image name="ErrorButtonIcon" width="42" height="42"/>
@@ -2326,9 +2323,9 @@
         <image name="rules-book" width="26" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="4q7-Z9-aFL"/>
+        <segue reference="tjZ-dd-3tI"/>
         <segue reference="s4w-Nr-0tb"/>
-        <segue reference="hBs-If-5Fo"/>
+        <segue reference="UaH-qw-Czn"/>
         <segue reference="cIb-qi-1Qk"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
