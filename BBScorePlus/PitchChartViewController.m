@@ -70,6 +70,11 @@
         [self setCurrentPitchCount];
 
     }
+    NSLog(@"gametimelimit: %i",gameTimeLimit);
+    if (gameTimeLimit <= 0) {
+            //Gray out the Start Game Timer button
+        _gameTimerButton.enabled = NO;
+    _gameTimerButton.alpha = 0.5;}
         //set app main variables
     
     loadedMyTeamCurrentBatter = [[boxScoreDictionary valueForKey:@"myteambattingpositionnumber"]intValue];

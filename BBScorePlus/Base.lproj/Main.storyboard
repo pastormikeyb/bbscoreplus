@@ -2016,6 +2016,7 @@
                         <outlet property="currentPitcherLabel" destination="aDy-8v-mG5" id="Uv6-Kq-mrF"/>
                         <outlet property="currentPlayerNumberLabel" destination="yJm-pq-LvZ" id="c0J-yC-oaz"/>
                         <outlet property="currentStrikeLabel" destination="rY9-XH-1EF" id="tEt-Gf-YhS"/>
+                        <outlet property="gameTimerButton" destination="jrn-7u-W4W" id="Shw-rj-tqG"/>
                         <outlet property="homeRunsLabel" destination="fJs-JC-IaC" id="m2X-Ma-A4U"/>
                         <outlet property="visitorRunsLabel" destination="FiB-BQ-bEU" id="qZE-Xi-KyG"/>
                     </connections>
