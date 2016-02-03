@@ -50,6 +50,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *visitorRunsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *currentPitcherLabel;
 @property (weak, nonatomic) IBOutlet UIButton *gameTimerButton;
+@property (weak, nonatomic) IBOutlet UILabel *currentBatterInfoLabel;
 
 - (IBAction)stepper:(id)sender;
 
