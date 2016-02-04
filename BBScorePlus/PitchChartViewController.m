@@ -1188,6 +1188,7 @@
     }
 }
 
+/*
 - (void)setGameDefaultsDictionary {
     NSNumber *ispitchcount = @(isTrackPitchCount);
     NSNumber *cont = @(isContinousLineup);
@@ -1229,7 +1230,7 @@
     
 }
 
-
+*/
 - (void)loadOpponentTeamDictionaryArray{
         //load
     fb = [[opponentTeamDictionaryArray valueForKey:@"1B"]objectAtIndex:batterPositionNumber];
