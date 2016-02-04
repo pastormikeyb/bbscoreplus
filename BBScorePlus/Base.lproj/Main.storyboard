@@ -776,6 +776,7 @@
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
+                                    <action selector="onClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rWq-Ze-n23"/>
                                     <segue destination="Msx-cC-FDy" kind="show" id="UaH-qw-Czn"/>
                                 </connections>
                             </button>
@@ -792,7 +793,7 @@
                                     <segue destination="G0O-to-dID" kind="show" id="tjZ-dd-3tI"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoDark" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vAu-bP-tU0">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoDark" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vAu-bP-tU0">
                                 <rect key="frame" x="558" y="558" width="22" height="22"/>
                                 <color key="tintColor" red="0.71372549019999998" green="0.61176470589999998" blue="0.42745098040000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal">
@@ -817,6 +818,9 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Main Menu" id="mGx-1e-rXV"/>
+                    <connections>
+                        <outlet property="StartGameButton" destination="x5z-T7-pMA" id="MK1-wC-9KQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -2356,7 +2360,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="tjZ-dd-3tI"/>
         <segue reference="s4w-Nr-0tb"/>
-        <segue reference="hBs-If-5Fo"/>
+        <segue reference="UaH-qw-Czn"/>
         <segue reference="cIb-qi-1Qk"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>

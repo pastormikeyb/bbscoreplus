@@ -24,16 +24,16 @@
     NSNumber *loadedBallCount,*loadedStrikeCount,*loadedNextBatter;
     NSDate *gameTimeStart;
     NSNumber *xPos, *yPos, *homeTeam;
-    NSArray *pitchLocation, *myPitcherArray, *opponentPitcherArray,*playerNumber;
-    NSDictionary *boxScoreDictionary, *hittingDictionary,*curPitcherDictionary,*pitcherPitchCountDictionary,*gameVariablesDictionary, *gameVariables,*tempdict;
+    NSArray *pitchLocation,*myPitcherArray, *opponentPitcherArray,*playerNumber;
+    NSDictionary *boxScoreDictionary,*gameDefaultsDictionaryTemp,*hittingDictionary,*curPitcherDictionary,*pitcherPitchCountDictionary,*gameVariablesDictionary, *gameVariables,*tempdict;
     NSArray *name, *opponentPlayerNumber;
     NSArray *bats, *hitlocation;
     NSArray *loadedMyTeamArray,*loadedOpponentArray;
     NSString *bats1, *myPitcher,*opponentPitcher;
-    NSString *whoIsBatting;
+    NSString *whoIsBatting, *numberOfHoursRest;
     NSMutableArray *topLevel, *myArray;
     BOOL loadMyPitcher,loadOpponentPitcher, isTimerStarted, showInstructions;
-    NSString *fn, *ln, *pn, *pb, *pt, *pi, *fb, *sb, *tb, *hr, *fc,*fe,*hp,*sf,*rb,*ou,*bt,*st,*wa,*str,*wap,*strp,*strValue,*cb, *pc,*hc, *th, *oh;
+    NSString *fn, *ln, *pn, *pb, *pt, *pi, *fb, *sb, *tb, *hr, *fc,*fe,*hp,*sf,*rb,*ou,*bt,*st,*wa,*str,*wap,*strp,*strValue,*cb, *pc,*hc, *th, *oh, *now;
     NSUInteger myPitcherIndex, opponentPitcherIndex;
     NSDate *endingTime;
     UIImageView *bbView;
@@ -748,12 +748,8 @@
         case 11:
                 //start the game timer;
             [self gameTimeStart];
-            if (!isTimerStarted) {
-                [button setTitle:@"Stop Game Timer" forState:UIControlStateNormal];
-                
-            }else{
-                [button setTitle:@"Start Game Timer" forState:UIControlStateNormal];
-            }
+            
+            
             break;
             
         case 12:
@@ -872,6 +868,8 @@
             
             [self addToBoxScoreDictionary];
             [self saveBoxScore];
+            
+            [self performSegueWithIdentifier:@"PitchChartSegue" sender:nil];
             
             break;
             
@@ -1181,6 +1179,7 @@
         opponentTeamName = [load valueForKey:@"opponentteamname"];
         isTimerStarted = [[load valueForKey:@"istimerstarted"]boolValue];
         gameStartTime = [load valueForKey:@"gamestarttime"];
+        numberOfHoursRest = [load valueForKey:@"numberofhoursrest"];
         
         NSLog(@"pause");
     }else{
@@ -1188,18 +1187,17 @@
     }
 }
 
-/*
+
 - (void)setGameDefaultsDictionary {
     NSNumber *ispitchcount = @(isTrackPitchCount);
     NSNumber *cont = @(isContinousLineup);
     NSNumber *home = @(isHomeTeam);
     NSNumber *isstarted = @(isTimerStarted);
-    NSString *limit = [NSString stringWithFormat:@"%d", gameTimeLimit];
     if (gameStartTime !=nil) {
-        NSDate *now = gameStartTime;
+        now = gameStartTime;
 
     }else {
-        NSDate *now = nil;
+        now = nil;
     }
     
     if (opponentTeamName.length < 1) {
@@ -1208,8 +1206,8 @@
     
     gameDefaultsDictionaryTemp = [NSDictionary dictionaryWithObjectsAndKeys:
                               ispitchcount,@"trackpitchcount",
-                              _maxNumberOfPitchesTextField.text,@"maxnumberofpitches",
-                              _numberOfHoursRestTextField.text,@"numberofhoursrest",
+                              maxNumberOfPitches,@"maxnumberofpitches",
+                              numberOfHoursRest,@"numberofhoursrest",
                               cont,@"continouslineup",
                               gameTimeLimit,@"gametimelimit",
                               home,@"hometeam",
@@ -1221,16 +1219,27 @@
                               
                               nil];
     
-    [arrayOfDictionariesMutableArray addObject:gameDefaultsDictionary];
+        //Save file
+    NSLog(@"gameSettingsDictionary: %@",gameDefaultsDictionaryTemp);
     
-    NSLog(@"gameSettingsDictionary: %@",gameDefaultsDictionary);
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                         NSUserDomainMask, YES);
+        // Path to save dictionary
+    dictPath = [[paths objectAtIndex:0]
+                stringByAppendingPathComponent:@"gamedefaults.out"];
     
-    NSLog(@"arrayOfDictionariesMutableArray: %@",arrayOfDictionariesMutableArray);
-    NSLog(@"array count: %lu",(unsigned long)[arrayOfDictionariesMutableArray count]);
+    if ([paths count] > 0)
+    {
+        
+            // Write dictionary array
+        [gameDefaultsDictionaryTemp writeToFile:dictPath atomically:YES];
+    }
+
+    
     
 }
 
-*/
+
 - (void)loadOpponentTeamDictionaryArray{
         //load
     fb = [[opponentTeamDictionaryArray valueForKey:@"1B"]objectAtIndex:batterPositionNumber];
@@ -1405,7 +1414,7 @@
     dateFormatter.dateFormat = @"hh:mm:ss";
     [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
     NSLog(@"The Current Time is %@",[dateFormatter stringFromDate:endingTime]);
-        //Save endingtime
+        //Save starting time
     
     
     

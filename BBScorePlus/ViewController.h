@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIButton *StartGameButton;
+- (IBAction)onClick:(id)sender;
 
 
 @end

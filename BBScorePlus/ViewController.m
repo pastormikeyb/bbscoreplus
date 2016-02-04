@@ -43,6 +43,11 @@
         
         [self saveGameFileDefaults];
     }
+    
+    if (![self doesMyTeamFileExist] || ![self doesOpponentTeamExist] || ![self doesGameFileExist]) {
+        _StartGameButton.alpha = 0.5;
+        _StartGameButton.enabled = NO;
+    }
 
 
 }
@@ -51,10 +56,45 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 - (BOOL)doesGameFileExist {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"currentteamgamepitcher.out"];
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"gamevariables.out"];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    if ([fileManager fileExistsAtPath: path])
+    {
+        NSLog(@"File Exist");
+        return YES;
+    }
+    NSLog(@"File Does not Exist");
+    return NO;
+    
+}
+
+- (BOOL)doesMyTeamFileExist {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"teamdictionary.out"];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    if ([fileManager fileExistsAtPath: path])
+    {
+        NSLog(@"File Exist");
+        return YES;
+    }
+    NSLog(@"File Does not Exist");
+    return NO;
+    
+}
+
+- (BOOL)doesOpponentTeamExist {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"opponentteamdictionary.out"];
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
@@ -89,4 +129,6 @@
 }
 
 
+- (IBAction)onClick:(id)sender {
+}
 @end
