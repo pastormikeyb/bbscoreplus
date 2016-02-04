@@ -13,7 +13,7 @@
     NSDictionary *gameDefaultsDictionary, *boxScoreDictionary;
     NSString *dictPath;
     NSMutableArray *arrayOfDictionariesMutableArray, *gameDefaultsMutableArray;
-    NSNumber *pitch, *continous, *home;
+    NSNumber *pitch, *continous, *home, *timerstarted;
     NSString *maxPitches;
     NSString *hoursRest;
     NSString *timeLimit;
@@ -131,6 +131,8 @@
     pitch = @(isTrackingPitchCount);
     continous = @(isContinousLineup);
     home = @(isHomeTeam);
+    timerstarted = @(isTimerStarted);
+    NSString *junk = @"";
     if (_opponentNameTextField.text.length < 1) {
         _opponentNameTextField.text = @"NA";
     }
@@ -143,6 +145,11 @@
                               _gameTimeLimitTextField.text,@"gametimelimit",
                               home,@"hometeam",
                               _opponentNameTextField.text,@"opponentteamname",
+                              
+                              junk,@"gamestarttime",
+                              
+                              timerstarted,@"istimerstarted",
+                              
                               nil];
     
     [arrayOfDictionariesMutableArray addObject:gameDefaultsDictionary];

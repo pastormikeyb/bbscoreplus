@@ -10,7 +10,7 @@
 
 @interface RulesSetupViewController : UIViewController
 {
-    BOOL isTrackingPitchCount;
+    BOOL isTrackingPitchCount, isTimerStarted;
     BOOL isContinousLineup;
     BOOL isHomeTeam;
     BOOL batting;

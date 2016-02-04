@@ -12,7 +12,7 @@
 @interface PitchChartViewController ()
 {
     NSMutableArray *myTeamDictionaryArray, *opponentTeamDictionaryArray, *arrayOfDictionariesMutableArray, *inningArray, *loadedMyPitchLocationMutableArray, *loadedOpponentPitchLocationMutableArray, *pitchLocationMutableArray;
-    NSString *lastName, *playerBats, *dictPath, *currentPitcher, *currentHitter;
+    NSString *lastName, *playerBats, *dictPath, *currentPitcher, *currentHitter, *gameStartTime;
     NSString *loadedCurrentOuts,*loadedPitchCount, *opponentTeamName;
     int batterPositionNumber,receivedBatterPositionNumber, nextBatterPositionNumber, inningNumber;
     int loadedBalls,loadedStrikes,loadedOuts,loadedPC;
@@ -1179,12 +1179,56 @@
         maxNumberOfPitches = [[load valueForKey:@"maxnumberofpitches"]intValue];
         isTrackPitchCount = [[load valueForKey:@"trackpitchcount"]boolValue];
         opponentTeamName = [load valueForKey:@"opponentteamname"];
+        isTimerStarted = [[load valueForKey:@"istimerstarted"]boolValue];
+        gameStartTime = [load valueForKey:@"gamestarttime"];
         
         NSLog(@"pause");
     }else{
         NSLog(@"No file.");
     }
 }
+
+- (void)setGameDefaultsDictionary {
+    NSNumber *ispitchcount = @(isTrackPitchCount);
+    NSNumber *cont = @(isContinousLineup);
+    NSNumber *home = @(isHomeTeam);
+    NSNumber *isstarted = @(isTimerStarted);
+    NSString *limit = [NSString stringWithFormat:@"%d", gameTimeLimit];
+    if (gameStartTime !=nil) {
+        NSDate *now = gameStartTime;
+
+    }else {
+        NSDate *now = nil;
+    }
+    
+    if (opponentTeamName.length < 1) {
+        opponentTeamName = @"NA";
+    }
+    
+    gameDefaultsDictionaryTemp = [NSDictionary dictionaryWithObjectsAndKeys:
+                              ispitchcount,@"trackpitchcount",
+                              _maxNumberOfPitchesTextField.text,@"maxnumberofpitches",
+                              _numberOfHoursRestTextField.text,@"numberofhoursrest",
+                              cont,@"continouslineup",
+                              gameTimeLimit,@"gametimelimit",
+                              home,@"hometeam",
+                              opponentTeamName,@"opponentteamname",
+                              
+                              now,@"gamestarttime",
+                              
+                              isstarted,@"istimerstarted",
+                              
+                              nil];
+    
+    [arrayOfDictionariesMutableArray addObject:gameDefaultsDictionary];
+    
+    NSLog(@"gameSettingsDictionary: %@",gameDefaultsDictionary);
+    
+    NSLog(@"arrayOfDictionariesMutableArray: %@",arrayOfDictionariesMutableArray);
+    NSLog(@"array count: %lu",(unsigned long)[arrayOfDictionariesMutableArray count]);
+    
+}
+
 
 - (void)loadOpponentTeamDictionaryArray{
         //load
@@ -1360,15 +1404,17 @@
     dateFormatter.dateFormat = @"hh:mm:ss";
     [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
     NSLog(@"The Current Time is %@",[dateFormatter stringFromDate:endingTime]);
+        //Save endingtime
+    
     
     
 }
 
 - (void)gameTimeStart{
-    if (!isGameStarted) {
+    if (!isTimerStarted) {
         gameTimeStart = [NSDate date];
         [self getCurrentTime];
-        isGameStarted = TRUE;
+        isTimerStarted = TRUE;
         
     }else{
             //current time = > endingTime
