@@ -152,7 +152,7 @@
                               
                               nil];
     
-    [arrayOfDictionariesMutableArray addObject:gameDefaultsDictionary];
+    [gameDefaultsMutableArray addObject:gameDefaultsDictionary];
     
     NSLog(@"gameSettingsDictionary: %@",gameDefaultsDictionary);
     

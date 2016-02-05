@@ -23,7 +23,7 @@
 @end
 
 @implementation HittingChartViewController
-@synthesize currentHitter, currentHitterLabel, pitcherPitchCountDictionary, arrayOfDictionariesMutableArray, homeRunsLabel, homeHitsLabel, homeErrorLabel, visitorRunsLabel,visitorHitsLabel,visitorErrorLabel, isMyTeamBatting, currentInningLabel,didHit,batterPositionNumber,batting,isTopOfInning,isGameStarted;
+@synthesize currentHitter, currentHitterLabel, pitcherPitchCountDictionary, arrayOfDictionariesMutableArray, homeRunsLabel, homeHitsLabel, homeErrorLabel, visitorRunsLabel,visitorHitsLabel,visitorErrorLabel, isMyTeamBatting, currentInningLabel,didHit,batterPositionNumber,batting,isTopOfInning,isGameStarted,inningNumber;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -44,23 +44,23 @@
     if (batterPositionNumber < 0) {
         batterPositionNumber = 0;
     }
-    if (batting) {
-        if (batterPositionNumber >= myTeamDictionaryArray.count) {
-            batterPositionNumber = 0;
-        }
-    }else if (batterPositionNumber >= opponentTeamDictionaryArray.count){
-        batterPositionNumber = 0;
-        
-    }else{
-            //alert
-            //        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"File missing."
-            //                                                        message:@"Please (re)save game setup."
-            //                                                       delegate:self
-            //                                              cancelButtonTitle:@"OK"
-            //                                              otherButtonTitles:nil];
-            //        [alert show];
-        
-    }
+//    if (batting) {
+//        if (batterPositionNumber >= myTeamDictionaryArray.count) {
+//            batterPositionNumber = 0;
+//        }
+//    }else if (batterPositionNumber >= opponentTeamDictionaryArray.count){
+//        batterPositionNumber = 0;
+//        
+//    }else{
+//            //alert
+//            //        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"File missing."
+//            //                                                        message:@"Please (re)save game setup."
+//            //                                                       delegate:self
+//            //                                              cancelButtonTitle:@"OK"
+//            //                                              otherButtonTitles:nil];
+//            //        [alert show];
+//        
+//    }
     
     NSLog(@"inning %i",inningNumber);
     NSLog(@"istopofinning %i",isTopOfInning);
@@ -68,30 +68,30 @@
     
     if ([self DoesMyTeamFileExist] && [self DoesMyOpponentFileExist] && [self DoesBoxScoreExist]) {
         
-        if (batting) {
-                //HOME
-            NSLog(@"Home batting pos number: %i",batterPositionNumber);
-            int count = (int)[opponentTeamDictionaryArray count];
-            NSLog(@"Home batting count: %i",count);
-            
-            
-            
-        }else{
-                //OPPONENT
-            NSLog(@"opp batting pos number: %i",batterPositionNumber);
-            int count = (int)[opponentTeamDictionaryArray count];
-            NSLog(@"Opp batting count: %i",count);
-            
-            
-            if (batterPositionNumber >=  count){
-                batterPositionNumber = 0;
-            };
-            if (batterPositionNumber < 0){
-                batterPositionNumber = 0;
-            };
-            
-            
-        }
+//        if (batting) {
+//                //HOME
+//            NSLog(@"Home batting pos number: %i",batterPositionNumber);
+//            int count = (int)[opponentTeamDictionaryArray count];
+//            NSLog(@"Home batting count: %i",count);
+//            
+//            
+//            
+//        }else{
+//                //OPPONENT
+//            NSLog(@"opp batting pos number: %i",batterPositionNumber);
+//            int count = (int)[opponentTeamDictionaryArray count];
+//            NSLog(@"Opp batting count: %i",count);
+//            
+//            
+//            if (batterPositionNumber >=  count){
+//                batterPositionNumber = 0;
+//            };
+//            if (batterPositionNumber < 0){
+//                batterPositionNumber = 0;
+//            };
+//            
+//            
+//        }
         
             //load team
         NSLog(@"Dictionaries has info");
@@ -226,8 +226,10 @@
     }
     
     currentPitchCount = [[boxScoreDictionary valueForKey:@"pitchcount"]intValue];
-    
-    inningNumber = [[boxScoreDictionary valueForKey:@"currentinning"]intValue];
+    if (!isGameStarted) {
+                inningNumber = [[boxScoreDictionary valueForKey:@"currentinning"]intValue];
+
+    }
     
     currentOuts = [[boxScoreDictionary valueForKey:@"currentouts"]intValue];
     

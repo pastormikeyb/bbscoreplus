@@ -31,7 +31,7 @@
     NSArray *loadedMyTeamArray,*loadedOpponentArray;
     NSString *bats1, *myPitcher,*opponentPitcher;
     NSString *whoIsBatting, *numberOfHoursRest;
-    NSMutableArray *topLevel, *myArray;
+    NSMutableArray *topLevel, *myArray,*gameDefaultsMutableArray;
     BOOL loadMyPitcher,loadOpponentPitcher, isTimerStarted, showInstructions;
     NSString *fn, *ln, *pn, *pb, *pt, *pi, *fb, *sb, *tb, *hr, *fc,*fe,*hp,*sf,*rb,*ou,*bt,*st,*wa,*str,*wap,*strp,*strValue,*cb, *pc,*hc, *th, *oh, *now;
     NSUInteger myPitcherIndex, opponentPitcherIndex;
@@ -52,6 +52,9 @@
     myTeamDictionaryArray = [[NSMutableArray alloc]init];
     opponentTeamDictionaryArray = [[NSMutableArray alloc]init];
     tempdict = [[NSDictionary alloc]init];
+    gameDefaultsDictionaryTemp = [NSDictionary dictionary];
+    gameDefaultsMutableArray = [NSMutableArray array];
+
     
     [super viewDidLoad];
     didHit = NO;
@@ -112,7 +115,7 @@
                 myTeamCount = 9;
             }
         }
-        if (batterPositionNumber >=  myTeamCount){
+        if (batterPositionNumber >  myTeamCount){
             batterPositionNumber = 0;
         };
         if (batterPositionNumber < 0){
@@ -130,7 +133,7 @@
             }
         }
         
-        if (batterPositionNumber >=  opponentTeamCount){
+        if (batterPositionNumber >  opponentTeamCount){
             batterPositionNumber = 0;
         };
         
@@ -180,60 +183,6 @@
         // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)stepper:(UIStepper*)sender {
-    double value = [sender value];
-    
-    UIStepper *step = (UIStepper *) sender;
-    
-    step.maximumValue = 99;
-    step.minimumValue = 0;
-    if (amIBatting){
-        
-        if (isHomeTeam) {
-            if (step){
-                homeRuns++;
-                NSLog(@"homeRuns: %i",homeRuns);
-            }
-            else{
-                
-                homeRuns--;
-                NSLog(@"homeRuns: %i",homeRuns);
-                
-            }
-            
-        }
-        
-    }
-    
-    if (!amIBatting) {
-        
-        
-        if (isHomeTeam) {
-            if (step){
-                NSLog(@"visitorRuns: %i",visitorRuns);
-                NSLog(@"step.value %f",step.value);
-                if (value > 0) {
-                    visitorRuns++;
-
-                }else{
-                    visitorRuns--;
-
-                }
-            }
-            else{
-                visitorRuns--;
-                NSLog(@"visitorRuns: %i",visitorRuns);
-                
-            }
-        }
-        }
-    
-    [self addToBoxScoreDictionary];
-    [self saveBoxScore];
-    
-    [self viewDidLoad];
-    
-}
 
 - (IBAction)onClick:(id)sender {
     UIButton *button = (UIButton*)sender;
@@ -540,12 +489,27 @@
                 currentOuts = 0;
                 currentBatterBall = 0;
                 currentBatterStrike = 0;
-
                 
                 [self changeBattingBoxScoreDictionary];
                 [self saveBoxScore];
-                bbView.image = nil;
+
+                    //redo vars to send
+                if (isTopOfInning) {
+                    
+                    isTopOfInning = NO;
+                    currentInning--;
+                    
+                }else{
+                    
+                    isTopOfInning = YES;
+                }
                 
+                if (amIBatting) {
+                    amIBatting = NO;
+                }else{
+                    amIBatting = YES;
+                }
+
                 
             }
 
@@ -737,6 +701,26 @@
                 [self changeBattingBoxScoreDictionary];
                 [self saveBoxScore];
                 
+                    //redo vars to send
+                if (isTopOfInning) {
+                    NSLog(@"1st OUT:istop %d:",currentInning);
+                    isTopOfInning = NO;
+                    currentInning--;
+                    NSLog(@"after OUT:istop %d:",currentInning);
+
+                    
+                }else{
+                    
+                    isTopOfInning = YES;
+                }
+                
+                if (amIBatting) {
+                    amIBatting = NO;
+                }else{
+                    amIBatting = YES;
+                }
+
+                
                 [self performSegueWithIdentifier:@"hcSegue" sender:nil];
 
             }
@@ -785,12 +769,18 @@
                 if (isHomeTeam) {
                         homeRuns--;
                         NSLog(@"homeRuns: %i",homeRuns);
+                    if (homeRuns < 0) {
+                        homeRuns = 0;
+                    }
                     
                     }
                     else{
                         
                         visitorRuns--;
                         NSLog(@"visitorRuns: %i",visitorRuns);
+                        if (visitorRuns < 0) {
+                            visitorRuns = 0;
+                        }
                         
                     }
                     
@@ -802,19 +792,37 @@
         if (isHomeTeam) {
                 NSLog(@"visitorRuns: %i",visitorRuns);
             visitorRuns--;
+            if (visitorRuns < 0) {
+                visitorRuns = 0;
+            }
+
             NSLog(@"currentBatter %@:\n",[opponentTeamDictionaryArray objectAtIndex:batterPositionNumber]);
             }
             else{
                 homeRuns--;
                 NSLog(@"homeRuns: %i",homeRuns);
                 NSLog(@"currentBatter %@:\n",[myTeamDictionaryArray objectAtIndex:batterPositionNumber]);
+                if (homeRuns < 0) {
+                    homeRuns = 0;
+                }
 
                 
             }
         }
     
+            if (amIBatting) {
+                [self subMyRBI];
+                [self saveUpdatedMyTeamInfo];
+            }else{
+                [self subOpponentRBI];
+                [self saveUpdatedOpponentTeamInfo];
+            }
+            
             [self addToBoxScoreDictionary];
             [self saveBoxScore];
+            
+            
+            [self viewDidLoad];
             
                 //check if runs || rbi <0
             
@@ -869,8 +877,8 @@
             [self addToBoxScoreDictionary];
             [self saveBoxScore];
             
-            [self performSegueWithIdentifier:@"PitchChartSegue" sender:nil];
             
+            [self viewDidLoad];
             break;
             
             
@@ -1088,10 +1096,12 @@
         isGameStarted = YES;
         vc.didHit = didHit;
         NSLog(@"batterPositionNumber: %i",batterPositionNumber);
+        
         vc.batterPositionNumber = batterPositionNumber-1;
-        vc.batting = isMyTeamBatting;
+        vc.batting = amIBatting;
         vc.isTopOfInning = isTopOfInning;
         vc.isGameStarted = isGameStarted;
+        vc.inningNumber = currentInning;
     }
 }
 
@@ -1193,34 +1203,34 @@
     NSNumber *cont = @(isContinousLineup);
     NSNumber *home = @(isHomeTeam);
     NSNumber *isstarted = @(isTimerStarted);
-    if (gameStartTime !=nil) {
-        now = gameStartTime;
+    strValue = [@(maxNumberOfPitches) stringValue];
+    NSString *timelimit = [@(gameTimeLimit) stringValue];
 
-    }else {
-        now = nil;
-    }
+
     
     if (opponentTeamName.length < 1) {
         opponentTeamName = @"NA";
     }
     
-    gameDefaultsDictionaryTemp = [NSDictionary dictionaryWithObjectsAndKeys:
+    tempdict = [NSDictionary dictionaryWithObjectsAndKeys:
                               ispitchcount,@"trackpitchcount",
-                              maxNumberOfPitches,@"maxnumberofpitches",
+                              strValue,@"maxnumberofpitches",
                               numberOfHoursRest,@"numberofhoursrest",
                               cont,@"continouslineup",
-                              gameTimeLimit,@"gametimelimit",
+                              timelimit,@"gametimelimit",
                               home,@"hometeam",
                               opponentTeamName,@"opponentteamname",
                               
-                              now,@"gamestarttime",
+                              gameTimeStart,@"gamestarttime",
                               
                               isstarted,@"istimerstarted",
                               
                               nil];
+    [gameDefaultsMutableArray addObject:tempdict];
+
     
         //Save file
-    NSLog(@"gameSettingsDictionary: %@",gameDefaultsDictionaryTemp);
+    NSLog(@"gameSettingsDictionary: %@",tempdict);
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
                                                          NSUserDomainMask, YES);
@@ -1232,7 +1242,7 @@
     {
         
             // Write dictionary array
-        [gameDefaultsDictionaryTemp writeToFile:dictPath atomically:YES];
+        [tempdict writeToFile:dictPath atomically:YES];
     }
 
     
@@ -1415,7 +1425,7 @@
     [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
     NSLog(@"The Current Time is %@",[dateFormatter stringFromDate:endingTime]);
         //Save starting time
-    
+    [self setGameDefaultsDictionary];
     
     
 }
@@ -1423,8 +1433,9 @@
 - (void)gameTimeStart{
     if (!isTimerStarted) {
         gameTimeStart = [NSDate date];
-        [self getCurrentTime];
         isTimerStarted = TRUE;
+        [self getCurrentTime];
+        
         
     }else{
             //current time = > endingTime
@@ -1513,12 +1524,12 @@
     if (amIBatting){
         
         
-        if (batterPositionNumber >= myTeamCount) {
+        if (batterPositionNumber > myTeamCount) {
             batterPositionNumber = 0;
         }
     }else{
         
-        if (batterPositionNumber >= opponentTeamCount) {
+        if (batterPositionNumber > opponentTeamCount) {
             batterPositionNumber = 0;
         }
     }
@@ -1627,6 +1638,7 @@
 
 -(void)saveGameVariables{
     
+    NSLog(@"gameDefaultsDictionaryTemp %@\n",gameDefaultsDictionaryTemp);
         // Get path to documents directory
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         // Path to save dictionary
@@ -1637,7 +1649,7 @@
     {
         
             // Write dictionary
-        [boxScoreDictionary writeToFile:dictPath atomically:YES];
+//        [gameDefaultsDictionaryTemp writeToFile:dictPath atomically:YES];
         
     }
 }
@@ -1736,7 +1748,7 @@
     if (amIBatting){
             //Myteam
         
-        if (batterPositionNumber >= myTeamCount) {
+        if (batterPositionNumber > myTeamCount) {
             batterPositionNumber = 0;
         }
         
@@ -1776,7 +1788,7 @@
     }else{
             //Opponent
         
-        if (batterPositionNumber >= opponentTeamCount) {
+        if (batterPositionNumber > opponentTeamCount) {
             batterPositionNumber = 0;
         }
         
@@ -2252,6 +2264,52 @@
     
     int t1 = [rb intValue];
     t1++;
+    strValue = [@(t1) stringValue];
+    
+    tempdict = [NSDictionary dictionaryWithObjectsAndKeys:
+                fn,@"firstname",
+                ln,@"lastname",
+                pn,@"playernumber",
+                pb,@"playerbat",
+                pt,@"playerthrow",
+                pi,@"pitcher",
+                fb,@"1B",
+                sb,@"2B",
+                tb,@"3B",
+                hr,@"HR",
+                fc,@"fielderschoice",
+                fe,@"fieldingerror",
+                hp,@"hitbypitch",
+                sf,@"sacfly",
+                strValue,@"RBI",
+                ou,@"out",
+                bt,@"ballspitched",
+                st,@"strikesthrown",
+                hc,@"hittingchart",
+                pc,@"pitchingchart",
+                wa,@"walks",
+                str,@"strikeouts",
+                wap,@"walkspitched",
+                strp,@"strikeoutspitched",
+                nil];
+    
+    [myTeamDictionaryArray replaceObjectAtIndex:batterPositionNumber withObject:tempdict];
+    
+        //saveback
+    [self saveUpdatedMyTeamInfo];
+}
+
+- (void)subMyRBI{
+    NSLog(@"subRBI");
+    
+    [self loadMyTeamDictionaryArray];
+    
+    int t1 = [rb intValue];
+    t1--;
+    
+    if (t1 < 0) {
+        t1 = 0;
+    }
     strValue = [@(t1) stringValue];
     
     tempdict = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -3082,9 +3140,55 @@
         //saveback
     [self saveUpdatedOpponentTeamInfo];
     
-    
 }
 
+- (void)subOpponentRBI{
+    NSLog(@"subOpponentRBI");
+    
+    [self loadOpponentTeamDictionaryArray];
+    
+    int t1 = [rb intValue];
+    t1--;
+    if (t1 < 0) {
+        t1 = 0;
+    }
+    strValue = [@(t1) stringValue];
+    
+    tempdict = [NSDictionary dictionaryWithObjectsAndKeys:
+                fn,@"firstname",
+                ln,@"lastname",
+                pn,@"playernumber",
+                pb,@"playerbat",
+                pt,@"playerthrow",
+                pi,@"pitcher",
+                fb,@"1B",
+                sb,@"2B",
+                tb,@"3B",
+                hr,@"HR",
+                fc,@"fielderschoice",
+                fe,@"fieldingerror",
+                hp,@"hitbypitch",
+                sf,@"sacfly",
+                strValue,@"RBI",
+                ou,@"out",
+                bt,@"ballspitched",
+                st,@"strikesthrown",
+                hc,@"hittingchart",
+                pc,@"pitchingchart",
+                wa,@"walks",
+                str,@"strikeouts",
+                wap,@"walkspitched",
+                strp,@"strikeoutspitched",
+                nil];
+    
+    [opponentTeamDictionaryArray replaceObjectAtIndex:batterPositionNumber withObject:tempdict];
+    
+    
+        //saveback
+    [self saveUpdatedOpponentTeamInfo];
+    
+    
+}
 
 - (void)addOpponentSac{
     NSLog(@"addOpponentSac");
@@ -3394,11 +3498,11 @@
 
 - (void) batterPositionErrorCheck{
     if (amIBatting) {
-        if (batterPositionNumber >= myTeamCount || batterPositionNumber < 0) {
+        if (batterPositionNumber > myTeamCount || batterPositionNumber < 0) {
             batterPositionNumber = 0;
         }
     }else{
-        if (batterPositionNumber >= opponentTeamCount || batterPositionNumber < 0) {
+        if (batterPositionNumber > opponentTeamCount || batterPositionNumber < 0) {
             batterPositionNumber = 0;
         }
     }
@@ -3419,11 +3523,10 @@
                   float atBats = (f + s + t + h +er + po);
                   float avg = hits/atBats;
                   if (isnan(avg)) {
-                      avg = 0;
+                      avg = 0;}
                       NSString *stats = [NSString stringWithFormat:@"Avg:%.03f  HR:%i  RBI:%i", avg,h,rbi];
                       currentBatterInfoLabel.text = stats;
 
-                  }
     }else{
         int f = [[[opponentTeamDictionaryArray valueForKey:@"1B"]objectAtIndex:batterPositionNumber]intValue];
         int s = [[[opponentTeamDictionaryArray valueForKey:@"2B"]objectAtIndex:batterPositionNumber]intValue];

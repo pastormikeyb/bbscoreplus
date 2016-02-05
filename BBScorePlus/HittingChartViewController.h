@@ -39,6 +39,7 @@
 @property (nonatomic, assign)BOOL isGameStarted;
 
 @property (nonatomic, assign)int batterPositionNumber;
+@property (nonatomic, assign)int inningNumber;
 
 @property (weak, nonatomic) IBOutlet UIButton *onClick;
 
