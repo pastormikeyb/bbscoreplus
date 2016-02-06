@@ -12,7 +12,7 @@
 @interface PitchChartViewController ()
 {
     NSMutableArray *myTeamDictionaryArray, *opponentTeamDictionaryArray, *arrayOfDictionariesMutableArray, *inningArray, *loadedMyPitchLocationMutableArray, *loadedOpponentPitchLocationMutableArray, *pitchLocationMutableArray;
-    NSString *lastName, *playerBats, *dictPath, *currentPitcher, *currentHitter, *gameStartTime;
+    NSString *lastName, *playerBats, *dictPath, *currentPitcher, *currentHitter;
     NSString *loadedCurrentOuts,*loadedPitchCount, *opponentTeamName;
     int batterPositionNumber,receivedBatterPositionNumber, nextBatterPositionNumber, inningNumber;
     int loadedBalls,loadedStrikes,loadedOuts,loadedPC;
@@ -22,7 +22,7 @@
     int currentInning,myTeamCount,opponentTeamCount;
     int loadedMyTeamCurrentBatter,loadedOpponentCurrentBatter;
     NSNumber *loadedBallCount,*loadedStrikeCount,*loadedNextBatter;
-    NSDate *gameTimeStart;
+    NSDate *gameTimeStart, *gameStartTimeNSDate;
     NSNumber *xPos, *yPos, *homeTeam;
     NSArray *pitchLocation,*myPitcherArray, *opponentPitcherArray,*playerNumber;
     NSDictionary *boxScoreDictionary,*gameDefaultsDictionaryTemp,*hittingDictionary,*curPitcherDictionary,*pitcherPitchCountDictionary,*gameVariablesDictionary, *gameVariables,*tempdict;
@@ -35,7 +35,7 @@
     BOOL loadMyPitcher,loadOpponentPitcher, isTimerStarted, showInstructions;
     NSString *fn, *ln, *pn, *pb, *pt, *pi, *fb, *sb, *tb, *hr, *fc,*fe,*hp,*sf,*rb,*ou,*bt,*st,*wa,*str,*wap,*strp,*strValue,*cb, *pc,*hc, *th, *oh, *now;
     NSUInteger myPitcherIndex, opponentPitcherIndex;
-    NSDate *endingTime;
+    NSDate *endingTime, *gameStartConverted, *gameStartTime;
     UIImageView *bbView;
 }
 
@@ -54,6 +54,9 @@
     tempdict = [[NSDictionary alloc]init];
     gameDefaultsDictionaryTemp = [NSDictionary dictionary];
     gameDefaultsMutableArray = [NSMutableArray array];
+    gameStartConverted = [[NSDate alloc]init];
+    gameStartTimeNSDate = [[NSDate alloc]init];
+    gameStartTime = [[NSDate alloc]init];
 
     
     [super viewDidLoad];
@@ -77,15 +80,29 @@
     if (gameTimeLimit <= 0) {
             //Gray out the Start Game Timer button
         gameTimerButton.enabled = NO;
-    gameTimerButton.alpha = 0.5;}
+    gameTimerButton.alpha = 0.5;
+    
+    }
         //set app main variables
     
     loadedMyTeamCurrentBatter = [[boxScoreDictionary valueForKey:@"myteambattingpositionnumber"]intValue];
     loadedOpponentCurrentBatter = [[boxScoreDictionary valueForKey:@"opponentbattingpositionnumber"]intValue];
     
-    if (isGameStarted) {
-        [self gameTimeStart];
+    if (isTimerStarted) {
+        [self setGameEndingTime];
+        [self setEndingTimeTextLabel];
+        gameTimerButton.enabled = NO;
+        gameTimerButton.alpha = 0.5;
+
+    }else{
+        _gameEndingTimeLabel.text = @"";
+        _gameEndsAtLabel.hidden = YES;
     }
+    
+//    if (isTimerStarted) {
+//        [self checkEndOfGame];
+//
+//    }
     
     if (amIBatting){
         batterPositionNumber = [[boxScoreDictionary valueForKey:@"myteambattingpositionnumber"]intValue];
@@ -732,7 +749,12 @@
         case 11:
                 //start the game timer;
             [self gameTimeStart];
+            gameTimerButton.enabled = NO;
+            gameTimerButton.alpha = 0.5;
+            _gameEndsAtLabel.hidden = NO;
             
+            [self setEndingTimeTextLabel];
+            [self setGameDefaultsDictionary];
             
             break;
             
@@ -1411,50 +1433,35 @@
     
 }
 
-- (void)getCurrentTime{
-    
+- (void)setGameEndingTime{
+
     NSLog(@"gameTimeLimit: %d",gameTimeLimit);
     if (gameTimeLimit > 0) {
-        endingTime = [gameTimeStart dateByAddingTimeInterval:gameTimeLimit*60];
+        
+        if ([gameStartTime  isEqual: @""]) {
+            endingTime = [gameTimeStart dateByAddingTimeInterval:gameTimeLimit*60];
+
+        }else{
+        endingTime = [gameStartTime dateByAddingTimeInterval:gameTimeLimit*60];
+        }
         NSLog(@"endingTime = %@",endingTime);
+
         
     }
     
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = @"hh:mm:ss";
-    [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
-    NSLog(@"The Current Time is %@",[dateFormatter stringFromDate:endingTime]);
-        //Save starting time
-    [self setGameDefaultsDictionary];
+//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//    dateFormatter.dateFormat = @"hh:mm:ss";
+//    [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
+//    NSLog(@"The Ending Time is %@",[dateFormatter stringFromDate:endingTime]);
+//        //Save starting time
     
     
 }
 
 - (void)gameTimeStart{
-    if (!isTimerStarted) {
+    isTimerStarted = YES;
         gameTimeStart = [NSDate date];
-        isTimerStarted = TRUE;
-        [self getCurrentTime];
-        
-        
-    }else{
-            //current time = > endingTime
-        
-        NSDate *ct = [NSDate date];
-        
-        if (ct >= endingTime) {
-            NSLog(@"game time is over.");
-            [self.alertLabel setHidden:YES];
-            _alertLabel.text = @"The game time limit has now been reached";
-            _alertLabel.backgroundColor = [UIColor redColor];
-            
-        }else{
-            NSLog(@"game time is NOT over.");
-            
-        }
-        
-        
-    }
+        [self setGameEndingTime];
     
 }
 
@@ -3605,4 +3612,35 @@
      */
 
 }
+
+- (void)checkEndOfGame{
+        //beginning time
+    NSLog(@"gameStartTime: %@",gameStartTime);
+    NSLog(@"endingTime: %@",endingTime);
+    
+    NSDateFormatter *format = [[NSDateFormatter alloc]init];
+    
+format.dateFormat = @"hh:mm";
+    NSLog(@"time: %@",format);
+    NSDate *dateFromString = [[NSDate alloc]init];
+                            
+    dateFromString = [format dateFromString:gameStartTime];
+    NSLog(@"gameStart: %@",dateFromString);
+    
+        //
+}
+
+- (void) setEndingTimeTextLabel {
+
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    
+    dateFormatter.dateFormat = @"hh:mm a";
+    [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
+    NSLog(@"The Ending Time is %@",[dateFormatter stringFromDate:endingTime]);
+    
+    _gameEndingTimeLabel.text = [NSString stringWithFormat:@"%@",[dateFormatter stringFromDate:endingTime]] ;
+    
+
+}
+
 @end

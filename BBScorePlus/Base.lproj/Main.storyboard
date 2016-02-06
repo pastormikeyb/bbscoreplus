@@ -1896,7 +1896,7 @@
                                     <action selector="onClick:" destination="LXJ-sa-BNu" eventType="touchUpInside" id="tMt-xs-exE"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game Ends in " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9UZ-KF-8zG">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game Ends at " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9UZ-KF-8zG">
                                 <rect key="frame" x="10" y="217" width="82" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="iuO-ak-vP9"/>
@@ -2070,6 +2070,8 @@
                         <outlet property="currentPitcherLabel" destination="aDy-8v-mG5" id="Uv6-Kq-mrF"/>
                         <outlet property="currentPlayerNumberLabel" destination="yJm-pq-LvZ" id="c0J-yC-oaz"/>
                         <outlet property="currentStrikeLabel" destination="rY9-XH-1EF" id="tEt-Gf-YhS"/>
+                        <outlet property="gameEndingTimeLabel" destination="Faq-1s-2aZ" id="atn-vu-PNJ"/>
+                        <outlet property="gameEndsAtLabel" destination="9UZ-KF-8zG" id="e01-Y5-Wyb"/>
                         <outlet property="gameTimerButton" destination="jrn-7u-W4W" id="Shw-rj-tqG"/>
                         <outlet property="homeRunsLabel" destination="fJs-JC-IaC" id="m2X-Ma-A4U"/>
                         <outlet property="visitorRunsLabel" destination="FiB-BQ-bEU" id="qZE-Xi-KyG"/>
@@ -2360,7 +2362,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="tjZ-dd-3tI"/>
         <segue reference="s4w-Nr-0tb"/>
-        <segue reference="UaH-qw-Czn"/>
+        <segue reference="hBs-If-5Fo"/>
         <segue reference="cIb-qi-1Qk"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
