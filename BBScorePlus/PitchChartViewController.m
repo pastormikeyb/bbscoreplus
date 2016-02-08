@@ -24,7 +24,7 @@
     NSNumber *loadedBallCount,*loadedStrikeCount,*loadedNextBatter;
     NSDate *gameTimeStart, *gameStartTimeNSDate;
     NSNumber *xPos, *yPos, *homeTeam;
-    NSArray *pitchLocation,*myPitcherArray, *opponentPitcherArray,*playerNumber;
+    NSArray *pitchLocation,*myPitcherArray, *opponentPitcherArray,*playerNumber, *ballColor;
     NSDictionary *boxScoreDictionary,*gameDefaultsDictionaryTemp,*hittingDictionary,*curPitcherDictionary,*pitcherPitchCountDictionary,*gameVariablesDictionary, *gameVariables,*tempdict;
     NSArray *name, *opponentPlayerNumber;
     NSArray *bats, *hitlocation;
@@ -39,7 +39,6 @@
     UIImageView *bbView;
 }
 
-
 @end
 
 @implementation PitchChartViewController
@@ -47,8 +46,9 @@
 
 
 - (void)viewDidLoad {
-//    NSLog(@"received from hitting chart batterPositionNumber: %i",batterPositionNumber);
     [self.alertLabel setHidden:YES];
+    ballColor = [[NSArray alloc] initWithObjects:[UIColor lightGrayColor],[UIColor whiteColor],[UIColor redColor],[UIColor yellowColor],[UIColor orangeColor],[UIColor purpleColor],[UIColor blueColor],nil];
+  
     myTeamDictionaryArray = [[NSMutableArray alloc]init];
     opponentTeamDictionaryArray = [[NSMutableArray alloc]init];
     tempdict = [[NSDictionary alloc]init];
@@ -185,6 +185,7 @@
     }
     
     [self getCurrentBatterInfo];
+    [self getPitchingChart];
 
     currentOutLabel.text = [NSString stringWithFormat:@"%i",currentOuts];
     homeRunsLabel.text = [NSString stringWithFormat:@"%i",homeRuns];
@@ -3286,21 +3287,17 @@
 }
 
 - (void)getPitchingChart{
-    NSLog(@"getHittingChart");
+    NSLog(@"getPitchingChart");
     NSArray *myPCArray;
-    batterPositionNumber --;
-    if (batterPositionNumber < 0) {
-        batterPositionNumber = 0;
-    }
     
     if (amIBatting) {
-        if ([[myTeamDictionaryArray valueForKey:@"pitchingchart"]objectAtIndex:batterPositionNumber] == nil) {
-            myPCArray = [[myTeamDictionaryArray valueForKey:@"hittingchart"]objectAtIndex:batterPositionNumber];
+        if ([[myTeamDictionaryArray valueForKey:@"pitchingchart"]objectAtIndex:batterPositionNumber] != nil) {
+            myPCArray = [[myTeamDictionaryArray valueForKey:@"pitchingchart"]objectAtIndex:batterPositionNumber];
             
         }
         
     }else{
-        if ([[opponentTeamDictionaryArray valueForKey:@"pitchingchart"]objectAtIndex:batterPositionNumber] == nil) {
+        if ([[opponentTeamDictionaryArray valueForKey:@"pitchingchart"]objectAtIndex:batterPositionNumber] != nil) {
             myPCArray = [[opponentTeamDictionaryArray valueForKey:@"pitchingchart"]objectAtIndex:batterPositionNumber];
             
         }
@@ -3317,6 +3314,11 @@
                 //after getting x,y place on screen;
             UIImage *baseBall = [UIImage imageNamed:@"baseballSmall"];
             bbView = [[UIImageView alloc]initWithImage:baseBall];
+            
+            
+            bbView = [[UIImageView alloc]initWithImage:[baseBall imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
+            NSLog(@"ballColor: %@",ballColor[i]);
+            bbView.tintColor = ballColor[i];
             CGRect frame = bbView.bounds;
             frame.origin.x = x;
             frame.origin.y = y;
