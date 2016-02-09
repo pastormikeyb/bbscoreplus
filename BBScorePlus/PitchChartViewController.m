@@ -32,7 +32,7 @@
     NSString *bats1, *myPitcher,*opponentPitcher;
     NSString *whoIsBatting, *numberOfHoursRest;
     NSMutableArray *topLevel, *myArray,*gameDefaultsMutableArray;
-    BOOL loadMyPitcher,loadOpponentPitcher, isTimerStarted, showInstructions;
+    BOOL loadMyPitcher,loadOpponentPitcher, isTimerStarted, showInstructions, isPitchHistoryLoaded;
     NSString *fn, *ln, *pn, *pb, *pt, *pi, *fb, *sb, *tb, *hr, *fc,*fe,*hp,*sf,*rb,*ou,*bt,*st,*wa,*str,*wap,*strp,*strValue,*cb, *pc,*hc, *th, *oh, *now;
     NSUInteger myPitcherIndex, opponentPitcherIndex;
     NSDate *endingTime, *gameStartConverted, *gameStartTime;
@@ -132,7 +132,7 @@
                 myTeamCount = 9;
             }
         }
-        if (batterPositionNumber >  myTeamCount){
+        if (batterPositionNumber >=  myTeamCount){
             batterPositionNumber = 0;
         };
         if (batterPositionNumber < 0){
@@ -185,13 +185,17 @@
     }
     
     [self getCurrentBatterInfo];
-    [self getPitchingChart];
 
     currentOutLabel.text = [NSString stringWithFormat:@"%i",currentOuts];
     homeRunsLabel.text = [NSString stringWithFormat:@"%i",homeRuns];
     visitorRunsLabel.text = [NSString stringWithFormat:@"%i",visitorRuns];
     
     [self showPitchCount];
+
+    if (!isPitchHistoryLoaded) {
+        [self getPitchingChart];
+
+    }
     
     
 }
@@ -1148,6 +1152,8 @@
     NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"opponentteamdictionary.out"];
     
     opponentTeamDictionaryArray = [NSMutableArray arrayWithContentsOfFile:filePath];
+    
+    
     lastName = [opponentTeamDictionaryArray valueForKey:@"lastname"];
     playerBats = [opponentTeamDictionaryArray valueForKey:@"playerbat"];
     opponentPlayerNumber = [opponentTeamDictionaryArray valueForKey:@"playernumber"];
@@ -3304,6 +3310,7 @@
     }
     
     if (myPCArray != nil) {
+        isPitchHistoryLoaded = YES;
         for (int i = 0; i <myPCArray.count; i++) {
             int x = [[myPCArray[i]objectAtIndex:0]intValue];
             int y = [[myPCArray[i]objectAtIndex:1]intValue];
@@ -3318,7 +3325,9 @@
             
             bbView = [[UIImageView alloc]initWithImage:[baseBall imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
             NSLog(@"ballColor: %@",ballColor[i]);
-            bbView.tintColor = ballColor[i];
+//            bbView.tintColor = ballColor[i];
+            bbView.tintColor = [UIColor lightGrayColor];
+
             CGRect frame = bbView.bounds;
             frame.origin.x = x;
             frame.origin.y = y;

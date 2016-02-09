@@ -41,27 +41,18 @@
     
     [self LoadBoxScore];
     
+    
     if (batterPositionNumber < 0) {
         batterPositionNumber = 0;
     }
-//    if (batting) {
-//        if (batterPositionNumber >= myTeamDictionaryArray.count) {
-//            batterPositionNumber = 0;
-//        }
-//    }else if (batterPositionNumber >= opponentTeamDictionaryArray.count){
-//        batterPositionNumber = 0;
-//        
-//    }else{
-//            //alert
-//            //        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"File missing."
-//            //                                                        message:@"Please (re)save game setup."
-//            //                                                       delegate:self
-//            //                                              cancelButtonTitle:@"OK"
-//            //                                              otherButtonTitles:nil];
-//            //        [alert show];
-//        
-//    }
-    
+    if (batting) {
+        if (batterPositionNumber >= myTeamDictionaryArray.count) {
+            batterPositionNumber = 0;
+        }
+    }else if (batterPositionNumber >= opponentTeamDictionaryArray.count){
+        batterPositionNumber = 0;
+        
+    }
     NSLog(@"inning %i",inningNumber);
     NSLog(@"istopofinning %i",isTopOfInning);
     NSLog(@"isMyTeamBatting %i",isMyTeamBatting);
@@ -382,9 +373,24 @@
     NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"teamdictionary.out"];
     
     myTeamDictionaryArray = [NSMutableArray arrayWithContentsOfFile:filePath];
-    lastname = [[myTeamDictionaryArray valueForKey:@"lastname"]objectAtIndex:batterPositionNumber];
     
 }
+
+- (void) batterPositionErrorCheck{
+    int myTeamCount = (int)[myTeamDictionaryArray count];
+    int opponentTeamCount = (int)[opponentTeamDictionaryArray count];
+
+    if (batting) {
+        if (batterPositionNumber > myTeamCount || batterPositionNumber < 0) {
+            batterPositionNumber = 0;
+        }
+    }else{
+        if (batterPositionNumber > opponentTeamCount || batterPositionNumber < 0) {
+            batterPositionNumber = 0;
+        }
+    }
+}
+
 
 - (void)LoadOpponentTeam{
     NSLog(@"LoadOpponentFromFile");
@@ -393,8 +399,6 @@
     NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"opponentteamdictionary.out"];
     
     opponentTeamDictionaryArray = [NSMutableArray arrayWithContentsOfFile:filePath];
-    
-    lastname = [[opponentTeamDictionaryArray valueForKey:@"lastname"]objectAtIndex:batterPositionNumber];
     
     
     
