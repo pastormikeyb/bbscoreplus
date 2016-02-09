@@ -150,7 +150,7 @@
             }
         }
         
-        if (batterPositionNumber >  opponentTeamCount){
+        if (batterPositionNumber >=  opponentTeamCount){
             batterPositionNumber = 0;
         };
         
@@ -3325,7 +3325,6 @@
             
             bbView = [[UIImageView alloc]initWithImage:[baseBall imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
             NSLog(@"ballColor: %@",ballColor[i]);
-//            bbView.tintColor = ballColor[i];
             bbView.tintColor = [UIColor lightGrayColor];
 
             CGRect frame = bbView.bounds;
@@ -3346,7 +3345,7 @@
     NSArray *myPCArray;
     if (amIBatting) {
         if ([[myTeamDictionaryArray valueForKey:@"pitchingchart"]objectAtIndex:batterPositionNumber] != nil) {
-            myPCArray = [[myTeamDictionaryArray valueForKey:@"hittingchart"]objectAtIndex:batterPositionNumber];
+            myPCArray = [[myTeamDictionaryArray valueForKey:@"pitchingchart"]objectAtIndex:batterPositionNumber];
             
         }
         
@@ -3541,7 +3540,8 @@
                   float atBats = (f + s + t + h +er + po);
                   float avg = hits/atBats;
                   if (isnan(avg)) {
-                      avg = 0;}
+                      avg = 0;
+                  }
                       NSString *stats = [NSString stringWithFormat:@"Avg:%.03f  HR:%i  RBI:%i", avg,h,rbi];
                       currentBatterInfoLabel.text = stats;
 
@@ -3559,12 +3559,9 @@
         float avg = hits/atBats;
         if (isnan(avg)) {
             avg = 0;
+        }
             NSString *stats = [NSString stringWithFormat:@"Avg:%.03f  HR:%i  RBI:%i", avg,h,rbi];
             currentBatterInfoLabel.text = stats;
-
-        }
-        NSString *stats = [NSString stringWithFormat:@"Avg:%.03f  HR:%i  RBI:%i", avg,h,rbi];
-        currentBatterInfoLabel.text = stats;
 
     }
     
@@ -3638,7 +3635,6 @@ format.dateFormat = @"hh:mm";
     dateFromString = [format dateFromString:gameStartTime];
     NSLog(@"gameStart: %@",dateFromString);
     
-        //
 }
 
 - (void) setEndingTimeTextLabel {

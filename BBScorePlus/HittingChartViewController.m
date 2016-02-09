@@ -53,36 +53,13 @@
         batterPositionNumber = 0;
         
     }
+    
     NSLog(@"inning %i",inningNumber);
     NSLog(@"istopofinning %i",isTopOfInning);
     NSLog(@"isMyTeamBatting %i",isMyTeamBatting);
     
     if ([self DoesMyTeamFileExist] && [self DoesMyOpponentFileExist] && [self DoesBoxScoreExist]) {
         
-//        if (batting) {
-//                //HOME
-//            NSLog(@"Home batting pos number: %i",batterPositionNumber);
-//            int count = (int)[opponentTeamDictionaryArray count];
-//            NSLog(@"Home batting count: %i",count);
-//            
-//            
-//            
-//        }else{
-//                //OPPONENT
-//            NSLog(@"opp batting pos number: %i",batterPositionNumber);
-//            int count = (int)[opponentTeamDictionaryArray count];
-//            NSLog(@"Opp batting count: %i",count);
-//            
-//            
-//            if (batterPositionNumber >=  count){
-//                batterPositionNumber = 0;
-//            };
-//            if (batterPositionNumber < 0){
-//                batterPositionNumber = 0;
-//            };
-//            
-//            
-//        }
         
             //load team
         NSLog(@"Dictionaries has info");
@@ -97,9 +74,7 @@
             
         }
         
-        if (isGameStarted) {
             [self  getHittingChart];
-        }
         
         if (isTopOfInning) {
             _topOfInningLabel.text = @"TOP";
@@ -445,6 +420,117 @@
         //saveback
     
 }
+
+- (void)savePitchingChart {
+    
+    if (batting) {
+        NSLog(@"I'm batting");
+        
+        if (hitLocation !=nil) {
+            
+            [self loadMyTeamDictionaryArray];
+            
+            loadedMyHitLocationMutableArray = [[myTeamDictionaryArray valueForKey:@"hittingchart"]objectAtIndex:batterPositionNumber];
+            
+            [loadedMyHitLocationMutableArray addObject:hitLocation ];
+            
+            [self setMyHittingTempDict];
+            
+            [myTeamDictionaryArray replaceObjectAtIndex:batterPositionNumber withObject:tempdict];
+            
+            [self saveUpdatedMyTeamInfo];
+            
+        }
+        
+    }else{
+        NSLog(@"I'm NOT batting");
+        if (pitchLocation !=nil) {
+            
+            [self loadOpponentTeamDictionaryArray];
+            
+            loadedOpponentHitLocationMutableArray = [[opponentTeamDictionaryArray valueForKey:@"hittingchart"]objectAtIndex:batterPositionNumber];
+            
+            [loadedOpponentHitLocationMutableArray addObject:pitchLocation ];
+            
+            [self setOpponentHittingTempDict];
+            
+            [opponentTeamDictionaryArray replaceObjectAtIndex:batterPositionNumber withObject:tempdict];
+            
+            [self saveUpdatedOpponentTeamInfo];
+            
+        }
+        
+    }
+}
+
+- (void)setOpponentHittingTempDict{
+    
+    tempdict = [NSDictionary dictionaryWithObjectsAndKeys:
+                fn,@"firstname",
+                ln,@"lastname",
+                pn,@"playernumber",
+                pb,@"playerbat",
+                pt,@"playerthrow",
+                pi,@"pitcher",
+                fb,@"1B",
+                sb,@"2B",
+                tb,@"3B",
+                hr,@"HR",
+                fc,@"fielderschoice",
+                fe,@"fieldingerror",
+                hp,@"hitbypitch",
+                sf,@"sacfly",
+                rb,@"RBI",
+                ou,@"out",
+                bt,@"ballspitched",
+                st,@"strikesthrown",
+                loadedOpponentHitLocationMutableArray,@"hittingchart",
+                pitchLocation,@"pitchingchart",
+                wa,@"walks",
+                str,@"strikeouts",
+                wap,@"walkspitched",
+                strp,@"strikeoutspitched",
+                
+                nil];
+    
+    NSLog(@"tempDict: %@",tempdict);
+    
+}
+
+- (void)setMyHittingTempDict{
+    
+    tempdict = [NSDictionary dictionaryWithObjectsAndKeys:
+                fn,@"firstname",
+                ln,@"lastname",
+                pn,@"playernumber",
+                pb,@"playerbat",
+                pt,@"playerthrow",
+                pi,@"pitcher",
+                fb,@"1B",
+                sb,@"2B",
+                tb,@"3B",
+                hr,@"HR",
+                fc,@"fielderschoice",
+                fe,@"fieldingerror",
+                hp,@"hitbypitch",
+                sf,@"sacfly",
+                rb,@"RBI",
+                ou,@"out",
+                bt,@"ballspitched",
+                st,@"strikesthrown",
+                loadedMyHitLocationMutableArray,@"hittingchart",
+                pitchLocation,@"pitchingchart",
+                wa,@"walks",
+                str,@"strikeouts",
+                wap,@"walkspitched",
+                strp,@"strikeoutspitched",
+                
+                nil];
+    
+    NSLog(@"tempDict: %@",tempdict);
+    
+}
+
 
 - (void)loadOpponentTeamDictionaryArray{
         //load
