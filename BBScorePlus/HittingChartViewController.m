@@ -12,9 +12,12 @@
 @interface HittingChartViewController ()
 {
     NSDictionary *hittingChartDictionary, *tempdict;
-    NSMutableArray *myTeamDictionaryArray, *opponentTeamDictionaryArray;
-    NSString *fn, *ln, *pn, *pb, *pt, *pi, *fb, *sb, *tb, *hr, *fc,*fe,*hp,*sf,*rb,*ou,*bt,*st,*wa,*str,*wap,*strp,*strValue, *pc, *hc;
+    NSMutableDictionary *testDict;
+    NSMutableArray *myTeamDictionaryArray, *opponentTeamDictionaryArray, *opponentTeamDictionaryForSavingArray;
+    NSString *fn, *ln, *pn, *pb, *pt, *pi, *fb, *sb, *tb, *hr, *fc,*fe,*hp,*sf,*rb,*ou,*bt,*st,*wa,*str,*wap,*strp,*strValue, *pc, *hc, *opponentTeamName, *fileName;
     NSArray *hitLocation,*pitchLocation;
+    NSArray *j1;
+
     NSMutableArray *loadedMyHitLocationMutableArray,*loadedOpponentHitLocationMutableArray;
     int loadedMyTeamCurrentBatter, loadedOpponentCurrentBatter;
     
@@ -30,6 +33,8 @@
     NSLog(@"START of viewDidLoad");
     NSLog(@"batterposition:\n%d",batterPositionNumber);
     NSLog(@"batting?:\n%d",batting);
+    j1 = [NSArray array];
+
     [self LoadBoxScore];
     
     if (batterPositionNumber <0) {
@@ -119,8 +124,8 @@
         UITouch *myTouch = [[touches allObjects] objectAtIndex: 0];
         CGPoint currentPos = [myTouch locationInView: nil];
         NSLog(@"Point in myView: (%f,%f)", currentPos.x, currentPos.y);
-        if (currentPos.x >= 220 && currentPos.x <= 505) {
-            if (currentPos.y >= 65 && currentPos.y <= 340) {
+        if (currentPos.x >= 235 && currentPos.x <= 505) {
+            if (currentPos.y >= 45 && currentPos.y <= 325) {
                 
                 UIImageView *bbView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"baseballGloveSmall"]] ;
                 
@@ -375,9 +380,36 @@
     
     opponentTeamDictionaryArray = [NSMutableArray arrayWithContentsOfFile:filePath];
     
+}
+
+- (void)LoadOpponentTeamForSaving{
+    NSLog(@"LoadOpponentFromFileForSaving");
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:fileName];
     
+    opponentTeamDictionaryForSavingArray = [NSMutableArray arrayWithContentsOfFile:filePath];
+    
+    NSLog(@"opponentTeamDictionaryForSavingArray PITCHINGCHART:%@",[opponentTeamDictionaryForSavingArray valueForKey:@"pitchingchart"]);
+    
+    [opponentTeamDictionaryForSavingArray setValue:j1 forKey:@"pitchingchart"];
+    
+    NSLog(@"opponentTeamDictionaryForSavingArray PITCHINGCHART:%@",[opponentTeamDictionaryForSavingArray valueForKey:@"pitchingchart"]);
+    
+        // Path to save dictionary
+    NSString *dictPath = [[paths objectAtIndex:0]
+                          stringByAppendingPathComponent:fileName];
+    
+    if ([paths count] > 0)
+    {
+        
+            // Write dictionary
+        [opponentTeamDictionaryForSavingArray writeToFile:dictPath atomically:YES];
+        
+    }
     
 }
+
 
 - (void)addHittingChart{
     NSLog(@"hitting chart");
@@ -637,6 +669,15 @@
             
             break;
             
+            case 1:
+                //Game Over
+                //Save Teams
+            [self gameOver];
+            [self LoadOpponentTeamForSaving];
+            [self MyTeamArraySave];
+
+            break;
+            
     }
 }
 
@@ -746,6 +787,126 @@
         }
         
     }
+    
+}
+
+- (void) gameOver{
+        //Game save
+    [self LoadGameDefaults];
+    
+    if (opponentTeamName.length <1) {
+        opponentTeamName = @"NA";
+    }
+    
+        //currentdate for filename:
+    NSDate *date = [NSDate date];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    
+    NSString *today = [formatter stringFromDate:date];
+    fileName = [NSString stringWithFormat:@"%@.sav",opponentTeamName];
+    
+    NSLog(@"test filename: %@",fileName);
+    
+    /*
+     get opponentteamname - gamedefaultsDictionary
+     myTeamDictionaryArray
+     opponentTeamDictionaryArray
+     --combine and save
+     
+     
+     //temp dict
+     tempdict = [NSDictionary dictionaryWithObjectsAndKeys:
+     opponentTeamName,@"opponentteamname",
+     myTeamDictionaryArray,@"myteamdictionaryarray",
+     opponentTeamDictionaryArray,@"opponentdictionaryarray",
+     boxScoreDictionary,@"boxscoredictionary",
+     
+     nil];
+     NSLog(@"game save test: \n %@",tempdict);
+     */
+
+        //SAVE copy
+ 
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        // Path to save dictionary
+    NSString *dictPath = [[paths objectAtIndex:0]
+                stringByAppendingPathComponent:fileName];
+    
+    if ([paths count] > 0)
+    {
+        
+            // Write dictionary
+        [opponentTeamDictionaryArray writeToFile:dictPath atomically:YES];
+        
+    }
+    
+
+    
+}
+
+- (void)TeamSaveDirectory{
+        //Get dir of .sav
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                         NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    
+    NSFileManager *manager = [NSFileManager defaultManager];
+    NSArray *fileList = [manager contentsOfDirectoryAtPath:documentsDirectory
+                                                     error:nil];
+        //--- Listing file by name sort
+    NSLog(@"\n File list %@",fileList);
+    
+        //---- Sorting files by extension
+    NSArray *filePathsArray =
+    [[NSFileManager defaultManager] subpathsOfDirectoryAtPath:documentsDirectory
+                                                        error:nil];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF EndsWith '.sav'"];
+    filePathsArray =  [filePathsArray filteredArrayUsingPredicate:predicate];
+    NSLog(@"\n\n Sorted files by extension %@",filePathsArray);
+
+}
+
+- (void)LoadGameDefaults{
+    NSLog(@"***********LoadGameDefaultsFromFile");
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"gamedefaults.out"];
+    if (filePath != nil) {
+        NSDictionary *load = [NSDictionary dictionaryWithContentsOfFile:filePath];
+        
+        opponentTeamName = [load valueForKey:@"opponentteamname"];
+        
+        NSLog(@"pause");
+    }else{
+        NSLog(@"No file.");
+    }
+}
+
+- (void) MyTeamArraySave{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"teamdictionary.out"];
+    
+    NSMutableArray *myTeamDictionaryForSavingArray = [NSMutableArray arrayWithContentsOfFile:filePath];
+    
+    [myTeamDictionaryForSavingArray setValue:j1 forKey:@"pitchingchart"];
+
+
+    NSString *dictPath = [[paths objectAtIndex:0]
+                          stringByAppendingPathComponent:@"teamdictionary.out"];
+    
+    if ([paths count] > 0)
+    {
+        
+            // Write dictionary
+        [myTeamDictionaryForSavingArray writeToFile:dictPath atomically:YES];
+        
+    }
+
+
     
 }
 @end

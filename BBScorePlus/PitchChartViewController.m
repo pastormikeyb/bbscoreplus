@@ -122,8 +122,6 @@
     opponentTeamCount = (int)[opponentTeamDictionaryArray count];
 
     [self batterPositionErrorCheck];
-    [self saveGame];
-
     
     if (amIBatting){
         if (!isContinousLineup) {
@@ -1416,8 +1414,8 @@
     UITouch *myTouch = [[touches allObjects] objectAtIndex: 0];
     CGPoint currentPos = [myTouch locationInView: nil];
     NSLog(@"Point in myView: (%f,%f)", currentPos.x, currentPos.y);
-    if (currentPos.x >= 210 && currentPos.x <= 457) {
-        if (currentPos.y >= 10 && currentPos.y <= 256) {
+    if (currentPos.x >= 245 && currentPos.x <= 490) {
+        if (currentPos.y >= 10 && currentPos.y <= 255) {
             bbView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"baseballSmall"]] ;
             
             [bbView setCenter:CGPointMake(currentPos.x, currentPos.y)];
@@ -3569,57 +3567,6 @@
 
 }
 
-- (void) saveGame{
-        //Game save
-    if (opponentTeamName.length <1) {
-        opponentTeamName = @"NA";
-    }
-    
-        //currentdate for filename:
-    NSDate *date = [NSDate date];
-
-    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"yyyy-MM-dd"];
-    
-    NSString *today = [formatter stringFromDate:date];
-    
-    NSLog(@"date: %@",today);
-
-    
-    /*
-     get opponentteamname - gamedefaultsDictionary
-     myTeamDictionaryArray
-     opponentTeamDictionaryArray
-     --combine and save
-     
-     */
-        //temp dict
-    tempdict = [NSDictionary dictionaryWithObjectsAndKeys:
-                opponentTeamName,@"opponentteamname",
-                myTeamDictionaryArray,@"myteamdictionaryarray",
-                opponentTeamDictionaryArray,@"opponentdictionaryarray",
-                boxScoreDictionary,@"boxscoredictionary",
-                
-                nil];
-    NSLog(@"game save test: \n %@",tempdict);
-    
-        //SAVE
-    /*
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        // Path to save dictionary
-    dictPath = [[paths objectAtIndex:0]
-                stringByAppendingPathComponent:@"game.sav"];
-    
-    if ([paths count] > 0)
-    {
-        
-            // Write dictionary
-//        [boxScoreDictionary writeToFile:dictPath atomically:YES];
-        
-    }
-     */
-
-}
 
 - (void)checkEndOfGame{
         //beginning time

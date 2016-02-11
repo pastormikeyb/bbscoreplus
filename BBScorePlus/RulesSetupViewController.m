@@ -12,6 +12,7 @@
 {
     NSDictionary *gameDefaultsDictionary, *boxScoreDictionary;
     NSString *dictPath;
+    NSArray *filePathsArray;
     NSMutableArray *arrayOfDictionariesMutableArray, *gameDefaultsMutableArray;
     NSNumber *pitch, *continous, *home, *timerstarted;
     NSString *maxPitches;
@@ -29,8 +30,19 @@
     gameDefaultsDictionary = [NSDictionary dictionary];
     gameDefaultsMutableArray = [NSMutableArray array];
     isTopOfInning = YES;
+    isTrackingPitchCount = YES;
+
+    [self TeamSaveDirectory];
     
+    if (filePathsArray == nil) {
+        NSLog(@"No .sav teams");
+            //hide button
+        _LoadOpponentButton.enabled = NO;
+    }
     
+    if ([self DoesMyOpponentFileExist]) {
+        
+
     if ([self doesFileExist]) {
         [self LoadGameDefaults];
         isTrackingPitchCount = [gameDefaultsDictionary valueForKey:@"trackpitchcount"];
@@ -40,20 +52,27 @@
         _gameTimeLimitTextField.text = [gameDefaultsDictionary valueForKey:@"gametimelimit"];
         isHomeTeam = [gameDefaultsDictionary valueForKey:@"hometeam"];
         batting = [[gameDefaultsDictionary valueForKey:@"amibatting"]boolValue];
-        _opponentNameTextField.text = [gameDefaultsDictionary valueForKey:@"opponentteamname"];
         
-        if (! isTrackingPitchCount) {
-            _maxNumberOfPitchesTextField.hidden = YES;
+        _opponentNameTextField.text = [gameDefaultsDictionary valueForKey:@"opponentteamname"];
+
         }
+        
         
     }else{
         isTrackingPitchCount = YES;
         isContinousLineup = YES;
         isHomeTeam = YES;
         batting = NO;
+        [self removeBoxScore];
+        [self removeGameDefaults];
+        
         
     }
     
+    if (! isTrackingPitchCount) {
+        _maxNumberOfPitchesTextField.hidden = YES;
+    }
+
     
 }
 
@@ -172,6 +191,12 @@
             [self saveGameDefaults];            
             
             break;
+            
+        case 1:
+            NSLog(@"Load Opponent");
+
+            
+            break;
     }
 }
 
@@ -207,6 +232,29 @@
         NSLog(@"home no");
         
     }
+    
+}
+
+- (void)TeamSaveDirectory{
+        //Get dir of .sav
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                         NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    
+    NSFileManager *manager = [NSFileManager defaultManager];
+    NSArray *fileList = [manager contentsOfDirectoryAtPath:documentsDirectory
+                                                     error:nil];
+        //--- Listing file by name sort
+    NSLog(@"\n File list %@",fileList);
+    
+        //---- Sorting files by extension
+    filePathsArray =
+    [[NSFileManager defaultManager] subpathsOfDirectoryAtPath:documentsDirectory
+                                                        error:nil];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF EndsWith '.sav'"];
+    filePathsArray =  [filePathsArray filteredArrayUsingPredicate:predicate];
+    NSLog(@"\n\n Sorted files by extension %@",filePathsArray);
     
 }
 
@@ -334,6 +382,23 @@
     }
 }
 
+- (void)removeGameDefaults {
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    
+    NSString *filePath = [documentsPath stringByAppendingPathComponent:@"gamedefaults.out"];
+    NSError *error;
+    BOOL success = [fileManager removeItemAtPath:filePath error:&error];
+    if (success) {
+        NSLog(@"File removed");
+    }
+    else
+    {
+        NSLog(@"Could not remove file");
+    }
+}
+
+
 - (void)showAlert {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Game Rules"
                                                     message:@"Saved"
@@ -344,5 +409,22 @@
     
 }
 
+- (BOOL)DoesMyOpponentFileExist {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"opponentteamdictionary.out"];
+    
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    if ([fileManager fileExistsAtPath: path])
+    {
+        NSLog(@"File Exist");
+        return YES;
+    }
+    NSLog(@"File Does not Exist");
+    return NO;
+    
+}
 
 @end

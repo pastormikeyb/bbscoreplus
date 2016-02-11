@@ -7,6 +7,7 @@
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--TeamLineupViewController-->
@@ -555,6 +556,81 @@
             </objects>
             <point key="canvasLocation" x="-611" y="-1478"/>
         </scene>
+        <!--LoadSavedTeamViewController-->
+        <scene sceneID="hOi-aK-YQL">
+            <objects>
+                <viewController title="LoadSavedTeamViewController" id="iJF-l4-ehE" customClass="LoadSavedTeamsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kkJ-e5-l20"/>
+                        <viewControllerLayoutGuide type="bottom" id="bON-wj-vQN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="QUx-0M-xZH">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" sectionIndexMinimumDisplayRowCount="2" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Wc4-52-hSM">
+                                <rect key="frame" x="20" y="64" width="560" height="479"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexBackgroundColor" red="0.58039215690000001" green="0.47450980390000003" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellid" rowHeight="55" id="ARy-VN-Ggp" customClass="LoadSavedTeamsTableViewCell">
+                                        <rect key="frame" x="0.0" y="28" width="560" height="55"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ARy-VN-Ggp" id="R2F-xM-v02">
+                                            <rect key="frame" x="0.0" y="0.0" width="560" height="54"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z2C-zg-C5L">
+                                                    <rect key="frame" x="8" y="16" width="544" height="21"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.58039215690000001" green="0.47450980390000003" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <outlet property="savedTeamLabel" destination="Z2C-zg-C5L" id="Lcy-eD-U9X"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="iJF-l4-ehE" id="Xc1-6A-dpW"/>
+                                    <outlet property="delegate" destination="iJF-l4-ehE" id="CQp-bm-fQg"/>
+                                </connections>
+                            </tableView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fsK-Vn-JAd">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <items>
+                                    <navigationItem title="Load Saved Team" id="0QZ-Bv-KSm">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="9FE-pH-r4X">
+                                            <connections>
+                                                <segue destination="G0O-to-dID" kind="show" id="UGB-sS-9Jp"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" red="0.58039215690000001" green="0.47450980390000003" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="Wc4-52-hSM" firstAttribute="leading" secondItem="QUx-0M-xZH" secondAttribute="leadingMargin" id="4YO-QU-7Zj"/>
+                            <constraint firstItem="fsK-Vn-JAd" firstAttribute="centerX" secondItem="Wc4-52-hSM" secondAttribute="centerX" id="M3H-yf-tON"/>
+                            <constraint firstItem="bON-wj-vQN" firstAttribute="top" secondItem="Wc4-52-hSM" secondAttribute="bottom" constant="8" id="bpL-eQ-56O"/>
+                            <constraint firstItem="fsK-Vn-JAd" firstAttribute="top" secondItem="kkJ-e5-l20" secondAttribute="bottom" id="n1s-Zr-rCH"/>
+                            <constraint firstItem="fsK-Vn-JAd" firstAttribute="leading" secondItem="QUx-0M-xZH" secondAttribute="leading" id="pS3-iX-z32"/>
+                            <constraint firstItem="fsK-Vn-JAd" firstAttribute="bottom" secondItem="Wc4-52-hSM" secondAttribute="top" id="qt1-uJ-nIy"/>
+                            <constraint firstAttribute="trailing" secondItem="fsK-Vn-JAd" secondAttribute="trailing" id="t5P-SB-OAT"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="Wc4-52-hSM" id="6z5-13-rrq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5jk-Kh-fgw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="88" y="-2361"/>
+        </scene>
         <!--Rules-->
         <scene sceneID="KgY-vE-RFC">
             <objects>
@@ -577,11 +653,20 @@
                                                 <segue destination="BYZ-38-t0r" kind="show" id="ohQ-eM-Srs"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="QTU-Cf-dem">
-                                            <connections>
-                                                <action selector="onClick:" destination="GZB-vw-Yv8" id="Eoj-9R-OCN"/>
-                                            </connections>
-                                        </barButtonItem>
+                                        <rightBarButtonItems>
+                                            <barButtonItem systemItem="save" id="QTU-Cf-dem">
+                                                <connections>
+                                                    <action selector="onClick:" destination="GZB-vw-Yv8" id="Eoj-9R-OCN"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem tag="1" title="Load Opponent" id="jOy-4l-oaH">
+                                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <connections>
+                                                    <action selector="onClick:" destination="GZB-vw-Yv8" id="GcO-18-EOk"/>
+                                                    <segue destination="iJF-l4-ehE" kind="show" id="9Go-ed-6j6"/>
+                                                </connections>
+                                            </barButtonItem>
+                                        </rightBarButtonItems>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -677,7 +762,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Opponent Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lkt-Vh-n8t">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Opponent Name (Needed for Save)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lkt-Vh-n8t">
                                 <rect key="frame" x="216" y="79" width="284" height="33"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -734,6 +819,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Rules" image="rules-book" id="dCK-QZ-3EN"/>
                     <connections>
+                        <outlet property="LoadOpponentButton" destination="jOy-4l-oaH" id="W9y-Cn-Xeh"/>
                         <outlet property="continousLineupSwitch" destination="GHp-EI-WDH" id="u9W-RE-TfL"/>
                         <outlet property="gameTimeLimitTextField" destination="3xk-tD-4dk" id="dG4-qk-gND"/>
                         <outlet property="isHomeTeamSwitch" destination="tl1-QE-HEX" id="ZXE-5D-oTi"/>
@@ -1030,6 +1116,10 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="119" id="6KZ-8x-gvP"/>
                                     <constraint firstAttribute="height" constant="33" id="dH4-sf-aed"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="33" id="kXD-vk-fcS"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="119" id="mM7-RL-9Nu"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="119" id="pUA-XS-U4Z"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="33" id="ufl-ex-GbY"/>
                                 </constraints>
                                 <state key="normal" image="ButtonPitching">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1064,7 +1154,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M8a-N3-nPO">
-                                <rect key="frame" x="241" y="547" width="119" height="33"/>
+                                <rect key="frame" x="20" y="28" width="119" height="33"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="119" id="d1p-b1-AiT"/>
                                     <constraint firstAttribute="height" constant="33" id="kzc-Dc-bfD"/>
@@ -1089,17 +1179,25 @@
                                     <segue destination="mSL-QM-t47" kind="show" identifier="gameStatsSegue" id="oNc-Q0-XHd"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dr0-Mh-0j2">
+                                <rect key="frame" x="241" y="547" width="119" height="33"/>
+                                <state key="normal" image="ButtonSaveOpponent"/>
+                                <connections>
+                                    <action selector="onClick:" destination="Msx-cC-FDy" eventType="touchUpInside" id="4QO-wn-Mfp"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.58039215690000001" green="0.47450980390000003" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="M8a-N3-nPO" firstAttribute="top" secondItem="xcO-eW-c00" secondAttribute="bottom" constant="8" id="06b-nV-Jg3"/>
                             <constraint firstItem="xKh-HV-hyZ" firstAttribute="top" secondItem="ESo-iF-2JA" secondAttribute="bottom" constant="13" id="0Jb-yy-2d1"/>
                             <constraint firstItem="nMZ-DL-Kbl" firstAttribute="leading" secondItem="YeI-KB-NSL" secondAttribute="trailing" constant="13" id="19B-gE-X6E"/>
                             <constraint firstItem="kN3-Kh-nCj" firstAttribute="trailing" secondItem="bcM-dA-tbx" secondAttribute="trailing" id="1X3-iE-0LE"/>
                             <constraint firstItem="xKh-HV-hyZ" firstAttribute="centerX" secondItem="g6M-60-0KT" secondAttribute="centerX" constant="-8.5" id="2I7-zz-SMm"/>
                             <constraint firstItem="II2-lm-jpr" firstAttribute="centerX" secondItem="X6Z-Ni-CIc" secondAttribute="centerX" constant="6.5" id="2yq-z7-xvV"/>
-                            <constraint firstItem="pSE-zT-Sv6" firstAttribute="top" secondItem="M8a-N3-nPO" secondAttribute="bottom" constant="20" id="6U2-fu-6mQ"/>
                             <constraint firstItem="dev-eo-p8Z" firstAttribute="leading" secondItem="Lyr-6e-F12" secondAttribute="leadingMargin" id="6qT-dT-WCl"/>
                             <constraint firstItem="g6M-60-0KT" firstAttribute="leading" secondItem="Lyr-6e-F12" secondAttribute="leadingMargin" constant="61" id="7KN-GX-RyA"/>
+                            <constraint firstItem="dr0-Mh-0j2" firstAttribute="top" secondItem="YoQ-P7-cse" secondAttribute="top" id="7bg-JH-MwQ"/>
                             <constraint firstItem="Wzn-6M-qj6" firstAttribute="top" secondItem="5Wl-Bh-fik" secondAttribute="bottom" constant="2" id="858-dC-R2r"/>
                             <constraint firstItem="Wzn-6M-qj6" firstAttribute="leading" secondItem="kN3-Kh-nCj" secondAttribute="trailing" constant="17" id="8Nl-hT-wEc"/>
                             <constraint firstItem="LEJ-aq-CMQ" firstAttribute="baseline" secondItem="g6M-60-0KT" secondAttribute="firstBaseline" id="8Po-1w-viQ"/>
@@ -1121,13 +1219,13 @@
                             <constraint firstItem="YeI-KB-NSL" firstAttribute="leading" secondItem="II2-lm-jpr" secondAttribute="trailing" constant="32" id="OYT-KL-JFS"/>
                             <constraint firstItem="5Wl-Bh-fik" firstAttribute="leading" secondItem="bcM-dA-tbx" secondAttribute="trailing" constant="17" id="OtH-tf-J4r"/>
                             <constraint firstItem="wqL-y3-vg5" firstAttribute="leading" secondItem="g6M-60-0KT" secondAttribute="trailing" constant="12" id="Pss-ef-ApI"/>
+                            <constraint firstItem="M8a-N3-nPO" firstAttribute="leading" secondItem="Lyr-6e-F12" secondAttribute="leadingMargin" id="Q86-Ks-m5F"/>
                             <constraint firstItem="wqL-y3-vg5" firstAttribute="leading" secondItem="5Wl-Bh-fik" secondAttribute="trailing" constant="2" id="RnY-jZ-B1b"/>
                             <constraint firstItem="g6M-60-0KT" firstAttribute="centerX" secondItem="5Wl-Bh-fik" secondAttribute="centerX" constant="-6.5" id="SZ9-IQ-QMp"/>
                             <constraint firstItem="LEJ-aq-CMQ" firstAttribute="trailing" secondItem="nMZ-DL-Kbl" secondAttribute="trailing" id="VpJ-XX-8HL"/>
                             <constraint firstItem="HVD-Xg-6pS" firstAttribute="leading" secondItem="g6M-60-0KT" secondAttribute="trailing" constant="10" id="YfX-A4-9al"/>
                             <constraint firstItem="pSE-zT-Sv6" firstAttribute="top" secondItem="dev-eo-p8Z" secondAttribute="bottom" constant="20" id="YwA-9l-KKE"/>
                             <constraint firstItem="gVq-QV-KRW" firstAttribute="leading" secondItem="Wzn-6M-qj6" secondAttribute="trailing" constant="2" id="Z53-r6-WiP"/>
-                            <constraint firstItem="M8a-N3-nPO" firstAttribute="centerX" secondItem="Lyr-6e-F12" secondAttribute="centerX" id="ZP3-eu-mOn"/>
                             <constraint firstItem="pSE-zT-Sv6" firstAttribute="top" secondItem="YoQ-P7-cse" secondAttribute="bottom" constant="20" id="aFB-gb-L03"/>
                             <constraint firstItem="RGG-R8-Ec1" firstAttribute="centerX" secondItem="ESo-iF-2JA" secondAttribute="centerX" id="aVf-c5-XJB"/>
                             <constraint firstItem="5Wl-Bh-fik" firstAttribute="firstBaseline" secondItem="wqL-y3-vg5" secondAttribute="firstBaseline" id="akI-IP-VQQ"/>
@@ -1135,6 +1233,7 @@
                             <constraint firstItem="bcM-dA-tbx" firstAttribute="top" secondItem="xcO-eW-c00" secondAttribute="bottom" constant="120" id="cbL-5o-SoO"/>
                             <constraint firstItem="nMZ-DL-Kbl" firstAttribute="trailing" secondItem="Lyr-6e-F12" secondAttribute="trailingMargin" id="cs1-s3-NmM"/>
                             <constraint firstItem="nMZ-DL-Kbl" firstAttribute="baseline" secondItem="gVq-QV-KRW" secondAttribute="firstBaseline" constant="-2" id="dJ2-Z3-FIE"/>
+                            <constraint firstItem="YoQ-P7-cse" firstAttribute="trailing" secondItem="Lyr-6e-F12" secondAttribute="trailingMargin" id="dyf-1a-l2p"/>
                             <constraint firstItem="YeI-KB-NSL" firstAttribute="centerX" secondItem="Lyr-6e-F12" secondAttribute="centerX" id="e4r-P1-gMj"/>
                             <constraint firstItem="3X1-25-vcp" firstAttribute="leading" secondItem="HVD-Xg-6pS" secondAttribute="trailing" constant="12" id="f3M-hB-4sL"/>
                             <constraint firstItem="bcM-dA-tbx" firstAttribute="leading" secondItem="kN3-Kh-nCj" secondAttribute="leading" id="fUR-Dk-WdK"/>
@@ -1150,9 +1249,11 @@
                             <constraint firstItem="LEJ-aq-CMQ" firstAttribute="baseline" secondItem="X6Z-Ni-CIc" secondAttribute="firstBaseline" id="npz-34-uqj"/>
                             <constraint firstItem="Wzn-6M-qj6" firstAttribute="baseline" secondItem="kN3-Kh-nCj" secondAttribute="baseline" id="oMH-H6-xfg"/>
                             <constraint firstItem="X6Z-Ni-CIc" firstAttribute="leading" secondItem="HVD-Xg-6pS" secondAttribute="trailing" constant="9" id="qak-EJ-rXD"/>
+                            <constraint firstItem="dr0-Mh-0j2" firstAttribute="centerX" secondItem="YeI-KB-NSL" secondAttribute="centerX" id="srB-DW-ZyJ"/>
                             <constraint firstItem="LEJ-aq-CMQ" firstAttribute="top" secondItem="xcO-eW-c00" secondAttribute="bottom" constant="97" id="tHG-oY-C9i"/>
                             <constraint firstItem="gVq-QV-KRW" firstAttribute="centerX" secondItem="HVD-Xg-6pS" secondAttribute="centerX" constant="5.5" id="w49-g3-5UP"/>
                             <constraint firstItem="LEJ-aq-CMQ" firstAttribute="baseline" secondItem="HVD-Xg-6pS" secondAttribute="firstBaseline" id="wOU-3d-6yD"/>
+                            <constraint firstItem="pSE-zT-Sv6" firstAttribute="top" secondItem="YoQ-P7-cse" secondAttribute="bottom" constant="20" id="wfI-AW-JhR"/>
                             <constraint firstItem="ESo-iF-2JA" firstAttribute="top" secondItem="kN3-Kh-nCj" secondAttribute="bottom" constant="17" id="xlk-dT-zPq"/>
                             <constraint firstItem="ESo-iF-2JA" firstAttribute="leading" secondItem="Lyr-6e-F12" secondAttribute="leadingMargin" id="xvx-Cm-5eD"/>
                         </constraints>
@@ -1285,7 +1386,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dvc-wy-I5Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="608" y="1125"/>
+            <point key="canvasLocation" x="471" y="904"/>
         </scene>
         <!--Add New Opponent View Controller-->
         <scene sceneID="zx8-LH-oTH">
@@ -2343,6 +2444,7 @@
         <image name="ButtonMinus" width="60" height="35"/>
         <image name="ButtonPitching" width="119" height="33"/>
         <image name="ButtonPlus" width="60" height="35"/>
+        <image name="ButtonSaveOpponent" width="119" height="33"/>
         <image name="ButtonStartGameTimer" width="119" height="33"/>
         <image name="ButtonStrike" width="60" height="35"/>
         <image name="DoubleButtonIcon" width="40" height="40"/>
@@ -2360,9 +2462,9 @@
         <image name="rules-book" width="26" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="tjZ-dd-3tI"/>
-        <segue reference="ohQ-eM-Srs"/>
-        <segue reference="hBs-If-5Fo"/>
+        <segue reference="UGB-sS-9Jp"/>
+        <segue reference="s4w-Nr-0tb"/>
+        <segue reference="bnF-oL-8Bi"/>
         <segue reference="cIb-qi-1Qk"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
