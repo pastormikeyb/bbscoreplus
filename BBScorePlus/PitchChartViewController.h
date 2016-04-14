@@ -49,10 +49,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *homeRunsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *visitorRunsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *currentPitcherLabel;
-@property (weak, nonatomic) IBOutlet UIButton *gameTimerButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *gameTimerButton;
 @property (weak, nonatomic) IBOutlet UILabel *currentBatterInfoLabel;
 @property (weak, nonatomic) IBOutlet UILabel *gameEndingTimeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *gameEndsAtLabel;
+@property (weak, nonatomic) IBOutlet UILabel *alertSmallLabel;
 
 - (IBAction)onClick:(id)sender;
 

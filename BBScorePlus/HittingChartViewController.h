@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "utilities.h"
 
 @interface HittingChartViewController : UIViewController
 {

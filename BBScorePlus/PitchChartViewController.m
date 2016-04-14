@@ -37,6 +37,7 @@
     NSUInteger myPitcherIndex, opponentPitcherIndex;
     NSDate *endingTime, *gameStartConverted, *gameStartTime;
     UIImageView *bbView;
+    CGFloat screenWidth, screenHeight;
 }
 
 @end
@@ -47,8 +48,14 @@
 
 - (void)viewDidLoad {
     [self.alertLabel setHidden:YES];
-    ballColor = [[NSArray alloc] initWithObjects:[UIColor lightGrayColor],[UIColor whiteColor],[UIColor redColor],[UIColor yellowColor],[UIColor orangeColor],[UIColor purpleColor],[UIColor blueColor],nil];
-  
+    [self.alertSmallLabel setHidden:YES];
+
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    screenWidth = screenRect.size.width;
+    screenHeight = screenRect.size.height;
+    
+    NSLog(@"w: %f h: %f",screenWidth,screenHeight);
+    
     myTeamDictionaryArray = [[NSMutableArray alloc]init];
     opponentTeamDictionaryArray = [[NSMutableArray alloc]init];
     tempdict = [[NSDictionary alloc]init];
@@ -57,7 +64,7 @@
     gameStartConverted = [[NSDate alloc]init];
     gameStartTimeNSDate = [[NSDate alloc]init];
     gameStartTime = [[NSDate alloc]init];
-
+    
     
     [super viewDidLoad];
     didHit = NO;
@@ -72,16 +79,17 @@
     
     if ([self DoesBoxScoreExist]) {
         [self LoadBoxScore];
-        [self checkPitchCount];
         [self setCurrentPitchCount];
+        [self checkPitchCount];
 
+        
     }
     NSLog(@"gametimelimit: %i",gameTimeLimit);
     if (gameTimeLimit <= 0) {
             //Gray out the Start Game Timer button
         gameTimerButton.enabled = NO;
-    gameTimerButton.alpha = 0.5;
-    
+        [gameTimerButton setTintColor: [UIColor clearColor]];
+        
     }
         //set app main variables
     
@@ -92,17 +100,17 @@
         [self setGameEndingTime];
         [self setEndingTimeTextLabel];
         gameTimerButton.enabled = NO;
-        gameTimerButton.alpha = 0.5;
-
+        [gameTimerButton setTintColor: [UIColor clearColor]];
+        
     }else{
         _gameEndingTimeLabel.text = @"";
         _gameEndsAtLabel.hidden = YES;
     }
     
-//    if (isTimerStarted) {
-//        [self checkEndOfGame];
-//
-//    }
+        //    if (isTimerStarted) {
+        //        [self checkEndOfGame];
+        //
+        //    }
     
     if (amIBatting){
         batterPositionNumber = [[boxScoreDictionary valueForKey:@"myteambattingpositionnumber"]intValue];
@@ -112,7 +120,7 @@
     }else{
         batterPositionNumber = [[boxScoreDictionary valueForKey:@"opponentbattingpositionnumber"]intValue];
         currentPitcherLabel.text = [[myTeamDictionaryArray valueForKey:@"lastname"]objectAtIndex:myPitcherIndex];
-
+        
         
     }
     
@@ -120,7 +128,7 @@
     
     myTeamCount = (int)[myTeamDictionaryArray count];
     opponentTeamCount = (int)[opponentTeamDictionaryArray count];
-
+    
     [self batterPositionErrorCheck];
     
     if (amIBatting){
@@ -183,16 +191,16 @@
     }
     
     [self getCurrentBatterInfo];
-
+    
     currentOutLabel.text = [NSString stringWithFormat:@"%i",currentOuts];
     homeRunsLabel.text = [NSString stringWithFormat:@"%i",homeRuns];
     visitorRunsLabel.text = [NSString stringWithFormat:@"%i",visitorRuns];
     
     [self showPitchCount];
-
+    
     if (!isPitchHistoryLoaded) {
         [self getPitchingChart];
-
+        
     }
     
     
@@ -512,7 +520,7 @@
                 
                 [self changeBattingBoxScoreDictionary];
                 [self saveBoxScore];
-
+                
                     //redo vars to send
                 if (isTopOfInning) {
                     
@@ -529,10 +537,10 @@
                 }else{
                     amIBatting = YES;
                 }
-
+                
                 
             }
-
+            
             
             [self performSegueWithIdentifier:@"hcSegue" sender:nil];
             
@@ -576,7 +584,7 @@
             [self savePitchingChart];
             
             [self performSegueWithIdentifier:@"PitchChartSegue" sender:nil];
-
+            
             break;
             
         case 8:
@@ -648,15 +656,15 @@
                 [self saveBoxScore];
                 
                 [self performSegueWithIdentifier:@"PitchChartSegue" sender:nil];
-
+                
                 
             }
             if (amIBatting) {
                 NSLog(@"myteamdict Pitcher: %@",[myTeamDictionaryArray objectAtIndex:myPitcherIndex]);
-
+                
             }else{
                 NSLog(@"opponent dict Pitcher: %@",[opponentTeamDictionaryArray objectAtIndex:opponentPitcherIndex]);
-
+                
             }
             
             
@@ -679,7 +687,7 @@
             
             if (currentBatterStrike > 2 && (currentOuts < 3)) {
                 NSLog(@"currentBatterStrikes > 2\nbatterPositionNumber %i",batterPositionNumber);
-               
+                
                 currentOuts ++;
                 currentBatterBall = 0;
                 currentBatterStrike = 0;
@@ -700,9 +708,9 @@
                 
                 if (currentOuts < 3) {
                     [self performSegueWithIdentifier:@"PitchChartSegue" sender:nil];
-
+                    
                 }
-
+                
                 
             }
             
@@ -727,7 +735,7 @@
                     isTopOfInning = NO;
                     currentInning--;
                     NSLog(@"after OUT:istop %d:",currentInning);
-
+                    
                     
                 }else{
                     
@@ -739,10 +747,10 @@
                 }else{
                     amIBatting = YES;
                 }
-
+                
                 
                 [self performSegueWithIdentifier:@"hcSegue" sender:nil];
-
+                
             }
             
             [self viewDidLoad];
@@ -753,7 +761,7 @@
                 //start the game timer;
             [self gameTimeStart];
             gameTimerButton.enabled = NO;
-            gameTimerButton.alpha = 0.5;
+            [gameTimerButton setTintColor: [UIColor clearColor]];
             _gameEndsAtLabel.hidden = NO;
             
             [self setEndingTimeTextLabel];
@@ -792,49 +800,49 @@
             if (amIBatting){
                 
                 if (isHomeTeam) {
-                        homeRuns--;
-                        NSLog(@"homeRuns: %i",homeRuns);
+                    homeRuns--;
+                    NSLog(@"homeRuns: %i",homeRuns);
                     if (homeRuns < 0) {
                         homeRuns = 0;
                     }
                     
-                    }
-                    else{
-                        
-                        visitorRuns--;
-                        NSLog(@"visitorRuns: %i",visitorRuns);
-                        if (visitorRuns < 0) {
-                            visitorRuns = 0;
-                        }
-                        
+                }
+                else{
+                    
+                    visitorRuns--;
+                    NSLog(@"visitorRuns: %i",visitorRuns);
+                    if (visitorRuns < 0) {
+                        visitorRuns = 0;
                     }
                     
                 }
-            
-    if (!amIBatting) {
-        
-        
-        if (isHomeTeam) {
-                NSLog(@"visitorRuns: %i",visitorRuns);
-            visitorRuns--;
-            if (visitorRuns < 0) {
-                visitorRuns = 0;
-            }
-
-            NSLog(@"currentBatter %@:\n",[opponentTeamDictionaryArray objectAtIndex:batterPositionNumber]);
-            }
-            else{
-                homeRuns--;
-                NSLog(@"homeRuns: %i",homeRuns);
-                NSLog(@"currentBatter %@:\n",[myTeamDictionaryArray objectAtIndex:batterPositionNumber]);
-                if (homeRuns < 0) {
-                    homeRuns = 0;
-                }
-
                 
             }
-        }
-    
+            
+            if (!amIBatting) {
+                
+                
+                if (isHomeTeam) {
+                    NSLog(@"visitorRuns: %i",visitorRuns);
+                    visitorRuns--;
+                    if (visitorRuns < 0) {
+                        visitorRuns = 0;
+                    }
+                    
+                    NSLog(@"currentBatter %@:\n",[opponentTeamDictionaryArray objectAtIndex:batterPositionNumber]);
+                }
+                else{
+                    homeRuns--;
+                    NSLog(@"homeRuns: %i",homeRuns);
+                    NSLog(@"currentBatter %@:\n",[myTeamDictionaryArray objectAtIndex:batterPositionNumber]);
+                    if (homeRuns < 0) {
+                        homeRuns = 0;
+                    }
+                    
+                    
+                }
+            }
+            
             if (amIBatting) {
                 [self subMyRBI];
                 [self saveUpdatedMyTeamInfo];
@@ -869,9 +877,9 @@
                     NSLog(@"visitorRuns: %i",visitorRuns);
                     
                 }
-
+                
             }
-
+            
             if (!amIBatting) {
                 if (!isHomeTeam) {
                     NSLog(@"NOT BATTING isHomeTeam");
@@ -887,7 +895,7 @@
                 }
                 
             }
-
+            
             
             
             
@@ -998,7 +1006,7 @@
         [myTeamDictionaryArray replaceObjectAtIndex:myPitcherIndex withObject:tempdict];
         
         NSLog(@"add strike myTeamDictArray:\n%@",tempdict);
-
+        
         [self saveUpdatedMyTeamInfo];
         
     }
@@ -1232,29 +1240,29 @@
     NSNumber *isstarted = @(isTimerStarted);
     strValue = [@(maxNumberOfPitches) stringValue];
     NSString *timelimit = [@(gameTimeLimit) stringValue];
-
-
+    
+    
     
     if (opponentTeamName.length < 1) {
         opponentTeamName = @"NA";
     }
     
     tempdict = [NSDictionary dictionaryWithObjectsAndKeys:
-                              ispitchcount,@"trackpitchcount",
-                              strValue,@"maxnumberofpitches",
-                              numberOfHoursRest,@"numberofhoursrest",
-                              cont,@"continouslineup",
-                              timelimit,@"gametimelimit",
-                              home,@"hometeam",
-                              opponentTeamName,@"opponentteamname",
-                              
-                              gameTimeStart,@"gamestarttime",
-                              
-                              isstarted,@"istimerstarted",
-                              
-                              nil];
+                ispitchcount,@"trackpitchcount",
+                strValue,@"maxnumberofpitches",
+                numberOfHoursRest,@"numberofhoursrest",
+                cont,@"continouslineup",
+                timelimit,@"gametimelimit",
+                home,@"hometeam",
+                opponentTeamName,@"opponentteamname",
+                
+                gameTimeStart,@"gamestarttime",
+                
+                isstarted,@"istimerstarted",
+                
+                nil];
     [gameDefaultsMutableArray addObject:tempdict];
-
+    
     
         //Save file
     NSLog(@"gameSettingsDictionary: %@",tempdict);
@@ -1271,7 +1279,7 @@
             // Write dictionary array
         [tempdict writeToFile:dictPath atomically:YES];
     }
-
+    
     
     
 }
@@ -1414,59 +1422,85 @@
     UITouch *myTouch = [[touches allObjects] objectAtIndex: 0];
     CGPoint currentPos = [myTouch locationInView: nil];
     NSLog(@"Point in myView: (%f,%f)", currentPos.x, currentPos.y);
-    if (currentPos.x >= 245 && currentPos.x <= 490) {
-        if (currentPos.y >= 10 && currentPos.y <= 255) {
-            bbView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"baseballSmall"]] ;
-            
-            [bbView setCenter:CGPointMake(currentPos.x, currentPos.y)];
-            [self.view addSubview:bbView];
-            
-            float xP = currentPos.x;
-            float yP = currentPos.y;
-            xPos = [NSNumber numberWithFloat:xP];
-            yPos = [NSNumber numberWithFloat:yP];
-            
-            pitchLocation = [NSArray arrayWithObjects:
-                             xPos,yPos,nil];
-            
-            NSLog(@"pitchLocation: \n%@",pitchLocation);
-            
-            [self savePitchingChart];
-            
+    if (screenWidth > 568) {
+        
+        if (currentPos.x >= 270 && currentPos.x <= 464) {
+            if (currentPos.y >= 12 && currentPos.y <= 203) {
+                bbView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"baseballSmall"]] ;
+                
+                [bbView setCenter:CGPointMake(currentPos.x, currentPos.y)];
+                [self.view addSubview:bbView];
+                
+                float xP = currentPos.x;
+                float yP = currentPos.y;
+                xPos = [NSNumber numberWithFloat:xP];
+                yPos = [NSNumber numberWithFloat:yP];
+                
+                pitchLocation = [NSArray arrayWithObjects:
+                                 xPos,yPos,nil];
+                
+                NSLog(@"pitchLocation: \n%@",pitchLocation);
+                
+                [self savePitchingChart];
+                
+            }
         }
+    } else {
+        if (currentPos.x >= 186 && currentPos.x <= 380) {
+            if (currentPos.y >= 12 && currentPos.y <= 203) {
+                bbView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"baseballSmall"]] ;
+                
+                [bbView setCenter:CGPointMake(currentPos.x, currentPos.y)];
+                [self.view addSubview:bbView];
+                
+                float xP = currentPos.x;
+                float yP = currentPos.y;
+                xPos = [NSNumber numberWithFloat:xP];
+                yPos = [NSNumber numberWithFloat:yP];
+                
+                pitchLocation = [NSArray arrayWithObjects:
+                                 xPos,yPos,nil];
+                
+                NSLog(@"pitchLocation: \n%@",pitchLocation);
+                
+                [self savePitchingChart];
+                
+            }
+        }
+
     }
     
 }
 
 - (void)setGameEndingTime{
-
+    
     NSLog(@"gameTimeLimit: %d",gameTimeLimit);
     if (gameTimeLimit > 0) {
         
         if ([gameStartTime  isEqual: @""]) {
             endingTime = [gameTimeStart dateByAddingTimeInterval:gameTimeLimit*60];
-
+            
         }else{
-        endingTime = [gameStartTime dateByAddingTimeInterval:gameTimeLimit*60];
+            endingTime = [gameStartTime dateByAddingTimeInterval:gameTimeLimit*60];
         }
         NSLog(@"endingTime = %@",endingTime);
-
+        
         
     }
     
-//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-//    dateFormatter.dateFormat = @"hh:mm:ss";
-//    [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
-//    NSLog(@"The Ending Time is %@",[dateFormatter stringFromDate:endingTime]);
-//        //Save starting time
+        //    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        //    dateFormatter.dateFormat = @"hh:mm:ss";
+        //    [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
+        //    NSLog(@"The Ending Time is %@",[dateFormatter stringFromDate:endingTime]);
+        //        //Save starting time
     
     
 }
 
 - (void)gameTimeStart{
     isTimerStarted = YES;
-        gameTimeStart = [NSDate date];
-        [self setGameEndingTime];
+    gameTimeStart = [NSDate date];
+    [self setGameEndingTime];
     
 }
 
@@ -1518,12 +1552,20 @@
 - (void)checkPitchCount{
     
     if (currentPitchCount > maxNumberOfPitches) {
-    NSLog(@"Max pitches HAVE BEEN REACHED");
-        
+        NSLog(@"Max pitches HAVE BEEN REACHED");
+        if (screenWidth > 568) {
         [self.alertLabel setHidden:NO];
-        _alertLabel.text = @"The pitcher has reached his/her max pitches\nTo change pitchers press the Change Pitcher button above";
+        _alertLabel.text = @"The pitcher has reached his/her max pitches. To change pitchers press the Change Pitcher button above";
         _alertLabel.backgroundColor = [UIColor redColor];
-        
+        }else{
+            [self.alertSmallLabel setHidden:NO];
+            _alertSmallLabel.text = @"The pitcher has reached his/her max pitches.";
+            _alertSmallLabel.backgroundColor = [UIColor redColor];
+            
+            
+            
+
+        }
     }
 }
 
@@ -1532,7 +1574,7 @@
     NSLog(@"batterPositionNumber before:%i",batterPositionNumber);
     batterPositionNumber ++;
     NSLog(@"batterPositionNumber after:%i",batterPositionNumber);
-
+    
     if (amIBatting){
         
         
@@ -1661,7 +1703,7 @@
     {
         
             // Write dictionary
-//        [gameDefaultsDictionaryTemp writeToFile:dictPath atomically:YES];
+            //        [gameDefaultsDictionaryTemp writeToFile:dictPath atomically:YES];
         
     }
 }
@@ -1841,7 +1883,7 @@
     }
     
     NSLog(@"boxScoreDictionary: %@",boxScoreDictionary);
-
+    
 }
 
 - (void)changeBattingBoxScoreDictionary {
@@ -1857,7 +1899,7 @@
         isTopOfInning = YES;
         currentInning ++;
     }
-
+    
     if (amIBatting) {
         amIBatting = NO;
     }else{
@@ -3307,9 +3349,9 @@
         }
     }
     
-    if (myPCArray != nil) {
+    if (myPCArray.count > 0) {
         isPitchHistoryLoaded = YES;
-        for (int i = 0; i <myPCArray.count; i++) {
+        for (int i = 0; i <myPCArray.count-1; i++) {
             int x = [[myPCArray[i]objectAtIndex:0]intValue];
             int y = [[myPCArray[i]objectAtIndex:1]intValue];
             
@@ -3321,10 +3363,10 @@
             bbView = [[UIImageView alloc]initWithImage:baseBall];
             
             
-            bbView = [[UIImageView alloc]initWithImage:[baseBall imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
-            NSLog(@"ballColor: %@",ballColor[i]);
-            bbView.tintColor = [UIColor lightGrayColor];
-
+                //            bbView = [[UIImageView alloc]initWithImage:[baseBall imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
+                //            NSLog(@"ballColor: %@",ballColor[i]);
+                //            bbView.tintColor = [UIColor lightGrayColor];
+            
             CGRect frame = bbView.bounds;
             frame.origin.x = x;
             frame.origin.y = y;
@@ -3498,7 +3540,7 @@
         int strikes = [[[opponentTeamDictionaryArray objectAtIndex:opponentPitcherIndex]valueForKey:@"strikesthrown"]intValue];
         
         currentPitchCount = balls + strikes;
-
+        
         
     }else{
             //get ball and strikes from myteam
@@ -3533,16 +3575,16 @@
         int er = [[[myTeamDictionaryArray valueForKey:@"fieldingerror"]objectAtIndex:batterPositionNumber]intValue];
         int po = [[[myTeamDictionaryArray valueForKey:@"out"]objectAtIndex:batterPositionNumber]intValue];
         int rbi = [[[myTeamDictionaryArray valueForKey:@"RBI"]objectAtIndex:batterPositionNumber]intValue];
-                  
-                  float hits =(f + s + t + h);
-                  float atBats = (f + s + t + h +er + po);
-                  float avg = hits/atBats;
-                  if (isnan(avg)) {
-                      avg = 0;
-                  }
-                      NSString *stats = [NSString stringWithFormat:@"Avg:%.03f  HR:%i  RBI:%i", avg,h,rbi];
-                      currentBatterInfoLabel.text = stats;
-
+        
+        float hits =(f + s + t + h);
+        float atBats = (f + s + t + h +er + po);
+        float avg = hits/atBats;
+        if (isnan(avg)) {
+            avg = 0;
+        }
+        NSString *stats = [NSString stringWithFormat:@"Avg:%.03f  HR:%i  RBI:%i", avg,h,rbi];
+        currentBatterInfoLabel.text = stats;
+        
     }else{
         int f = [[[opponentTeamDictionaryArray valueForKey:@"1B"]objectAtIndex:batterPositionNumber]intValue];
         int s = [[[opponentTeamDictionaryArray valueForKey:@"2B"]objectAtIndex:batterPositionNumber]intValue];
@@ -3558,13 +3600,13 @@
         if (isnan(avg)) {
             avg = 0;
         }
-            NSString *stats = [NSString stringWithFormat:@"Avg:%.03f  HR:%i  RBI:%i", avg,h,rbi];
-            currentBatterInfoLabel.text = stats;
-
+        NSString *stats = [NSString stringWithFormat:@"Avg:%.03f  HR:%i  RBI:%i", avg,h,rbi];
+        currentBatterInfoLabel.text = stats;
+        
     }
     
     
-
+    
 }
 
 
@@ -3575,17 +3617,17 @@
     
     NSDateFormatter *format = [[NSDateFormatter alloc]init];
     
-format.dateFormat = @"hh:mm";
+    format.dateFormat = @"hh:mm";
     NSLog(@"time: %@",format);
     NSDate *dateFromString = [[NSDate alloc]init];
-                            
+    
     dateFromString = [format dateFromString:gameStartTime];
     NSLog(@"gameStart: %@",dateFromString);
     
 }
 
 - (void) setEndingTimeTextLabel {
-
+    
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     
     dateFormatter.dateFormat = @"hh:mm a";
@@ -3594,7 +3636,7 @@ format.dateFormat = @"hh:mm";
     
     _gameEndingTimeLabel.text = [NSString stringWithFormat:@"%@",[dateFormatter stringFromDate:endingTime]] ;
     
-
+    
 }
 
 @end

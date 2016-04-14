@@ -8,9 +8,10 @@
 
 #import "LoadSavedTeamsViewController.h"
 
+
 @interface LoadSavedTeamsViewController ()
 {
-    NSString *opponentTeamName, *origFileName, *newFileName;
+    NSString *opponentTeamName, *origFileName, *newFileName, *selectedFileName;
     NSArray *filePathsArray;
     int teamSelected;
     IBOutlet UITableView *tableView;
@@ -23,7 +24,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
     [self GetTeamSaveDirectory];
 }
 
@@ -60,7 +60,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     teamSelected = (int)indexPath.row;
+    selectedFileName = filePathsArray[teamSelected];
     NSLog(@"teamSelected: %i",teamSelected);
+    NSLog(@"selectedFileName: %@",selectedFileName);
+    [self removeOpponent];
     [self renameSavFile];
 
     
@@ -90,6 +93,45 @@
     
 }
 
+- (void)renameSavFile{
+    NSString *temp = [filePathsArray objectAtIndex:teamSelected];
+    
+    origFileName = [temp substringToIndex:(temp.length -4)];
+    NSString *opponentTeamOut = @"opponentteamdictionary.out";
+    
+    NSLog(@"origFileName: %@",origFileName);
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+    NSString *actualFilePath = [documentsDirectory stringByAppendingPathComponent:temp];
+    NSString *copyFilePath = [documentsDirectory stringByAppendingPathComponent:opponentTeamOut];
+    NSError *error;
+    if ([fileManager copyItemAtPath:actualFilePath toPath:copyFilePath error:&error]){
+        NSLog(@"Rename Success");
+        
+        [self showAlert];
+    }
+    else{
+        NSLog(@"Copy error: %@", error);
+    }
+}
+
+- (void)removeOpponent {
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    
+    NSString *filePath = [documentsPath stringByAppendingPathComponent:@"opponentteamdictionary.out"];
+    NSError *error;
+    BOOL success = [fileManager removeItemAtPath:filePath error:&error];
+    if (success) {
+        NSLog(@"File removed");
+    }
+    else
+    {
+        NSLog(@"Could not remove opponent file or file missing");
+    }
+}
+
 - (void)LoadGameDefaults{
     NSLog(@"***********LoadGameDefaultsFromFile");
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -106,7 +148,7 @@
     }
 }
 
-- (void)renameSavFile{
+- (void)copySavFile{
     NSString *temp = [filePathsArray objectAtIndex:teamSelected];
     
     origFileName = [temp substringToIndex:(temp.length -4)];

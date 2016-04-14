@@ -45,15 +45,23 @@
 
     if ([self doesFileExist]) {
         [self LoadGameDefaults];
-        isTrackingPitchCount = [gameDefaultsDictionary valueForKey:@"trackpitchcount"];
+        isTrackingPitchCount = [[gameDefaultsDictionary valueForKey:@"trackpitchcount"]boolValue];
+        
         _maxNumberOfPitchesTextField.text = [gameDefaultsDictionary valueForKey:@"maxnumberofpitches"];
+        
         _numberOfHoursRestTextField.text = [gameDefaultsDictionary valueForKey:@"numberofhoursrest"];
-        isContinousLineup = [gameDefaultsDictionary valueForKey:@"continouslineup"];
+        
+        isContinousLineup = [[gameDefaultsDictionary valueForKey:@"continouslineup"]boolValue];
         _gameTimeLimitTextField.text = [gameDefaultsDictionary valueForKey:@"gametimelimit"];
-        isHomeTeam = [gameDefaultsDictionary valueForKey:@"hometeam"];
-        batting = [[gameDefaultsDictionary valueForKey:@"amibatting"]boolValue];
+        
+        isHomeTeam = [[gameDefaultsDictionary valueForKey:@"hometeam"]boolValue];
         
         _opponentNameTextField.text = [gameDefaultsDictionary valueForKey:@"opponentteamname"];
+        
+        timerstarted = [gameDefaultsDictionary valueForKey:@"istimerstarted"];
+        
+//        gameStartTime = [[gameDefaultsDictionary valueForKey:@"amibatting"]boolValue];
+
 
         }
         
@@ -71,6 +79,15 @@
     
     if (! isTrackingPitchCount) {
         _maxNumberOfPitchesTextField.hidden = YES;
+        _trackPitchCountSwitch.on = NO;
+    }
+    
+    if (! isContinousLineup) {
+        _continousLineupSwitch.on = NO;
+    }
+    
+    if (! isHomeTeam) {
+        _isHomeTeamSwitch.on = NO;
     }
 
     
@@ -155,11 +172,12 @@
     if (_opponentNameTextField.text.length < 1) {
         _opponentNameTextField.text = @"NA";
     }
+    NSNumber *rest = @([_gameTimeLimitTextField.text intValue]);
     
     gameDefaultsDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
                               pitch,@"trackpitchcount",
                               _maxNumberOfPitchesTextField.text,@"maxnumberofpitches",
-                              _numberOfHoursRestTextField.text,@"numberofhoursrest",
+                              rest,@"numberofhoursrest",
                               continous,@"continouslineup",
                               _gameTimeLimitTextField.text,@"gametimelimit",
                               home,@"hometeam",
@@ -175,8 +193,7 @@
     
     NSLog(@"gameSettingsDictionary: %@",gameDefaultsDictionary);
     
-    NSLog(@"arrayOfDictionariesMutableArray: %@",arrayOfDictionariesMutableArray);
-    NSLog(@"array count: %lu",(unsigned long)[arrayOfDictionariesMutableArray count]);
+    NSLog(@"array count: %lu",(unsigned long)[gameDefaultsMutableArray count]);
     
 }
 
