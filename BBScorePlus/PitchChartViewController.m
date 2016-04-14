@@ -3349,9 +3349,9 @@
         }
     }
     
-    if (myPCArray.count > 0) {
+    if (![myPCArray isKindOfClass:[NSNull class]]) {
         isPitchHistoryLoaded = YES;
-        for (int i = 0; i <myPCArray.count-1; i++) {
+        for (int i = 0; i <myPCArray.count; i++) {
             int x = [[myPCArray[i]objectAtIndex:0]intValue];
             int y = [[myPCArray[i]objectAtIndex:1]intValue];
             
