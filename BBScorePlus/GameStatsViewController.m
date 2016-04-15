@@ -345,10 +345,19 @@
     loadedPitch = [myTeamDictionaryArray filteredArrayUsingPredicate:cp];
     
     NSLog(@"filter %@",loadedPitch);
-    
-    myTeamFilteredPitcherLastName = [loadedPitch valueForKey:@"lastname"];
-    myTeamFilteredPitcherNumber = [loadedPitch valueForKey:@"playernumber"];
-    myTeamFilteredPitcherPitchingStats = [loadedPitch valueForKey:@"firstname"];
+        //what if empty
+    if (loadedPitch.count > 0) {
+        myTeamFilteredPitcherLastName = [loadedPitch valueForKey:@"lastname"];
+        myTeamFilteredPitcherNumber = [loadedPitch valueForKey:@"playernumber"];
+        myTeamFilteredPitcherPitchingStats = [loadedPitch valueForKey:@"firstname"];
+        
+
+    }else{
+        myTeamFilteredPitcherLastName = [NSArray arrayWithObjects: @"",nil];
+        myTeamFilteredPitcherNumber = [NSArray arrayWithObjects:@"", nil];
+        myTeamFilteredPitcherPitchingStats = [NSArray arrayWithObjects:@"", nil];
+
+    }
     
     currentPitcher = [myTeamFilteredPitcherLastName objectAtIndex:0];
     
@@ -397,9 +406,18 @@
     loadedOpponentPitcher = [opponentTeamDictionaryArray filteredArrayUsingPredicate:cp];
     NSLog(@"opponent pitcher filter %@",loadedOpponentPitcher);
     
-    opponentTeamFilteredPitcherLastName = [loadedOpponentPitcher valueForKey:@"lastname"];
-    opponentTeamFilteredPitcherNumber = [loadedOpponentPitcher valueForKey:@"playernumber"];
-    opponentTeamFilteredPitcherPitchingStats = [loadedOpponentPitcher valueForKey:@"firstname"];
+    if (loadedOpponentPitcher.count > 0) {
+        opponentTeamFilteredPitcherLastName = [loadedOpponentPitcher valueForKey:@"lastname"];
+        opponentTeamFilteredPitcherNumber = [loadedOpponentPitcher valueForKey:@"playernumber"];
+        opponentTeamFilteredPitcherPitchingStats = [loadedOpponentPitcher valueForKey:@"firstname"];
+
+    }else{
+        opponentTeamFilteredPitcherLastName = [NSArray arrayWithObjects: @"",nil];
+        opponentTeamFilteredPitcherNumber = [NSArray arrayWithObjects:@"", nil];
+        opponentTeamFilteredPitcherPitchingStats = [NSArray arrayWithObjects:@"", nil];
+        
+    }
+    
     
     currentOpponentPitcher = [opponentTeamFilteredPitcherLastName objectAtIndex:0];
     

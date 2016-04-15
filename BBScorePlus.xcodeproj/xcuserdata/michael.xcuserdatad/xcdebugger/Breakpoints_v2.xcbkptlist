@@ -778,28 +778,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/GameStatsViewController.m"
-            timestampString = "476389400.179742"
+            timestampString = "482421091.692726"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "398"
-            endingLineNumber = "398"
+            startingLineNumber = "408"
+            endingLineNumber = "408"
             landmarkName = "-LoadOpponentTeam"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BBScorePlus/GameStatsViewController.m"
-            timestampString = "476389400.179742"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "356"
-            endingLineNumber = "356"
-            landmarkName = "-LoadMyTeam"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1482,7 +1466,7 @@
                   moduleName = "BBScorePlus"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/michael/Documents/School/IPDb/BBSPlus/BBScorePlus/BBScorePlus/HittingChartViewController.m"
-                  timestampString = "482290995.504639"
+                  timestampString = "482421091.822199"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "874"
@@ -1497,7 +1481,7 @@
                   moduleName = "BBScorePlus"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/michael/Documents/School/IPDb/BBSPlus/BBScorePlus/BBScorePlus/HittingChartViewController.m"
-                  timestampString = "482290995.504793"
+                  timestampString = "482421091.822339"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "874"
@@ -1920,6 +1904,38 @@
             startingLineNumber = "778"
             endingLineNumber = "778"
             landmarkName = "-getHittingChart"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BBScorePlus/GameStatsViewController.m"
+            timestampString = "482414761.818862"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "344"
+            endingLineNumber = "344"
+            landmarkName = "-LoadMyTeam"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BBScorePlus/GameStatsViewController.m"
+            timestampString = "482415906.115435"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "362"
+            endingLineNumber = "362"
+            landmarkName = "-LoadMyTeam"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
