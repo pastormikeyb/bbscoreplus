@@ -39,7 +39,7 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="55" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5Wz-FI-zmw">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="55" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5Wz-FI-zmw">
                                 <rect key="frame" x="20" y="64" width="560" height="479"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" red="0.71372549019999998" green="0.61176470589999998" blue="0.42745098040000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -148,7 +148,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" bounces="NO" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DhG-kI-LvP">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DhG-kI-LvP">
                                 <rect key="frame" x="0.0" y="72" width="600" height="471"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Player First Name" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="4We-85-AbS">
@@ -350,7 +350,7 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="55" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SK1-cy-q8L">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="55" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SK1-cy-q8L">
                                 <rect key="frame" x="20" y="64" width="560" height="479"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" red="0.71372549019999998" green="0.61176470589999998" blue="0.42745098040000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -621,7 +621,7 @@
                         <constraints>
                             <constraint firstItem="Wc4-52-hSM" firstAttribute="leading" secondItem="QUx-0M-xZH" secondAttribute="leadingMargin" id="4YO-QU-7Zj"/>
                             <constraint firstItem="fsK-Vn-JAd" firstAttribute="centerX" secondItem="Wc4-52-hSM" secondAttribute="centerX" id="M3H-yf-tON"/>
-                            <constraint firstItem="bON-wj-vQN" firstAttribute="top" secondItem="Wc4-52-hSM" secondAttribute="bottom" constant="57" id="bpL-eQ-56O"/>
+                            <constraint firstItem="bON-wj-vQN" firstAttribute="top" secondItem="Wc4-52-hSM" secondAttribute="bottom" constant="8" id="bpL-eQ-56O"/>
                             <constraint firstItem="fsK-Vn-JAd" firstAttribute="top" secondItem="kkJ-e5-l20" secondAttribute="bottom" id="n1s-Zr-rCH"/>
                             <constraint firstItem="fsK-Vn-JAd" firstAttribute="leading" secondItem="QUx-0M-xZH" secondAttribute="leading" id="pS3-iX-z32"/>
                             <constraint firstItem="fsK-Vn-JAd" firstAttribute="bottom" secondItem="Wc4-52-hSM" secondAttribute="top" id="qt1-uJ-nIy"/>
@@ -1126,7 +1126,11 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="c2e-cZ-G2o"/>
-                                    <barButtonItem tag="1" title="Game Over" id="DgU-E2-SIT"/>
+                                    <barButtonItem tag="1" title="Game Over" id="DgU-E2-SIT">
+                                        <connections>
+                                            <action selector="gameOverButton:" destination="Msx-cC-FDy" id="obx-nZ-IwX"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="dbd-tX-tkq"/>
                                     <barButtonItem title="Pitching" id="EMn-da-ZkR">
                                         <connections>
@@ -1222,6 +1226,7 @@
                     <connections>
                         <outlet property="currentHitterLabel" destination="nMZ-DL-Kbl" id="eNl-6g-Vnk"/>
                         <outlet property="currentInningLabel" destination="RGG-R8-Ec1" id="hH6-Po-TgL"/>
+                        <outlet property="gameOverButton" destination="DgU-E2-SIT" id="ddP-E0-iUW"/>
                         <outlet property="homeErrorLabel" destination="II2-lm-jpr" id="Dqa-dg-k7h"/>
                         <outlet property="homeHitsLabel" destination="gVq-QV-KRW" id="wBz-sm-Y1E"/>
                         <outlet property="homeRunsLabel" destination="Wzn-6M-qj6" id="IpL-ig-EKQ"/>
@@ -2417,9 +2422,9 @@
         <image name="rules-book" width="26" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ohQ-eM-Srs"/>
         <segue reference="UGB-sS-9Jp"/>
-        <segue reference="hBs-If-5Fo"/>
+        <segue reference="FFf-dP-bfW"/>
+        <segue reference="bnF-oL-8Bi"/>
         <segue reference="y9L-Eo-PK3"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>

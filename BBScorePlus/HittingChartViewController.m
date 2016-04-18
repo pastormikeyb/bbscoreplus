@@ -636,6 +636,19 @@
     
 }
 
+- (IBAction)gameOverButton:(id)sender {
+        //Game Over
+        //Save Teams
+    NSLog(@"Game Over");
+    [self gameOver];
+    [self LoadOpponentTeamAndSave];
+    [self MyTeamArraySave];
+    [self removeFile];
+    
+    [util showAlert:@"Save" msg:@"Game Done and saved" cancelButtonTitle:@"Ok"];
+
+}
+
 - (IBAction)onClick:(id)sender {
     UIButton *button = (UIButton*)sender;
     
@@ -680,6 +693,7 @@
             case 1:
                 //Game Over
                 //Save Teams
+            NSLog(@"Game Over");
             [self gameOver];
             [self LoadOpponentTeamAndSave];
             [self MyTeamArraySave];

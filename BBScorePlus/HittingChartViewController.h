@@ -43,6 +43,7 @@
 @property (nonatomic, assign)int inningNumber;
 
 @property (weak, nonatomic) IBOutlet UIButton *onClick;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *gameOverButton;
 
 
 
