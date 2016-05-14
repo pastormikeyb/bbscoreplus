@@ -14,6 +14,7 @@
     NSString *opponentTeamName, *origFileName, *newFileName, *selectedFileName;
     NSArray *filePathsArray;
     int teamSelected;
+    BOOL isOpponentLoaded;
     IBOutlet UITableView *tableView;
 }
 
@@ -60,7 +61,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     teamSelected = (int)indexPath.row;
-    selectedFileName = filePathsArray[teamSelected];
+    NSString *temp = filePathsArray[teamSelected];
+    selectedFileName = [temp substringToIndex:(temp.length -4)];
+    
     NSLog(@"teamSelected: %i",teamSelected);
     NSLog(@"selectedFileName: %@",selectedFileName);
     [self removeOpponent];
@@ -117,6 +120,7 @@
 }
 
 - (void)removeOpponent {
+    isOpponentLoaded = YES;
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     
@@ -141,7 +145,7 @@
         NSDictionary *load = [NSDictionary dictionaryWithContentsOfFile:filePath];
         
         opponentTeamName = [load valueForKey:@"opponentteamname"];
-        
+        NSLog(@"opponentTeamName %@",opponentTeamName);
         NSLog(@"pause");
     }else{
         NSLog(@"No file.");
@@ -182,14 +186,26 @@
 }
 
 
-/*
+
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    
+    if ([[segue identifier] isEqualToString:@"RulesID"])
+        
+    {
+        UITabBarController *tabbar = [segue destinationViewController];
+        RulesSetupViewController *vc = [tabbar.viewControllers objectAtIndex:0];
+        
+        NSLog(@"opponentTeamName %@",selectedFileName);
+        NSLog(@"isOpponentLoaded %i",isOpponentLoaded);
+        
+        vc.opponentTeamName = selectedFileName;
+        vc.isOpponentLoaded = isOpponentLoaded;
+        NSLog(@"end of prepareForSegue");
+    }
 }
-*/
+
+
 
 @end

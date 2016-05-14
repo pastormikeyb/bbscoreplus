@@ -610,7 +610,7 @@
                                     <navigationItem title="Load Saved Team" id="0QZ-Bv-KSm">
                                         <barButtonItem key="leftBarButtonItem" systemItem="done" id="9FE-pH-r4X">
                                             <connections>
-                                                <segue destination="G0O-to-dID" kind="show" id="UGB-sS-9Jp"/>
+                                                <segue destination="G0O-to-dID" kind="show" identifier="RulesID" id="UGB-sS-9Jp"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -2423,9 +2423,9 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="UGB-sS-9Jp"/>
-        <segue reference="FFf-dP-bfW"/>
-        <segue reference="bnF-oL-8Bi"/>
+        <segue reference="ohQ-eM-Srs"/>
         <segue reference="y9L-Eo-PK3"/>
+        <segue reference="bnF-oL-8Bi"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
 </document>

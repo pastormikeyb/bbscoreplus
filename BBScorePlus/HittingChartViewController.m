@@ -636,18 +636,69 @@
     
 }
 
+
+
 - (IBAction)gameOverButton:(id)sender {
         //Game Over
         //Save Teams
     NSLog(@"Game Over");
-    [self gameOver];
-    [self LoadOpponentTeamAndSave];
-    [self MyTeamArraySave];
-    [self removeFile];
     
-    [util showAlert:@"Save" msg:@"Game Done and saved" cancelButtonTitle:@"Ok"];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Game Over?"
+                                                    message:@"Save the opponent's team?"
+                                                   delegate:self
+                                          cancelButtonTitle:@"No"
+                                          otherButtonTitles:@"Yes", nil];
+    
+        // otherButtonTitles is a comma delimited list of strings, terminated with a nil.
+    
+    [alert show];
+
+
+//    [util showAlert:@"Save" msg:@"Game Done and saved" cancelButtonTitle:@"Ok"];
 
 }
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+        case 0:
+        {
+                //this is the "Cancel"-Button
+                //do something
+            NSLog(@"Cancel Button");
+            
+            
+        }
+            break;
+            
+        case 1:
+        {
+                //this is the "Yes"-Button
+                //do something
+            
+            NSLog(@"Game Over - Yes");
+            
+            [self gameOver];
+            [self LoadOpponentTeamAndSave];
+            [self MyTeamArraySave];
+            [self removeFile];
+
+            
+        }
+            break;
+            
+        case 2:
+        {
+            NSLog(@"No");
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+}
+
 
 - (IBAction)onClick:(id)sender {
     UIButton *button = (UIButton*)sender;

@@ -11,7 +11,7 @@
 @interface RulesSetupViewController ()
 {
     NSDictionary *gameDefaultsDictionary, *boxScoreDictionary;
-    NSString *dictPath;
+    NSString *dictPath, *opponentName;
     NSArray *filePathsArray;
     NSMutableArray *arrayOfDictionariesMutableArray, *gameDefaultsMutableArray;
     NSNumber *pitch, *continous, *home, *timerstarted;
@@ -23,6 +23,8 @@
 @end
 
 @implementation RulesSetupViewController
+
+@synthesize opponentTeamName, isOpponentLoaded;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -45,6 +47,11 @@
 
     if ([self doesFileExist]) {
         [self LoadGameDefaults];
+        if (isOpponentLoaded) {
+            _opponentNameTextField.text = opponentTeamName;
+        }else{
+        _opponentNameTextField.text = [gameDefaultsDictionary valueForKey:@"opponentteamname"];;
+        }
         isTrackingPitchCount = [[gameDefaultsDictionary valueForKey:@"trackpitchcount"]boolValue];
         
         _maxNumberOfPitchesTextField.text = [gameDefaultsDictionary valueForKey:@"maxnumberofpitches"];
@@ -56,7 +63,7 @@
         
         isHomeTeam = [[gameDefaultsDictionary valueForKey:@"hometeam"]boolValue];
         
-        _opponentNameTextField.text = [gameDefaultsDictionary valueForKey:@"opponentteamname"];
+        opponentName = [gameDefaultsDictionary valueForKey:@"opponentteamname"];
         
         timerstarted = [gameDefaultsDictionary valueForKey:@"istimerstarted"];
         
@@ -113,7 +120,7 @@
         NSLog(@"fileExist");
         
             //load file
-        [self removeFile];
+//        [self removeFile];
         
     }
         // Get path to documents directory
@@ -168,9 +175,10 @@
     continous = @(isContinousLineup);
     home = @(isHomeTeam);
     timerstarted = @(isTimerStarted);
+    opponentName = _opponentNameTextField.text;
     NSString *junk = @"";
-    if (_opponentNameTextField.text.length < 1) {
-        _opponentNameTextField.text = @"NA";
+    if (opponentName.length < 1) {
+        opponentName = @"NA";
     }
     NSNumber *rest = @([_gameTimeLimitTextField.text intValue]);
     
@@ -181,7 +189,7 @@
                               continous,@"continouslineup",
                               _gameTimeLimitTextField.text,@"gametimelimit",
                               home,@"hometeam",
-                              _opponentNameTextField.text,@"opponentteamname",
+                              opponentName,@"opponentteamname",
                               
                               junk,@"gamestarttime",
                               

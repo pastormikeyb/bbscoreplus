@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "LoadSavedTeamsTableViewCell.h"
 #import "utilities.h"
+#import "RulesSetupViewController.h"
 
 @interface LoadSavedTeamsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
