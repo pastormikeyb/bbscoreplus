@@ -17,7 +17,8 @@
     NSMutableArray *arrayOfDictionariesMutableArray;
     NSDictionary *dict;
     BOOL isPitcherSet;
-    
+    CGFloat screenWidth;
+
 }
 
 
@@ -25,6 +26,8 @@
 
 @implementation AddNewPlayerViewController
 @synthesize batsSegmentControl, throwsSegmentControl,firstName,lastName,playerNumber;
+@synthesize btnDone,inputAccView;
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -40,7 +43,10 @@
     if ([self doesFileExist]) {
         [self LoadFromFile];
     }
-    
+    [self getScreenSize];
+    [self createInputAccessoryView];
+    [playerNumber setInputAccessoryView:inputAccView];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,6 +56,10 @@
     //-(void)mymethods:(NSString *)aCont withsecond:(NSString *)a-second { }
     //[mymethod:self.contoCorrente withsecond:self.asecond];
 
+- (void)getScreenSize {
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    screenWidth = screenRect.size.width;
+}
 
 - (void)showAlert:(NSString *)title msg:(NSString *)msg {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
@@ -62,15 +72,21 @@
 }
 
 
-/*
+
  #pragma mark - Navigation
- 
+ /*
  // In a storyboard-based application, you will often want to do a little preparation before navigation
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
+     if ([[segue identifier] isEqualToString:@"AddMyPlayerID"])
+         
+     {
+         UITabBarController *tabbar = [segue destinationViewController];
+         LineupViewController *vc = [tabbar.viewControllers objectAtIndex:1];
+         
+         NSLog(@"end of prepareForSegue");
+     }
  }
- */
+*/
 
 - (IBAction)onClick:(id)sender {
     UIButton *button = (UIButton*)sender;
@@ -110,7 +126,6 @@
         case 2:
             
             [self performSegueWithIdentifier:@"MainTabBarControllerID" sender:@1];
-            
             
             
         default:
@@ -295,5 +310,37 @@
         NSLog(@"Could not remove file");
     }
 }
+
+-(void)createInputAccessoryView{
+    // Extra view for the done button to dismiss the keyboard
+    
+    inputAccView = [[UIView alloc] initWithFrame:CGRectMake(0, 0.0, screenWidth, 25)];
+    
+    [inputAccView setBackgroundColor:[UIColor darkGrayColor]];
+    
+    [inputAccView setAlpha: 0.6];
+    
+    
+    btnDone = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btnDone setFrame:CGRectMake(screenWidth-80, 0.0f, 80.0f, 25)];
+    [btnDone setTitle:@"Done" forState:UIControlStateNormal];
+    [btnDone setBackgroundColor:[UIColor darkTextColor]];
+    [btnDone setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [btnDone setAlpha:0.7];
+    [btnDone addTarget:self action:@selector(dismiss:) forControlEvents:UIControlEventTouchUpInside];
+    
+    // Now that our buttons are ready we just have to add them to our view.
+    [inputAccView addSubview:btnDone];
+}
+
+- (IBAction)dismiss:(id)sender
+{
+    // dismiss the KB
+    
+    NSLog(@"dismiss KB");
+    [self.view endEditing:YES];
+    
+}
+
 
 @end

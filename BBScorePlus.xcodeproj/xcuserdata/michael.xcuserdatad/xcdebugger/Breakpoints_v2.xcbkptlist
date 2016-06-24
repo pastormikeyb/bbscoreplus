@@ -17,6 +17,38 @@
             endingLineNumber = "34"
             landmarkName = "pitcherPitchCountDictionary"
             landmarkType = "19">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[HittingChartViewController pitcherPitchCountDictionary]"
+                  moduleName = "BBScorePlus"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/michael/Documents/School/IPDb/BBSPlus/BBScorePlus/BBScorePlus/HittingChartViewController.h"
+                  timestampString = "488309616.572929"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "34"
+                  endingLineNumber = "34"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[HittingChartViewController setPitcherPitchCountDictionary:]"
+                  moduleName = "BBScorePlus"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/michael/Documents/School/IPDb/BBSPlus/BBScorePlus/BBScorePlus/HittingChartViewController.h"
+                  timestampString = "488309616.573184"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "34"
+                  endingLineNumber = "34"
+                  offsetFromSymbolStart = "64">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -26,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/RulesSetupViewController.m"
-            timestampString = "483987359.920023"
+            timestampString = "488387341.521017"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
             landmarkName = "-didReceiveMemoryWarning"
             landmarkType = "5">
          </BreakpointContent>
@@ -42,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/RulesSetupViewController.m"
-            timestampString = "483987359.920023"
+            timestampString = "488387341.521017"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "250"
-            endingLineNumber = "250"
+            startingLineNumber = "262"
+            endingLineNumber = "262"
             landmarkName = "-onSwitch:"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/AddNewPlayerViewController.m"
-            timestampString = "475647753.724658"
+            timestampString = "488385576.975458"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "164"
-            endingLineNumber = "164"
+            startingLineNumber = "170"
+            endingLineNumber = "170"
             landmarkName = "-segmentedControlAction:"
             landmarkType = "5">
          </BreakpointContent>
@@ -74,12 +106,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/AddNewOpponentViewController.m"
-            timestampString = "475653674.547305"
+            timestampString = "488381096.850552"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
-            landmarkName = "-onSwitch:"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
+            landmarkName = "-onClick:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -90,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/AddNewPlayerViewController.m"
-            timestampString = "475647753.724658"
+            timestampString = "488385576.975458"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "231"
-            endingLineNumber = "231"
+            startingLineNumber = "237"
+            endingLineNumber = "237"
             landmarkName = "-addToTeamDictionary"
             landmarkType = "5">
          </BreakpointContent>
@@ -106,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/AddNewOpponentViewController.m"
-            timestampString = "475653674.547305"
+            timestampString = "488381096.850552"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "241"
-            endingLineNumber = "241"
+            startingLineNumber = "249"
+            endingLineNumber = "249"
             landmarkName = "-addToTeamDictionary"
             landmarkType = "5">
          </BreakpointContent>
@@ -122,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/AddNewPlayerViewController.m"
-            timestampString = "475647753.724658"
+            timestampString = "488385576.975458"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "197"
-            endingLineNumber = "197"
+            startingLineNumber = "203"
+            endingLineNumber = "203"
             landmarkName = "-addToTeamDictionary"
             landmarkType = "5">
          </BreakpointContent>
@@ -170,11 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/AddNewOpponentViewController.m"
-            timestampString = "475653674.547305"
+            timestampString = "488381096.850552"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "198"
-            endingLineNumber = "198"
+            startingLineNumber = "206"
+            endingLineNumber = "206"
             landmarkName = "-addToTeamDictionary"
             landmarkType = "5">
          </BreakpointContent>
@@ -1146,12 +1178,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/AddNewOpponentViewController.m"
-            timestampString = "475653674.547305"
+            timestampString = "488381096.850552"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
-            landmarkName = "-onClick:"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
+            landmarkName = "-goBack:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1162,13 +1194,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/AddNewOpponentViewController.m"
-            timestampString = "475653761.130102"
+            timestampString = "488381096.850552"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
-            landmarkName = "-goBack:"
-            landmarkType = "5">
+            startingLineNumber = "82"
+            endingLineNumber = "82"
+            landmarkName = "@implementation AddNewOpponentViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1466,12 +1498,12 @@
                   moduleName = "BBScorePlus"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/michael/Documents/School/IPDb/BBSPlus/BBScorePlus/BBScorePlus/HittingChartViewController.m"
-                  timestampString = "484892519.262406"
+                  timestampString = "488309616.60505"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "939"
                   endingLineNumber = "939"
-                  offsetFromSymbolStart = "277">
+                  offsetFromSymbolStart = "316">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -1481,12 +1513,12 @@
                   moduleName = "BBScorePlus"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/michael/Documents/School/IPDb/BBSPlus/BBScorePlus/BBScorePlus/HittingChartViewController.m"
-                  timestampString = "484892519.26255"
+                  timestampString = "488309616.605159"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "939"
                   endingLineNumber = "939"
-                  offsetFromSymbolStart = "285">
+                  offsetFromSymbolStart = "328">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1594,11 +1626,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/RulesSetupViewController.m"
-            timestampString = "483987359.920023"
+            timestampString = "488387341.521017"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "210"
-            endingLineNumber = "210"
+            startingLineNumber = "222"
+            endingLineNumber = "222"
             landmarkName = "-onClick:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1738,11 +1770,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/RulesSetupViewController.m"
-            timestampString = "483987359.920023"
+            timestampString = "488387341.521017"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "200"
-            endingLineNumber = "200"
+            startingLineNumber = "212"
+            endingLineNumber = "212"
             landmarkName = "-addToGameDefaultsDictionary"
             landmarkType = "5">
          </BreakpointContent>
@@ -1754,11 +1786,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/RulesSetupViewController.m"
-            timestampString = "483987359.920023"
+            timestampString = "488387341.521017"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "221"
-            endingLineNumber = "221"
+            startingLineNumber = "233"
+            endingLineNumber = "233"
             landmarkName = "-onClick:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1978,11 +2010,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BBScorePlus/RulesSetupViewController.m"
-            timestampString = "484892506.470518"
+            timestampString = "488387288.995078"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>

@@ -7,11 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LineupViewController.h"
+#import "RulesSetupViewController.h"
 
 @interface AddNewPlayerViewController : UIViewController
 {
     BOOL doesFileExist;
     BOOL isPitcher;
+    UIView *inputAccView;
+
 }
 @property (weak, nonatomic) IBOutlet UIScrollView *myScrollView;
 @property (weak, nonatomic) IBOutlet UITextField *firstName;
@@ -23,5 +27,8 @@
 - (IBAction)onClick:(id)sender;
 - (IBAction)segmentedControlAction:(id)sender;
 @property (weak, nonatomic) IBOutlet UISwitch *isPitcherSwitch;
+@property (nonatomic, retain)UIButton *btnDone;
+@property (nonatomic, retain)UIView *inputAccView;
+
 
 @end

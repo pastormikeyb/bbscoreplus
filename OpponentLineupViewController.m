@@ -161,6 +161,8 @@
         
             //delete the row from the tableView
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:TRUE];
+        
+        [self saveInfo];
     }
 }
 

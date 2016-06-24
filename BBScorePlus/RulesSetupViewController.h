@@ -15,6 +15,8 @@
     BOOL isHomeTeam;
     BOOL batting;
     BOOL isTopOfInning, isOpponentLoaded;
+    UIView *inputAccView;
+
 }
 @property (weak, nonatomic) IBOutlet UISwitch *trackPitchCountSwitch;
 @property (weak, nonatomic) IBOutlet UITextField *maxNumberOfPitchesTextField;
@@ -27,6 +29,9 @@
 
 @property (nonatomic, strong)NSString *opponentTeamName;
 @property (nonatomic, assign)BOOL isOpponentLoaded;
+@property (nonatomic, retain)UIButton *btnDone;
+@property (nonatomic, retain)UIView *inputAccView;
+
 
 - (IBAction)onClick:(id)sender;
 - (IBAction)onSwitch:(id)sender;

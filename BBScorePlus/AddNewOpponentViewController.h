@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AddNewOpponentViewController : UIViewController
+@interface AddNewOpponentViewController : UIViewController <UITextViewDelegate>
 {
     BOOL doesFileExist;
     BOOL isPitcher;
+    UIView *inputAccView;
+
 }
 @property (weak, nonatomic) IBOutlet UIScrollView *myScrollView;
 @property (weak, nonatomic) IBOutlet UITextField *firstName;
@@ -23,6 +25,7 @@
 - (IBAction)onClick:(id)sender;
 - (IBAction)segmentedControlAction:(id)sender;
 @property (weak, nonatomic) IBOutlet UISwitch *isPitcherSwitch;
-
+@property (nonatomic, retain)UIButton *btnDone;
+@property (nonatomic, retain)UIView *inputAccView;
 
 @end

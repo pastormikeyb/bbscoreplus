@@ -17,6 +17,7 @@
     NSMutableArray *arrayOfDictionariesMutableArray;
     NSDictionary *dict;
     BOOL isPitcherSet;
+    CGFloat screenWidth;
 }
 
 
@@ -24,6 +25,12 @@
 
 @implementation AddNewOpponentViewController
 @synthesize batsSegmentControl, throwsSegmentControl,firstName,lastName,playerNumber;
+@synthesize btnDone,inputAccView;
+
+- (void)getScreenSize {
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    screenWidth = screenRect.size.width;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -41,7 +48,12 @@
     if ([self doesFileExist]) {
         [self LoadFromFile];
     }
+    [self getScreenSize];
+
+    [self createInputAccessoryView];
+    [playerNumber setInputAccessoryView:inputAccView];
     
+//    playerNumber.delegate.self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -306,5 +318,35 @@
     }
 }
 
+-(void)createInputAccessoryView{
+        // Extra view for the done button to dismiss the keyboard
+    
+    inputAccView = [[UIView alloc] initWithFrame:CGRectMake(0, 0.0, screenWidth, 25)];
+    
+    [inputAccView setBackgroundColor:[UIColor darkGrayColor]];
+    
+    [inputAccView setAlpha: 0.6];
+    
+    
+    btnDone = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btnDone setFrame:CGRectMake(screenWidth-80, 0.0f, 80.0f, 25)];
+    [btnDone setTitle:@"Done" forState:UIControlStateNormal];
+    [btnDone setBackgroundColor:[UIColor darkTextColor]];
+    [btnDone setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [btnDone setAlpha:0.7];
+    [btnDone addTarget:self action:@selector(dismiss:) forControlEvents:UIControlEventTouchUpInside];
+    
+        // Now that our buttons are ready we just have to add them to our view.
+    [inputAccView addSubview:btnDone];
+}
+
+- (IBAction)dismiss:(id)sender
+{
+    // dismiss the KB
+    
+    NSLog(@"dismiss KB");
+    [self.view endEditing:YES];
+    
+}
 
 @end
