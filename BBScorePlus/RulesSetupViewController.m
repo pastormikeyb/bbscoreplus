@@ -45,8 +45,8 @@
         _LoadOpponentButton.enabled = NO;
     }
     
-    if ([self DoesMyOpponentFileExist]) {
-        
+//    if ([self DoesMyOpponentFileExist]) {
+    
 
     if ([self doesFileExist]) {
         [self LoadGameDefaults];
@@ -73,7 +73,7 @@
 //        gameStartTime = [[gameDefaultsDictionary valueForKey:@"amibatting"]boolValue];
 
 
-        }
+//        }
         
         
     }else{
@@ -81,8 +81,8 @@
         isContinousLineup = YES;
         isHomeTeam = YES;
         batting = NO;
-        [self removeBoxScore];
-        [self removeGameDefaults];
+//        [self removeBoxScore];
+//        [self removeGameDefaults];
         
         
     }

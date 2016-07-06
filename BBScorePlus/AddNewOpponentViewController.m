@@ -206,12 +206,21 @@
     
         //dictionary #1
     NSNumber *pitch = @(isPitcher);
+//    NSNumber *junk = [NSNumber numberWithInt:0];
     NSString *junk = @"0";
     NSArray *j1 = [NSArray array];
     
     NSString *fn = firstName.text;
     NSString *ln = lastName.text;
     NSString *pn = playerNumber.text;
+    if (playerBat.length <1) {
+        playerBat = @"R";
+
+    }
+    if (playerThrow.length <1) {
+        playerThrow = @"R";
+
+    }
 
     dict = [NSDictionary dictionaryWithObjectsAndKeys:
             fn,@"firstname",

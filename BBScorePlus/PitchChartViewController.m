@@ -28,12 +28,18 @@
     NSDictionary *boxScoreDictionary,*gameDefaultsDictionaryTemp,*hittingDictionary,*curPitcherDictionary,*pitcherPitchCountDictionary,*gameVariablesDictionary, *gameVariables,*tempdict;
     NSArray *name, *opponentPlayerNumber;
     NSArray *bats, *hitlocation;
-    NSArray *loadedMyTeamArray,*loadedOpponentArray;
+    NSArray *loadedMyTeamArray,*loadedOpponentArray,*hc, *pc;
     NSString *bats1, *myPitcher,*opponentPitcher;
     NSString *whoIsBatting, *numberOfHoursRest;
     NSMutableArray *topLevel, *myArray,*gameDefaultsMutableArray;
     BOOL loadMyPitcher,loadOpponentPitcher, isTimerStarted, showInstructions, isPitchHistoryLoaded;
-    NSString *fn, *ln, *pn, *pb, *pt, *pi, *fb, *sb, *tb, *hr, *fc,*fe,*hp,*sf,*rb,*ou,*bt,*st,*wa,*str,*wap,*strp,*strValue,*cb, *pc,*hc, *th, *oh, *now;
+    NSString *fn, *ln, *pn, *pb, *pt, *pi, *fb, *sb, *tb, *hr, *fc,*fe,*hp,*sf,*rb,*ou,*bt,*st,*wa,*str,*wap,*strp,*strValue,*cb, *th, *oh, *now;
+    
+//    int tempfb,tempsb,temptb,temphr,tempfc,tempfe,temphp,tempsf,temprbi,tempou,tempbt,tempst,tempwa,tempstr,tempwap,tempstrp;
+//    
+//    NSString *fn,*ln,*pb,*pt,*pi,*pn;
+//    NSArray *pitchingchart,*hittingchart;
+//    int fb,sb,tb,hr,fc,fe,hp,sf,rb,ou,bt,st,wap,strp,intCounter;
     NSUInteger myPitcherIndex, opponentPitcherIndex;
     NSDate *endingTime, *gameStartConverted, *gameStartTime;
     UIImageView *bbView;
@@ -79,11 +85,14 @@
     
     if ([self DoesBoxScoreExist]) {
         [self LoadBoxScore];
-        [self setCurrentPitchCount];
-        [self checkPitchCount];
-
         
     }
+    
+    if (isTrackPitchCount) {
+        [self checkPitchCount];
+
+    }
+
     NSLog(@"gametimelimit: %i",gameTimeLimit);
     if (gameTimeLimit <= 0) {
             //Gray out the Start Game Timer button
@@ -124,7 +133,7 @@
         
     }
     
-    [self checkPitchCount];
+//    [self checkPitchCount];
     
     myTeamCount = (int)[myTeamDictionaryArray count];
     opponentTeamCount = (int)[opponentTeamDictionaryArray count];
@@ -196,13 +205,16 @@
     homeRunsLabel.text = [NSString stringWithFormat:@"%i",homeRuns];
     visitorRunsLabel.text = [NSString stringWithFormat:@"%i",visitorRuns];
     
-    [self showPitchCount];
     
     if (!isPitchHistoryLoaded) {
         [self getPitchingChart];
         
     }
     
+    [self setCurrentPitchCount];
+    [self showPitchCount];
+    [self showPitchBall];
+    [self showPitchStrike];
     
 }
 
@@ -251,8 +263,6 @@
             
             [self saveBoxScore];
             
-            [self savePitchingChart];
-            
             didHit = YES;
             
             [self performSegueWithIdentifier:@"hcSegue" sender:nil];
@@ -283,9 +293,6 @@
             [self addStrike];
             
             [self scoreboardHits];
-            
-                //see the pitch position
-            NSLog(@"pitch location: %@",pitchLocation);
             
             [self showPitchCount];
             
@@ -932,6 +939,16 @@
         t1++;
         strValue = [@(t1) stringValue];
         
+        if ([hc isKindOfClass:[NSNull class]]) {
+            hc = [NSArray array];
+        }
+        
+        if ([pc isKindOfClass:[NSNull class]]) {
+            pc = [NSArray array];
+        }
+
+
+        
         tempdict = [NSDictionary dictionaryWithObjectsAndKeys:
                     fn,@"firstname",
                     ln,@"lastname",
@@ -963,6 +980,7 @@
         [opponentTeamDictionaryArray replaceObjectAtIndex:opponentPitcherIndex withObject:tempdict];
         NSLog(@"add strike opponentTeamDictArr:\n%@",tempdict);
         
+//        [self removeOpponentDictionaryFile];
         [self saveUpdatedOpponentTeamInfo];
         
         
@@ -973,8 +991,19 @@
         [self setMyTeamPitcherArray];
         
         int t1 = [st intValue];
+        
         t1++;
         strValue = [@(t1) stringValue];
+
+        //test
+        if ([hc isKindOfClass:[NSNull class]]) {
+            hc = [NSArray array];
+        }
+        
+        if ([pc isKindOfClass:[NSNull class]]) {
+            pc = [NSArray array];
+        }
+
         
         tempdict = [NSDictionary dictionaryWithObjectsAndKeys:
                     fn,@"firstname",
@@ -1007,6 +1036,7 @@
         
         NSLog(@"add strike myTeamDictArray:\n%@",tempdict);
         
+//        [self removeTeamDictionaryFile];
         [self saveUpdatedMyTeamInfo];
         
     }
@@ -1023,6 +1053,7 @@
         int t1 = [bt intValue];
         t1++;
         strValue = [@(t1) stringValue];
+        
         
         tempdict = [NSDictionary dictionaryWithObjectsAndKeys:
                     fn,@"firstname",
@@ -1105,6 +1136,7 @@
 
 - (void)showPitchCount{
     currentPitchCountLabel.text = [NSString stringWithFormat:@"%i",currentPitchCount];
+    NSLog(@"currentPitchCount %i",currentPitchCount);
     
 }
 
@@ -1163,6 +1195,8 @@
     lastName = [opponentTeamDictionaryArray valueForKey:@"lastname"];
     playerBats = [opponentTeamDictionaryArray valueForKey:@"playerbat"];
     opponentPlayerNumber = [opponentTeamDictionaryArray valueForKey:@"playernumber"];
+    
+    NSLog(@"loadopponentTeam %@",opponentTeamDictionaryArray);
     NSLog(@"loadOppTeam from boxscore: %@",[boxScoreDictionary valueForKey:@"opponentbattingpositionnumber"]);
     
 }
@@ -1737,6 +1771,7 @@
     if ([paths count] > 0)
     {
         
+        NSLog(@"saveUpdatedOpponentTeamInfo opp team dict array: %@",opponentTeamDictionaryArray);
             // Write dictionary
         [opponentTeamDictionaryArray writeToFile:dictPath atomically:YES];
         
@@ -1818,7 +1853,8 @@
         NSNumber *visitorrun = [NSNumber numberWithInt:visitorRuns];
         NSNumber *visitorhits = [NSNumber numberWithInt:visitorHits];
         NSNumber *visitorerrors = [NSNumber numberWithInt:visitorErrors];
-        NSString *oppBatter = [NSString stringWithFormat:@"%d",loadedOpponentCurrentBatter];
+//        NSString *oppBatter = [NSString stringWithFormat:@"%d",loadedOpponentCurrentBatter];
+        NSNumber *oppBatter = [NSNumber numberWithInt:loadedOpponentCurrentBatter];
         NSNumber *myBatter = [NSNumber numberWithInt:batterPositionNumber];
         NSNumber *inn = [NSNumber numberWithInt:currentInning];
         
@@ -1859,7 +1895,9 @@
         NSNumber *visitorhits = [NSNumber numberWithInt:visitorHits];
         NSNumber *visitorerrors = [NSNumber numberWithInt:visitorErrors];
         
-        NSString *oppBatter = [NSString stringWithFormat:@"%d",batterPositionNumber];
+//        NSString *oppBatter = [NSString stringWithFormat:@"%d",batterPositionNumber];
+        NSNumber *oppBatter = [NSNumber numberWithInt:batterPositionNumber];
+
         NSNumber *myBatter = [NSNumber numberWithInt:loadedMyTeamCurrentBatter];
         
         NSNumber *inn = [NSNumber numberWithInt:currentInning];
@@ -1917,7 +1955,10 @@
     NSNumber *visitorrun = [NSNumber numberWithInt:visitorRuns];
     NSNumber *visitorhits = [NSNumber numberWithInt:visitorHits];
     NSNumber *visitorerrors = [NSNumber numberWithInt:visitorErrors];
-    NSString *oppBatter = [NSString stringWithFormat:@"%d",loadedOpponentCurrentBatter];
+    
+//    NSString *oppBatter = [NSString stringWithFormat:@"%d",loadedOpponentCurrentBatter];
+    NSNumber *oppBatter = [NSNumber numberWithInt:loadedOpponentCurrentBatter];
+
     NSNumber *myBatter = [NSNumber numberWithInt:loadedMyTeamCurrentBatter];
     NSNumber *inn = [NSNumber numberWithInt:currentInning];
     
@@ -2675,6 +2716,15 @@
     int t1 = [strp intValue];
     t1++;
     strValue = [@(t1) stringValue];
+    
+    if ([hc isKindOfClass:[NSNull class]]) {
+        hc = [NSArray array];
+    }
+    
+    if ([pc isKindOfClass:[NSNull class]]) {
+        pc = [NSArray array];
+    }
+
     
     tempdict = [NSDictionary dictionaryWithObjectsAndKeys:
                 fn,@"firstname",
