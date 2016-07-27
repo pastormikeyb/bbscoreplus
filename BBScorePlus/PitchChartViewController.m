@@ -598,19 +598,23 @@
                 //SAC
             NSLog(@"SAC");
             currentPitchCount ++;
+            currentOuts ++;
             sacFly ++;
-            myOut ++;
             if (amIBatting){
                     //HOME
                 NSLog(@"isHomeTeam:yes");
                 
+                myOut ++;
                 [self addMySac];
+                [self addMyOut];
                 
             }else{
                     //OPPONENT
                 NSLog(@"no");
-                
+               
+                opponentOut++;
                 [self addOpponentSac];
+                [self addOpponentOut];
                 
             }
             
@@ -2567,6 +2571,7 @@
     [myTeamDictionaryArray replaceObjectAtIndex:batterPositionNumber withObject:tempdict];
     
         //saveback
+    NSLog(@"myout:tempdict \n%@",tempdict);
     [self saveUpdatedMyTeamInfo];
     
 }
@@ -2652,6 +2657,7 @@
                 nil];
     
     [myTeamDictionaryArray replaceObjectAtIndex:batterPositionNumber withObject:tempdict];
+    NSLog(@"sacfly tempdict: \n%@",tempdict);
     
     [self saveUpdatedMyTeamInfo];
     
@@ -3331,7 +3337,8 @@
                 nil];
     
     [opponentTeamDictionaryArray replaceObjectAtIndex:batterPositionNumber withObject:tempdict];
-    
+    NSLog(@"sacfly tempdict: \n%@",tempdict);
+
     
         //saveback
     [self saveUpdatedOpponentTeamInfo];

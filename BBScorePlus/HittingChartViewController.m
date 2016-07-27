@@ -148,6 +148,7 @@
                                
                                nil];
                 NSLog(@"hitLocation %@",hitLocation);
+//                [self saveHittingChart];
                 
             }
         }
@@ -461,7 +462,7 @@
     
 }
 
-- (void)savePitchingChart {
+- (void)saveHittingChart {
     
     if (batting) {
         NSLog(@"I'm batting");
@@ -484,13 +485,13 @@
         
     }else{
         NSLog(@"I'm NOT batting");
-        if (pitchLocation !=nil) {
+        if (hitLocation !=nil) {
             
             [self loadOpponentTeamDictionaryArray];
             
             loadedOpponentHitLocationMutableArray = [[opponentTeamDictionaryArray valueForKey:@"hittingchart"]objectAtIndex:batterPositionNumber];
             
-            [loadedOpponentHitLocationMutableArray addObject:pitchLocation ];
+            [loadedOpponentHitLocationMutableArray addObject:hitLocation ];
             
             [self setOpponentHittingTempDict];
             

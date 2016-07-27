@@ -245,7 +245,7 @@
             junk,@"strikeouts",
             junk,@"walkspitched",
             junk,@"strikeoutspitched",
-            j1,@"hittinghchart",
+            j1,@"hittingchart",
             j1,@"pitchingchart",
             nil];
     

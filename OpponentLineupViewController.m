@@ -226,10 +226,16 @@
     NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"opponentteamdictionary.out"];
     
     opponentDictionaryArray = [NSMutableArray arrayWithContentsOfFile:filePath];
-    firstname = [opponentDictionaryArray valueForKey:@"firstname"];
-    lastname = [opponentDictionaryArray valueForKey:@"lastname"];
-    playerNumber = [opponentDictionaryArray valueForKey:@"playernumber"];
-    currentPitcherArray = [opponentDictionaryArray valueForKey:@"pitcher"];
+    
+    if (opponentDictionaryArray.count >0) {
+        firstname = [opponentDictionaryArray valueForKey:@"firstname"];
+        lastname = [opponentDictionaryArray valueForKey:@"lastname"];
+        playerNumber = [opponentDictionaryArray valueForKey:@"playernumber"];
+        currentPitcherArray = [opponentDictionaryArray valueForKey:@"pitcher"];
+
+    }else{
+        [self removeFile];
+    }
 
     
 }

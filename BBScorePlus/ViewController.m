@@ -12,6 +12,7 @@
 {
     NSDictionary *gameVariables;
     BOOL showInstructions;
+    NSMutableArray *opponentDictionaryArray, *myTeamDictionaryArray;
 }
 
 @end
@@ -84,7 +85,18 @@
     if ([fileManager fileExistsAtPath: path])
     {
         NSLog(@"File Exist");
-        return YES;
+        
+        myTeamDictionaryArray = [NSMutableArray arrayWithContentsOfFile:path];
+        
+        if (myTeamDictionaryArray.count <1) {
+            [self removeMyTeamFile];
+            [self removeBoxScore];
+            return NO;
+        }else{
+            
+            
+            return YES;
+        }
     }
     NSLog(@"File Does not Exist");
     return NO;
@@ -101,7 +113,18 @@
     if ([fileManager fileExistsAtPath: path])
     {
         NSLog(@"File Exist");
+        
+        opponentDictionaryArray = [NSMutableArray arrayWithContentsOfFile:path];
+        
+        if (opponentDictionaryArray.count <1) {
+            [self removeFile];
+            [self removeBoxScore];
+            return NO;
+        }else{
+
+        
         return YES;
+        }
     }
     NSLog(@"File Does not Exist");
     return NO;
@@ -126,6 +149,58 @@
         
     }
     
+}
+
+- (void)removeFile
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    
+    NSString *filePath = [documentsPath stringByAppendingPathComponent:@"opponentteamdictionary.out"];
+    NSError *error;
+    BOOL success = [fileManager removeItemAtPath:filePath error:&error];
+    if (success) {
+        NSLog(@"File removed");
+    }
+    else
+    {
+        NSLog(@"Could not remove file");
+        NSLog(@"Error: %@",[error description]);
+    }
+}
+
+- (void)removeMyTeamFile
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    
+    NSString *filePath = [documentsPath stringByAppendingPathComponent:@"teamdictionary.out"];
+    NSError *error;
+    BOOL success = [fileManager removeItemAtPath:filePath error:&error];
+    if (success) {
+        NSLog(@"File removed");
+    }
+    else
+    {
+        NSLog(@"Could not remove file");
+    }
+}
+
+- (void)removeBoxScore
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    
+    NSString *filePath = [documentsPath stringByAppendingPathComponent:@"boxscore.out"];
+    NSError *error;
+    BOOL success = [fileManager removeItemAtPath:filePath error:&error];
+    if (success) {
+        NSLog(@"File removed");
+    }
+    else
+    {
+        NSLog(@"Could not remove file");
+    }
 }
 
 
