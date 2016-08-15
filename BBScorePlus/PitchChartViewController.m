@@ -35,15 +35,12 @@
     BOOL loadMyPitcher,loadOpponentPitcher, isTimerStarted, showInstructions, isPitchHistoryLoaded;
     NSString *fn, *ln, *pn, *pb, *pt, *pi, *fb, *sb, *tb, *hr, *fc,*fe,*hp,*sf,*rb,*ou,*bt,*st,*wa,*str,*wap,*strp,*strValue,*cb, *th, *oh, *now;
     
-//    int tempfb,tempsb,temptb,temphr,tempfc,tempfe,temphp,tempsf,temprbi,tempou,tempbt,tempst,tempwa,tempstr,tempwap,tempstrp;
-//    
-//    NSString *fn,*ln,*pb,*pt,*pi,*pn;
-//    NSArray *pitchingchart,*hittingchart;
-//    int fb,sb,tb,hr,fc,fe,hp,sf,rb,ou,bt,st,wap,strp,intCounter;
     NSUInteger myPitcherIndex, opponentPitcherIndex;
     NSDate *endingTime, *gameStartConverted, *gameStartTime;
     UIImageView *bbView;
     CGFloat screenWidth, screenHeight;
+    NSArray *myPCArray;
+
 }
 
 @end
@@ -51,8 +48,15 @@
 @implementation PitchChartViewController
 @synthesize currentOutLabel, currentBallsLabel,currentStrikeLabel,currentPlayerNumberLabel, currentPitchCountLabel, currentBatLabel, currentBatterLabel,batterPositionNumber,homeRunsLabel,visitorRunsLabel,currentPitcherLabel,currentBatterInfoLabel,gameTimerButton;
 
+- (void)viewWillAppear:(BOOL)animated{
+    [self.alertLabel setHidden:YES];
+    [self.alertSmallLabel setHidden:YES];
+
+}
 
 - (void)viewDidLoad {
+
+    
     [self.alertLabel setHidden:YES];
     [self.alertSmallLabel setHidden:YES];
 
@@ -90,6 +94,10 @@
     
     if (isTrackPitchCount) {
         [self checkPitchCount];
+
+    }else{
+        [self.alertLabel setHidden:YES];
+        [self.alertSmallLabel setHighlighted:YES];
 
     }
 
@@ -132,8 +140,6 @@
         
         
     }
-    
-//    [self checkPitchCount];
     
     myTeamCount = (int)[myTeamDictionaryArray count];
     opponentTeamCount = (int)[opponentTeamDictionaryArray count];
@@ -205,16 +211,13 @@
     homeRunsLabel.text = [NSString stringWithFormat:@"%i",homeRuns];
     visitorRunsLabel.text = [NSString stringWithFormat:@"%i",visitorRuns];
     
-    
-    if (!isPitchHistoryLoaded) {
-        [self getPitchingChart];
-        
-    }
+    [self getPitchingChart];
     
     [self setCurrentPitchCount];
     [self showPitchCount];
     [self showPitchBall];
     [self showPitchStrike];
+    
     
 }
 
@@ -264,7 +267,9 @@
             [self saveBoxScore];
             
             didHit = YES;
-            
+
+            [bbView removeFromSuperview];
+
             [self performSegueWithIdentifier:@"hcSegue" sender:nil];
             
             break;
@@ -306,6 +311,8 @@
             
             didHit = YES;
             
+            [bbView removeFromSuperview];
+
             [self performSegueWithIdentifier:@"hcSegue" sender:nil];
             
             break;
@@ -349,6 +356,8 @@
             
             didHit = YES;
             
+            [bbView removeFromSuperview];
+
             [self performSegueWithIdentifier:@"hcSegue" sender:nil];
             
             break;
@@ -391,6 +400,8 @@
             
             didHit = YES;
             
+            [bbView removeFromSuperview];
+
             [self performSegueWithIdentifier:@"hcSegue" sender:nil];
             
             break;
@@ -434,6 +445,8 @@
             
             didHit = YES;
             
+            [bbView removeFromSuperview];
+
             [self performSegueWithIdentifier:@"hcSegue" sender:nil];
             
             break;
@@ -480,6 +493,8 @@
             
             didHit = YES;
             
+            [bbView removeFromSuperview];
+
             [self performSegueWithIdentifier:@"hcSegue" sender:nil];
             
             break;
@@ -548,6 +563,7 @@
                 
             }
             
+            [bbView removeFromSuperview];
             
             [self performSegueWithIdentifier:@"hcSegue" sender:nil];
             
@@ -590,6 +606,8 @@
             
             [self savePitchingChart];
             
+            [bbView removeFromSuperview];
+
             [self performSegueWithIdentifier:@"PitchChartSegue" sender:nil];
             
             break;
@@ -634,6 +652,8 @@
             
             didHit = YES;
             
+            [bbView removeFromSuperview];
+
             [self performSegueWithIdentifier:@"hcSegue" sender:nil];
             
             break;
@@ -666,6 +686,8 @@
                 
                 [self saveBoxScore];
                 
+                [bbView removeFromSuperview];
+
                 [self performSegueWithIdentifier:@"PitchChartSegue" sender:nil];
                 
                 
@@ -683,6 +705,8 @@
             
             [self showPitchBall];
             
+            [bbView removeFromSuperview];
+
             [self viewDidLoad];
             
             break;
@@ -718,6 +742,9 @@
                 [self saveBoxScore];
                 
                 if (currentOuts < 3) {
+                    
+                    [bbView removeFromSuperview];
+
                     [self performSegueWithIdentifier:@"PitchChartSegue" sender:nil];
                     
                 }
@@ -759,11 +786,12 @@
                     amIBatting = YES;
                 }
                 
-                
+                [bbView removeFromSuperview];
+
                 [self performSegueWithIdentifier:@"hcSegue" sender:nil];
                 
             }
-            
+            [bbView removeFromSuperview];
             [self viewDidLoad];
             
             break;
@@ -866,6 +894,8 @@
             [self saveBoxScore];
             
             
+            [bbView removeFromSuperview];
+
             [self viewDidLoad];
             
                 //check if runs || rbi <0
@@ -922,6 +952,8 @@
             [self saveBoxScore];
             
             
+            [bbView removeFromSuperview];
+
             [self viewDidLoad];
             break;
             
@@ -932,7 +964,7 @@
 }
 
 - (void)addStrike{
-        //add strike to pitcher
+        //add strikes thrown to pitcher
     
     if (amIBatting){
             //opponent team
@@ -984,12 +1016,11 @@
         [opponentTeamDictionaryArray replaceObjectAtIndex:opponentPitcherIndex withObject:tempdict];
         NSLog(@"add strike opponentTeamDictArr:\n%@",tempdict);
         
-//        [self removeOpponentDictionaryFile];
         [self saveUpdatedOpponentTeamInfo];
         
         
     }else{
-            //my team
+            //my team pitcher update
         NSLog(@"MyTeam DictionaryArray %@",myTeamDictionaryArray);
         
         [self setMyTeamPitcherArray];
@@ -999,7 +1030,6 @@
         t1++;
         strValue = [@(t1) stringValue];
 
-        //test
         if ([hc isKindOfClass:[NSNull class]]) {
             hc = [NSArray array];
         }
@@ -1040,7 +1070,6 @@
         
         NSLog(@"add strike myTeamDictArray:\n%@",tempdict);
         
-//        [self removeTeamDictionaryFile];
         [self saveUpdatedMyTeamInfo];
         
     }
@@ -1050,7 +1079,7 @@
         //add BALL to pitcher
     
     if (amIBatting){
-            //opponent team
+            //opponent team pitcher
         NSLog(@"opponentTeamDictArray %@",opponentTeamDictionaryArray);
             //add to loaded
         [self setOpponentTeamPitcherArray];
@@ -1462,17 +1491,17 @@
     NSLog(@"Point in myView: (%f,%f)", currentPos.x, currentPos.y);
     if (screenWidth > 568) {
         
-        if (currentPos.x >= 270 && currentPos.x <= 464) {
-            if (currentPos.y >= 12 && currentPos.y <= 203) {
+        if (currentPos.x >= 245 && currentPos.x <= 492) {
+            if (currentPos.y >= 12 && currentPos.y <= 256) {
                 bbView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"baseballSmall"]] ;
                 
                 [bbView setCenter:CGPointMake(currentPos.x, currentPos.y)];
                 [self.view addSubview:bbView];
                 
-                float xP = currentPos.x;
-                float yP = currentPos.y;
-                xPos = [NSNumber numberWithFloat:xP];
-                yPos = [NSNumber numberWithFloat:yP];
+                int xP = currentPos.x;
+                int yP = currentPos.y;
+                xPos = [NSNumber numberWithInt:xP];
+                yPos = [NSNumber numberWithInt:yP];
                 
                 pitchLocation = [NSArray arrayWithObjects:
                                  xPos,yPos,nil];
@@ -1491,10 +1520,10 @@
                 [bbView setCenter:CGPointMake(currentPos.x, currentPos.y)];
                 [self.view addSubview:bbView];
                 
-                float xP = currentPos.x;
-                float yP = currentPos.y;
-                xPos = [NSNumber numberWithFloat:xP];
-                yPos = [NSNumber numberWithFloat:yP];
+                int xP = currentPos.x;
+                int yP = currentPos.y;
+                xPos = [NSNumber numberWithInt:xP];
+                yPos = [NSNumber numberWithInt:yP];
                 
                 pitchLocation = [NSArray arrayWithObjects:
                                  xPos,yPos,nil];
@@ -1616,12 +1645,12 @@
     if (amIBatting){
         
         
-        if (batterPositionNumber > myTeamCount) {
+        if (batterPositionNumber >= myTeamCount) {
             batterPositionNumber = 0;
         }
     }else{
         
-        if (batterPositionNumber > opponentTeamCount) {
+        if (batterPositionNumber >= opponentTeamCount) {
             batterPositionNumber = 0;
         }
     }
@@ -1857,7 +1886,6 @@
         NSNumber *visitorrun = [NSNumber numberWithInt:visitorRuns];
         NSNumber *visitorhits = [NSNumber numberWithInt:visitorHits];
         NSNumber *visitorerrors = [NSNumber numberWithInt:visitorErrors];
-//        NSString *oppBatter = [NSString stringWithFormat:@"%d",loadedOpponentCurrentBatter];
         NSNumber *oppBatter = [NSNumber numberWithInt:loadedOpponentCurrentBatter];
         NSNumber *myBatter = [NSNumber numberWithInt:batterPositionNumber];
         NSNumber *inn = [NSNumber numberWithInt:currentInning];
@@ -1960,7 +1988,6 @@
     NSNumber *visitorhits = [NSNumber numberWithInt:visitorHits];
     NSNumber *visitorerrors = [NSNumber numberWithInt:visitorErrors];
     
-//    NSString *oppBatter = [NSString stringWithFormat:@"%d",loadedOpponentCurrentBatter];
     NSNumber *oppBatter = [NSNumber numberWithInt:loadedOpponentCurrentBatter];
 
     NSNumber *myBatter = [NSNumber numberWithInt:loadedMyTeamCurrentBatter];
@@ -3391,7 +3418,6 @@
 
 - (void)getPitchingChart{
     NSLog(@"getPitchingChart");
-    NSArray *myPCArray;
     
     if (amIBatting) {
         if ([[myTeamDictionaryArray valueForKey:@"pitchingchart"]objectAtIndex:batterPositionNumber] != nil) {
@@ -3412,17 +3438,12 @@
             int x = [[myPCArray[i]objectAtIndex:0]intValue];
             int y = [[myPCArray[i]objectAtIndex:1]intValue];
             
-            NSLog(@"myPCArray: %@",myPCArray[i]);
+            NSLog(@"myPCArray: %@ , %i",myPCArray[i],i);
             NSLog(@"x: %i",x);
             NSLog(@"y: %i",y);
                 //after getting x,y place on screen;
             UIImage *baseBall = [UIImage imageNamed:@"baseballSmall"];
             bbView = [[UIImageView alloc]initWithImage:baseBall];
-            
-            
-                //            bbView = [[UIImageView alloc]initWithImage:[baseBall imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
-                //            NSLog(@"ballColor: %@",ballColor[i]);
-                //            bbView.tintColor = [UIColor lightGrayColor];
             
             CGRect frame = bbView.bounds;
             frame.origin.x = x;
@@ -3439,7 +3460,6 @@
 - (void)clearPitchingChart{
     NSLog(@"clearHittingChart");
     batterPositionNumber --;
-    NSArray *myPCArray;
     if (amIBatting) {
         if ([[myTeamDictionaryArray valueForKey:@"pitchingchart"]objectAtIndex:batterPositionNumber] != nil) {
             myPCArray = [[myTeamDictionaryArray valueForKey:@"pitchingchart"]objectAtIndex:batterPositionNumber];

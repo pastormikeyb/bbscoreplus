@@ -14,14 +14,15 @@
     NSDictionary *hittingChartDictionary, *tempdict;
     NSMutableDictionary *testDict;
     NSMutableArray *myTeamDictionaryArray, *opponentTeamDictionaryArray, *opponentTeamDictionaryForSavingArray;
-    NSString *fn, *ln, *pn, *pb, *pt, *pi, *fb, *sb, *tb, *hr, *fc,*fe,*hp,*sf,*rb,*ou,*bt,*st,*wa,*str,*wap,*strp,*strValue, *pc, *hc, *opponentTeamName, *fileName;
+    NSString *fn, *ln, *pn, *pb, *pt, *pi, *fb, *sb, *tb, *hr, *fc,*fe,*hp,*sf,*rb,*ou,*bt,*st,*wa,*str,*wap,*strp,*strValue, *opponentTeamName, *fileName;
     NSArray *hitLocation,*pitchLocation;
-    NSArray *myArray;
+    NSArray *myArray, *hc, *pc;
 
     NSArray *emptyNSArray;
 
     NSMutableArray *loadedMyHitLocationMutableArray,*loadedOpponentHitLocationMutableArray;
     int loadedMyTeamCurrentBatter, loadedOpponentCurrentBatter;
+    UIImageView *bbView;
     utilities *util;
     
 }
@@ -31,8 +32,15 @@
 @implementation HittingChartViewController
 @synthesize currentHitter, currentHitterLabel, pitcherPitchCountDictionary, arrayOfDictionariesMutableArray, homeRunsLabel, homeHitsLabel, homeErrorLabel, visitorRunsLabel,visitorHitsLabel,visitorErrorLabel, isMyTeamBatting, currentInningLabel,didHit,batterPositionNumber,batting,isTopOfInning,isGameStarted,inningNumber;
 
+- (void)viewWillAppear:(BOOL)animated{
+    [bbView removeFromSuperview];
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [bbView removeFromSuperview];
+
     
     util = [[utilities alloc]init];
     
@@ -50,12 +58,7 @@
     [self LoadMyTeam];
     [self LoadOpponentTeam];
     
-    [self LoadBoxScore];
     
-    
-    if (batterPositionNumber < 0) {
-        batterPositionNumber = 0;
-    }
     if (batting) {
         if (batterPositionNumber >= myTeamDictionaryArray.count) {
             batterPositionNumber = 0;
@@ -133,22 +136,23 @@
         if (currentPos.x >= 235 && currentPos.x <= 505) {
             if (currentPos.y >= 45 && currentPos.y <= 325) {
                 
-                UIImageView *bbView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"baseballGloveSmall"]] ;
+                bbView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"baseballGloveSmall"]] ;
                 
                 [bbView setCenter:CGPointMake(currentPos.x, currentPos.y)];                     [self.view addSubview:bbView];
                 
-                float xPos = currentPos.x;
-                float yPos = currentPos.y;
-                NSString *xPos1,*yPos1;
+                int xP = currentPos.x;
+                int yP = currentPos.y;
+                NSNumber *xPos = [NSNumber numberWithInt:xP];
+                NSNumber *yPos = [NSNumber numberWithInt:yP];
+
                 
                 hitLocation = [NSArray arrayWithObjects:
                                
-                               xPos1 = [[NSNumber numberWithFloat:xPos] stringValue],
-                               yPos1 = [[NSNumber numberWithFloat:yPos] stringValue],
-                               
+                               xPos,
+                               yPos,
                                nil];
                 NSLog(@"hitLocation %@",hitLocation);
-//                [self saveHittingChart];
+                [self saveHittingChart];
                 
             }
         }
@@ -497,6 +501,8 @@
             
             [opponentTeamDictionaryArray replaceObjectAtIndex:batterPositionNumber withObject:tempdict];
             
+            NSLog(@"tempdict:\n %@\nopponentTeam:\n%@",tempdict,opponentTeamDictionaryArray);
+            
             [self saveUpdatedOpponentTeamInfo];
             
         }
@@ -526,7 +532,7 @@
                 bt,@"ballspitched",
                 st,@"strikesthrown",
                 loadedOpponentHitLocationMutableArray,@"hittingchart",
-                pitchLocation,@"pitchingchart",
+                pc,@"pitchingchart",
                 wa,@"walks",
                 str,@"strikeouts",
                 wap,@"walkspitched",
@@ -560,7 +566,7 @@
                 bt,@"ballspitched",
                 st,@"strikesthrown",
                 loadedMyHitLocationMutableArray,@"hittingchart",
-                pitchLocation,@"pitchingchart",
+                pc,@"pitchingchart",
                 wa,@"walks",
                 str,@"strikeouts",
                 wap,@"walkspitched",
